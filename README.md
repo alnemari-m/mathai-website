@@ -2,9 +2,6 @@
 
 Simple course website for Mathematics of AI graduate course.
 
-## Live Site
-
-https://YOUR_GITHUB_USERNAME.github.io/mathai-website/
 
 ## Structure
 
