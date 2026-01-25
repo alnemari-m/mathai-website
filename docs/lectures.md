@@ -4,11 +4,31 @@ Complete lecture materials with slides and notes in PDF format.
 
 ---
 
-## 📚 Complete Course Slides
+## 📋 Course Administration
 
-**Mathematics for Machine Learning - Full Course**
-All lectures in one comprehensive PDF document
-[📥 Download Complete Slides (5.6 MB)](pdfs/Mathematics_for_Machine_Learning.pdf)
+### Assessment Breakdown
+
+| Component | Weight | Details |
+|-----------|--------|---------|
+| **Quizzes** | **40%** | 4-5 quizzes throughout the course |
+| **Midterm Examination** | **20%** | Covers Part I: Mathematical Foundations |
+| **Final Examination** | **30%** | Comprehensive exam covering all topics |
+| **Reading & Review Papers** | **10%** | 4-5 research papers to review |
+| **TOTAL** | **100%** | - |
+
+### Course Level & Prerequisites
+
+**Target Audience:** Undergraduate/Graduate Level
+
+**Flexible Prerequisites:**
+- Basic linear algebra and vector calculus recommended
+- Course structure allows for adjustment based on student background
+- Mathematical concepts presented with varying levels of rigor
+
+**Course Materials:**
+- [📥 Download Complete Course Slides (5.6 MB)](pdfs/Mathematics_for_Machine_Learning.pdf)
+- Access to required textbooks (see below)
+- Python/Jupyter environment for coding exercises
 
 ---
 
