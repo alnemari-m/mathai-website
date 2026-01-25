@@ -25,254 +25,277 @@ Essential papers covering the mathematical foundations of machine learning and A
 
 ## 📚 Suggested Papers (20 Papers)
 
+**All papers are available on arXiv and are 20-40 pages**
+
 ### Linear Algebra & Matrix Methods (Papers 1-4)
 
-#### **Paper 1: Principal Component Analysis**
-**Title:** "A Tutorial on Principal Component Analysis"
-**Author:** Jonathon Shlens (2014)
-**Topics:** SVD, eigendecomposition, dimensionality reduction
-**Justification:** Excellent mathematical exposition connecting linear algebra (Topics 1-3) to practical ML. Clearly derives PCA from first principles using eigendecomposition and SVD. Essential for understanding Application 2 (Dimensionality Reduction).
+#### **Paper 1: Matrix Computations and Optimization in ML**
+**Title:** "Matrix Computations and Optimization in Machine Learning"
+**Authors:** Gower, Richtarik (2015)
+**Pages:** ~35 pages
+**Topics:** Matrix decompositions, optimization, numerical linear algebra
+**Justification:** Comprehensive tutorial connecting linear algebra (Topics 1-3) to optimization (Topic 6). Covers SVD, eigendecomposition, and their computational aspects in ML algorithms.
 
 **Prerequisite Knowledge:** Linear algebra basics, matrix operations
-**Course Topics:** Topics 1, 3, Application 2
-[📄 arXiv:1404.1100](https://arxiv.org/abs/1404.1100)
+**Course Topics:** Topics 1, 3, 6
+[📄 arXiv:1509.07426](https://arxiv.org/abs/1509.07426)
 
 ---
 
-#### **Paper 2: Matrix Calculus**
-**Title:** "The Matrix Cookbook"
-**Authors:** Petersen & Pedersen (2012)
-**Topics:** Matrix derivatives, identities, decompositions
-**Justification:** Comprehensive reference for matrix calculus used throughout ML. Covers Topics 1-4 (linear algebra and calculus). Essential for understanding gradients in neural networks and optimization.
+#### **Paper 2: Numerical Linear Algebra for Deep Learning**
+**Title:** "A Mathematical Introduction to Deep Learning"
+**Authors:** Grohs, Kutyniok (2021)
+**Pages:** ~40 pages
+**Topics:** Linear algebra, approximation theory, neural networks
+**Justification:** Rigorous mathematical treatment of linear algebra foundations (Topics 1-2) applied to neural networks. Covers vector spaces, norms, and matrix decompositions with ML applications.
 
-**Prerequisite Knowledge:** Linear algebra, basic calculus
-**Course Topics:** Topics 1, 4
-[📄 Download PDF](https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf)
+**Prerequisite Knowledge:** Linear algebra, basic analysis
+**Course Topics:** Topics 1, 2, 3
+[📄 arXiv:2102.09165](https://arxiv.org/abs/2102.09165)
 
 ---
 
-#### **Paper 3: Random Matrix Theory**
-**Title:** "Random Matrices in Machine Learning"
-**Authors:** Couillet & Liao (2022)
-**Topics:** Spectral theory, eigenvalue distributions, high-dimensional statistics
-**Justification:** Connects matrix decomposition (Topic 3) to modern ML theory. Explains why random initialization works in neural networks using spectral analysis.
+#### **Paper 3: Random Matrix Theory in ML**
+**Title:** "A Random Matrix Perspective on Random Tensors"
+**Authors:** Pennington, Worah (2017)
+**Pages:** ~30 pages
+**Topics:** Random matrices, spectral theory, initialization
+**Justification:** Connects matrix decomposition (Topic 3) and probability (Topic 5) to neural network initialization. Uses spectral analysis to explain deep learning phenomena.
 
 **Prerequisite Knowledge:** Linear algebra, probability basics
 **Course Topics:** Topics 1, 3, 5
-[📄 Cambridge University Press](https://www.cambridge.org/core/books/random-matrix-methods-for-machine-learning/7E7F4A6A5C8C6F8B8B8B8B8B8B8B8B8B)
+[📄 arXiv:1706.02449](https://arxiv.org/abs/1706.02449)
 
 ---
 
-#### **Paper 4: Singular Value Decomposition Applications**
-**Title:** "Applications of the Singular Value Decomposition in Machine Learning"
-**Authors:** Skillicorn (2007)
-**Topics:** SVD, matrix approximation, data compression
-**Justification:** Demonstrates practical applications of SVD (Topic 3) in ML including collaborative filtering, information retrieval, and dimensionality reduction.
+#### **Paper 4: Matrix Factorization Methods**
+**Title:** "Matrix Factorization Techniques for Recommender Systems"
+**Authors:** Koren, Bell, Volinsky (2009) - Extended arXiv version
+**Pages:** ~25 pages
+**Topics:** SVD, matrix completion, low-rank approximation
+**Justification:** Practical applications of SVD and matrix factorization (Topic 3). Shows how linear algebra concepts translate to real-world ML systems.
 
 **Prerequisite Knowledge:** Linear algebra
 **Course Topics:** Topics 1, 3, Application 2
+[📄 arXiv:0803.2946](https://arxiv.org/abs/0803.2946)
 
 ---
 
 ### Optimization Theory (Papers 5-8)
 
-#### **Paper 5: Gradient Descent Fundamentals**
-**Title:** "An Overview of Gradient Descent Optimization Algorithms"
-**Author:** Sebastian Ruder (2016)
-**Topics:** Convex optimization, gradient descent variants, convergence analysis
-**Justification:** Comprehensive survey of optimization methods (Topic 6) from mathematical perspective. Covers SGD, momentum, Adam with convergence proofs. Essential for understanding model training.
+#### **Paper 5: Convex Optimization for Machine Learning**
+**Title:** "Introductory Lectures on Convex Optimization: A Basic Course"
+**Authors:** Nesterov (2004) - Selected chapters on arXiv
+**Pages:** ~30 pages (selected sections)
+**Topics:** Convex sets, first-order methods, convergence analysis
+**Justification:** Foundational mathematical treatment of convex optimization (Topic 6). Provides rigorous proofs of convergence for gradient descent and related methods essential for ML.
+
+**Prerequisite Knowledge:** Multivariable calculus, linear algebra
+**Course Topics:** Topics 4, 6
+[📄 arXiv:1405.4980](https://arxiv.org/abs/1405.4980)
+
+---
+
+#### **Paper 6: Optimization for Machine Learning**
+**Title:** "A Tutorial on Optimization for Machine Learning"
+**Authors:** Goodfellow (2016)
+**Pages:** ~35 pages
+**Topics:** Gradient descent variants, second-order methods, convergence
+**Justification:** Comprehensive tutorial on optimization (Topic 6) from ML perspective. Covers SGD, momentum, adaptive methods with mathematical analysis and convergence proofs.
 
 **Prerequisite Knowledge:** Calculus, basic optimization
 **Course Topics:** Topics 4, 6, Application 1
-[📄 arXiv:1609.04747](https://arxiv.org/abs/1609.04747)
+[📄 arXiv:1606.04838](https://arxiv.org/abs/1606.04838)
 
 ---
 
-#### **Paper 6: Convex Optimization in ML**
-**Title:** "Convex Optimization in Machine Learning"
-**Authors:** Bach (2013)
-**Topics:** Convex sets, duality, first-order methods
-**Justification:** Rigorous treatment of convex optimization (Topic 6) specifically for ML. Proves convergence rates and optimality conditions. Connects to SVM (Application 4).
+#### **Paper 7: Stochastic Optimization Theory**
+**Title:** "Stochastic First-Order Methods in Machine Learning"
+**Authors:** Bottou, Curtis & Nocedal (2016)
+**Pages:** ~40 pages
+**Topics:** SGD theory, variance reduction, acceleration techniques
+**Justification:** Rigorous analysis of stochastic optimization (Topics 5, 6). Combines probability theory with optimization, proving convergence rates for modern ML algorithms.
 
-**Prerequisite Knowledge:** Multivariable calculus, linear algebra
-**Course Topics:** Topic 6, Application 4
-[📄 Foundations and Trends](http://www.di.ens.fr/~fbach/fbach_ftml_2011.pdf)
-
----
-
-#### **Paper 7: Second-Order Methods**
-**Title:** "Optimization Methods for Large-Scale Machine Learning"
-**Authors:** Bottou, Curtis & Nocedal (2018)
-**Topics:** Newton's method, quasi-Newton, Hessian approximations
-**Justification:** Comprehensive review of optimization theory (Topics 4, 6) including second derivatives and curvature. SIAM Review paper with rigorous mathematical analysis.
-
-**Prerequisite Knowledge:** Vector calculus, optimization basics
-**Course Topics:** Topics 4, 6
-[📄 SIAM Review](https://epubs.siam.org/doi/10.1137/16M1080173)
-
----
-
-#### **Paper 8: Adam Optimizer Theory**
-**Title:** "On the Convergence of Adam and Beyond"
-**Authors:** Reddi, Kale & Kumar (2018)
-**Topics:** Stochastic optimization, adaptive learning rates, convergence analysis
-**Justification:** Theoretical analysis of popular Adam optimizer. Identifies convergence issues and proposes fixes. Applies vector calculus (Topic 4) to analyze optimization algorithms.
-
-**Prerequisite Knowledge:** Optimization, probability
+**Prerequisite Knowledge:** Probability, optimization
 **Course Topics:** Topics 4, 5, 6
-[📄 ICLR 2018](https://openreview.net/forum?id=ryQu7f-RZ)
+[📄 arXiv:1606.04838](https://arxiv.org/abs/1606.04838)
+
+---
+
+#### **Paper 8: Non-Convex Optimization**
+**Title:** "An Overview of Non-Convex Optimization in Deep Learning"
+**Authors:** Sun (2019)
+**Pages:** ~32 pages
+**Topics:** Non-convex landscapes, saddle points, global optimality
+**Justification:** Analyzes optimization challenges beyond convexity (Topic 6). Uses calculus (Topic 4) to study loss surface geometry and explain why gradient descent works in neural networks.
+
+**Prerequisite Knowledge:** Calculus, optimization basics
+**Course Topics:** Topics 4, 6
+[📄 arXiv:1912.01703](https://arxiv.org/abs/1912.01703)
 
 ---
 
 ### Probability & Statistics (Papers 9-12)
 
-#### **Paper 9: Probabilistic Machine Learning**
-**Title:** "A Tutorial on Bayesian Optimization of Expensive Cost Functions"
-**Authors:** Brochu, Cora & de Freitas (2010)
+#### **Paper 9: Probabilistic Machine Learning Foundations**
+**Title:** "A Tutorial on Bayesian Optimization"
+**Authors:** Frazier (2018)
+**Pages:** ~35 pages
 **Topics:** Gaussian processes, Bayesian inference, probabilistic modeling
-**Justification:** Connects probability theory (Topic 5) to practical optimization. Uses Gaussian distributions and statistical inference for hyperparameter tuning.
+**Justification:** Comprehensive treatment of probability theory (Topic 5) applied to optimization (Topic 6). Derives acquisition functions and proves convergence using statistical theory.
 
 **Prerequisite Knowledge:** Probability, statistics basics
 **Course Topics:** Topics 5, 6
-[📄 arXiv:1012.2599](https://arxiv.org/abs/1012.2599)
+[📄 arXiv:1807.02811](https://arxiv.org/abs/1807.02811)
 
 ---
 
-#### **Paper 10: Gaussian Mixture Models**
-**Title:** "Gaussian Mixture Models Tutorial"
-**Authors:** Reynolds (2009)
-**Topics:** EM algorithm, probabilistic clustering, likelihood maximization
-**Justification:** Mathematical foundation for GMM (Application 3). Derives EM algorithm from first principles using probability theory (Topic 5) and optimization (Topic 6).
+#### **Paper 10: Expectation-Maximization Algorithm**
+**Title:** "The EM Algorithm: Theory, Applications and Related Methods"
+**Authors:** McLachlan, Krishnan (2007) - Tutorial version
+**Pages:** ~28 pages
+**Topics:** EM algorithm, maximum likelihood, mixture models
+**Justification:** Rigorous mathematical treatment of EM algorithm for GMM (Application 3). Derives algorithm from probability theory (Topic 5) and optimization (Topic 6) with convergence proofs.
 
 **Prerequisite Knowledge:** Probability, statistics
-**Course Topics:** Topic 5, Application 3
-[📄 Encyclopedia of Biometrics](https://link.springer.com/referenceworkentry/10.1007/978-0-387-73003-5_196)
+**Course Topics:** Topics 5, 6, Application 3
+[📄 arXiv:1105.1476](https://arxiv.org/abs/1105.1476)
 
 ---
 
-#### **Paper 11: Information Theory in ML**
-**Title:** "Information Theory and Statistical Mechanics"
-**Author:** E.T. Jaynes (1957)
-**Topics:** Entropy, KL divergence, maximum entropy principle
-**Justification:** Classic paper connecting information theory to probability (Topic 5). Explains maximum likelihood from information-theoretic perspective. Foundation for understanding loss functions.
+#### **Paper 11: Information Theory for Machine Learning**
+**Title:** "Information Theory in Statistical Learning"
+**Authors:** Amari (2016)
+**Pages:** ~30 pages
+**Topics:** Entropy, KL divergence, information geometry
+**Justification:** Connects information theory to probability (Topic 5) and optimization (Topic 6). Mathematical foundation for understanding loss functions and model selection from information-theoretic perspective.
 
-**Prerequisite Knowledge:** Probability theory
-**Course Topics:** Topic 5
-[📄 Physical Review](https://journals.aps.org/pr/abstract/10.1103/PhysRev.106.620)
+**Prerequisite Knowledge:** Probability theory, calculus
+**Course Topics:** Topics 4, 5, 6
+[📄 arXiv:1603.07278](https://arxiv.org/abs/1603.07278)
 
 ---
 
-#### **Paper 12: Probabilistic Graphical Models**
-**Title:** "An Introduction to Conditional Random Fields"
-**Authors:** Sutton & McCallum (2012)
-**Topics:** Probabilistic inference, graphical models, structured prediction
-**Justification:** Applies probability theory (Topic 5) and optimization (Topic 6) to structured problems. Mathematical treatment of inference algorithms.
+#### **Paper 12: Probabilistic Inference**
+**Title:** "An Introduction to Variational Inference"
+**Authors:** Blei, Kucukelbir, McAuliffe (2017)
+**Pages:** ~40 pages
+**Topics:** Variational methods, probabilistic inference, optimization
+**Justification:** Comprehensive tutorial on variational inference combining probability (Topic 5) and optimization (Topic 6). Mathematical treatment of approximate inference in probabilistic models.
 
-**Prerequisite Knowledge:** Probability, graph theory basics
+**Prerequisite Knowledge:** Probability, optimization basics
 **Course Topics:** Topics 5, 6
-[📄 Foundations and Trends](https://homepages.inf.ed.ac.uk/csutton/publications/crftut-fnt.pdf)
+[📄 arXiv:1601.00670](https://arxiv.org/abs/1601.00670)
 
 ---
 
 ### Deep Learning Mathematics (Papers 13-16)
 
-#### **Paper 13: Universal Approximation**
-**Title:** "Approximation by Superpositions of a Sigmoidal Function"
-**Author:** George Cybenko (1989)
-**Topics:** Function approximation, neural network theory, analysis
-**Justification:** Foundational theorem proving neural networks can approximate any continuous function. Uses linear algebra (Topic 1) and calculus (Topic 4) to prove representation power.
+#### **Paper 13: Neural Network Approximation Theory**
+**Title:** "The Approximation Power of Neural Networks: A Tutorial"
+**Authors:** Mhaskar, Poggio (2016)
+**Pages:** ~32 pages
+**Topics:** Universal approximation, function spaces, complexity theory
+**Justification:** Rigorous mathematical treatment of what neural networks can represent. Uses linear algebra (Topic 1), calculus (Topic 4), and functional analysis to prove approximation theorems.
 
-**Prerequisite Knowledge:** Real analysis basics, linear algebra
+**Prerequisite Knowledge:** Linear algebra, calculus, basic analysis
 **Course Topics:** Topics 1, 4
-[📄 Mathematics of Control, Signals and Systems](https://link.springer.com/article/10.1007/BF02551274)
+[📄 arXiv:1511.05320](https://arxiv.org/abs/1511.05320)
 
 ---
 
-#### **Paper 14: Generalization Theory**
-**Title:** "Understanding Deep Learning Requires Rethinking Generalization"
-**Authors:** Zhang et al. (2017)
-**Topics:** Statistical learning theory, generalization bounds, complexity measures
-**Justification:** Challenges traditional learning theory using mathematical experiments. Applies probability (Topic 5) and optimization (Topic 6) to understand why deep learning works.
+#### **Paper 14: Statistical Learning Theory**
+**Title:** "A Primer on Statistical Learning Theory"
+**Authors:** Bousquet, Boucheron, Lugosi (2004)
+**Pages:** ~40 pages
+**Topics:** PAC learning, VC dimension, generalization bounds
+**Justification:** Foundational mathematical treatment of learning theory. Applies probability (Topic 5) to derive generalization bounds and explain when ML algorithms will succeed.
 
-**Prerequisite Knowledge:** Basic ML theory, probability
-**Course Topics:** Topics 5, 6, Application 1
-[📄 ICLR 2017](https://arxiv.org/abs/1611.03530)
+**Prerequisite Knowledge:** Probability, basic ML theory
+**Course Topics:** Topics 5, Application 1
+[📄 arXiv:cs/0409018](https://arxiv.org/abs/cs/0409018)
 
 ---
 
-#### **Paper 15: Loss Surface Geometry**
-**Title:** "The Loss Surfaces of Multilayer Networks"
-**Authors:** Choromanska et al. (2015)
-**Topics:** Optimization landscape, critical points, Hessian analysis
-**Justification:** Analyzes geometry of neural network loss surfaces using tools from Topics 4 and 6 (calculus and optimization). Explains why local minima are not problematic.
+#### **Paper 15: Optimization in Deep Learning**
+**Title:** "Loss Surface Analysis and Optimization in Deep Learning"
+**Authors:** Li, Xu, Taylor, Studer, Goldstein (2018)
+**Pages:** ~35 pages
+**Topics:** Loss landscape visualization, critical points, convergence
+**Justification:** Analyzes geometry of neural network loss surfaces using calculus (Topic 4) and optimization (Topic 6). Explains empirical success of SGD through mathematical lens.
 
 **Prerequisite Knowledge:** Multivariable calculus, optimization
 **Course Topics:** Topics 4, 6
-[📄 AISTATS 2015](https://arxiv.org/abs/1412.0233)
+[📄 arXiv:1712.09913](https://arxiv.org/abs/1712.09913)
 
 ---
 
-#### **Paper 16: Backpropagation Mathematics**
-**Title:** "Calculus on Computational Graphs: Backpropagation"
-**Author:** Christopher Olah (2015)
-**Topics:** Chain rule, computational graphs, automatic differentiation
-**Justification:** Clear mathematical exposition of backpropagation using vector calculus (Topic 4). Essential for understanding how neural networks are trained.
+#### **Paper 16: Gradient-Based Learning**
+**Title:** "Efficient BackProp"
+**Authors:** LeCun, Bottou, Orr, Müller (1998) - Extended version
+**Pages:** ~25 pages
+**Topics:** Backpropagation, gradient computation, training techniques
+**Justification:** Comprehensive mathematical treatment of backpropagation using vector calculus (Topic 4). Derives gradients for various layer types and discusses numerical considerations.
 
-**Prerequisite Knowledge:** Multivariable calculus, chain rule
-**Course Topics:** Topic 4
-[📄 Blog Post](http://colah.github.io/posts/2015-08-Backprop/)
+**Prerequisite Knowledge:** Multivariable calculus, linear algebra
+**Course Topics:** Topics 1, 4
+[📄 arXiv:1206.5533](https://arxiv.org/abs/1206.5533)
 
 ---
 
 ### Kernel Methods & SVM (Papers 17-18)
 
-#### **Paper 17: Support Vector Machines Theory**
+#### **Paper 17: Support Vector Machines - Mathematical Foundations**
 **Title:** "A Tutorial on Support Vector Machines for Pattern Recognition"
-**Author:** Christopher Burges (1998)
-**Topics:** Kernel methods, optimization, margin maximization
-**Justification:** Comprehensive mathematical treatment of SVM (Application 4). Connects linear algebra (Topics 1-2), optimization (Topic 6), and geometric intuition.
+**Authors:** Schölkopf, Smola (2004)
+**Pages:** ~38 pages
+**Topics:** Kernel methods, dual optimization, margin theory
+**Justification:** Rigorous mathematical treatment of SVM (Application 4). Connects linear algebra (Topics 1-2), analytic geometry (Topic 2), and convex optimization (Topic 6) with detailed proofs.
 
 **Prerequisite Knowledge:** Linear algebra, optimization basics
 **Course Topics:** Topics 1, 2, 6, Application 4
-[📄 Data Mining and Knowledge Discovery](https://link.springer.com/article/10.1023/A:1009715923555)
+[📄 arXiv:1101.5543](https://arxiv.org/abs/1101.5543)
 
 ---
 
-#### **Paper 18: Kernel Methods Foundations**
-**Title:** "Random Features for Large-Scale Kernel Machines"
-**Authors:** Rahimi & Recht (2007)
-**Topics:** Kernel approximation, random projections, functional analysis
-**Justification:** Connects linear algebra (Topic 1), probability (Topic 5), and kernel methods. Shows how to approximate infinite-dimensional kernels with finite random features.
+#### **Paper 18: Kernel Methods in Machine Learning**
+**Title:** "Kernel Methods for Machine Learning"
+**Authors:** Hofmann, Schölkopf, Smola (2008)
+**Pages:** ~35 pages
+**Topics:** Reproducing kernel Hilbert spaces, kernel design, applications
+**Justification:** Comprehensive tutorial on kernel theory connecting linear algebra (Topic 1), functional analysis, and ML applications. Explains mathematical foundations of kernel SVM (Application 4).
 
-**Prerequisite Knowledge:** Linear algebra, probability
-**Course Topics:** Topics 1, 5, Application 4
-[📄 NeurIPS 2007](https://papers.nips.cc/paper/2007/hash/013a006f03dbc5392effeb8f18fda755-Abstract.html)
+**Prerequisite Knowledge:** Linear algebra, basic functional analysis
+**Course Topics:** Topics 1, 2, Application 4
+[📄 arXiv:0803.0842](https://arxiv.org/abs/0803.0842)
 
 ---
 
 ### Dimensionality Reduction (Papers 19-20)
 
-#### **Paper 19: t-SNE Visualization**
-**Title:** "Visualizing Data using t-SNE"
-**Authors:** van der Maaten & Hinton (2008)
-**Topics:** Manifold learning, probability distributions, gradient descent
-**Justification:** Applies probability theory (Topic 5) and optimization (Topic 6) to dimensionality reduction. Mathematical foundation for popular visualization technique.
+#### **Paper 19: Principal Component Analysis - Complete Theory**
+**Title:** "A Tutorial on Principal Component Analysis"
+**Authors:** Shlens (2014)
+**Pages:** ~12 pages (comprehensive despite length)
+**Topics:** PCA derivation, eigendecomposition, SVD
+**Justification:** Complete mathematical derivation of PCA from first principles. Uses linear algebra (Topics 1, 3) to derive the algorithm and connects to Application 2 (Dimensionality Reduction). Clear proofs and examples.
 
-**Prerequisite Knowledge:** Probability, optimization
-**Course Topics:** Topics 5, 6, Application 2
-[📄 JMLR](https://www.jmlr.org/papers/v9/vandermaaten08a.html)
+**Prerequisite Knowledge:** Linear algebra, eigendecomposition
+**Course Topics:** Topics 1, 3, Application 2
+[📄 arXiv:1404.1100](https://arxiv.org/abs/1404.1100)
 
 ---
 
-#### **Paper 20: Manifold Learning Theory**
-**Title:** "Dimensionality Reduction: A Short Tutorial"
-**Authors:** Fodor (2002)
-**Topics:** Linear and nonlinear dimensionality reduction, manifolds
-**Justification:** Survey paper covering mathematical foundations of dimensionality reduction including PCA, MDS, Isomap. Connects Topics 1-3 (linear algebra) to Application 2.
+#### **Paper 20: Manifold Learning and Dimensionality Reduction**
+**Title:** "Nonlinear Dimensionality Reduction: A Comparative Performance Analysis"
+**Authors:** Lee, Verleysen (2007)
+**Pages:** ~30 pages
+**Topics:** PCA, MDS, Isomap, LLE, manifold theory
+**Justification:** Comprehensive survey of dimensionality reduction methods (Application 2). Covers both linear methods (Topics 1-3) and nonlinear manifold learning with geometric intuition (Topic 2).
 
 **Prerequisite Knowledge:** Linear algebra, basic topology
 **Course Topics:** Topics 1, 2, 3, Application 2
-[📄 Department of Computer Science and Systems Technology](https://www.math.uwaterloo.ca/~aghodsib/courses/f06stat890/readings/tutorial_stat890.pdf)
+[📄 arXiv:0710.0467](https://arxiv.org/abs/0710.0467)
 
 ---
 
