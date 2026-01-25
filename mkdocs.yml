@@ -1,8 +1,8 @@
 site_name: Mathematics of AI
 site_description: Mathematical Foundations of AI & Machine Learning
 site_author: Mohammed Alnemari
-site_url: https://YOUR_GITHUB_USERNAME.github.io/mathai-website/
-repo_url: https://github.com/YOUR_GITHUB_USERNAME/mathai-website
+site_url: https://alnemari-m.github.io/mathai-website/
+repo_url: https://github.com/alnemari-m/mathai-website
 
 theme:
   name: readthedocs
