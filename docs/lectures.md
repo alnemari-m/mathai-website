@@ -4,6 +4,14 @@ Complete lecture materials with slides and notes in PDF format.
 
 ---
 
+## 📚 Complete Course Slides
+
+**Mathematics for Machine Learning - Full Course**
+All lectures in one comprehensive PDF document
+[📥 Download Complete Slides (5.6 MB)](pdfs/Mathematics_for_Machine_Learning.pdf)
+
+---
+
 ## Week 1: Linear Algebra Foundations
 
 ### Lecture 1: Vector Spaces and Data Manifolds
