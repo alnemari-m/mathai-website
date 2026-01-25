@@ -405,7 +405,7 @@ If you need the password:
 
 <script>
 // Simple password protection
-const CORRECT_PASSWORD = "mathml2026"; // Change this to your desired password
+const CORRECT_PASSWORD = "malak2024"; // Change this to your desired password
 
 function checkPassword() {
   const input = document.getElementById('password-input').value;
