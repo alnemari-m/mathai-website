@@ -7,7 +7,6 @@
 Mathematical foundations of artificial intelligence and machine learning - from theory to implementation.
 
 **Prepared by: Mohammed Alnemari**
-*University of Tabuk*
 
 </div>
 
@@ -157,7 +156,6 @@ Practical coding examples implementing concepts from the lecture.
 <div class="signature" markdown="1">
 
 **MOHAMMED ALNEMARI**
-*UNIVERSITY OF TABUK*
 *MATHEMATICS FOR MACHINE LEARNING • SPRING 2026*
 
 **ENJOY YOUR LEARNING JOURNEY**

@@ -3,7 +3,6 @@
 **Course Website for Graduate-Level Mathematics of AI**
 
 **Instructor:** Mohammed Alnemari
-**University of Tabuk**
 **Website:** https://alnemari-m.github.io/mathai-website/
 
 ---
@@ -224,7 +223,6 @@ To modify styling, edit `docs/stylesheets/custom.css`.
 **Instructor:** Mohammed Alnemari
 **Email:** mnemari@gmail.com
 **Office Hours:** Monday & Wednesday, 10:00 AM – 12:00 PM
-**University:** University of Tabuk
 
 ---
 

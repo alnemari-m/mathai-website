@@ -2,7 +2,6 @@
 
 **Course:** Mathematics for Machine Learning
 **Instructor:** Mohammed Alnemari
-**University of Tabuk**
 
 ---
 
@@ -474,6 +473,5 @@ No, they are **dependent** because $\mathbf{v}_2 = 3\mathbf{v}_1$
 
 **Course:** Mathematics for Machine Learning
 **Instructor:** Mohammed Alnemari
-**University of Tabuk**
 
 **Next:** Tutorial 2 - Vector Spaces and Linear Transformations
