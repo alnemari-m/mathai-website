@@ -47,16 +47,38 @@ This course is divided into two main parts:
 ### Topic 1: Linear Algebra
 **Description:** Vectors, matrices, and their operations form the computational foundation for all machine learning algorithms.
 
+---
+
+#### **Part 1: Foundations**
+
 **What you'll learn:**
 - Vector spaces and operations
 - Matrix operations and properties
 - Linear transformations
 - Systems of linear equations
+- Solving linear systems (Gaussian elimination)
+- Inverse matrices and determinants
 
 **Materials:**
-- [📄 Lecture Slides](pdfs/Mathematics_for_Machine_Learning.pdf#page=12) (Complete PDF)
+- [📄 Part 1: Foundations Slides](pdfs/Linear_Algebra_Foundations.pdf)
 - [📐 Tutorial: Mathematical Foundations](tutorials/Tutorial_01_Mathematical_Foundations.md)
 - [💻 Notebook: NumPy Basics](notebooks/01_Python_Libraries_Basics.ipynb)
+
+---
+
+#### **Part 2: Advanced Concepts**
+
+**What you'll learn:**
+- Linear independence and spanning sets
+- Basis and dimension theory
+- Rank and nullity
+- Coordinate systems and change of basis
+- Kernel and image of linear mappings
+- Rank-nullity theorem
+- Affine spaces and affine transformations
+
+**Materials:**
+- [📄 Part 2: Advanced Concepts Slides](pdfs/Linear_Algebra_Part2_Advanced_Concepts.pdf)
 
 ---
 
@@ -264,5 +286,5 @@ Practical coding examples implementing concepts from the lecture.
 ---
 
 <div class="last-updated" markdown="1">
-**Last Updated:** January 25, 2026
+**Last Updated:** January 26, 2026
 </div>
