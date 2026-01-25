@@ -26,7 +26,8 @@ Complete lecture materials with slides and notes in PDF format.
 - Mathematical concepts presented with varying levels of rigor
 
 **Course Materials:**
-- [Lecture 0: Download Lecture 0](pdfs/Mathematics_for_Machine_Learning.pdf)
+- **Lecture 0: Introduction & Course Overview** - Course organization, assessment structure, textbooks, teaching philosophy, notation conventions, and what to expect
+  - [📥 Download Lecture 0](pdfs/Mathematics_for_Machine_Learning.pdf)
 - Access to required textbooks (see below)
 - Python/Jupyter environment for coding exercises
 
