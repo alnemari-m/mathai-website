@@ -12,6 +12,7 @@ nav:
   - Lectures: lectures.md
   - Math Tutorials: tutorials.md
   - Notebooks: notebooks.md
+  - Papers: papers.md
 
 markdown_extensions:
   - toc:
