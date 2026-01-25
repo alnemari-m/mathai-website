@@ -1,4 +1,4 @@
-<div id="password-gate" style="display: none;">
+<div id="password-gate">
   <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0052D4 0%, #00D9A3 100%);">
     <div style="background: white; padding: 3em; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); max-width: 400px; text-align: center;">
       <h2 style="color: #0052D4; margin-top: 0; border: none; padding: 0;">🔒 Protected Content</h2>
@@ -404,51 +404,77 @@ If you need the password:
 </div>
 
 <script>
-// Simple password protection
-const CORRECT_PASSWORD = "malak2024"; // Change this to your desired password
+(function() {
+  // Simple password protection
+  const CORRECT_PASSWORD = "malak2024";
 
-function checkPassword() {
-  const input = document.getElementById('password-input').value;
-  const errorMsg = document.getElementById('error-message');
+  window.checkPassword = function() {
+    const input = document.getElementById('password-input');
+    const errorMsg = document.getElementById('error-message');
 
-  if (input === CORRECT_PASSWORD) {
-    // Store authentication in session
-    sessionStorage.setItem('animations_auth', 'true');
-    showContent();
-  } else {
-    errorMsg.style.display = 'block';
-    document.getElementById('password-input').value = '';
-    document.getElementById('password-input').focus();
+    if (!input) return;
+
+    if (input.value === CORRECT_PASSWORD) {
+      // Store authentication in session
+      sessionStorage.setItem('animations_auth', 'true');
+      showContent();
+    } else {
+      errorMsg.style.display = 'block';
+      input.value = '';
+      input.focus();
+    }
+  };
+
+  function showContent() {
+    const gate = document.getElementById('password-gate');
+    const content = document.getElementById('protected-content');
+
+    if (gate) gate.style.display = 'none';
+    if (content) content.style.display = 'block';
   }
-}
 
-function showContent() {
-  document.getElementById('password-gate').style.display = 'none';
-  document.getElementById('protected-content').style.display = 'block';
-}
-
-function checkAuth() {
-  if (sessionStorage.getItem('animations_auth') === 'true') {
-    showContent();
-  } else {
-    document.getElementById('password-gate').style.display = 'block';
+  function checkAuth() {
+    if (sessionStorage.getItem('animations_auth') === 'true') {
+      showContent();
+    }
   }
-}
 
-// Allow Enter key to submit password
-document.addEventListener('DOMContentLoaded', function() {
+  // Run immediately
   checkAuth();
 
-  const input = document.getElementById('password-input');
-  if (input) {
-    input.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        checkPassword();
+  // Also run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      checkAuth();
+
+      const input = document.getElementById('password-input');
+      if (input) {
+        input.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            window.checkPassword();
+          }
+        });
+
+        // Focus input after a small delay
+        setTimeout(function() {
+          input.focus();
+        }, 100);
       }
     });
-    input.focus();
+  } else {
+    checkAuth();
+
+    const input = document.getElementById('password-input');
+    if (input) {
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          window.checkPassword();
+        }
+      });
+      input.focus();
+    }
   }
-});
+})();
 </script>
 
 <style>
