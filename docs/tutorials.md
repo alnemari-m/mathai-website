@@ -4,6 +4,23 @@ Detailed mathematical notes, derivations, and tutorials to supplement lectures.
 
 ---
 
+## 📖 Getting Started
+
+**Tutorial 1: Mathematical Foundations and Terminology**
+Essential notation, terminology, and basic concepts you need to understand before starting the course
+[📄 Read Tutorial](tutorials/Tutorial_01_Mathematical_Foundations.md)
+
+**What you'll learn:**
+- Mathematical notation and symbols ($\in, \forall, \exists, \sum, \prod$)
+- Number systems ($\mathbb{N}, \mathbb{Z}, \mathbb{R}, \mathbb{C}$)
+- Vectors and matrices basics
+- Essential operations (dot product, matrix multiplication)
+- Linear independence, span, and basis
+- Norms and distance
+- Practice problems with solutions
+
+---
+
 ## Linear Algebra
 
 ### Foundations
