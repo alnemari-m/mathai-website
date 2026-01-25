@@ -13,6 +13,7 @@ nav:
   - Math Tutorials: tutorials.md
   - Notebooks: notebooks.md
   - Papers: papers.md
+  - "🔒 Animations": animations.md
 
 markdown_extensions:
   - toc:
