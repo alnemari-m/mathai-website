@@ -4,6 +4,14 @@ Jupyter notebooks for hands-on implementation and computational exercises.
 
 ---
 
+## 🚀 Getting Started
+
+**Notebook 0: Python Libraries Basics**
+Introduction to NumPy, SciPy, and Pandas - Essential libraries for this course
+[📓 Open in GitHub](notebooks/01_Python_Libraries_Basics.ipynb) | [🔗 Open in Google Colab](https://colab.research.google.com/github/alnemari-m/mathai-website/blob/main/docs/notebooks/01_Python_Libraries_Basics.ipynb) | [⬇️ Download](notebooks/01_Python_Libraries_Basics.ipynb)
+
+---
+
 ## Week 1: Linear Algebra Implementations
 
 **Notebook 1: Vector Operations in NumPy**
