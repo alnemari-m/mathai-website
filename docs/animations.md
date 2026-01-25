@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div id="protected-content" style="display: none;">
+<div id="protected-content" style="display: none;" markdown="1">
 
 # Mathematical Animations & Visualizations
 
