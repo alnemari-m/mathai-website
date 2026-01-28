@@ -76,7 +76,7 @@ Building strong mathematical foundations combined with practical coding skills t
 
 **OFFICE HOURS**
 Monday & Wednesday
-10:00 AM – 12:00 PM
+11:00 AM – 1:00 PM
 
 **BY APPOINTMENT**
 To schedule a meeting outside regular office hours, please contact via email.
@@ -168,5 +168,5 @@ Building the foundation for your future algorithms.
 ---
 
 <div class="last-updated" markdown="1">
-**Last Updated:** January 25, 2026
+**Last Updated:** January 28, 2026
 </div>
