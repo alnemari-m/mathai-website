@@ -60,7 +60,7 @@ This course is divided into two main parts:
 - Inverse matrices and determinants
 
 **Materials:**
-- [📄 Linear Algebra Slides](pdfs/Linear_Algebra_Identical.pdf)
+- [📄 Linear Algebra Slides](pdfs/linear_algebra_overleaf_ready.pdf)
 - [📐 Tutorial: Mathematical Foundations](tutorials/Tutorial_01_Mathematical_Foundations.md)
 - [💻 Notebook: NumPy Basics](notebooks/01_Python_Libraries_Basics.ipynb)
 
@@ -78,7 +78,7 @@ This course is divided into two main parts:
 - Affine spaces and affine transformations
 
 **Materials:**
-- [📄 Linear Algebra Slides](pdfs/Linear_Algebra_Identical.pdf)
+- [📄 Linear Algebra Slides](pdfs/linear_algebra_overleaf_ready.pdf)
 
 ---
 
