@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mohammed Alnemari" /><link rel="canonical" href="https://alnemari-m.github.io/mathai-website/tutorials/Tutorial_01_Mathematical_Foundations/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Tutorial 1: Mathematical Foundations and Terminology - Mathematics of AI</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../stylesheets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Tutorial 1: Mathematical Foundations and Terminology";
+        var mkdocs_page_input_path = "tutorials/Tutorial_01_Mathematical_Foundations.md";
+        var mkdocs_page_url = "/mathai-website/tutorials/Tutorial_01_Mathematical_Foundations/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Mathematics of AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../lectures/">Lectures</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">Math Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../notebooks/">Notebooks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../papers/">Papers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../animations/">🔒 Animations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Mathematics of AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Tutorial 1: Mathematical Foundations and Terminology</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/alnemari-m/mathai-website/edit/master/docs/tutorials/Tutorial_01_Mathematical_Foundations.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tutorial-1-mathematical-foundations-and-terminology">Tutorial 1: Mathematical Foundations and Terminology<a class="headerlink" href="#tutorial-1-mathematical-foundations-and-terminology" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> Mathematics for Machine Learning
+<strong>Instructor:</strong> Mohammed Alnemari</p>
+<hr />
+<h2 id="learning-objectives">📚 Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>By the end of this tutorial, you will understand:</p>
+<ol>
+<li>Essential mathematical notation and terminology</li>
+<li>Basic set theory concepts</li>
+<li>Fundamental number systems</li>
+<li>Vector and matrix terminology</li>
+<li>Key mathematical operations</li>
+</ol>
+<hr />
+<h2 id="part-1-mathematical-notation">Part 1: Mathematical Notation<a class="headerlink" href="#part-1-mathematical-notation" title="Permanent link">&para;</a></h2>
+<h3 id="11-basic-symbols">1.1 Basic Symbols<a class="headerlink" href="#11-basic-symbols" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\in\)</span></td>
+<td>"is an element of" / "belongs to"</td>
+<td><span class="arithmatex">\(x \in \mathbb{R}\)</span> means "x is a real number"</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\notin\)</span></td>
+<td>"is not an element of"</td>
+<td><span class="arithmatex">\(i \notin \mathbb{R}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\subset\)</span></td>
+<td>"is a subset of"</td>
+<td><span class="arithmatex">\(\mathbb{N} \subset \mathbb{Z}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\cup\)</span></td>
+<td>"union"</td>
+<td><span class="arithmatex">\(A \cup B\)</span> (all elements in A or B)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\cap\)</span></td>
+<td>"intersection"</td>
+<td><span class="arithmatex">\(A \cap B\)</span> (elements in both A and B)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\emptyset\)</span></td>
+<td>"empty set"</td>
+<td>A set with no elements</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\forall\)</span></td>
+<td>"for all"</td>
+<td><span class="arithmatex">\(\forall x \in \mathbb{R}\)</span> means "for all x in real numbers"</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\exists\)</span></td>
+<td>"there exists"</td>
+<td><span class="arithmatex">\(\exists x : x &gt; 0\)</span> means "there exists an x such that x &gt; 0"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-common-notation-conventions">1.2 Common Notation Conventions<a class="headerlink" href="#12-common-notation-conventions" title="Permanent link">&para;</a></h3>
+<p><strong>Scalars</strong> (single numbers):
+- Lower case letters: <span class="arithmatex">\(a, b, c, x, y, z\)</span>
+- Greek letters: <span class="arithmatex">\(\alpha, \beta, \gamma, \lambda, \mu\)</span></p>
+<p><strong>Vectors</strong> (ordered lists of numbers):
+- Bold lower case: <span class="arithmatex">\(\mathbf{x}, \mathbf{y}, \mathbf{v}, \mathbf{w}\)</span>
+- Sometimes with arrows: <span class="arithmatex">\(\vec{x}, \vec{y}\)</span></p>
+<p><strong>Matrices</strong> (rectangular arrays of numbers):
+- Bold upper case: <span class="arithmatex">\(\mathbf{A}, \mathbf{B}, \mathbf{X}, \mathbf{Y}\)</span>
+- Sometimes just upper case: <span class="arithmatex">\(A, B, X, Y\)</span></p>
+<p><strong>Sets</strong>:
+- Upper case letters: <span class="arithmatex">\(A, B, S, V\)</span>
+- Number systems: <span class="arithmatex">\(\mathbb{N}, \mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}\)</span></p>
+<hr />
+<h2 id="part-2-number-systems">Part 2: Number Systems<a class="headerlink" href="#part-2-number-systems" title="Permanent link">&para;</a></h2>
+<h3 id="21-common-number-systems">2.1 Common Number Systems<a class="headerlink" href="#21-common-number-systems" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Name</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbb{N}\)</span></td>
+<td>Natural numbers</td>
+<td>Positive integers</td>
+<td><span class="arithmatex">\(1, 2, 3, 4, \ldots\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbb{Z}\)</span></td>
+<td>Integers</td>
+<td>Whole numbers</td>
+<td><span class="arithmatex">\(\ldots, -2, -1, 0, 1, 2, \ldots\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbb{Q}\)</span></td>
+<td>Rational numbers</td>
+<td>Fractions</td>
+<td><span class="arithmatex">\(\frac{1}{2}, \frac{3}{4}, -\frac{5}{3}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbb{R}\)</span></td>
+<td>Real numbers</td>
+<td>All numbers on number line</td>
+<td><span class="arithmatex">\(\pi, \sqrt{2}, -3.5\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbb{C}\)</span></td>
+<td>Complex numbers</td>
+<td>Numbers with imaginary part</td>
+<td><span class="arithmatex">\(2 + 3i, -1 + i\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-vector-spaces">2.2 Vector Spaces<a class="headerlink" href="#22-vector-spaces" title="Permanent link">&para;</a></h3>
+<p><strong><span class="arithmatex">\(\mathbb{R}^n\)</span></strong> - The set of all n-dimensional real vectors</p>
+<ul>
+<li><span class="arithmatex">\(\mathbb{R}^1\)</span> = Real numbers (1D)</li>
+<li><span class="arithmatex">\(\mathbb{R}^2\)</span> = Pairs of real numbers (2D plane)</li>
+<li><span class="arithmatex">\(\mathbb{R}^3\)</span> = Triples of real numbers (3D space)</li>
+<li><span class="arithmatex">\(\mathbb{R}^n\)</span> = n-tuples of real numbers (n-dimensional space)</li>
+</ul>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} 2 \\ 3 \end{bmatrix} \in \mathbb{R}^2\)</span>$</p>
+<p>This means <span class="arithmatex">\(\mathbf{x}\)</span> is a 2-dimensional vector with components 2 and 3.</p>
+<hr />
+<h2 id="part-3-vectors">Part 3: Vectors<a class="headerlink" href="#part-3-vectors" title="Permanent link">&para;</a></h2>
+<h3 id="31-what-is-a-vector">3.1 What is a Vector?<a class="headerlink" href="#31-what-is-a-vector" title="Permanent link">&para;</a></h3>
+<p>A <strong>vector</strong> is an ordered list of numbers representing:
+- A point in space
+- A direction and magnitude
+- Features in machine learning</p>
+<p><strong>Example in <span class="arithmatex">\(\mathbb{R}^3\)</span>:</strong>
+$<span class="arithmatex">\(\mathbf{v} = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}\)</span>$</p>
+<h3 id="32-vector-terminology">3.2 Vector Terminology<a class="headerlink" href="#32-vector-terminology" title="Permanent link">&para;</a></h3>
+<p><strong>Dimension</strong>: The number of components in a vector</p>
+<p><strong>Notation:</strong>
+- Column vector (default): <span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}\)</span>
+- Row vector: <span class="arithmatex">\(\mathbf{x}^T = \begin{bmatrix} x_1 &amp; x_2 &amp; x_3 \end{bmatrix}\)</span></p>
+<p><strong>Components/Entries</strong>: The individual numbers in a vector
+- <span class="arithmatex">\(x_1\)</span> is the first component
+- <span class="arithmatex">\(x_2\)</span> is the second component
+- <span class="arithmatex">\(x_i\)</span> is the i-th component</p>
+<h3 id="33-basic-vector-operations">3.3 Basic Vector Operations<a class="headerlink" href="#33-basic-vector-operations" title="Permanent link">&para;</a></h3>
+<h4 id="addition">Addition<a class="headerlink" href="#addition" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[\mathbf{a} + \mathbf{b} = \begin{bmatrix} a_1 \\ a_2 \end{bmatrix} + \begin{bmatrix} b_1 \\ b_2 \end{bmatrix} = \begin{bmatrix} a_1 + b_1 \\ a_2 + b_2 \end{bmatrix}\]</div>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\begin{bmatrix} 1 \\ 2 \end{bmatrix} + \begin{bmatrix} 3 \\ 4 \end{bmatrix} = \begin{bmatrix} 4 \\ 6 \end{bmatrix}\)</span>$</p>
+<h4 id="scalar-multiplication">Scalar Multiplication<a class="headerlink" href="#scalar-multiplication" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[c \cdot \mathbf{a} = c \begin{bmatrix} a_1 \\ a_2 \end{bmatrix} = \begin{bmatrix} c \cdot a_1 \\ c \cdot a_2 \end{bmatrix}\]</div>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(3 \cdot \begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 3 \\ 6 \end{bmatrix}\)</span>$</p>
+<h4 id="dot-product-inner-product">Dot Product (Inner Product)<a class="headerlink" href="#dot-product-inner-product" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[\mathbf{a} \cdot \mathbf{b} = a_1 b_1 + a_2 b_2 + \cdots + a_n b_n = \sum_{i=1}^{n} a_i b_i\]</div>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} \cdot \begin{bmatrix} 4 \\ 5 \\ 6 \end{bmatrix} = 1(4) + 2(5) + 3(6) = 4 + 10 + 18 = 32\)</span>$</p>
+<hr />
+<h2 id="part-4-matrices">Part 4: Matrices<a class="headerlink" href="#part-4-matrices" title="Permanent link">&para;</a></h2>
+<h3 id="41-what-is-a-matrix">4.1 What is a Matrix?<a class="headerlink" href="#41-what-is-a-matrix" title="Permanent link">&para;</a></h3>
+<p>A <strong>matrix</strong> is a rectangular array of numbers arranged in rows and columns.</p>
+<p><strong>General form:</strong>
+$<span class="arithmatex">\(\mathbf{A} = \begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+\end{bmatrix}\)</span>$</p>
+<h3 id="42-matrix-terminology">4.2 Matrix Terminology<a class="headerlink" href="#42-matrix-terminology" title="Permanent link">&para;</a></h3>
+<p><strong>Dimension/Size</strong>: <span class="arithmatex">\(m \times n\)</span> where
+- <span class="arithmatex">\(m\)</span> = number of rows
+- <span class="arithmatex">\(n\)</span> = number of columns</p>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\mathbf{A} = \begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6
+\end{bmatrix}_{2 \times 3}\)</span>$</p>
+<p>This is a <span class="arithmatex">\(2 \times 3\)</span> matrix (2 rows, 3 columns).</p>
+<p><strong>Entry/Element</strong>: <span class="arithmatex">\(a_{ij}\)</span> is the element in row <span class="arithmatex">\(i\)</span>, column <span class="arithmatex">\(j\)</span></p>
+<p><strong>Square Matrix</strong>: A matrix where <span class="arithmatex">\(m = n\)</span> (same number of rows and columns)</p>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\mathbf{B} = \begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{bmatrix}_{2 \times 2}\)</span>$</p>
+<h3 id="43-special-matrices">4.3 Special Matrices<a class="headerlink" href="#43-special-matrices" title="Permanent link">&para;</a></h3>
+<h4 id="identity-matrix-mathbfi">Identity Matrix (<span class="arithmatex">\(\mathbf{I}\)</span>)<a class="headerlink" href="#identity-matrix-mathbfi" title="Permanent link">&para;</a></h4>
+<p>A square matrix with 1s on the diagonal and 0s elsewhere.</p>
+<div class="arithmatex">\[\mathbf{I}_3 = \begin{bmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]</div>
+<p><strong>Property:</strong> <span class="arithmatex">\(\mathbf{A} \mathbf{I} = \mathbf{I} \mathbf{A} = \mathbf{A}\)</span></p>
+<h4 id="zero-matrix">Zero Matrix<a class="headerlink" href="#zero-matrix" title="Permanent link">&para;</a></h4>
+<p>A matrix where all elements are zero.</p>
+<div class="arithmatex">\[\mathbf{0} = \begin{bmatrix}
+0 &amp; 0 \\
+0 &amp; 0
+\end{bmatrix}\]</div>
+<h4 id="diagonal-matrix">Diagonal Matrix<a class="headerlink" href="#diagonal-matrix" title="Permanent link">&para;</a></h4>
+<p>A square matrix where all off-diagonal elements are zero.</p>
+<div class="arithmatex">\[\mathbf{D} = \begin{bmatrix}
+d_1 &amp; 0 &amp; 0 \\
+0 &amp; d_2 &amp; 0 \\
+0 &amp; 0 &amp; d_3
+\end{bmatrix}\]</div>
+<h4 id="transpose-mathbfat">Transpose (<span class="arithmatex">\(\mathbf{A}^T\)</span>)<a class="headerlink" href="#transpose-mathbfat" title="Permanent link">&para;</a></h4>
+<p>Flip rows and columns.</p>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\mathbf{A} = \begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6
+\end{bmatrix}, \quad \mathbf{A}^T = \begin{bmatrix}
+1 &amp; 4 \\
+2 &amp; 5 \\
+3 &amp; 6
+\end{bmatrix}\)</span>$</p>
+<p><strong>Rule:</strong> <span class="arithmatex">\((a_{ij})^T = a_{ji}\)</span></p>
+<hr />
+<h2 id="part-5-matrix-operations">Part 5: Matrix Operations<a class="headerlink" href="#part-5-matrix-operations" title="Permanent link">&para;</a></h2>
+<h3 id="51-matrix-addition">5.1 Matrix Addition<a class="headerlink" href="#51-matrix-addition" title="Permanent link">&para;</a></h3>
+<p>Add corresponding elements (matrices must have same dimensions).</p>
+<div class="arithmatex">\[\mathbf{A} + \mathbf{B} = \begin{bmatrix}
+a_{11} + b_{11} &amp; a_{12} + b_{12} \\
+a_{21} + b_{21} &amp; a_{22} + b_{22}
+\end{bmatrix}\]</div>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{bmatrix} + \begin{bmatrix}
+5 &amp; 6 \\
+7 &amp; 8
+\end{bmatrix} = \begin{bmatrix}
+6 &amp; 8 \\
+10 &amp; 12
+\end{bmatrix}\)</span>$</p>
+<h3 id="52-scalar-multiplication">5.2 Scalar Multiplication<a class="headerlink" href="#52-scalar-multiplication" title="Permanent link">&para;</a></h3>
+<p>Multiply every element by a scalar.</p>
+<div class="arithmatex">\[c \mathbf{A} = \begin{bmatrix}
+c \cdot a_{11} &amp; c \cdot a_{12} \\
+c \cdot a_{21} &amp; c \cdot a_{22}
+\end{bmatrix}\]</div>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(2 \begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{bmatrix} = \begin{bmatrix}
+2 &amp; 4 \\
+6 &amp; 8
+\end{bmatrix}\)</span>$</p>
+<h3 id="53-matrix-multiplication">5.3 Matrix Multiplication<a class="headerlink" href="#53-matrix-multiplication" title="Permanent link">&para;</a></h3>
+<p><strong>Rule:</strong> To multiply <span class="arithmatex">\(\mathbf{A}_{m \times n}\)</span> and <span class="arithmatex">\(\mathbf{B}_{n \times p}\)</span>:
+- Number of columns in <span class="arithmatex">\(\mathbf{A}\)</span> must equal number of rows in <span class="arithmatex">\(\mathbf{B}\)</span>
+- Result is <span class="arithmatex">\(\mathbf{C}_{m \times p}\)</span></p>
+<p><strong>Formula:</strong>
+$<span class="arithmatex">\(c_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj}\)</span>$</p>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{bmatrix} \begin{bmatrix}
+5 &amp; 6 \\
+7 &amp; 8
+\end{bmatrix} = \begin{bmatrix}
+1(5) + 2(7) &amp; 1(6) + 2(8) \\
+3(5) + 4(7) &amp; 3(6) + 4(8)
+\end{bmatrix} = \begin{bmatrix}
+19 &amp; 22 \\
+43 &amp; 50
+\end{bmatrix}\)</span>$</p>
+<p><strong>Important:</strong> Matrix multiplication is <strong>NOT commutative</strong>
+- <span class="arithmatex">\(\mathbf{AB} \neq \mathbf{BA}\)</span> (in general)</p>
+<hr />
+<h2 id="part-6-important-concepts">Part 6: Important Concepts<a class="headerlink" href="#part-6-important-concepts" title="Permanent link">&para;</a></h2>
+<h3 id="61-linear-combination">6.1 Linear Combination<a class="headerlink" href="#61-linear-combination" title="Permanent link">&para;</a></h3>
+<p>A sum of scalar multiples of vectors.</p>
+<div class="arithmatex">\[\mathbf{v} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_n \mathbf{v}_n\]</div>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\mathbf{v} = 2\begin{bmatrix} 1 \\ 0 \end{bmatrix} + 3\begin{bmatrix} 0 \\ 1 \end{bmatrix} = \begin{bmatrix} 2 \\ 3 \end{bmatrix}\)</span>$</p>
+<h3 id="62-linear-independence">6.2 Linear Independence<a class="headerlink" href="#62-linear-independence" title="Permanent link">&para;</a></h3>
+<p>Vectors are <strong>linearly independent</strong> if no vector can be written as a linear combination of the others.</p>
+<p><strong>Example (Independent):</strong>
+$<span class="arithmatex">\(\mathbf{v}_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad \mathbf{v}_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}\)</span>$</p>
+<p><strong>Example (Dependent):</strong>
+$<span class="arithmatex">\(\mathbf{v}_1 = \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \quad \mathbf{v}_2 = \begin{bmatrix} 2 \\ 4 \end{bmatrix}\)</span>$
+(Here <span class="arithmatex">\(\mathbf{v}_2 = 2\mathbf{v}_1\)</span>)</p>
+<h3 id="63-span">6.3 Span<a class="headerlink" href="#63-span" title="Permanent link">&para;</a></h3>
+<p>The <strong>span</strong> of a set of vectors is all possible linear combinations of those vectors.</p>
+<div class="arithmatex">\[\text{span}\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\} = \{c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \cdots + c_n\mathbf{v}_n : c_i \in \mathbb{R}\}\]</div>
+<h3 id="64-basis">6.4 Basis<a class="headerlink" href="#64-basis" title="Permanent link">&para;</a></h3>
+<p>A <strong>basis</strong> for a vector space is a set of linearly independent vectors that span the space.</p>
+<p><strong>Standard basis for <span class="arithmatex">\(\mathbb{R}^3\)</span>:</strong>
+$<span class="arithmatex">\(\mathbf{e}_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \quad \mathbf{e}_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \quad \mathbf{e}_3 = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}\)</span>$</p>
+<h3 id="65-dimension">6.5 Dimension<a class="headerlink" href="#65-dimension" title="Permanent link">&para;</a></h3>
+<p>The <strong>dimension</strong> of a vector space is the number of vectors in any basis.</p>
+<ul>
+<li><span class="arithmatex">\(\mathbb{R}^1\)</span> has dimension 1</li>
+<li><span class="arithmatex">\(\mathbb{R}^2\)</span> has dimension 2</li>
+<li><span class="arithmatex">\(\mathbb{R}^3\)</span> has dimension 3</li>
+<li><span class="arithmatex">\(\mathbb{R}^n\)</span> has dimension n</li>
+</ul>
+<hr />
+<h2 id="part-7-functions-and-mappings">Part 7: Functions and Mappings<a class="headerlink" href="#part-7-functions-and-mappings" title="Permanent link">&para;</a></h2>
+<h3 id="71-function-notation">7.1 Function Notation<a class="headerlink" href="#71-function-notation" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[f: A \to B\]</div>
+<p>Means: "function <span class="arithmatex">\(f\)</span> maps from set <span class="arithmatex">\(A\)</span> to set <span class="arithmatex">\(B\)</span>"
+- <span class="arithmatex">\(A\)</span> is the <strong>domain</strong> (input set)
+- <span class="arithmatex">\(B\)</span> is the <strong>codomain</strong> (output set)
+- <span class="arithmatex">\(f(x)\)</span> is the <strong>image</strong> of <span class="arithmatex">\(x\)</span></p>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(f: \mathbb{R} \to \mathbb{R}, \quad f(x) = x^2\)</span>$</p>
+<h3 id="72-linear-transformation">7.2 Linear Transformation<a class="headerlink" href="#72-linear-transformation" title="Permanent link">&para;</a></h3>
+<p>A function <span class="arithmatex">\(T: \mathbb{R}^n \to \mathbb{R}^m\)</span> is <strong>linear</strong> if:</p>
+<ol>
+<li><span class="arithmatex">\(T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})\)</span> (additivity)</li>
+<li><span class="arithmatex">\(T(c\mathbf{u}) = cT(\mathbf{u})\)</span> (homogeneity)</li>
+</ol>
+<p><strong>Key fact:</strong> Every linear transformation can be represented by a matrix!</p>
+<hr />
+<h2 id="part-8-norms-and-distance">Part 8: Norms and Distance<a class="headerlink" href="#part-8-norms-and-distance" title="Permanent link">&para;</a></h2>
+<h3 id="81-vector-norm">8.1 Vector Norm<a class="headerlink" href="#81-vector-norm" title="Permanent link">&para;</a></h3>
+<p>A <strong>norm</strong> measures the "length" or "magnitude" of a vector.</p>
+<p><strong>Euclidean Norm (L2 norm):</strong>
+$<span class="arithmatex">\(\|\mathbf{x}\|_2 = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2} = \sqrt{\sum_{i=1}^{n} x_i^2}\)</span>$</p>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\left\|\begin{bmatrix} 3 \\ 4 \end{bmatrix}\right\|_2 = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5\)</span>$</p>
+<p><strong>Other norms:</strong>
+- L1 norm: <span class="arithmatex">\(\|\mathbf{x}\|_1 = |x_1| + |x_2| + \cdots + |x_n|\)</span>
+- L∞ norm: <span class="arithmatex">\(\|\mathbf{x}\|_\infty = \max\{|x_1|, |x_2|, \ldots, |x_n|\}\)</span></p>
+<h3 id="82-distance">8.2 Distance<a class="headerlink" href="#82-distance" title="Permanent link">&para;</a></h3>
+<p>The <strong>distance</strong> between two vectors:
+$<span class="arithmatex">\(d(\mathbf{x}, \mathbf{y}) = \|\mathbf{x} - \mathbf{y}\|\)</span>$</p>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(d\left(\begin{bmatrix} 1 \\ 2 \end{bmatrix}, \begin{bmatrix} 4 \\ 6 \end{bmatrix}\right) = \left\|\begin{bmatrix} -3 \\ -4 \end{bmatrix}\right\| = \sqrt{9 + 16} = 5\)</span>$</p>
+<hr />
+<h2 id="part-9-summation-and-product-notation">Part 9: Summation and Product Notation<a class="headerlink" href="#part-9-summation-and-product-notation" title="Permanent link">&para;</a></h2>
+<h3 id="91-summation-sigma">9.1 Summation (<span class="arithmatex">\(\Sigma\)</span>)<a class="headerlink" href="#91-summation-sigma" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[\sum_{i=1}^{n} a_i = a_1 + a_2 + a_3 + \cdots + a_n\]</div>
+<p><strong>Examples:</strong>
+$<span class="arithmatex">\(\sum_{i=1}^{5} i = 1 + 2 + 3 + 4 + 5 = 15\)</span>$</p>
+<div class="arithmatex">\[\sum_{i=1}^{3} i^2 = 1^2 + 2^2 + 3^2 = 1 + 4 + 9 = 14\]</div>
+<h3 id="92-product-pi">9.2 Product (<span class="arithmatex">\(\Pi\)</span>)<a class="headerlink" href="#92-product-pi" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[\prod_{i=1}^{n} a_i = a_1 \times a_2 \times a_3 \times \cdots \times a_n\]</div>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\prod_{i=1}^{4} i = 1 \times 2 \times 3 \times 4 = 24\)</span>$</p>
+<hr />
+<h2 id="part-10-common-functions">Part 10: Common Functions<a class="headerlink" href="#part-10-common-functions" title="Permanent link">&para;</a></h2>
+<h3 id="101-exponential-function">10.1 Exponential Function<a class="headerlink" href="#101-exponential-function" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[f(x) = e^x \text{ where } e \approx 2.71828\]</div>
+<p><strong>Properties:</strong>
+- <span class="arithmatex">\(e^0 = 1\)</span>
+- <span class="arithmatex">\(e^{a+b} = e^a \cdot e^b\)</span>
+- <span class="arithmatex">\((e^x)' = e^x\)</span></p>
+<h3 id="102-logarithm">10.2 Logarithm<a class="headerlink" href="#102-logarithm" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[y = \log_b(x) \text{ means } b^y = x\]</div>
+<p><strong>Natural logarithm:</strong> <span class="arithmatex">\(\ln(x) = \log_e(x)\)</span></p>
+<p><strong>Properties:</strong>
+- <span class="arithmatex">\(\ln(1) = 0\)</span>
+- <span class="arithmatex">\(\ln(ab) = \ln(a) + \ln(b)\)</span>
+- <span class="arithmatex">\(\ln(a^b) = b\ln(a)\)</span></p>
+<h3 id="103-sigmoid-function">10.3 Sigmoid Function<a class="headerlink" href="#103-sigmoid-function" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[\sigma(x) = \frac{1}{1 + e^{-x}}\]</div>
+<p><strong>Properties:</strong>
+- Range: <span class="arithmatex">\((0, 1)\)</span>
+- <span class="arithmatex">\(\sigma(0) = 0.5\)</span>
+- Used in logistic regression and neural networks</p>
+<hr />
+<h2 id="summary-key-takeaways">Summary: Key Takeaways<a class="headerlink" href="#summary-key-takeaways" title="Permanent link">&para;</a></h2>
+<h3 id="essential-notation">Essential Notation<a class="headerlink" href="#essential-notation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Vectors: <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^n\)</span></li>
+<li>Matrices: <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span></li>
+<li>Sets: <span class="arithmatex">\(A \subset B\)</span>, <span class="arithmatex">\(x \in S\)</span></li>
+</ul>
+<h3 id="fundamental-operations">Fundamental Operations<a class="headerlink" href="#fundamental-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Vector addition, scalar multiplication, dot product</li>
+<li>Matrix addition, multiplication, transpose</li>
+<li>Norms and distances</li>
+</ul>
+<h3 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Linear independence and span</li>
+<li>Basis and dimension</li>
+<li>Linear transformations</li>
+<li>Functions and mappings</li>
+</ul>
+<hr />
+<h2 id="practice-problems">Practice Problems<a class="headerlink" href="#practice-problems" title="Permanent link">&para;</a></h2>
+<h3 id="problem-1">Problem 1<a class="headerlink" href="#problem-1" title="Permanent link">&para;</a></h3>
+<p>Calculate the following:
+$<span class="arithmatex">\(\begin{bmatrix} 2 \\ 3 \\ 1 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 4 \\ 2 \end{bmatrix}\)</span>$</p>
+<h3 id="problem-2">Problem 2<a class="headerlink" href="#problem-2" title="Permanent link">&para;</a></h3>
+<p>Find the norm:
+$<span class="arithmatex">\(\left\|\begin{bmatrix} 5 \\ 12 \end{bmatrix}\right\|_2\)</span>$</p>
+<h3 id="problem-3">Problem 3<a class="headerlink" href="#problem-3" title="Permanent link">&para;</a></h3>
+<p>Multiply these matrices:
+$<span class="arithmatex">\(\begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix} \begin{bmatrix} 2 &amp; 0 \\ 1 &amp; 3 \end{bmatrix}\)</span>$</p>
+<h3 id="problem-4">Problem 4<a class="headerlink" href="#problem-4" title="Permanent link">&para;</a></h3>
+<p>Are these vectors linearly independent?
+$<span class="arithmatex">\(\mathbf{v}_1 = \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \quad \mathbf{v}_2 = \begin{bmatrix} 3 \\ 6 \end{bmatrix}\)</span>$</p>
+<hr />
+<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
+<p><strong>Solution 1:</strong>
+$<span class="arithmatex">\(2(1) + 3(4) + 1(2) = 2 + 12 + 2 = 16\)</span>$</p>
+<p><strong>Solution 2:</strong>
+$<span class="arithmatex">\(\sqrt{5^2 + 12^2} = \sqrt{25 + 144} = \sqrt{169} = 13\)</span>$</p>
+<p><strong>Solution 3:</strong>
+$<span class="arithmatex">\(\begin{bmatrix} 1(2) + 2(1) &amp; 1(0) + 2(3) \\ 3(2) + 4(1) &amp; 3(0) + 4(3) \end{bmatrix} = \begin{bmatrix} 4 &amp; 6 \\ 10 &amp; 12 \end{bmatrix}\)</span>$</p>
+<p><strong>Solution 4:</strong>
+No, they are <strong>dependent</strong> because <span class="arithmatex">\(\mathbf{v}_2 = 3\mathbf{v}_1\)</span></p>
+<hr />
+<p><strong>Course:</strong> Mathematics for Machine Learning
+<strong>Instructor:</strong> Mohammed Alnemari</p>
+<p><strong>Next:</strong> Tutorial 2 - Vector Spaces and Linear Transformations</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/alnemari-m/mathai-website" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

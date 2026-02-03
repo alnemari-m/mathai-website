@@ -1,0 +1,619 @@
+/* Mohammed Alnemari's Course Style - Based on Linear Algebra Slides */
+
+:root {
+  --royal-blue: #0052D4;
+  --coral-orange: #FF5733;
+  --teal-cyan: #00D9A3;
+  --light-gray: #F5F5F5;
+  --dark-text: #1A1A1A;
+  --white: #FFFFFF;
+  --dark-sidebar: #2C3E50;
+}
+
+/* Global Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--dark-text);
+  line-height: 1.6;
+}
+
+/* Navigation/Header */
+.wy-side-nav-search {
+  background: var(--royal-blue) !important;
+  border-bottom: 5px solid var(--coral-orange);
+}
+
+.wy-side-nav-search a {
+  color: var(--white) !important;
+  font-weight: 700;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.wy-side-nav-search > div.version {
+  color: var(--teal-cyan);
+}
+
+/* Navigation Menu */
+.wy-nav-side {
+  background: var(--dark-sidebar) !important;
+}
+
+.wy-menu-vertical a {
+  color: #8BA4B8 !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.wy-menu-vertical a:hover {
+  background-color: rgba(0, 217, 163, 0.1) !important;
+  color: var(--white) !important;
+  padding-left: 8px;
+}
+
+.wy-menu-vertical li.current > a {
+  background: linear-gradient(90deg, var(--royal-blue) 0%, rgba(0, 82, 212, 0.8) 100%) !important;
+  color: var(--teal-cyan) !important;
+  border-right: 5px solid var(--coral-orange);
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(0, 217, 163, 0.5);
+}
+
+.wy-menu-vertical li.current a {
+  border: none;
+}
+
+.wy-menu-vertical li.toctree-l1.current > a {
+  background: linear-gradient(90deg, var(--royal-blue) 0%, rgba(0, 61, 107, 0.8) 100%) !important;
+  color: var(--teal-cyan) !important;
+  font-weight: 700;
+}
+
+.wy-menu-vertical .toctree-l1.current a {
+  color: var(--teal-cyan) !important;
+  font-weight: 700;
+}
+
+/* Sub-menu items (Level 2 - Weeks) */
+.wy-menu-vertical .toctree-l2 > a {
+  color: #A3BFCF !important;
+  font-weight: 600;
+  padding-left: 1.5em;
+  font-size: 0.98em;
+}
+
+.wy-menu-vertical .toctree-l2 > a:hover {
+  color: var(--white) !important;
+  background-color: rgba(0, 217, 163, 0.2) !important;
+  padding-left: 1.8em;
+}
+
+/* Sub-menu items (Level 3 - Individual Lectures) */
+.wy-menu-vertical .toctree-l3 > a {
+  color: #7A98AC !important;
+  font-weight: 400;
+  padding-left: 2.5em;
+  font-size: 0.92em;
+}
+
+.wy-menu-vertical .toctree-l3 > a:hover {
+  color: var(--white) !important;
+  background-color: rgba(0, 217, 163, 0.15) !important;
+  padding-left: 2.8em;
+}
+
+/* Current/active nested items */
+.wy-menu-vertical .toctree-l2.current > a {
+  color: var(--teal-cyan) !important;
+  font-weight: 700;
+  background-color: rgba(0, 217, 163, 0.15) !important;
+}
+
+.wy-menu-vertical .toctree-l3.current > a {
+  color: #4DFFC8 !important;
+  font-weight: 600;
+  background-color: rgba(0, 217, 163, 0.1) !important;
+}
+
+/* Main Content Area */
+.wy-nav-content {
+  max-width: 1200px;
+  background: var(--white);
+}
+
+/* Hero Section - Title Page Style */
+.hero-section {
+  background: var(--royal-blue);
+  color: var(--white);
+  padding: 4em 3em;
+  margin: -2em -2em 2em -2em;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+  background: var(--coral-orange);
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  height: 10px;
+  background: var(--coral-orange);
+}
+
+.hero-section h1 {
+  color: var(--coral-orange) !important;
+  font-size: 3.5em !important;
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 0.3em 0 !important;
+  line-height: 1.1;
+}
+
+.hero-section p {
+  color: var(--white);
+  font-size: 1.3em;
+  margin: 0;
+  font-weight: 300;
+}
+
+.hero-section strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* Section Headers with Yellow Accent */
+h1 {
+  color: var(--royal-blue) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  border-bottom: 5px solid var(--coral-orange);
+  padding-bottom: 0.5em;
+  margin-top: 2em !important;
+}
+
+h2 {
+  color: var(--royal-blue) !important;
+  font-weight: 700 !important;
+  border-left: 5px solid var(--coral-orange);
+  padding-left: 15px;
+  margin-top: 2em;
+}
+
+h3 {
+  color: var(--royal-blue) !important;
+  font-weight: 600 !important;
+}
+
+/* Info Cards - Slide Style */
+.info-card {
+  background: var(--light-gray);
+  border-left: 5px solid var(--royal-blue);
+  padding: 2em;
+  margin: 2em 0;
+  border-radius: 0;
+}
+
+.info-card h3 {
+  color: var(--royal-blue);
+  margin-top: 0;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+}
+
+/* Instructor Info Box */
+.instructor-info {
+  background: var(--royal-blue);
+  color: var(--white);
+  padding: 2em;
+  margin: 2em 0;
+  border-left: 8px solid var(--coral-orange);
+}
+
+.instructor-info h2 {
+  color: var(--coral-orange) !important;
+  border-left: none;
+  padding-left: 0;
+}
+
+.instructor-info strong {
+  color: var(--coral-orange);
+}
+
+.instructor-info p {
+  color: var(--white);
+}
+
+/* Contact Box - Yellow Highlight */
+.contact-box {
+  background: var(--royal-blue);
+  color: var(--white);
+  padding: 1.5em;
+  margin: 1em 0;
+  border-left: 6px solid var(--coral-orange);
+}
+
+.contact-box strong {
+  color: var(--coral-orange);
+}
+
+/* Tables - Professional Style */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 2em 0;
+  box-shadow: 0 4px 12px rgba(0, 61, 107, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table thead {
+  background: linear-gradient(135deg, var(--royal-blue) 0%, #0066FF 100%);
+  color: var(--white);
+}
+
+table thead th {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 18px 15px;
+  border-bottom: 3px solid var(--coral-orange);
+  font-size: 0.95em;
+}
+
+table tbody td {
+  padding: 14px 15px;
+  border-bottom: 1px solid #E0E0E0;
+  transition: all 0.2s ease;
+}
+
+table tbody tr:hover {
+  background-color: #FFE8E0 !important;
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(255, 87, 51, 0.2);
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #F8F9FA;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: var(--white);
+}
+
+table tbody td strong {
+  color: var(--royal-blue);
+  font-weight: 700;
+}
+
+/* Signature Footer */
+.signature {
+  background: var(--royal-blue);
+  color: var(--white);
+  padding: 2em;
+  margin: 3em -2em -2em -2em;
+  text-align: center;
+  border-top: 5px solid var(--coral-orange);
+}
+
+.signature strong {
+  color: var(--coral-orange);
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.signature em {
+  color: var(--coral-orange);
+  font-style: normal;
+}
+
+/* Lists - Coral Orange Bullets */
+ul li::marker {
+  color: var(--coral-orange);
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+ul li {
+  margin: 0.8em 0;
+  padding-left: 0.5em;
+}
+
+/* Code Blocks */
+code {
+  background-color: #F8F8F8;
+  padding: 3px 8px;
+  border-radius: 3px;
+  color: var(--royal-blue);
+  font-family: 'Courier New', monospace;
+  border: 1px solid #E0E0E0;
+}
+
+pre {
+  background: linear-gradient(135deg, var(--royal-blue) 0%, #0066FF 100%);
+  color: var(--white);
+  padding: 1.5em;
+  border-radius: 8px;
+  border-left: 5px solid var(--coral-orange);
+  overflow-x: auto;
+  box-shadow: 0 4px 12px rgba(0, 82, 212, 0.2);
+}
+
+pre code {
+  background: transparent;
+  color: var(--white);
+  border: none;
+  padding: 0;
+}
+
+/* Emphasis */
+strong {
+  color: var(--royal-blue);
+  font-weight: 700;
+}
+
+em {
+  color: var(--royal-blue);
+  font-style: italic;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 5px solid var(--coral-orange);
+  background: var(--light-gray);
+  padding: 1em 1.5em;
+  margin: 1.5em 0;
+  font-style: italic;
+}
+
+/* Admonitions */
+.admonition {
+  padding: 1.5em;
+  margin: 1.5em 0;
+  border-left: 6px solid;
+  border-radius: 0;
+}
+
+.admonition.note {
+  border-color: var(--royal-blue);
+  background-color: #E8F4F8;
+}
+
+.admonition.warning {
+  border-color: var(--coral-orange);
+  background-color: #FFF9E6;
+}
+
+.admonition-title {
+  color: var(--royal-blue) !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+}
+
+/* Buttons */
+.btn, .button {
+  background: var(--royal-blue);
+  color: var(--white);
+  padding: 12px 30px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover, .button:hover {
+  background: var(--coral-orange);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 87, 51, 0.3);
+}
+
+/* Page Title Style */
+.rst-content .document h1 {
+  font-size: 2.5em;
+  color: var(--royal-blue);
+  text-transform: uppercase;
+  font-weight: 900;
+  border-bottom: 5px solid var(--coral-orange);
+  padding-bottom: 0.3em;
+  margin-bottom: 1em;
+}
+
+/* Footer */
+.rst-footer-buttons {
+  border-top: 3px solid var(--coral-orange);
+  padding-top: 2em;
+  margin-top: 3em;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2em 1.5em;
+  }
+
+  .hero-section h1 {
+    font-size: 2em !important;
+  }
+
+  .hero-section p {
+    font-size: 1em;
+  }
+
+  table {
+    font-size: 0.9em;
+  }
+}
+
+/* Numbered Lists */
+ol {
+  counter-reset: item;
+  list-style: none;
+}
+
+ol li {
+  counter-increment: item;
+  padding-left: 2em;
+  position: relative;
+  margin: 1em 0;
+}
+
+ol li::before {
+  content: counter(item);
+  background: var(--coral-orange);
+  color: var(--white);
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+  position: absolute;
+  left: 0;
+}
+
+/* Announcements Box */
+.announcement-box {
+  background: linear-gradient(135deg, #FFE8E0 0%, #FFF5F0 100%);
+  border-left: 8px solid var(--coral-orange);
+  border-radius: 8px;
+  padding: 2em;
+  margin: 2em 0;
+  box-shadow: 0 4px 12px rgba(255, 87, 51, 0.2);
+}
+
+.announcement-box h2, .announcement-box h3 {
+  color: var(--royal-blue) !important;
+  margin-top: 0;
+  border-left: none;
+  padding-left: 0;
+}
+
+.announcement-box strong {
+  color: var(--white);
+  background: var(--coral-orange);
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.announcement-box ul li::marker {
+  color: var(--royal-blue);
+}
+
+/* Last Updated Footer */
+.last-updated {
+  background: var(--light-gray);
+  border-top: 3px solid var(--coral-orange);
+  padding: 1em 2em;
+  margin: 3em -2em -2em -2em;
+  text-align: right;
+  font-size: 0.9em;
+  color: #666;
+  font-style: italic;
+}
+
+.last-updated strong {
+  color: var(--royal-blue);
+  font-style: normal;
+}
+
+/* Enhanced Link Styling with Better Colors */
+a {
+  color: var(--royal-blue);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #0066FF;
+  border-bottom: 2px solid var(--coral-orange);
+  background: linear-gradient(to top, rgba(255, 87, 51, 0.1) 0%, transparent 100%);
+}
+
+/* Enhanced Section Dividers */
+hr {
+  border: none;
+  height: 4px;
+  background: linear-gradient(to right, var(--royal-blue) 0%, var(--coral-orange) 50%, var(--royal-blue) 100%);
+  margin: 3em 0;
+  border-radius: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .wy-nav-side,
+  .wy-nav-top,
+  .rst-footer-buttons {
+    display: none !important;
+  }
+
+  .wy-nav-content {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .hero-section,
+  .instructor-info,
+  .signature,
+  .announcement-box {
+    background: white !important;
+    color: black !important;
+    border: 2px solid #333;
+  }
+
+  .hero-section h1 {
+    color: black !important;
+  }
+
+  table {
+    page-break-inside: avoid;
+  }
+
+  a {
+    text-decoration: underline;
+    color: black !important;
+  }
+
+  .last-updated {
+    border-top: 2px solid #333;
+    background: white;
+  }
+}
+
+/* Enhanced Navigation Icons */
+.wy-menu-vertical a::before {
+  margin-right: 8px;
+  font-weight: 400;
+}
+
+/* Subtle Animation for Cards */
+.info-card, .announcement-box {
+  transition: all 0.3s ease;
+}
+
+.info-card:hover, .announcement-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 61, 107, 0.15);
+}
+

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mohammed Alnemari" /><link rel="canonical" href="https://alnemari-m.github.io/mathai-website/papers/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Papers - Mathematics of AI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Papers";
+        var mkdocs_page_input_path = "papers.md";
+        var mkdocs_page_url = "/mathai-website/papers/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Mathematics of AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lectures/">Lectures</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tutorials/">Math Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../notebooks/">Notebooks</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Papers</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#assignment-requirements">📋 Assignment Requirements</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bonus-opportunity">🌟 BONUS OPPORTUNITY</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#required-papers-5-papers-must-read">📚 REQUIRED PAPERS (5 Papers - Must Read)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#required-paper-1-linear-algebra-foundations">✅ Required Paper 1: Linear Algebra Foundations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#a-mathematical-introduction-to-deep-learning">A Mathematical Introduction to Deep Learning</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#required-paper-2-optimization-theory">✅ Required Paper 2: Optimization Theory</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#a-tutorial-on-optimization-for-machine-learning">A Tutorial on Optimization for Machine Learning</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#required-paper-3-probability-statistical-learning">✅ Required Paper 3: Probability &amp; Statistical Learning</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#an-introduction-to-variational-inference">An Introduction to Variational Inference</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#required-paper-4-gradient-based-learning">✅ Required Paper 4: Gradient-Based Learning</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#efficient-backprop">Efficient BackProp</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#required-paper-5-kernel-methods-svm">✅ Required Paper 5: Kernel Methods &amp; SVM</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#a-tutorial-on-support-vector-machines-for-pattern-recognition">A Tutorial on Support Vector Machines for Pattern Recognition</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#why-these-5-papers">🎯 Why These 5 Papers?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#suggested-reading-schedule">📅 Suggested Reading Schedule</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#optional-papers-15-papers-for-bonus">📖 OPTIONAL PAPERS (15 Papers - For Bonus)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#linear-algebra-matrix-theory-4-papers">Linear Algebra &amp; Matrix Theory (4 papers)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-1-matrix-computations-and-optimization">Optional 1: Matrix Computations and Optimization</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-2-random-matrix-theory">Optional 2: Random Matrix Theory</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-3-matrix-factorization">Optional 3: Matrix Factorization</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-4-principal-component-analysis">Optional 4: Principal Component Analysis</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#optimization-methods-4-papers">Optimization Methods (4 papers)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-5-convex-optimization-fundamentals">Optional 5: Convex Optimization Fundamentals</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-6-stochastic-optimization">Optional 6: Stochastic Optimization</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-7-non-convex-optimization">Optional 7: Non-Convex Optimization</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-8-loss-surface-analysis">Optional 8: Loss Surface Analysis</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#probability-statistics-3-papers">Probability &amp; Statistics (3 papers)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-9-bayesian-optimization">Optional 9: Bayesian Optimization</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-10-em-algorithm">Optional 10: EM Algorithm</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-11-information-theory">Optional 11: Information Theory</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deep-learning-theory-3-papers">Deep Learning Theory (3 papers)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-12-universal-approximation">Optional 12: Universal Approximation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-13-generalization-theory">Optional 13: Generalization Theory</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-14-kernel-methods">Optional 14: Kernel Methods</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dimensionality-reduction-1-paper">Dimensionality Reduction (1 paper)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-15-manifold-learning">Optional 15: Manifold Learning</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-earn-bonus-points">💡 How to Earn Bonus Points</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#paper-topic-coverage-matrix">📊 Paper-Topic Coverage Matrix</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#required-papers">Required Papers</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#optional-papers-coverage">Optional Papers Coverage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reading-tips">🎯 Reading Tips</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../animations/">🔒 Animations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Mathematics of AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Papers</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/alnemari-m/mathai-website/edit/master/docs/papers.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="reading-review-papers">Reading &amp; Review Papers<a class="headerlink" href="#reading-review-papers" title="Permanent link">&para;</a></h1>
+<p>Essential papers covering the mathematical foundations of machine learning and AI.</p>
+<hr />
+<h2 id="assignment-requirements">📋 Assignment Requirements<a class="headerlink" href="#assignment-requirements" title="Permanent link">&para;</a></h2>
+<p><strong>Component Weight:</strong> 10% of final grade</p>
+<p><strong>Requirements:</strong>
+- Read and review the <strong>5 required papers</strong> below throughout the semester
+- Submit written reviews (2-3 pages each)
+- Focus on mathematical concepts and techniques
+- Connect paper content to course topics</p>
+<p><strong>Review Structure:</strong>
+1. Summary of main mathematical concepts
+2. Key theorems, proofs, or derivations
+3. Connections to course material
+4. Critical analysis of mathematical approach
+5. Personal insights and questions</p>
+<hr />
+<h2 id="bonus-opportunity">🌟 BONUS OPPORTUNITY<a class="headerlink" href="#bonus-opportunity" title="Permanent link">&para;</a></h2>
+<p><strong>Want to go deeper?</strong> Read additional papers from the Optional Papers section below!</p>
+<ul>
+<li>Discuss any optional paper with me during office hours</li>
+<li>Gain deeper understanding of mathematical foundations</li>
+<li><strong>Earn bonus points</strong> towards your final grade</li>
+<li><strong>More papers = deeper expertise in Mathematics of AI</strong></li>
+</ul>
+<p>The more you read, the stronger your mathematical foundation will become. Students who engage with optional papers consistently demonstrate superior understanding and research capability.</p>
+<hr />
+<h2 id="required-papers-5-papers-must-read">📚 REQUIRED PAPERS (5 Papers - Must Read)<a class="headerlink" href="#required-papers-5-papers-must-read" title="Permanent link">&para;</a></h2>
+<p><strong>All papers are available on arXiv and are 20-40 pages</strong></p>
+<hr />
+<h3 id="required-paper-1-linear-algebra-foundations">✅ <strong>Required Paper 1: Linear Algebra Foundations</strong><a class="headerlink" href="#required-paper-1-linear-algebra-foundations" title="Permanent link">&para;</a></h3>
+<h4 id="a-mathematical-introduction-to-deep-learning"><strong>A Mathematical Introduction to Deep Learning</strong><a class="headerlink" href="#a-mathematical-introduction-to-deep-learning" title="Permanent link">&para;</a></h4>
+<p><strong>Authors:</strong> Grohs, Kutyniok (2021)
+<strong>Pages:</strong> ~40 pages
+<strong>arXiv:</strong> <a href="https://arxiv.org/abs/2102.09165">2102.09165</a></p>
+<p><strong>Topics Covered:</strong>
+- Vector spaces and linear transformations (Topic 1)
+- Analytic geometry and norms (Topic 2)
+- Matrix decompositions and spectral theory (Topic 3)
+- Neural network approximation theory</p>
+<p><strong>Why This Paper is Required:</strong>
+This paper provides the most comprehensive mathematical treatment of linear algebra for deep learning. It rigorously covers Topics 1-3 from our course, connecting abstract linear algebra concepts to concrete ML applications. The paper builds from first principles, defining vector spaces, inner products, and norms, then shows how these concepts underpin neural network architecture and training. This is the foundational paper that ties together the first half of our course.</p>
+<p><strong>What Makes It Excellent:</strong>
+- Complete proofs of all major theorems
+- Clear progression from basic to advanced concepts
+- Bridges pure mathematics and practical ML
+- Covers both finite and infinite-dimensional perspectives</p>
+<p><strong>Course Topics:</strong> Topics 1, 2, 3</p>
+<hr />
+<h3 id="required-paper-2-optimization-theory">✅ <strong>Required Paper 2: Optimization Theory</strong><a class="headerlink" href="#required-paper-2-optimization-theory" title="Permanent link">&para;</a></h3>
+<h4 id="a-tutorial-on-optimization-for-machine-learning"><strong>A Tutorial on Optimization for Machine Learning</strong><a class="headerlink" href="#a-tutorial-on-optimization-for-machine-learning" title="Permanent link">&para;</a></h4>
+<p><strong>Authors:</strong> Goodfellow (2016)
+<strong>Pages:</strong> ~35 pages
+<strong>arXiv:</strong> <a href="https://arxiv.org/abs/1606.04838">1606.04838</a></p>
+<p><strong>Topics Covered:</strong>
+- Gradient descent and variants (Topic 6)
+- Convex vs non-convex optimization
+- Second-order methods and curvature (Topic 4)
+- Practical optimization for neural networks</p>
+<p><strong>Why This Paper is Required:</strong>
+Optimization is the engine that powers all of machine learning. This tutorial provides rigorous mathematical treatment of optimization methods (Topic 6) while maintaining accessibility. It covers the full spectrum from convex optimization theory to the non-convex challenges of deep learning. The paper includes convergence proofs, learning rate analysis, and practical considerations that directly apply to training ML models.</p>
+<p><strong>What Makes It Excellent:</strong>
+- Balances theory and practice perfectly
+- Includes convergence rate analysis
+- Covers momentum, adaptive methods (Adam, RMSprop)
+- Addresses practical numerical issues</p>
+<p><strong>Course Topics:</strong> Topics 4, 6, Application 1</p>
+<hr />
+<h3 id="required-paper-3-probability-statistical-learning">✅ <strong>Required Paper 3: Probability &amp; Statistical Learning</strong><a class="headerlink" href="#required-paper-3-probability-statistical-learning" title="Permanent link">&para;</a></h3>
+<h4 id="an-introduction-to-variational-inference"><strong>An Introduction to Variational Inference</strong><a class="headerlink" href="#an-introduction-to-variational-inference" title="Permanent link">&para;</a></h4>
+<p><strong>Authors:</strong> Blei, Kucukelbir, McAuliffe (2017)
+<strong>Pages:</strong> ~40 pages
+<strong>arXiv:</strong> <a href="https://arxiv.org/abs/1601.00670">1601.00670</a></p>
+<p><strong>Topics Covered:</strong>
+- Probability theory fundamentals (Topic 5)
+- Bayesian inference and posterior distributions
+- Optimization meets probability (Topics 5 + 6)
+- Expectation-Maximization as special case</p>
+<p><strong>Why This Paper is Required:</strong>
+This paper masterfully combines probability theory (Topic 5) with optimization (Topic 6) to solve inference problems. Variational inference is the mathematical framework behind many modern ML methods including variational autoencoders and Bayesian deep learning. The paper provides complete mathematical derivations showing how optimization can approximate probabilistic inference, directly connecting to our GMM application (Application 3) through the EM algorithm.</p>
+<p><strong>What Makes It Excellent:</strong>
+- Comprehensive treatment of variational methods
+- Connects to EM algorithm (used in Application 3)
+- Modern perspective on classical probability
+- Includes practical algorithm derivations</p>
+<p><strong>Course Topics:</strong> Topics 5, 6, Application 3</p>
+<hr />
+<h3 id="required-paper-4-gradient-based-learning">✅ <strong>Required Paper 4: Gradient-Based Learning</strong><a class="headerlink" href="#required-paper-4-gradient-based-learning" title="Permanent link">&para;</a></h3>
+<h4 id="efficient-backprop"><strong>Efficient BackProp</strong><a class="headerlink" href="#efficient-backprop" title="Permanent link">&para;</a></h4>
+<p><strong>Authors:</strong> LeCun, Bottou, Orr, Müller (1998)
+<strong>Pages:</strong> ~25 pages
+<strong>arXiv:</strong> <a href="https://arxiv.org/abs/1206.5533">1206.5533</a></p>
+<p><strong>Topics Covered:</strong>
+- Backpropagation algorithm derivation (Topic 4)
+- Chain rule in computational graphs
+- Gradient computation for various architectures
+- Numerical stability and practical considerations</p>
+<p><strong>Why This Paper is Required:</strong>
+This is THE definitive mathematical treatment of backpropagation by the pioneers of modern deep learning. It rigorously derives the backpropagation algorithm using vector calculus (Topic 4), showing how the chain rule enables efficient gradient computation in neural networks. Every ML practitioner must understand these derivations. The paper also addresses practical numerical issues that arise when implementing gradient descent.</p>
+<p><strong>What Makes It Excellent:</strong>
+- Written by legendary researchers (LeCun et al.)
+- Complete mathematical derivations with clear notation
+- Covers practical implementation details
+- Timeless—still the best reference 25+ years later</p>
+<p><strong>Course Topics:</strong> Topics 1, 4, 6</p>
+<hr />
+<h3 id="required-paper-5-kernel-methods-svm">✅ <strong>Required Paper 5: Kernel Methods &amp; SVM</strong><a class="headerlink" href="#required-paper-5-kernel-methods-svm" title="Permanent link">&para;</a></h3>
+<h4 id="a-tutorial-on-support-vector-machines-for-pattern-recognition"><strong>A Tutorial on Support Vector Machines for Pattern Recognition</strong><a class="headerlink" href="#a-tutorial-on-support-vector-machines-for-pattern-recognition" title="Permanent link">&para;</a></h4>
+<p><strong>Authors:</strong> Schölkopf, Smola (2004)
+<strong>Pages:</strong> ~38 pages
+<strong>arXiv:</strong> <a href="https://arxiv.org/abs/1101.5543">1101.5543</a></p>
+<p><strong>Topics Covered:</strong>
+- Support Vector Machines theory (Application 4)
+- Kernel methods and feature spaces
+- Convex optimization and duality (Topic 6)
+- Geometric interpretation (Topic 2)</p>
+<p><strong>Why This Paper is Required:</strong>
+SVM represents the perfect synthesis of all course topics: linear algebra (Topics 1-2) for the geometric interpretation, calculus and optimization (Topics 4, 6) for training, and kernel methods that implicitly work in infinite-dimensional spaces. This paper provides complete mathematical treatment with all proofs, showing how abstract mathematics translates to practical classification algorithms. It directly supports Application 4 in our course.</p>
+<p><strong>What Makes It Excellent:</strong>
+- Comprehensive coverage of SVM theory
+- Clear geometric intuition alongside rigorous math
+- Explains kernel trick with mathematical precision
+- Connects optimization theory to practical algorithms</p>
+<p><strong>Course Topics:</strong> Topics 1, 2, 6, Application 4</p>
+<hr />
+<h2 id="why-these-5-papers">🎯 Why These 5 Papers?<a class="headerlink" href="#why-these-5-papers" title="Permanent link">&para;</a></h2>
+<p><strong>Comprehensive Coverage:</strong>
+- <strong>Paper 1</strong> covers linear algebra (Topics 1-3)
+- <strong>Paper 2</strong> covers optimization (Topic 6)
+- <strong>Paper 3</strong> covers probability (Topic 5)
+- <strong>Paper 4</strong> covers calculus and gradients (Topic 4)
+- <strong>Paper 5</strong> synthesizes multiple topics in a real application</p>
+<p><strong>Balanced Difficulty:</strong>
+- Accessible mathematical rigor without being overwhelming
+- Build progressively on course material
+- Mix of classical foundations and modern perspectives</p>
+<p><strong>Practical Relevance:</strong>
+- Each paper connects directly to ML practice
+- Cover the three main course applications (PCA/Dimensionality, GMM/Clustering, SVM/Classification)
+- Provide foundation for understanding modern deep learning</p>
+<p><strong>Quality of Exposition:</strong>
+- All are highly cited tutorial papers
+- Written by leading researchers in the field
+- Clear mathematical notation and complete derivations</p>
+<hr />
+<h2 id="suggested-reading-schedule">📅 Suggested Reading Schedule<a class="headerlink" href="#suggested-reading-schedule" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Paper</th>
+<th>Topic</th>
+<th>Review Due</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>3-4</strong></td>
+<td>Paper 1 (Linear Algebra)</td>
+<td>Topics 1-3</td>
+<td>Week 5</td>
+</tr>
+<tr>
+<td><strong>5-6</strong></td>
+<td>Paper 4 (BackProp)</td>
+<td>Topic 4</td>
+<td>Week 7</td>
+</tr>
+<tr>
+<td><strong>7-8</strong></td>
+<td>Paper 2 (Optimization)</td>
+<td>Topic 6</td>
+<td>Week 9</td>
+</tr>
+<tr>
+<td><strong>9-10</strong></td>
+<td>Paper 3 (Probability/Variational)</td>
+<td>Topic 5</td>
+<td>Week 11</td>
+</tr>
+<tr>
+<td><strong>11-12</strong></td>
+<td>Paper 5 (SVM)</td>
+<td>Application 4</td>
+<td>Week 13</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="optional-papers-15-papers-for-bonus">📖 OPTIONAL PAPERS (15 Papers - For Bonus)<a class="headerlink" href="#optional-papers-15-papers-for-bonus" title="Permanent link">&para;</a></h2>
+<p>Want to earn bonus points and gain deeper understanding? Read any of these papers and discuss them with me during office hours!</p>
+<p><strong>All papers available on arXiv, 20-40 pages each</strong></p>
+<hr />
+<h3 id="linear-algebra-matrix-theory-4-papers">Linear Algebra &amp; Matrix Theory (4 papers)<a class="headerlink" href="#linear-algebra-matrix-theory-4-papers" title="Permanent link">&para;</a></h3>
+<h4 id="optional-1-matrix-computations-and-optimization"><strong>Optional 1: Matrix Computations and Optimization</strong><a class="headerlink" href="#optional-1-matrix-computations-and-optimization" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "Matrix Computations and Optimization in Machine Learning"
+<strong>Authors:</strong> Gower, Richtarik (2015) | <strong>Pages:</strong> ~35 | <a href="https://arxiv.org/abs/1509.07426">arXiv:1509.07426</a>
+<strong>Focus:</strong> Numerical linear algebra, computational aspects of matrix operations
+<strong>Why Read:</strong> Deep dive into computational efficiency of matrix algorithms</p>
+<h4 id="optional-2-random-matrix-theory"><strong>Optional 2: Random Matrix Theory</strong><a class="headerlink" href="#optional-2-random-matrix-theory" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "A Random Matrix Perspective on Random Tensors"
+<strong>Authors:</strong> Pennington, Worah (2017) | <strong>Pages:</strong> ~30 | <a href="https://arxiv.org/abs/1706.02449">arXiv:1706.02449</a>
+<strong>Focus:</strong> Spectral theory, neural network initialization
+<strong>Why Read:</strong> Explains why random initialization works using spectral analysis</p>
+<h4 id="optional-3-matrix-factorization"><strong>Optional 3: Matrix Factorization</strong><a class="headerlink" href="#optional-3-matrix-factorization" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "Matrix Factorization Techniques for Recommender Systems"
+<strong>Authors:</strong> Koren, Bell, Volinsky (2009) | <strong>Pages:</strong> ~25 | <a href="https://arxiv.org/abs/0803.2946">arXiv:0803.2946</a>
+<strong>Focus:</strong> SVD, low-rank approximation, applications
+<strong>Why Read:</strong> Practical applications of matrix decomposition</p>
+<h4 id="optional-4-principal-component-analysis"><strong>Optional 4: Principal Component Analysis</strong><a class="headerlink" href="#optional-4-principal-component-analysis" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "A Tutorial on Principal Component Analysis"
+<strong>Authors:</strong> Shlens (2014) | <strong>Pages:</strong> ~12 | <a href="https://arxiv.org/abs/1404.1100">arXiv:1404.1100</a>
+<strong>Focus:</strong> Complete PCA derivation from first principles
+<strong>Why Read:</strong> Short, clear, complete derivation of PCA</p>
+<hr />
+<h3 id="optimization-methods-4-papers">Optimization Methods (4 papers)<a class="headerlink" href="#optimization-methods-4-papers" title="Permanent link">&para;</a></h3>
+<h4 id="optional-5-convex-optimization-fundamentals"><strong>Optional 5: Convex Optimization Fundamentals</strong><a class="headerlink" href="#optional-5-convex-optimization-fundamentals" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "Introductory Lectures on Convex Optimization"
+<strong>Authors:</strong> Nesterov (2004) | <strong>Pages:</strong> ~30 | <a href="https://arxiv.org/abs/1405.4980">arXiv:1405.4980</a>
+<strong>Focus:</strong> Convex sets, first-order methods, convergence proofs
+<strong>Why Read:</strong> Rigorous mathematical treatment by the master of optimization</p>
+<h4 id="optional-6-stochastic-optimization"><strong>Optional 6: Stochastic Optimization</strong><a class="headerlink" href="#optional-6-stochastic-optimization" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "Stochastic First-Order Methods in Machine Learning"
+<strong>Authors:</strong> Bottou, Curtis, Nocedal (2016) | <strong>Pages:</strong> ~40 | <a href="https://arxiv.org/abs/1606.04838">arXiv:1606.04838</a>
+<strong>Focus:</strong> SGD theory, variance reduction, convergence rates
+<strong>Why Read:</strong> Complete theory of stochastic optimization for ML</p>
+<h4 id="optional-7-non-convex-optimization"><strong>Optional 7: Non-Convex Optimization</strong><a class="headerlink" href="#optional-7-non-convex-optimization" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "An Overview of Non-Convex Optimization in Deep Learning"
+<strong>Authors:</strong> Sun (2019) | <strong>Pages:</strong> ~32 | <a href="https://arxiv.org/abs/1912.01703">arXiv:1912.01703</a>
+<strong>Focus:</strong> Loss surface geometry, saddle points, global optimization
+<strong>Why Read:</strong> Understand why gradient descent works in neural networks</p>
+<h4 id="optional-8-loss-surface-analysis"><strong>Optional 8: Loss Surface Analysis</strong><a class="headerlink" href="#optional-8-loss-surface-analysis" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "Loss Surface Analysis and Optimization in Deep Learning"
+<strong>Authors:</strong> Li, Xu, Taylor, Studer, Goldstein (2018) | <strong>Pages:</strong> ~35 | <a href="https://arxiv.org/abs/1712.09913">arXiv:1712.09913</a>
+<strong>Focus:</strong> Visualization and analysis of neural network loss landscapes
+<strong>Why Read:</strong> Geometric understanding of optimization challenges</p>
+<hr />
+<h3 id="probability-statistics-3-papers">Probability &amp; Statistics (3 papers)<a class="headerlink" href="#probability-statistics-3-papers" title="Permanent link">&para;</a></h3>
+<h4 id="optional-9-bayesian-optimization"><strong>Optional 9: Bayesian Optimization</strong><a class="headerlink" href="#optional-9-bayesian-optimization" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "A Tutorial on Bayesian Optimization"
+<strong>Authors:</strong> Frazier (2018) | <strong>Pages:</strong> ~35 | <a href="https://arxiv.org/abs/1807.02811">arXiv:1807.02811</a>
+<strong>Focus:</strong> Gaussian processes, acquisition functions
+<strong>Why Read:</strong> Modern probabilistic approach to hyperparameter tuning</p>
+<h4 id="optional-10-em-algorithm"><strong>Optional 10: EM Algorithm</strong><a class="headerlink" href="#optional-10-em-algorithm" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "The EM Algorithm: Theory and Applications"
+<strong>Authors:</strong> McLachlan, Krishnan (2007) | <strong>Pages:</strong> ~28 | <a href="https://arxiv.org/abs/1105.1476">arXiv:1105.1476</a>
+<strong>Focus:</strong> Expectation-Maximization, mixture models
+<strong>Why Read:</strong> Detailed treatment of EM algorithm for GMM (Application 3)</p>
+<h4 id="optional-11-information-theory"><strong>Optional 11: Information Theory</strong><a class="headerlink" href="#optional-11-information-theory" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "Information Theory in Statistical Learning"
+<strong>Authors:</strong> Amari (2016) | <strong>Pages:</strong> ~30 | <a href="https://arxiv.org/abs/1603.07278">arXiv:1603.07278</a>
+<strong>Focus:</strong> Entropy, KL divergence, information geometry
+<strong>Why Read:</strong> Information-theoretic perspective on learning</p>
+<hr />
+<h3 id="deep-learning-theory-3-papers">Deep Learning Theory (3 papers)<a class="headerlink" href="#deep-learning-theory-3-papers" title="Permanent link">&para;</a></h3>
+<h4 id="optional-12-universal-approximation"><strong>Optional 12: Universal Approximation</strong><a class="headerlink" href="#optional-12-universal-approximation" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "The Approximation Power of Neural Networks"
+<strong>Authors:</strong> Mhaskar, Poggio (2016) | <strong>Pages:</strong> ~32 | <a href="https://arxiv.org/abs/1511.05320">arXiv:1511.05320</a>
+<strong>Focus:</strong> Function approximation, representation theory
+<strong>Why Read:</strong> Rigorous proof of what neural networks can represent</p>
+<h4 id="optional-13-generalization-theory"><strong>Optional 13: Generalization Theory</strong><a class="headerlink" href="#optional-13-generalization-theory" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "A Primer on Statistical Learning Theory"
+<strong>Authors:</strong> Bousquet, Boucheron, Lugosi (2004) | <strong>Pages:</strong> ~40 | <a href="https://arxiv.org/abs/cs/0409018">arXiv:cs/0409018</a>
+<strong>Focus:</strong> PAC learning, VC dimension, generalization bounds
+<strong>Why Read:</strong> Foundational theory of when learning algorithms succeed</p>
+<h4 id="optional-14-kernel-methods"><strong>Optional 14: Kernel Methods</strong><a class="headerlink" href="#optional-14-kernel-methods" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "Kernel Methods for Machine Learning"
+<strong>Authors:</strong> Hofmann, Schölkopf, Smola (2008) | <strong>Pages:</strong> ~35 | <a href="https://arxiv.org/abs/0803.0842">arXiv:0803.0842</a>
+<strong>Focus:</strong> RKHS, kernel design, advanced SVM theory
+<strong>Why Read:</strong> Deep mathematical treatment of kernel methods</p>
+<hr />
+<h3 id="dimensionality-reduction-1-paper">Dimensionality Reduction (1 paper)<a class="headerlink" href="#dimensionality-reduction-1-paper" title="Permanent link">&para;</a></h3>
+<h4 id="optional-15-manifold-learning"><strong>Optional 15: Manifold Learning</strong><a class="headerlink" href="#optional-15-manifold-learning" title="Permanent link">&para;</a></h4>
+<p><strong>Title:</strong> "Nonlinear Dimensionality Reduction: A Comparative Analysis"
+<strong>Authors:</strong> Lee, Verleysen (2007) | <strong>Pages:</strong> ~30 | <a href="https://arxiv.org/abs/0710.0467">arXiv:0710.0467</a>
+<strong>Focus:</strong> PCA, MDS, Isomap, LLE, manifold theory
+<strong>Why Read:</strong> Comprehensive survey of dimensionality reduction methods</p>
+<hr />
+<h2 id="how-to-earn-bonus-points">💡 How to Earn Bonus Points<a class="headerlink" href="#how-to-earn-bonus-points" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Read any optional paper(s)</strong> from the list above</li>
+<li><strong>Schedule office hours</strong> to discuss the paper with me</li>
+<li><strong>Come prepared</strong> with:</li>
+<li>Summary of main mathematical concepts</li>
+<li>Connections to course material</li>
+<li>Questions or insights</li>
+<li>How it extends your understanding</li>
+</ol>
+<p><strong>Bonus Structure:</strong>
+- 1 optional paper discussed = +2% bonus on final grade
+- 2 optional papers discussed = +4% bonus on final grade
+- 3+ optional papers discussed = +5% bonus on final grade (maximum)</p>
+<p><strong>Quality matters:</strong> Superficial reading won't earn bonus points. Show deep engagement with the mathematical content!</p>
+<hr />
+<h2 id="paper-topic-coverage-matrix">📊 Paper-Topic Coverage Matrix<a class="headerlink" href="#paper-topic-coverage-matrix" title="Permanent link">&para;</a></h2>
+<h3 id="required-papers">Required Papers<a class="headerlink" href="#required-papers" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Paper</th>
+<th>Topics 1-3 (LA)</th>
+<th>Topic 4 (Calc)</th>
+<th>Topic 5 (Prob)</th>
+<th>Topic 6 (Opt)</th>
+<th>Applications</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Math Intro to DL</strong></td>
+<td>✓✓✓</td>
+<td>✓</td>
+<td></td>
+<td></td>
+<td>Foundation</td>
+</tr>
+<tr>
+<td><strong>2. Optimization Tutorial</strong></td>
+<td></td>
+<td>✓✓</td>
+<td></td>
+<td>✓✓✓</td>
+<td>Training</td>
+</tr>
+<tr>
+<td><strong>3. Variational Inference</strong></td>
+<td></td>
+<td></td>
+<td>✓✓✓</td>
+<td>✓✓</td>
+<td>GMM/App 3</td>
+</tr>
+<tr>
+<td><strong>4. Efficient BackProp</strong></td>
+<td>✓</td>
+<td>✓✓✓</td>
+<td></td>
+<td>✓</td>
+<td>Neural Nets</td>
+</tr>
+<tr>
+<td><strong>5. SVM Tutorial</strong></td>
+<td>✓✓</td>
+<td>✓</td>
+<td></td>
+<td>✓✓</td>
+<td>App 4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="optional-papers-coverage">Optional Papers Coverage<a class="headerlink" href="#optional-papers-coverage" title="Permanent link">&para;</a></h3>
+<p><strong>Linear Algebra Deep Dives:</strong> Optional 1-4
+<strong>Optimization Deep Dives:</strong> Optional 5-8
+<strong>Probability Deep Dives:</strong> Optional 9-11
+<strong>Deep Learning Theory:</strong> Optional 12-14
+<strong>Dimensionality Reduction:</strong> Optional 15</p>
+<hr />
+<h2 id="reading-tips">🎯 Reading Tips<a class="headerlink" href="#reading-tips" title="Permanent link">&para;</a></h2>
+<p><strong>Before Reading:</strong>
+- Review relevant course topics first
+- Have the textbook nearby for reference
+- Set aside 3-4 hours for focused reading</p>
+<p><strong>During Reading:</strong>
+- Work through all mathematical derivations yourself
+- Write down questions as they arise
+- Make notes connecting to course material
+- Don't skip the proofs—they build understanding</p>
+<p><strong>After Reading:</strong>
+- Summarize the main mathematical results
+- Identify connections to other course topics
+- Attempt practice problems if provided
+- Prepare your written review</p>
+<p><strong>For Bonus Papers:</strong>
+- Choose papers that interest you or align with research goals
+- Focus on areas where you want deeper expertise
+- Prepare specific questions for office hour discussion</p>
+<hr />
+<div class="signature">
+<p><em>Paper selection curated by Mohammed Alnemari</em>
+<em>Mathematics for Machine Learning • Spring 2026</em></p>
+</div>
+<hr />
+<div class="last-updated">
+<p><strong>Last Updated:</strong> January 26, 2026</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../notebooks/" class="btn btn-neutral float-left" title="Notebooks"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../animations/" class="btn btn-neutral float-right" title="🔒 Animations">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/alnemari-m/mathai-website" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../notebooks/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../animations/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

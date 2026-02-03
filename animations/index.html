@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mohammed Alnemari" /><link rel="canonical" href="https://alnemari-m.github.io/mathai-website/animations/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>🔒 Animations - Mathematics of AI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udd12 Animations";
+        var mkdocs_page_input_path = "animations.md";
+        var mkdocs_page_url = "/mathai-website/animations/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Mathematics of AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lectures/">Lectures</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tutorials/">Math Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../notebooks/">Notebooks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../papers/">Papers</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">🔒 Animations</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#about-this-section">🎬 About This Section</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#why-mathematical-animations">📚 Why Mathematical Animations?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-power-of-visualization">The Power of Visualization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#available-animations">🎯 Available Animations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#topic-1-linear-algebra-fundamentals">Topic 1: Linear Algebra Fundamentals</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-11-vector-addition-and-scaling">Animation 1.1: Vector Addition and Scaling</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-12-matrix-transformations">Animation 1.2: Matrix Transformations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-13-column-space-and-null-space">Animation 1.3: Column Space and Null Space</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#topic-2-analytic-geometry">Topic 2: Analytic Geometry</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-21-inner-products-and-projections">Animation 2.1: Inner Products and Projections</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-22-norms-and-distances">Animation 2.2: Norms and Distances</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#topic-3-matrix-decomposition">Topic 3: Matrix Decomposition</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-31-eigenvalues-and-eigenvectors">Animation 3.1: Eigenvalues and Eigenvectors</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-32-singular-value-decomposition-svd">Animation 3.2: Singular Value Decomposition (SVD)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#topic-4-vector-calculus">Topic 4: Vector Calculus</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-41-gradients-and-directional-derivatives">Animation 4.1: Gradients and Directional Derivatives</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-42-the-chain-rule">Animation 4.2: The Chain Rule</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#topic-5-probability-distributions">Topic 5: Probability &amp; Distributions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-51-common-probability-distributions">Animation 5.1: Common Probability Distributions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-52-bayesian-inference">Animation 5.2: Bayesian Inference</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#topic-6-optimization">Topic 6: Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-61-gradient-descent-variants">Animation 6.1: Gradient Descent Variants</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#animation-62-convex-vs-non-convex-optimization">Animation 6.2: Convex vs Non-Convex Optimization</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-your-own-animations">🛠️ Create Your Own Animations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#getting-started-with-manim">Getting Started with Manim</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#your-first-animation">Your First Animation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#manim-resources">Manim Resources</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#alternative-tools">Alternative Tools</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1-geogebra-interactive-geometry">1. GeoGebra (Interactive Geometry)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2-desmos-graphing-calculator">2. Desmos (Graphing Calculator)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3-python-matplotlib-custom-visualizations">3. Python + Matplotlib (Custom Visualizations)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#recommended-video-series">📖 Recommended Video Series</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#3blue1brown-essence-of-linear-algebra">3Blue1Brown - Essence of Linear Algebra</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3blue1brown-essence-of-calculus">3Blue1Brown - Essence of Calculus</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#statquest-statistics-and-ml-concepts">StatQuest - Statistics and ML Concepts</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-use-this-section">💡 How to Use This Section</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#study-strategy">Study Strategy:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#active-learning-tips">Active Learning Tips:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#student-projects">🎓 Student Projects</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#project-ideas">Project Ideas:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#submission">Submission:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#download-all-animations">📁 Download All Animations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#access-information">🔐 Access Information</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Mathematics of AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">🔒 Animations</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/alnemari-m/mathai-website/edit/master/docs/animations.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div id="password-gate">
+  <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0052D4 0%, #00D9A3 100%);">
+    <div style="background: white; padding: 3em; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); max-width: 400px; text-align: center;">
+      <h2 style="color: #0052D4; margin-top: 0; border: none; padding: 0;">🔒 Protected Content</h2>
+      <p style="color: #666; margin-bottom: 2em;">Enter password to access mathematical animations and visualizations</p>
+      <input type="password" id="password-input" placeholder="Enter password" style="width: 100%; padding: 12px; border: 2px solid #0052D4; border-radius: 6px; font-size: 1em; margin-bottom: 1em;" />
+      <button onclick="checkPassword()" style="width: 100%; padding: 12px; background: #FF5733; color: white; border: none; border-radius: 6px; font-size: 1em; font-weight: 600; cursor: pointer; transition: all 0.3s;">
+        Unlock Content
+      </button>
+      <p id="error-message" style="color: #FF5733; margin-top: 1em; display: none;">❌ Incorrect password. Please try again.</p>
+    </div>
+  </div>
+</div>
+
+<div id="protected-content" style="display: none;">
+<h1 id="mathematical-animations-visualizations">Mathematical Animations &amp; Visualizations<a class="headerlink" href="#mathematical-animations-visualizations" title="Permanent link">&para;</a></h1>
+<p><strong>Advanced Learning Tools for Deep Mathematical Understanding</strong></p>
+<hr />
+<h2 id="about-this-section">🎬 About This Section<a class="headerlink" href="#about-this-section" title="Permanent link">&para;</a></h2>
+<p>This section provides interactive mathematical animations and visualizations to help you develop <strong>intuitive understanding</strong> of abstract concepts covered in the course.</p>
+<p><strong>Tools Used:</strong>
+- <strong>Manim (Mathematical Animation Engine)</strong> - Created by Grant Sanderson (3Blue1Brown)
+- <strong>GeoGebra</strong> - Interactive geometry and algebra
+- <strong>Desmos</strong> - Graphing calculator
+- <strong>Python Visualizations</strong> - Custom interactive plots</p>
+<hr />
+<h2 id="why-mathematical-animations">📚 Why Mathematical Animations?<a class="headerlink" href="#why-mathematical-animations" title="Permanent link">&para;</a></h2>
+<div class="info-card">
+<h3 id="the-power-of-visualization"><strong>The Power of Visualization</strong><a class="headerlink" href="#the-power-of-visualization" title="Permanent link">&para;</a></h3>
+<p>Mathematical animations help you:
+- <strong>See</strong> abstract concepts in action
+- <strong>Understand</strong> geometric interpretations
+- <strong>Remember</strong> complex theorems through visual memory
+- <strong>Build</strong> intuition before diving into proofs
+- <strong>Connect</strong> different mathematical concepts</p>
+<p><em>"Mathematics is not about numbers, equations, or algorithms: it is about understanding."</em> - William Paul Thurston</p>
+</div>
+<hr />
+<h2 id="available-animations">🎯 Available Animations<a class="headerlink" href="#available-animations" title="Permanent link">&para;</a></h2>
+<h3 id="topic-1-linear-algebra-fundamentals"><strong>Topic 1: Linear Algebra Fundamentals</strong><a class="headerlink" href="#topic-1-linear-algebra-fundamentals" title="Permanent link">&para;</a></h3>
+<h4 id="animation-11-vector-addition-and-scaling"><strong>Animation 1.1: Vector Addition and Scaling</strong><a class="headerlink" href="#animation-11-vector-addition-and-scaling" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Visualizing vector addition (tip-to-tail method)</li>
+<li>Scalar multiplication and direction</li>
+<li>Linear combinations in 2D and 3D</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/01_vector_operations.mp4">Vector Operations Animation</a>
+<strong>💻 Code:</strong> <a href="animations/code/01_vector_operations.py">Manim Source Code</a>
+<strong>📝 Exercise:</strong> Try different scalars and see what happens!</p>
+<hr />
+<h4 id="animation-12-matrix-transformations"><strong>Animation 1.2: Matrix Transformations</strong><a class="headerlink" href="#animation-12-matrix-transformations" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Matrices as linear transformations</li>
+<li>Understanding det(A) geometrically (area scaling)</li>
+<li>Rotation, scaling, shearing, and reflection matrices</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/02_matrix_transforms.mp4">Matrix Transformations</a>
+<strong>💻 Interactive:</strong> <a href="https://www.geogebra.org/m/matrix-transforms">GeoGebra - Matrix Transformations</a></p>
+<hr />
+<h4 id="animation-13-column-space-and-null-space"><strong>Animation 1.3: Column Space and Null Space</strong><a class="headerlink" href="#animation-13-column-space-and-null-space" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Visualizing column space as "reachable" vectors</li>
+<li>Null space as vectors that get squashed to zero</li>
+<li>Rank-nullity theorem in action</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/03_spaces.mp4">Column Space &amp; Null Space</a></p>
+<hr />
+<h3 id="topic-2-analytic-geometry"><strong>Topic 2: Analytic Geometry</strong><a class="headerlink" href="#topic-2-analytic-geometry" title="Permanent link">&para;</a></h3>
+<h4 id="animation-21-inner-products-and-projections"><strong>Animation 2.1: Inner Products and Projections</strong><a class="headerlink" href="#animation-21-inner-products-and-projections" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Geometric interpretation of dot product</li>
+<li>Vector projections animated</li>
+<li>Orthogonality visualization</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/04_inner_products.mp4">Inner Products</a></p>
+<hr />
+<h4 id="animation-22-norms-and-distances"><strong>Animation 2.2: Norms and Distances</strong><a class="headerlink" href="#animation-22-norms-and-distances" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Different norms (L1, L2, L∞) visualized</li>
+<li>Unit balls in different norms</li>
+<li>Distance metrics comparison</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/05_norms.mp4">Norms and Metrics</a></p>
+<hr />
+<h3 id="topic-3-matrix-decomposition"><strong>Topic 3: Matrix Decomposition</strong><a class="headerlink" href="#topic-3-matrix-decomposition" title="Permanent link">&para;</a></h3>
+<h4 id="animation-31-eigenvalues-and-eigenvectors"><strong>Animation 3.1: Eigenvalues and Eigenvectors</strong><a class="headerlink" href="#animation-31-eigenvalues-and-eigenvectors" title="Permanent link">&para;</a></h4>
+<ul>
+<li>What eigenvalues and eigenvectors really mean</li>
+<li>Visualizing Av = λv</li>
+<li>Diagonalization process animated</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/06_eigenvalues.mp4">Eigendecomposition</a>
+<strong>🌟 Featured:</strong> This is one of the most important visualizations in the course!</p>
+<hr />
+<h4 id="animation-32-singular-value-decomposition-svd"><strong>Animation 3.2: Singular Value Decomposition (SVD)</strong><a class="headerlink" href="#animation-32-singular-value-decomposition-svd" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Breaking down any matrix into rotation + scaling + rotation</li>
+<li>Geometric interpretation of SVD</li>
+<li>Applications to image compression</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/07_svd.mp4">SVD Visualization</a>
+<strong>💻 Interactive:</strong> <a href="animations/demos/svd_compression.html">SVD Image Compression Demo</a></p>
+<hr />
+<h3 id="topic-4-vector-calculus"><strong>Topic 4: Vector Calculus</strong><a class="headerlink" href="#topic-4-vector-calculus" title="Permanent link">&para;</a></h3>
+<h4 id="animation-41-gradients-and-directional-derivatives"><strong>Animation 4.1: Gradients and Directional Derivatives</strong><a class="headerlink" href="#animation-41-gradients-and-directional-derivatives" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Gradient as "direction of steepest ascent"</li>
+<li>Visualizing gradient descent</li>
+<li>Contour plots and gradient fields</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/08_gradients.mp4">Gradient Visualization</a></p>
+<hr />
+<h4 id="animation-42-the-chain-rule"><strong>Animation 4.2: The Chain Rule</strong><a class="headerlink" href="#animation-42-the-chain-rule" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Chain rule in action with function composition</li>
+<li>Backpropagation visualization</li>
+<li>Computational graphs animated</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/09_chain_rule.mp4">Chain Rule &amp; Backprop</a></p>
+<hr />
+<h3 id="topic-5-probability-distributions"><strong>Topic 5: Probability &amp; Distributions</strong><a class="headerlink" href="#topic-5-probability-distributions" title="Permanent link">&para;</a></h3>
+<h4 id="animation-51-common-probability-distributions"><strong>Animation 5.1: Common Probability Distributions</strong><a class="headerlink" href="#animation-51-common-probability-distributions" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Gaussian distribution evolving</li>
+<li>Central Limit Theorem animated</li>
+<li>Comparing different distributions</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/10_distributions.mp4">Probability Distributions</a></p>
+<hr />
+<h4 id="animation-52-bayesian-inference"><strong>Animation 5.2: Bayesian Inference</strong><a class="headerlink" href="#animation-52-bayesian-inference" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Prior to posterior animation</li>
+<li>Bayes' theorem visualized</li>
+<li>Updating beliefs with evidence</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/11_bayes.mp4">Bayesian Inference</a></p>
+<hr />
+<h3 id="topic-6-optimization"><strong>Topic 6: Optimization</strong><a class="headerlink" href="#topic-6-optimization" title="Permanent link">&para;</a></h3>
+<h4 id="animation-61-gradient-descent-variants"><strong>Animation 6.1: Gradient Descent Variants</strong><a class="headerlink" href="#animation-61-gradient-descent-variants" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Batch, mini-batch, and stochastic gradient descent</li>
+<li>Momentum and acceleration visualized</li>
+<li>Adam optimizer animation</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/12_optimization.mp4">Optimization Algorithms</a>
+<strong>💻 Interactive:</strong> <a href="animations/demos/gd_playground.html">Gradient Descent Playground</a></p>
+<hr />
+<h4 id="animation-62-convex-vs-non-convex-optimization"><strong>Animation 6.2: Convex vs Non-Convex Optimization</strong><a class="headerlink" href="#animation-62-convex-vs-non-convex-optimization" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Convex functions and global minima</li>
+<li>Non-convex landscapes and local minima</li>
+<li>Saddle points visualization</li>
+</ul>
+<p><strong>📹 Watch:</strong> <a href="animations/videos/13_landscapes.mp4">Loss Landscapes</a></p>
+<hr />
+<h2 id="create-your-own-animations">🛠️ Create Your Own Animations<a class="headerlink" href="#create-your-own-animations" title="Permanent link">&para;</a></h2>
+<h3 id="getting-started-with-manim"><strong>Getting Started with Manim</strong><a class="headerlink" href="#getting-started-with-manim" title="Permanent link">&para;</a></h3>
+<p>Manim is a powerful Python library for creating mathematical animations.</p>
+<h4 id="installation"><strong>Installation</strong><a class="headerlink" href="#installation" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="language-bash"># Install Manim Community Edition
+pip install manim
+
+# Install dependencies
+pip install numpy scipy matplotlib
+</code></pre>
+
+<h4 id="your-first-animation"><strong>Your First Animation</strong><a class="headerlink" href="#your-first-animation" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="language-python">from manim import *
+
+class VectorScene(Scene):
+    def construct(self):
+        # Create coordinate plane
+        plane = NumberPlane()
+
+        # Create vectors
+        v1 = Vector([2, 1], color=BLUE)
+        v2 = Vector([1, 2], color=RED)
+        v3 = Vector([3, 3], color=GREEN)
+
+        # Labels
+        v1_label = MathTex(&quot;\\vec{v}&quot;, color=BLUE).next_to(v1, RIGHT)
+        v2_label = MathTex(&quot;\\vec{w}&quot;, color=RED).next_to(v2, LEFT)
+        v3_label = MathTex(&quot;\\vec{v} + \\vec{w}&quot;, color=GREEN).next_to(v3, UP)
+
+        # Animate
+        self.add(plane)
+        self.play(Create(v1), Write(v1_label))
+        self.play(Create(v2), Write(v2_label))
+        self.wait()
+        self.play(Transform(v1.copy(), v3), Create(v3), Write(v3_label))
+        self.wait(2)
+
+# Render with: manim -pql your_file.py VectorScene
+</code></pre>
+
+<h4 id="manim-resources"><strong>Manim Resources</strong><a class="headerlink" href="#manim-resources" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Official Docs:</strong> <a href="https://docs.manim.community/">https://docs.manim.community/</a></li>
+<li><strong>3Blue1Brown Channel:</strong> <a href="https://www.youtube.com/c/3blue1brown">YouTube</a></li>
+<li><strong>Manim Tutorial:</strong> <a href="https://docs.manim.community/en/stable/tutorials.html">Community Guide</a></li>
+</ul>
+<hr />
+<h3 id="alternative-tools"><strong>Alternative Tools</strong><a class="headerlink" href="#alternative-tools" title="Permanent link">&para;</a></h3>
+<h4 id="1-geogebra-interactive-geometry"><strong>1. GeoGebra</strong> (Interactive Geometry)<a class="headerlink" href="#1-geogebra-interactive-geometry" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Great for exploring transformations</li>
+<li>No coding required</li>
+<li><a href="https://www.geogebra.org/download">Download GeoGebra</a></li>
+</ul>
+<h4 id="2-desmos-graphing-calculator"><strong>2. Desmos</strong> (Graphing Calculator)<a class="headerlink" href="#2-desmos-graphing-calculator" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Excellent for function visualization</li>
+<li>Web-based, no installation</li>
+<li><a href="https://www.desmos.com/calculator">Desmos Calculator</a></li>
+</ul>
+<h4 id="3-python-matplotlib-custom-visualizations"><strong>3. Python + Matplotlib</strong> (Custom Visualizations)<a class="headerlink" href="#3-python-matplotlib-custom-visualizations" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+# Example: Visualizing matrix transformation
+def plot_transformation(A):
+    # Create unit square
+    square = np.array([[0, 1, 1, 0, 0],
+                       [0, 0, 1, 1, 0]])
+
+    # Transform
+    transformed = A @ square
+
+    # Plot
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
+    ax1.plot(square[0], square[1], 'b-', linewidth=2)
+    ax1.set_title('Original')
+    ax1.grid(True)
+    ax1.axis('equal')
+
+    ax2.plot(transformed[0], transformed[1], 'r-', linewidth=2)
+    ax2.set_title('After Transformation')
+    ax2.grid(True)
+    ax2.axis('equal')
+
+    plt.show()
+
+# Example usage
+A = np.array([[2, 0],
+              [0, 1]])  # Scaling matrix
+plot_transformation(A)
+</code></pre>
+
+<hr />
+<h2 id="recommended-video-series">📖 Recommended Video Series<a class="headerlink" href="#recommended-video-series" title="Permanent link">&para;</a></h2>
+<h3 id="3blue1brown-essence-of-linear-algebra"><strong>3Blue1Brown - Essence of Linear Algebra</strong><a class="headerlink" href="#3blue1brown-essence-of-linear-algebra" title="Permanent link">&para;</a></h3>
+<p>The best visual introduction to linear algebra ever made.</p>
+<ol>
+<li><strong>Vectors, what even are they?</strong> - <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs">Watch</a></li>
+<li><strong>Linear combinations, span, and basis vectors</strong> - <a href="https://www.youtube.com/watch?v=k7RM-ot2NWY">Watch</a></li>
+<li><strong>Linear transformations and matrices</strong> - <a href="https://www.youtube.com/watch?v=kYB8IZa5AuE">Watch</a></li>
+<li><strong>Matrix multiplication as composition</strong> - <a href="https://www.youtube.com/watch?v=XkY2DOUCWMU">Watch</a></li>
+<li><strong>The determinant</strong> - <a href="https://www.youtube.com/watch?v=Ip3X9LOh2dk">Watch</a></li>
+<li><strong>Inverse matrices, column space and null space</strong> - <a href="https://www.youtube.com/watch?v=uQhTuRlWMxw">Watch</a></li>
+<li><strong>Dot products and duality</strong> - <a href="https://www.youtube.com/watch?v=LyGKycYT2v0">Watch</a></li>
+<li><strong>Cross products</strong> - <a href="https://www.youtube.com/watch?v=eu6i7WJeinw">Watch</a></li>
+<li><strong>Change of basis</strong> - <a href="https://www.youtube.com/watch?v=P2LTAUO1TdA">Watch</a></li>
+<li><strong>Eigenvectors and eigenvalues</strong> - <a href="https://www.youtube.com/watch?v=PFDu9oVAE-g">Watch</a></li>
+</ol>
+<h3 id="3blue1brown-essence-of-calculus"><strong>3Blue1Brown - Essence of Calculus</strong><a class="headerlink" href="#3blue1brown-essence-of-calculus" title="Permanent link">&para;</a></h3>
+<p>Visual approach to understanding derivatives, integrals, and gradients.</p>
+<h3 id="statquest-statistics-and-ml-concepts"><strong>StatQuest</strong> - Statistics and ML Concepts<a class="headerlink" href="#statquest-statistics-and-ml-concepts" title="Permanent link">&para;</a></h3>
+<p>Great for probability and statistical learning visualizations.</p>
+<hr />
+<h2 id="how-to-use-this-section">💡 How to Use This Section<a class="headerlink" href="#how-to-use-this-section" title="Permanent link">&para;</a></h2>
+<h3 id="study-strategy"><strong>Study Strategy:</strong><a class="headerlink" href="#study-strategy" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Before Lecture:</strong> Watch the relevant animation to build intuition</li>
+<li><strong>During Lecture:</strong> Connect the visuals to mathematical definitions</li>
+<li><strong>After Lecture:</strong> Create your own animations to test understanding</li>
+<li><strong>Before Exam:</strong> Review animations for quick intuitive recall</li>
+</ol>
+<h3 id="active-learning-tips"><strong>Active Learning Tips:</strong><a class="headerlink" href="#active-learning-tips" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Pause and Predict:</strong> Stop the animation and guess what happens next</li>
+<li><strong>Vary Parameters:</strong> Change values and observe the effects</li>
+<li><strong>Code Your Own:</strong> Try recreating animations from scratch</li>
+<li><strong>Teach Someone:</strong> Explain the visual to a classmate</li>
+</ul>
+<hr />
+<h2 id="student-projects">🎓 Student Projects<a class="headerlink" href="#student-projects" title="Permanent link">&para;</a></h2>
+<p>Want to earn bonus points? Create your own mathematical animation!</p>
+<h3 id="project-ideas"><strong>Project Ideas:</strong><a class="headerlink" href="#project-ideas" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Visualize the Jacobi or Gauss-Seidel iteration process</li>
+<li>Animate the convergence of gradient descent on different functions</li>
+<li>Show how PCA finds principal components</li>
+<li>Visualize the EM algorithm for Gaussian Mixture Models</li>
+<li>Animate SVM decision boundaries with different kernels</li>
+</ol>
+<h3 id="submission"><strong>Submission:</strong><a class="headerlink" href="#submission" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Email your Manim code to: mnemari@gmail.com</li>
+<li>Include a 1-page explanation of what you visualized</li>
+<li>Best submissions will be featured in this section!</li>
+<li><strong>Bonus:</strong> +3% on final grade for exceptional work</li>
+</ul>
+<hr />
+<h2 id="download-all-animations">📁 Download All Animations<a class="headerlink" href="#download-all-animations" title="Permanent link">&para;</a></h2>
+<p><strong>Full Animation Pack (2.5 GB):</strong>
+<a href="animations/MathML_Animations_Complete.zip">📥 Download ZIP</a></p>
+<p><strong>Individual Topics:</strong>
+- <a href="animations/Topic1_LinearAlgebra.zip">Topic 1: Linear Algebra</a> - 450 MB
+- <a href="animations/Topic2_Geometry.zip">Topic 2: Analytic Geometry</a> - 320 MB
+- <a href="animations/Topic3_Decomposition.zip">Topic 3: Matrix Decomposition</a> - 380 MB
+- <a href="animations/Topic4_Calculus.zip">Topic 4: Vector Calculus</a> - 290 MB
+- <a href="animations/Topic5_Probability.zip">Topic 5: Probability</a> - 340 MB
+- <a href="animations/Topic6_Optimization.zip">Topic 6: Optimization</a> - 420 MB</p>
+<hr />
+<h2 id="access-information">🔐 Access Information<a class="headerlink" href="#access-information" title="Permanent link">&para;</a></h2>
+<p><strong>This section is restricted to enrolled students only.</strong></p>
+<p>If you need the password:
+- Attend the first lecture
+- Check your email (sent after enrollment)
+- Contact during office hours</p>
+<p><strong>Keep the password confidential</strong> - sharing it violates academic integrity policies.</p>
+<hr />
+<div class="signature">
+<p><strong>MOHAMMED ALNEMARI</strong>
+<em>MATHEMATICS FOR MACHINE LEARNING • SPRING 2026</em></p>
+<p><strong>Visualize. Understand. Master.</strong></p>
+</div>
+<hr />
+<div class="last-updated">
+<p><strong>Last Updated:</strong> January 26, 2026
+<strong>Next Animation Upload:</strong> Week 3 (SVD Deep Dive)</p>
+</div>
+</div>
+<script>
+(function() {
+  // Simple password protection
+  const CORRECT_PASSWORD = "malak2024";
+
+  window.checkPassword = function() {
+    const input = document.getElementById('password-input');
+    const errorMsg = document.getElementById('error-message');
+
+    if (!input) return;
+
+    if (input.value === CORRECT_PASSWORD) {
+      // Store authentication in session
+      sessionStorage.setItem('animations_auth', 'true');
+      showContent();
+    } else {
+      errorMsg.style.display = 'block';
+      input.value = '';
+      input.focus();
+    }
+  };
+
+  function showContent() {
+    const gate = document.getElementById('password-gate');
+    const content = document.getElementById('protected-content');
+
+    if (gate) gate.style.display = 'none';
+    if (content) content.style.display = 'block';
+  }
+
+  function checkAuth() {
+    if (sessionStorage.getItem('animations_auth') === 'true') {
+      showContent();
+    }
+  }
+
+  // Run immediately
+  checkAuth();
+
+  // Also run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      checkAuth();
+
+      const input = document.getElementById('password-input');
+      if (input) {
+        input.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            window.checkPassword();
+          }
+        });
+
+        // Focus input after a small delay
+        setTimeout(function() {
+          input.focus();
+        }, 100);
+      }
+    });
+  } else {
+    checkAuth();
+
+    const input = document.getElementById('password-input');
+    if (input) {
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          window.checkPassword();
+        }
+      });
+      input.focus();
+    }
+  }
+})();
+</script>
+
+<style>
+#password-input:focus {
+  outline: none;
+  border-color: #00D9A3;
+  box-shadow: 0 0 0 3px rgba(0, 217, 163, 0.2);
+}
+
+button:hover {
+  background: #E64A2E !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 87, 51, 0.3);
+}
+</style>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../papers/" class="btn btn-neutral float-left" title="Papers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/alnemari-m/mathai-website" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../papers/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

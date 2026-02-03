@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mohammed Alnemari" /><link rel="canonical" href="https://alnemari-m.github.io/mathai-website/tutorials/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Math Tutorials - Mathematics of AI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Math Tutorials";
+        var mkdocs_page_input_path = "tutorials.md";
+        var mkdocs_page_url = "/mathai-website/tutorials/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Mathematics of AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lectures/">Lectures</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Math Tutorials</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#getting-started">📖 Getting Started</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#linear-algebra">Linear Algebra</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#foundations">Foundations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-concepts">Key Concepts</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vector-calculus">Vector Calculus</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#differentiation">Differentiation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#optimization">Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#probability-statistics">Probability &amp; Statistics</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#fundamentals">Fundamentals</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ml-connections">ML Connections</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#applications">Applications</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-references">Quick References</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#cheat-sheets">Cheat Sheets</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#problem-solving-guides">Problem-Solving Guides</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tutorial-format">Tutorial Format</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-use-these-tutorials">How to Use These Tutorials</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../notebooks/">Notebooks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../papers/">Papers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../animations/">🔒 Animations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Mathematics of AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Math Tutorials</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/alnemari-m/mathai-website/edit/master/docs/tutorials.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="math-tutorials">Math Tutorials<a class="headerlink" href="#math-tutorials" title="Permanent link">&para;</a></h1>
+<p>Detailed mathematical notes, derivations, and tutorials to supplement lectures.</p>
+<hr />
+<h2 id="getting-started">📖 Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<p><strong>Tutorial 1: Mathematical Foundations and Terminology</strong>
+Essential notation, terminology, and basic concepts you need to understand before starting the course
+<a href="Tutorial_01_Mathematical_Foundations/">📄 Read Tutorial</a></p>
+<p><strong>What you'll learn:</strong>
+- Mathematical notation and symbols (<span class="arithmatex">\(\in, \forall, \exists, \sum, \prod\)</span>)
+- Number systems (<span class="arithmatex">\(\mathbb{N}, \mathbb{Z}, \mathbb{R}, \mathbb{C}\)</span>)
+- Vectors and matrices basics
+- Essential operations (dot product, matrix multiplication)
+- Linear independence, span, and basis
+- Norms and distance
+- Practice problems with solutions</p>
+<hr />
+<h2 id="linear-algebra">Linear Algebra<a class="headerlink" href="#linear-algebra" title="Permanent link">&para;</a></h2>
+<h3 id="foundations">Foundations<a class="headerlink" href="#foundations" title="Permanent link">&para;</a></h3>
+<p><strong>Vector Space Fundamentals</strong> - Definitions, axioms, examples
+<strong>Basis and Dimension</strong> - Linear independence, span, basis construction
+<strong>Matrix Decompositions Guide</strong> - SVD, eigendecomposition, QR factorization
+<strong>Spectral Theory</strong> - Eigenvalues, eigenvectors, applications</p>
+<h3 id="key-concepts">Key Concepts<a class="headerlink" href="#key-concepts" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Vector spaces and subspaces</li>
+<li>Linear transformations</li>
+<li>Matrix factorizations</li>
+<li>Spectral decompositions</li>
+</ul>
+<hr />
+<h2 id="vector-calculus">Vector Calculus<a class="headerlink" href="#vector-calculus" title="Permanent link">&para;</a></h2>
+<h3 id="differentiation">Differentiation<a class="headerlink" href="#differentiation" title="Permanent link">&para;</a></h3>
+<p><strong>Multivariable Calculus Review</strong> - Partial derivatives, gradients, chain rule
+<strong>Chain Rule Deep Dive</strong> - Complete derivation with examples
+<strong>Backpropagation Mathematics</strong> - Rigorous mathematical treatment</p>
+<h3 id="optimization">Optimization<a class="headerlink" href="#optimization" title="Permanent link">&para;</a></h3>
+<p><strong>Gradient Descent</strong> - Theory, convergence analysis, variants
+<strong>Second-Order Methods</strong> - Newton's method, quasi-Newton methods
+<strong>Convex Optimization Basics</strong> - Convex sets, functions, optimality</p>
+<hr />
+<h2 id="probability-statistics">Probability &amp; Statistics<a class="headerlink" href="#probability-statistics" title="Permanent link">&para;</a></h2>
+<h3 id="fundamentals">Fundamentals<a class="headerlink" href="#fundamentals" title="Permanent link">&para;</a></h3>
+<p><strong>Probability Basics</strong> - Random variables, distributions, expectations
+<strong>Statistical Estimation</strong> - MLE, MAP, Bayesian inference
+<strong>Information Theory</strong> - Entropy, KL divergence, mutual information</p>
+<hr />
+<h2 id="ml-connections">ML Connections<a class="headerlink" href="#ml-connections" title="Permanent link">&para;</a></h2>
+<h3 id="applications">Applications<a class="headerlink" href="#applications" title="Permanent link">&para;</a></h3>
+<p><strong>PCA from SVD</strong> - Deriving principal component analysis using SVD
+<strong>Backpropagation Derivation</strong> - Complete mathematical derivation
+<strong>Loss Functions</strong> - Mathematical properties, gradients, curvature
+<strong>Neural Network Theory</strong> - Universal approximation, depth vs width</p>
+<hr />
+<h2 id="quick-references">Quick References<a class="headerlink" href="#quick-references" title="Permanent link">&para;</a></h2>
+<h3 id="cheat-sheets">Cheat Sheets<a class="headerlink" href="#cheat-sheets" title="Permanent link">&para;</a></h3>
+<p><strong>Matrix Cookbook</strong> - Common matrix identities, derivatives, inversions
+<strong>Notation Guide</strong> - Mathematical notation used throughout course
+<strong>Formula Sheet</strong> - Key formulas and theorems for exams</p>
+<h3 id="problem-solving-guides">Problem-Solving Guides<a class="headerlink" href="#problem-solving-guides" title="Permanent link">&para;</a></h3>
+<ul>
+<li>How to approach linear algebra problems</li>
+<li>Optimization problem strategies</li>
+<li>Proof techniques for ML theory</li>
+</ul>
+<hr />
+<h2 id="tutorial-format">Tutorial Format<a class="headerlink" href="#tutorial-format" title="Permanent link">&para;</a></h2>
+<p>Each tutorial includes:</p>
+<ol>
+<li><strong>Motivation</strong> - Why this topic matters for AI/ML</li>
+<li><strong>Mathematical Theory</strong> - Rigorous treatment with proofs</li>
+<li><strong>Worked Examples</strong> - Step-by-step solutions</li>
+<li><strong>Exercises</strong> - Practice problems with solutions</li>
+<li><strong>Applications</strong> - Connections to real ML algorithms</li>
+<li><strong>Further Reading</strong> - References for deeper study</li>
+</ol>
+<hr />
+<h2 id="how-to-use-these-tutorials">How to Use These Tutorials<a class="headerlink" href="#how-to-use-these-tutorials" title="Permanent link">&para;</a></h2>
+<p><strong>Study Strategy:</strong>
+1. Read tutorial before corresponding lecture
+2. Work through examples by hand
+3. Attempt exercises
+4. Use as reference during homework
+5. Review before exams</p>
+<p><strong>Tips:</strong>
+- Don't skip the proofs - they build understanding
+- Work examples yourself before checking solutions
+- Connect abstract concepts to concrete ML applications
+- Build your own formula sheet as you go</p>
+<hr />
+<div class="signature">
+<p><em>Tutorials curated by Mohammed Alnemari</em>
+<em>Mathematics of AI • Spring 2026</em></p>
+</div>
+<hr />
+<div class="last-updated">
+<p><strong>Last Updated:</strong> January 25, 2026</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../lectures/" class="btn btn-neutral float-left" title="Lectures"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../notebooks/" class="btn btn-neutral float-right" title="Notebooks">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/alnemari-m/mathai-website" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../lectures/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../notebooks/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
