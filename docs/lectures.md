@@ -60,7 +60,6 @@ This course is divided into two main parts:
 - Inverse matrices and determinants
 
 **Materials:**
-- [📄 Part 1: Foundations Slides](pdfs/Linear_Algebra_Foundations.pdf)
 - [📐 Tutorial: Mathematical Foundations](tutorials/Tutorial_01_Mathematical_Foundations.md)
 - [💻 Notebook: NumPy Basics](notebooks/01_Python_Libraries_Basics.ipynb)
 
