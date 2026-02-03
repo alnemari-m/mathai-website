@@ -76,9 +76,6 @@ This course is divided into two main parts:
 - Rank-nullity theorem
 - Affine spaces and affine transformations
 
-**Materials:**
-- [📄 Part 2: Advanced Concepts Slides](pdfs/Linear_Algebra_Part2_Advanced_Concepts.pdf)
-
 ---
 
 ### Topic 2: Analytic Geometry
