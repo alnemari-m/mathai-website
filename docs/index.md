@@ -18,7 +18,7 @@ Mathematical foundations of artificial intelligence and machine learning - from 
 
 ### **Important Updates**
 
-- **Week 1:** Course begins **January 27, 2026** - Welcome!
+- **Week 1:** Course begins **January 20, 2026** - Welcome!
 - **Office Hours:** Remember to schedule appointments via email
 - **First Quiz:** Scheduled for **Week 3** - Linear Algebra fundamentals
 - **Notebooks:** All Python implementations available in the Notebooks section
