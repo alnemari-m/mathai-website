@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mohammed Alnemari" /><link rel="canonical" href="https://alnemari-m.github.io/mathai-website/tutorials/Tutorial_03_Analytic_Geometry/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Tutorial 2: Analytic Geometry - Mathematics of AI</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../stylesheets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Tutorial 2: Analytic Geometry";
+        var mkdocs_page_input_path = "tutorials/Tutorial_03_Analytic_Geometry.md";
+        var mkdocs_page_url = "/mathai-website/tutorials/Tutorial_03_Analytic_Geometry/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Mathematics of AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../lectures/">Lectures</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">Math Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../notebooks/">Notebooks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../papers/">Papers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../animations/">🔒 Animations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Mathematics of AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Tutorial 2: Analytic Geometry</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/alnemari-m/mathai-website/edit/master/docs/tutorials/Tutorial_03_Analytic_Geometry.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tutorial-2-analytic-geometry">Tutorial 2: Analytic Geometry<a class="headerlink" href="#tutorial-2-analytic-geometry" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> Mathematics for Machine Learning
+<strong>Instructor:</strong> Mohammed Alnemari</p>
+<hr />
+<h2 id="learning-objectives">📚 Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>By the end of this tutorial, you will understand:</p>
+<ol>
+<li>Norms and their role in measuring vector magnitude</li>
+<li>Inner products and their defining axioms</li>
+<li>How lengths, distances, angles, and orthogonality arise from inner products</li>
+<li>Orthogonal matrices, orthonormal bases, and orthogonal complements</li>
+<li>Orthogonal projections and the Gram-Schmidt process</li>
+<li>Rotation matrices and their geometric meaning</li>
+</ol>
+<hr />
+<h2 id="part-1-norms">Part 1: Norms<a class="headerlink" href="#part-1-norms" title="Permanent link">&para;</a></h2>
+<h3 id="11-what-is-a-norm">1.1 What is a Norm?<a class="headerlink" href="#11-what-is-a-norm" title="Permanent link">&para;</a></h3>
+<p>A <strong>norm</strong> is a function <span class="arithmatex">\(\|\cdot\| : \mathbb{R}^n \to \mathbb{R}\)</span> that assigns a non-negative "length" to every vector.</p>
+<blockquote>
+<p><strong>Think of it as...</strong> a ruler for vectors. Different norms are like different ways of measuring distance — walking along city blocks versus flying in a straight line.</p>
+</blockquote>
+<p>A norm must satisfy these properties for all <span class="arithmatex">\(\mathbf{x}, \mathbf{y} \in \mathbb{R}^n\)</span> and all <span class="arithmatex">\(\lambda \in \mathbb{R}\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+<th>Intuition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Non-negativity</td>
+<td><span class="arithmatex">\(\|\mathbf{x}\| \geq 0\)</span></td>
+<td>Lengths are never negative</td>
+</tr>
+<tr>
+<td>Definiteness</td>
+<td><span class="arithmatex">\(\|\mathbf{x}\| = 0 \iff \mathbf{x} = \mathbf{0}\)</span></td>
+<td>Only the zero vector has zero length</td>
+</tr>
+<tr>
+<td>Absolute homogeneity</td>
+<td>$|\lambda \mathbf{x}| =</td>
+<td>\lambda</td>
+</tr>
+<tr>
+<td>Triangle inequality</td>
+<td><span class="arithmatex">\(\|\mathbf{x} + \mathbf{y}\| \leq \|\mathbf{x}\| + \|\mathbf{y}\|\)</span></td>
+<td>The shortcut is never longer than going around</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-common-norms">1.2 Common Norms<a class="headerlink" href="#12-common-norms" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Norm</th>
+<th>Name</th>
+<th>Formula</th>
+<th>Also Called</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\ell_1\)</span></td>
+<td>Manhattan norm</td>
+<td><span class="arithmatex">\(\|\mathbf{x}\|_1 = \displaystyle\sum_{i=1}^{n} \|x_i\|\)</span></td>
+<td>Taxicab norm</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\ell_2\)</span></td>
+<td>Euclidean norm</td>
+<td><span class="arithmatex">\(\|\mathbf{x}\|_2 = \sqrt{\displaystyle\sum_{i=1}^{n} x_i^2}\)</span></td>
+<td>Standard norm</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\ell_\infty\)</span></td>
+<td>Max norm</td>
+<td>$|\mathbf{x}|<em i="i">\infty = \max</em></td>
+<td>x_i</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-worked-example-computing-norms">1.3 Worked Example: Computing Norms<a class="headerlink" href="#13-worked-example-computing-norms" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} 3 \\ -4 \\ 2 \end{bmatrix}\)</span>.</p>
+<p><strong><span class="arithmatex">\(\ell_1\)</span> norm:</strong>
+$<span class="arithmatex">\(\|\mathbf{x}\|_1 = |3| + |-4| + |2| = 3 + 4 + 2 = 9\)</span>$</p>
+<p><strong><span class="arithmatex">\(\ell_2\)</span> norm:</strong>
+$<span class="arithmatex">\(\|\mathbf{x}\|_2 = \sqrt{3^2 + (-4)^2 + 2^2} = \sqrt{9 + 16 + 4} = \sqrt{29} \approx 5.39\)</span>$</p>
+<p><strong><span class="arithmatex">\(\ell_\infty\)</span> norm:</strong>
+$<span class="arithmatex">\(\|\mathbf{x}\|_\infty = \max\{|3|, |-4|, |2|\} = 4\)</span>$</p>
+<blockquote>
+<p><strong>Think of it as...</strong> The <span class="arithmatex">\(\ell_1\)</span> norm counts total blocks walked in a grid city. The <span class="arithmatex">\(\ell_2\)</span> norm is the straight-line (as the crow flies) distance. The <span class="arithmatex">\(\ell_\infty\)</span> norm is the longest single step you take along any one axis.</p>
+</blockquote>
+<hr />
+<h2 id="part-2-inner-products">Part 2: Inner Products<a class="headerlink" href="#part-2-inner-products" title="Permanent link">&para;</a></h2>
+<h3 id="21-definition">2.1 Definition<a class="headerlink" href="#21-definition" title="Permanent link">&para;</a></h3>
+<p>An <strong>inner product</strong> on a vector space <span class="arithmatex">\(V\)</span> is a function <span class="arithmatex">\(\langle \cdot, \cdot \rangle : V \times V \to \mathbb{R}\)</span> that satisfies four axioms:</p>
+<table>
+<thead>
+<tr>
+<th>Axiom</th>
+<th>Statement</th>
+<th>For all</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Symmetry</td>
+<td><span class="arithmatex">\(\langle \mathbf{x}, \mathbf{y} \rangle = \langle \mathbf{y}, \mathbf{x} \rangle\)</span></td>
+<td><span class="arithmatex">\(\mathbf{x}, \mathbf{y} \in V\)</span></td>
+</tr>
+<tr>
+<td>Linearity in 1st argument</td>
+<td><span class="arithmatex">\(\langle \lambda\mathbf{x} + \mathbf{z}, \mathbf{y} \rangle = \lambda\langle \mathbf{x}, \mathbf{y} \rangle + \langle \mathbf{z}, \mathbf{y} \rangle\)</span></td>
+<td><span class="arithmatex">\(\mathbf{x}, \mathbf{y}, \mathbf{z} \in V,\ \lambda \in \mathbb{R}\)</span></td>
+</tr>
+<tr>
+<td>Positive semi-definiteness</td>
+<td><span class="arithmatex">\(\langle \mathbf{x}, \mathbf{x} \rangle \geq 0\)</span></td>
+<td><span class="arithmatex">\(\mathbf{x} \in V\)</span></td>
+</tr>
+<tr>
+<td>Positive definiteness</td>
+<td><span class="arithmatex">\(\langle \mathbf{x}, \mathbf{x} \rangle = 0 \iff \mathbf{x} = \mathbf{0}\)</span></td>
+<td><span class="arithmatex">\(\mathbf{x} \in V\)</span></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Think of it as...</strong> an inner product is a generalized way of multiplying two vectors together to get a single number that tells you "how much" the vectors agree in direction.</p>
+</blockquote>
+<h3 id="22-the-dot-product">2.2 The Dot Product<a class="headerlink" href="#22-the-dot-product" title="Permanent link">&para;</a></h3>
+<p>The most common inner product in <span class="arithmatex">\(\mathbb{R}^n\)</span> is the <strong>dot product</strong>:</p>
+<div class="arithmatex">\[\langle \mathbf{x}, \mathbf{y} \rangle = \mathbf{x}^T \mathbf{y} = \sum_{i=1}^{n} x_i y_i\]</div>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\left\langle \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}, \begin{bmatrix} 4 \\ 0 \\ -1 \end{bmatrix} \right\rangle = 1(4) + 2(0) + 3(-1) = 4 + 0 - 3 = 1\)</span>$</p>
+<h3 id="23-general-inner-products-and-positive-definite-matrices">2.3 General Inner Products and Positive Definite Matrices<a class="headerlink" href="#23-general-inner-products-and-positive-definite-matrices" title="Permanent link">&para;</a></h3>
+<p>Not every inner product is the dot product. We can define a more general inner product using a <strong>symmetric positive definite matrix</strong> <span class="arithmatex">\(A\)</span>:</p>
+<div class="arithmatex">\[\langle \mathbf{x}, \mathbf{y} \rangle_A = \mathbf{x}^T A \mathbf{y}\]</div>
+<p>A symmetric matrix <span class="arithmatex">\(A\)</span> is <strong>positive definite</strong> if:
+$<span class="arithmatex">\(\mathbf{x}^T A \mathbf{x} &gt; 0 \quad \text{for all } \mathbf{x} \neq \mathbf{0}\)</span>$</p>
+<p><strong>Example:</strong> Let <span class="arithmatex">\(A = \begin{bmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{bmatrix}\)</span> and <span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span>.</p>
+<div class="arithmatex">\[\mathbf{x}^T A \mathbf{x} = \begin{bmatrix} 1 &amp; 1 \end{bmatrix} \begin{bmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 3 &amp; 3 \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = 6 &gt; 0\]</div>
+<blockquote>
+<p><strong>Think of it as...</strong> the standard dot product uses the identity matrix <span class="arithmatex">\(I\)</span> as <span class="arithmatex">\(A\)</span>. Choosing a different positive definite <span class="arithmatex">\(A\)</span> stretches or skews the geometry, like measuring distance on a tilted surface instead of a flat table.</p>
+</blockquote>
+<hr />
+<h2 id="part-3-lengths-and-distances">Part 3: Lengths and Distances<a class="headerlink" href="#part-3-lengths-and-distances" title="Permanent link">&para;</a></h2>
+<h3 id="31-induced-norm">3.1 Induced Norm<a class="headerlink" href="#31-induced-norm" title="Permanent link">&para;</a></h3>
+<p>Every inner product <strong>induces</strong> a norm:</p>
+<div class="arithmatex">\[\|\mathbf{x}\| = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle}\]</div>
+<p>For the standard dot product this gives the Euclidean norm:</p>
+<div class="arithmatex">\[\|\mathbf{x}\| = \sqrt{\mathbf{x}^T \mathbf{x}} = \sqrt{\sum_{i=1}^{n} x_i^2}\]</div>
+<h3 id="32-distance">3.2 Distance<a class="headerlink" href="#32-distance" title="Permanent link">&para;</a></h3>
+<p>The <strong>distance</strong> between two vectors <span class="arithmatex">\(\mathbf{x}\)</span> and <span class="arithmatex">\(\mathbf{y}\)</span> is:</p>
+<div class="arithmatex">\[d(\mathbf{x}, \mathbf{y}) = \|\mathbf{x} - \mathbf{y}\| = \sqrt{\langle \mathbf{x} - \mathbf{y}, \mathbf{x} - \mathbf{y} \rangle}\]</div>
+<p>A distance function (metric) satisfies:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Non-negativity</td>
+<td><span class="arithmatex">\(d(\mathbf{x}, \mathbf{y}) \geq 0\)</span></td>
+</tr>
+<tr>
+<td>Identity</td>
+<td><span class="arithmatex">\(d(\mathbf{x}, \mathbf{y}) = 0 \iff \mathbf{x} = \mathbf{y}\)</span></td>
+</tr>
+<tr>
+<td>Symmetry</td>
+<td><span class="arithmatex">\(d(\mathbf{x}, \mathbf{y}) = d(\mathbf{y}, \mathbf{x})\)</span></td>
+</tr>
+<tr>
+<td>Triangle inequality</td>
+<td><span class="arithmatex">\(d(\mathbf{x}, \mathbf{z}) \leq d(\mathbf{x}, \mathbf{y}) + d(\mathbf{y}, \mathbf{z})\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-cauchy-schwarz-inequality">3.3 Cauchy-Schwarz Inequality<a class="headerlink" href="#33-cauchy-schwarz-inequality" title="Permanent link">&para;</a></h3>
+<p>One of the most important inequalities in all of mathematics:</p>
+<div class="arithmatex">\[|\langle \mathbf{x}, \mathbf{y} \rangle| \leq \|\mathbf{x}\| \cdot \|\mathbf{y}\|\]</div>
+<p>Equality holds if and only if <span class="arithmatex">\(\mathbf{x}\)</span> and <span class="arithmatex">\(\mathbf{y}\)</span> are linearly dependent (i.e., one is a scalar multiple of the other).</p>
+<blockquote>
+<p><strong>Think of it as...</strong> the dot product can never exceed the product of the lengths. This is what guarantees that the cosine of the angle between two vectors always stays between <span class="arithmatex">\(-1\)</span> and <span class="arithmatex">\(1\)</span>.</p>
+</blockquote>
+<p><strong>Example:</strong> Let <span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}\)</span> and <span class="arithmatex">\(\mathbf{y} = \begin{bmatrix} 3 \\ 1 \end{bmatrix}\)</span>.</p>
+<ul>
+<li><span class="arithmatex">\(|\langle \mathbf{x}, \mathbf{y} \rangle| = |1(3) + 2(1)| = |5| = 5\)</span></li>
+<li><span class="arithmatex">\(\|\mathbf{x}\| \cdot \|\mathbf{y}\| = \sqrt{1+4}\,\sqrt{9+1} = \sqrt{5}\,\sqrt{10} = \sqrt{50} \approx 7.07\)</span></li>
+<li>Check: <span class="arithmatex">\(5 \leq 7.07\)</span> ✓</li>
+</ul>
+<hr />
+<h2 id="part-4-angles-and-orthogonality">Part 4: Angles and Orthogonality<a class="headerlink" href="#part-4-angles-and-orthogonality" title="Permanent link">&para;</a></h2>
+<h3 id="41-angle-between-vectors">4.1 Angle Between Vectors<a class="headerlink" href="#41-angle-between-vectors" title="Permanent link">&para;</a></h3>
+<p>The <strong>angle</strong> <span class="arithmatex">\(\theta\)</span> between two non-zero vectors <span class="arithmatex">\(\mathbf{x}\)</span> and <span class="arithmatex">\(\mathbf{y}\)</span> is defined via:</p>
+<div class="arithmatex">\[\cos \theta = \frac{\langle \mathbf{x}, \mathbf{y} \rangle}{\|\mathbf{x}\| \cdot \|\mathbf{y}\|}\]</div>
+<p>The Cauchy-Schwarz inequality guarantees that the right-hand side lies in <span class="arithmatex">\([-1, 1]\)</span>, so <span class="arithmatex">\(\theta\)</span> is well-defined.</p>
+<p><strong>Example:</strong> Find the angle between <span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}\)</span> and <span class="arithmatex">\(\mathbf{y} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span>.</p>
+<div class="arithmatex">\[\cos \theta = \frac{1(1) + 0(1)}{\sqrt{1}\,\sqrt{2}} = \frac{1}{\sqrt{2}} \implies \theta = \frac{\pi}{4} = 45^\circ\]</div>
+<h3 id="42-orthogonality">4.2 Orthogonality<a class="headerlink" href="#42-orthogonality" title="Permanent link">&para;</a></h3>
+<p>Two vectors are <strong>orthogonal</strong> (perpendicular) if their inner product is zero:</p>
+<div class="arithmatex">\[\mathbf{x} \perp \mathbf{y} \iff \langle \mathbf{x}, \mathbf{y} \rangle = 0\]</div>
+<blockquote>
+<p><strong>Think of it as...</strong> orthogonal vectors carry completely independent information — knowing one tells you nothing about the other. This is exactly the idea behind "uncorrelated features" in machine learning.</p>
+</blockquote>
+<p><strong>Example:</strong>
+$<span class="arithmatex">\(\left\langle \begin{bmatrix} 1 \\ -1 \end{bmatrix}, \begin{bmatrix} 1 \\ 1 \end{bmatrix} \right\rangle = 1(1) + (-1)(1) = 0 \quad \checkmark \text{ Orthogonal!}\)</span>$</p>
+<h3 id="43-orthogonal-and-orthonormal-sets">4.3 Orthogonal and Orthonormal Sets<a class="headerlink" href="#43-orthogonal-and-orthonormal-sets" title="Permanent link">&para;</a></h3>
+<p>A set of vectors <span class="arithmatex">\(\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\}\)</span> is:</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Orthogonal</strong></td>
+<td><span class="arithmatex">\(\langle \mathbf{v}_i, \mathbf{v}_j \rangle = 0\)</span> for all <span class="arithmatex">\(i \neq j\)</span></td>
+</tr>
+<tr>
+<td><strong>Orthonormal</strong></td>
+<td>Orthogonal <strong>and</strong> <span class="arithmatex">\(\|\mathbf{v}_i\| = 1\)</span> for all <span class="arithmatex">\(i\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example of an orthonormal set in <span class="arithmatex">\(\mathbb{R}^2\)</span>:</strong>
+$<span class="arithmatex">\(\mathbf{e}_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad \mathbf{e}_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}\)</span>$</p>
+<ul>
+<li><span class="arithmatex">\(\langle \mathbf{e}_1, \mathbf{e}_2 \rangle = 0\)</span> (orthogonal)</li>
+<li><span class="arithmatex">\(\|\mathbf{e}_1\| = 1\)</span> and <span class="arithmatex">\(\|\mathbf{e}_2\| = 1\)</span> (unit length)</li>
+</ul>
+<hr />
+<h2 id="part-5-orthogonal-matrices">Part 5: Orthogonal Matrices<a class="headerlink" href="#part-5-orthogonal-matrices" title="Permanent link">&para;</a></h2>
+<h3 id="51-definition">5.1 Definition<a class="headerlink" href="#51-definition" title="Permanent link">&para;</a></h3>
+<p>A square matrix <span class="arithmatex">\(A \in \mathbb{R}^{n \times n}\)</span> is <strong>orthogonal</strong> if its columns form an orthonormal set. Equivalently:</p>
+<div class="arithmatex">\[A^T A = I \implies A^{-1} = A^T\]</div>
+<blockquote>
+<p><strong>Think of it as...</strong> an orthogonal matrix performs a "rigid" transformation — it can rotate or reflect vectors but never stretches or squishes them.</p>
+</blockquote>
+<h3 id="52-key-properties">5.2 Key Properties<a class="headerlink" href="#52-key-properties" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inverse equals transpose</td>
+<td><span class="arithmatex">\(A^{-1} = A^T\)</span></td>
+</tr>
+<tr>
+<td>Columns are orthonormal</td>
+<td><span class="arithmatex">\(\langle \mathbf{a}_i, \mathbf{a}_j \rangle = \delta_{ij}\)</span></td>
+</tr>
+<tr>
+<td>Rows are orthonormal</td>
+<td><span class="arithmatex">\(A A^T = I\)</span></td>
+</tr>
+<tr>
+<td>Preserves lengths</td>
+<td><span class="arithmatex">\(\|A\mathbf{x}\| = \|\mathbf{x}\|\)</span></td>
+</tr>
+<tr>
+<td>Preserves angles</td>
+<td><span class="arithmatex">\(\langle A\mathbf{x}, A\mathbf{y} \rangle = \langle \mathbf{x}, \mathbf{y} \rangle\)</span></td>
+</tr>
+<tr>
+<td>Determinant</td>
+<td><span class="arithmatex">\(\det(A) = \pm 1\)</span></td>
+</tr>
+<tr>
+<td>Product is orthogonal</td>
+<td>If <span class="arithmatex">\(A, B\)</span> orthogonal, then <span class="arithmatex">\(AB\)</span> is orthogonal</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Proof that orthogonal matrices preserve lengths:</strong>
+$<span class="arithmatex">\(\|A\mathbf{x}\|^2 = (A\mathbf{x})^T(A\mathbf{x}) = \mathbf{x}^T A^T A \mathbf{x} = \mathbf{x}^T I \mathbf{x} = \mathbf{x}^T \mathbf{x} = \|\mathbf{x}\|^2\)</span>$</p>
+<h3 id="53-example">5.3 Example<a class="headerlink" href="#53-example" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[A = \begin{bmatrix} \frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}} \\[4pt] \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \end{bmatrix}\]</div>
+<p><strong>Verify <span class="arithmatex">\(A^T A = I\)</span>:</strong>
+$<span class="arithmatex">\(A^T A = \begin{bmatrix} \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \\[4pt] -\frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \end{bmatrix} \begin{bmatrix} \frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}} \\[4pt] \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} = I \quad \checkmark\)</span>$</p>
+<hr />
+<h2 id="part-6-orthonormal-basis">Part 6: Orthonormal Basis<a class="headerlink" href="#part-6-orthonormal-basis" title="Permanent link">&para;</a></h2>
+<h3 id="61-definition">6.1 Definition<a class="headerlink" href="#61-definition" title="Permanent link">&para;</a></h3>
+<p>An <strong>orthonormal basis</strong> (ONB) for a subspace <span class="arithmatex">\(U \subseteq \mathbb{R}^n\)</span> is a basis <span class="arithmatex">\(\{\mathbf{u}_1, \ldots, \mathbf{u}_k\}\)</span> such that:</p>
+<div class="arithmatex">\[\langle \mathbf{u}_i, \mathbf{u}_j \rangle = \delta_{ij} = \begin{cases} 1 &amp; \text{if } i = j \\ 0 &amp; \text{if } i \neq j \end{cases}\]</div>
+<h3 id="62-why-orthonormal-bases-are-useful">6.2 Why Orthonormal Bases are Useful<a class="headerlink" href="#62-why-orthonormal-bases-are-useful" title="Permanent link">&para;</a></h3>
+<p>With an orthonormal basis, finding coordinates becomes trivially easy. If <span class="arithmatex">\(\{\mathbf{u}_1, \ldots, \mathbf{u}_k\}\)</span> is an ONB for <span class="arithmatex">\(U\)</span> and <span class="arithmatex">\(\mathbf{x} \in U\)</span>, then:</p>
+<div class="arithmatex">\[\mathbf{x} = \sum_{i=1}^{k} \langle \mathbf{x}, \mathbf{u}_i \rangle \, \mathbf{u}_i\]</div>
+<blockquote>
+<p><strong>Think of it as...</strong> with an orthonormal basis, you find each coordinate by simply taking a dot product — no system of equations to solve. It is the easiest possible coordinate system.</p>
+</blockquote>
+<h3 id="63-how-to-find-an-orthonormal-basis">6.3 How to Find an Orthonormal Basis<a class="headerlink" href="#63-how-to-find-an-orthonormal-basis" title="Permanent link">&para;</a></h3>
+<p>Given any basis, use the <strong>Gram-Schmidt process</strong> (covered in Part 9) to convert it into an orthonormal basis.</p>
+<hr />
+<h2 id="part-7-orthogonal-complement">Part 7: Orthogonal Complement<a class="headerlink" href="#part-7-orthogonal-complement" title="Permanent link">&para;</a></h2>
+<h3 id="71-definition">7.1 Definition<a class="headerlink" href="#71-definition" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(U\)</span> be a subspace of <span class="arithmatex">\(\mathbb{R}^n\)</span>. The <strong>orthogonal complement</strong> <span class="arithmatex">\(U^\perp\)</span> is the set of all vectors orthogonal to every vector in <span class="arithmatex">\(U\)</span>:</p>
+<div class="arithmatex">\[U^\perp = \{\mathbf{v} \in \mathbb{R}^n : \langle \mathbf{v}, \mathbf{u} \rangle = 0 \text{ for all } \mathbf{u} \in U\}\]</div>
+<blockquote>
+<p><strong>Think of it as...</strong> if <span class="arithmatex">\(U\)</span> is a plane through the origin in 3D, then <span class="arithmatex">\(U^\perp\)</span> is the line perpendicular to that plane. Together they account for all of <span class="arithmatex">\(\mathbb{R}^3\)</span>.</p>
+</blockquote>
+<h3 id="72-key-properties">7.2 Key Properties<a class="headerlink" href="#72-key-properties" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Subspace</td>
+<td><span class="arithmatex">\(U^\perp\)</span> is itself a subspace</td>
+</tr>
+<tr>
+<td>Dimension</td>
+<td><span class="arithmatex">\(\dim(U) + \dim(U^\perp) = n\)</span></td>
+</tr>
+<tr>
+<td>Double complement</td>
+<td><span class="arithmatex">\((U^\perp)^\perp = U\)</span></td>
+</tr>
+<tr>
+<td>Direct sum</td>
+<td><span class="arithmatex">\(\mathbb{R}^n = U \oplus U^\perp\)</span> (every vector splits uniquely)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="73-connection-to-the-kernel-and-row-space">7.3 Connection to the Kernel and Row Space<a class="headerlink" href="#73-connection-to-the-kernel-and-row-space" title="Permanent link">&para;</a></h3>
+<p>For a matrix <span class="arithmatex">\(A \in \mathbb{R}^{m \times n}\)</span>:</p>
+<div class="arithmatex">\[\ker(A) = \text{row}(A)^\perp\]</div>
+<p>This means: a vector <span class="arithmatex">\(\mathbf{x}\)</span> is in the null space of <span class="arithmatex">\(A\)</span> if and only if <span class="arithmatex">\(\mathbf{x}\)</span> is orthogonal to every row of <span class="arithmatex">\(A\)</span>.</p>
+<p><strong>Example:</strong> Let <span class="arithmatex">\(A = \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 6 \end{bmatrix}\)</span>.</p>
+<p>The row space is <span class="arithmatex">\(\text{span}\left\{\begin{bmatrix} 1 \\ 2 \end{bmatrix}\right\}\)</span> (the rows are linearly dependent).</p>
+<p>The null space is <span class="arithmatex">\(\ker(A) = \text{span}\left\{\begin{bmatrix} -2 \\ 1 \end{bmatrix}\right\}\)</span>.</p>
+<p><strong>Check:</strong> <span class="arithmatex">\(\left\langle \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \begin{bmatrix} -2 \\ 1 \end{bmatrix} \right\rangle = 1(-2) + 2(1) = 0\)</span> ✓</p>
+<hr />
+<h2 id="part-8-orthogonal-projections">Part 8: Orthogonal Projections<a class="headerlink" href="#part-8-orthogonal-projections" title="Permanent link">&para;</a></h2>
+<h3 id="81-projection-onto-a-line">8.1 Projection onto a Line<a class="headerlink" href="#81-projection-onto-a-line" title="Permanent link">&para;</a></h3>
+<p>Given a non-zero vector <span class="arithmatex">\(\mathbf{b}\)</span> (defining a line through the origin), the <strong>projection</strong> of <span class="arithmatex">\(\mathbf{x}\)</span> onto the line spanned by <span class="arithmatex">\(\mathbf{b}\)</span> is:</p>
+<div class="arithmatex">\[\pi_{\mathbf{b}}(\mathbf{x}) = \frac{\langle \mathbf{x}, \mathbf{b} \rangle}{\langle \mathbf{b}, \mathbf{b} \rangle} \mathbf{b} = \frac{\mathbf{b}\mathbf{b}^T}{\mathbf{b}^T\mathbf{b}} \mathbf{x}\]</div>
+<p>The <strong>projection matrix</strong> is:</p>
+<div class="arithmatex">\[P_\pi = \frac{\mathbf{b}\mathbf{b}^T}{\mathbf{b}^T\mathbf{b}}\]</div>
+<blockquote>
+<p><strong>Think of it as...</strong> shining a flashlight straight down onto a line and seeing where the shadow of your vector lands. The projection is that shadow.</p>
+</blockquote>
+<p><strong>Example:</strong> Project <span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} 3 \\ 1 \end{bmatrix}\)</span> onto <span class="arithmatex">\(\mathbf{b} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}\)</span>.</p>
+<div class="arithmatex">\[\pi_{\mathbf{b}}(\mathbf{x}) = \frac{\mathbf{x}^T\mathbf{b}}{\mathbf{b}^T\mathbf{b}} \mathbf{b} = \frac{3(1) + 1(2)}{1^2 + 2^2} \begin{bmatrix} 1 \\ 2 \end{bmatrix} = \frac{5}{5} \begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}\]</div>
+<h3 id="82-projection-onto-a-general-subspace">8.2 Projection onto a General Subspace<a class="headerlink" href="#82-projection-onto-a-general-subspace" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(U = \text{span}\{\mathbf{b}_1, \ldots, \mathbf{b}_k\}\)</span> and define <span class="arithmatex">\(B = [\mathbf{b}_1 \mid \cdots \mid \mathbf{b}_k]\)</span>. The projection of <span class="arithmatex">\(\mathbf{x}\)</span> onto <span class="arithmatex">\(U\)</span> is:</p>
+<div class="arithmatex">\[\pi_U(\mathbf{x}) = B(B^T B)^{-1} B^T \mathbf{x}\]</div>
+<p>The <strong>projection matrix</strong> is:</p>
+<div class="arithmatex">\[P = B(B^T B)^{-1} B^T\]</div>
+<p><strong>Properties of projection matrices:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Idempotent</td>
+<td><span class="arithmatex">\(P^2 = P\)</span> (projecting twice is the same as projecting once)</td>
+</tr>
+<tr>
+<td>Symmetric</td>
+<td><span class="arithmatex">\(P^T = P\)</span></td>
+</tr>
+<tr>
+<td>Residual</td>
+<td><span class="arithmatex">\(\mathbf{x} - P\mathbf{x}\)</span> is orthogonal to <span class="arithmatex">\(U\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="83-connection-to-the-pseudo-inverse">8.3 Connection to the Pseudo-Inverse<a class="headerlink" href="#83-connection-to-the-pseudo-inverse" title="Permanent link">&para;</a></h3>
+<p>The <strong>Moore-Penrose pseudo-inverse</strong> of <span class="arithmatex">\(B\)</span> is:</p>
+<div class="arithmatex">\[B^\dagger = (B^T B)^{-1} B^T\]</div>
+<p>So the projection simplifies to:</p>
+<div class="arithmatex">\[\pi_U(\mathbf{x}) = B B^\dagger \mathbf{x}\]</div>
+<p>The pseudo-inverse is central to solving <strong>least-squares</strong> problems: when <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span> has no exact solution, the best approximate solution is <span class="arithmatex">\(\hat{\mathbf{x}} = A^\dagger \mathbf{b}\)</span>.</p>
+<h3 id="84-worked-example-projection-onto-a-subspace">8.4 Worked Example: Projection onto a Subspace<a class="headerlink" href="#84-worked-example-projection-onto-a-subspace" title="Permanent link">&para;</a></h3>
+<p>Project <span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} 6 \\ 0 \\ 0 \end{bmatrix}\)</span> onto <span class="arithmatex">\(U = \text{span}\left\{\begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}\right\}\)</span>.</p>
+<p><strong>Step 1:</strong> Form the matrix <span class="arithmatex">\(B\)</span>:
+$<span class="arithmatex">\(B = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 1 \end{bmatrix}\)</span>$</p>
+<p><strong>Step 2:</strong> Compute <span class="arithmatex">\(B^T B\)</span>:
+$<span class="arithmatex">\(B^T B = \begin{bmatrix} 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 1 \end{bmatrix} \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 1 \end{bmatrix} = \begin{bmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{bmatrix}\)</span>$</p>
+<p><strong>Step 3:</strong> Compute <span class="arithmatex">\((B^T B)^{-1}\)</span>:
+$<span class="arithmatex">\((B^T B)^{-1} = \frac{1}{2(2) - 1(1)} \begin{bmatrix} 2 &amp; -1 \\ -1 &amp; 2 \end{bmatrix} = \frac{1}{3} \begin{bmatrix} 2 &amp; -1 \\ -1 &amp; 2 \end{bmatrix}\)</span>$</p>
+<p><strong>Step 4:</strong> Compute <span class="arithmatex">\(B^T \mathbf{x}\)</span>:
+$<span class="arithmatex">\(B^T \mathbf{x} = \begin{bmatrix} 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 1 \end{bmatrix} \begin{bmatrix} 6 \\ 0 \\ 0 \end{bmatrix} = \begin{bmatrix} 6 \\ 0 \end{bmatrix}\)</span>$</p>
+<p><strong>Step 5:</strong> Compute <span class="arithmatex">\((B^T B)^{-1} B^T \mathbf{x}\)</span>:
+$<span class="arithmatex">\(\frac{1}{3}\begin{bmatrix} 2 &amp; -1 \\ -1 &amp; 2 \end{bmatrix}\begin{bmatrix} 6 \\ 0 \end{bmatrix} = \frac{1}{3}\begin{bmatrix} 12 \\ -6 \end{bmatrix} = \begin{bmatrix} 4 \\ -2 \end{bmatrix}\)</span>$</p>
+<p><strong>Step 6:</strong> Compute the projection:
+$<span class="arithmatex">\(\pi_U(\mathbf{x}) = B \begin{bmatrix} 4 \\ -2 \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 1 \end{bmatrix}\begin{bmatrix} 4 \\ -2 \end{bmatrix} = \begin{bmatrix} 4 \\ -2 \\ 2 \end{bmatrix}\)</span>$</p>
+<p><strong>Verify:</strong> The residual <span class="arithmatex">\(\mathbf{x} - \pi_U(\mathbf{x}) = \begin{bmatrix} 2 \\ 2 \\ -2 \end{bmatrix}\)</span> should be orthogonal to both basis vectors:</p>
+<ul>
+<li><span class="arithmatex">\(\langle \begin{bmatrix} 2 \\ 2 \\ -2 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} \rangle = 2 + 0 - 2 = 0\)</span> ✓</li>
+<li><span class="arithmatex">\(\langle \begin{bmatrix} 2 \\ 2 \\ -2 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} \rangle = 0 + 2 - 2 = 0\)</span> ✓</li>
+</ul>
+<hr />
+<h2 id="part-9-gram-schmidt-process">Part 9: Gram-Schmidt Process<a class="headerlink" href="#part-9-gram-schmidt-process" title="Permanent link">&para;</a></h2>
+<h3 id="91-the-algorithm">9.1 The Algorithm<a class="headerlink" href="#91-the-algorithm" title="Permanent link">&para;</a></h3>
+<p>The <strong>Gram-Schmidt process</strong> takes any set of linearly independent vectors and produces an orthonormal set spanning the same subspace.</p>
+<p>Given linearly independent vectors <span class="arithmatex">\(\{\mathbf{b}_1, \mathbf{b}_2, \ldots, \mathbf{b}_k\}\)</span>:</p>
+<p><strong>Step 1: Orthogonalize</strong> (produce orthogonal vectors <span class="arithmatex">\(\mathbf{u}_i\)</span>)</p>
+<div class="arithmatex">\[\mathbf{u}_1 = \mathbf{b}_1\]</div>
+<div class="arithmatex">\[\mathbf{u}_2 = \mathbf{b}_2 - \frac{\langle \mathbf{b}_2, \mathbf{u}_1 \rangle}{\langle \mathbf{u}_1, \mathbf{u}_1 \rangle} \mathbf{u}_1\]</div>
+<div class="arithmatex">\[\mathbf{u}_3 = \mathbf{b}_3 - \frac{\langle \mathbf{b}_3, \mathbf{u}_1 \rangle}{\langle \mathbf{u}_1, \mathbf{u}_1 \rangle} \mathbf{u}_1 - \frac{\langle \mathbf{b}_3, \mathbf{u}_2 \rangle}{\langle \mathbf{u}_2, \mathbf{u}_2 \rangle} \mathbf{u}_2\]</div>
+<p>In general:
+$<span class="arithmatex">\(\mathbf{u}_i = \mathbf{b}_i - \sum_{j=1}^{i-1} \frac{\langle \mathbf{b}_i, \mathbf{u}_j \rangle}{\langle \mathbf{u}_j, \mathbf{u}_j \rangle} \mathbf{u}_j\)</span>$</p>
+<p><strong>Step 2: Normalize</strong> (produce unit vectors <span class="arithmatex">\(\mathbf{e}_i\)</span>)</p>
+<div class="arithmatex">\[\mathbf{e}_i = \frac{\mathbf{u}_i}{\|\mathbf{u}_i\|}\]</div>
+<blockquote>
+<p><strong>Think of it as...</strong> taking each new vector and "subtracting off" all the parts that point in the directions you have already handled. What remains is the genuinely new direction. Then you scale it to length 1.</p>
+</blockquote>
+<h3 id="92-worked-example">9.2 Worked Example<a class="headerlink" href="#92-worked-example" title="Permanent link">&para;</a></h3>
+<p>Apply Gram-Schmidt to <span class="arithmatex">\(\mathbf{b}_1 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}\)</span> and <span class="arithmatex">\(\mathbf{b}_2 = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}\)</span>.</p>
+<p><strong>Step 1:</strong> Set <span class="arithmatex">\(\mathbf{u}_1 = \mathbf{b}_1 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}\)</span>.</p>
+<p><strong>Step 2:</strong> Compute the projection coefficient:
+$<span class="arithmatex">\(\frac{\langle \mathbf{b}_2, \mathbf{u}_1 \rangle}{\langle \mathbf{u}_1, \mathbf{u}_1 \rangle} = \frac{1(1) + 0(1) + 1(0)}{1^2 + 1^2 + 0^2} = \frac{1}{2}\)</span>$</p>
+<p><strong>Step 3:</strong> Subtract the projection:
+$<span class="arithmatex">\(\mathbf{u}_2 = \mathbf{b}_2 - \frac{1}{2}\mathbf{u}_1 = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} - \frac{1}{2}\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1/2 \\ -1/2 \\ 1 \end{bmatrix}\)</span>$</p>
+<p><strong>Verify orthogonality:</strong>
+$<span class="arithmatex">\(\langle \mathbf{u}_1, \mathbf{u}_2 \rangle = 1\!\left(\tfrac{1}{2}\right) + 1\!\left(-\tfrac{1}{2}\right) + 0(1) = 0 \quad \checkmark\)</span>$</p>
+<p><strong>Step 4:</strong> Normalize:
+$<span class="arithmatex">\(\|\mathbf{u}_1\| = \sqrt{1+1+0} = \sqrt{2}, \quad \mathbf{e}_1 = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}\)</span>$</p>
+<div class="arithmatex">\[\|\mathbf{u}_2\| = \sqrt{\tfrac{1}{4}+\tfrac{1}{4}+1} = \sqrt{\tfrac{3}{2}} = \frac{\sqrt{6}}{2}, \quad \mathbf{e}_2 = \frac{2}{\sqrt{6}}\begin{bmatrix} 1/2 \\ -1/2 \\ 1 \end{bmatrix} = \frac{1}{\sqrt{6}}\begin{bmatrix} 1 \\ -1 \\ 2 \end{bmatrix}\]</div>
+<p><strong>Result:</strong> The orthonormal basis is:
+$<span class="arithmatex">\(\mathbf{e}_1 = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}, \qquad \mathbf{e}_2 = \frac{1}{\sqrt{6}}\begin{bmatrix} 1 \\ -1 \\ 2 \end{bmatrix}\)</span>$</p>
+<hr />
+<h2 id="part-10-rotations">Part 10: Rotations<a class="headerlink" href="#part-10-rotations" title="Permanent link">&para;</a></h2>
+<h3 id="101-rotation-matrix-in-2d">10.1 Rotation Matrix in 2D<a class="headerlink" href="#101-rotation-matrix-in-2d" title="Permanent link">&para;</a></h3>
+<p>A <strong>rotation</strong> by angle <span class="arithmatex">\(\theta\)</span> (counter-clockwise) in <span class="arithmatex">\(\mathbb{R}^2\)</span> is given by:</p>
+<div class="arithmatex">\[R(\theta) = \begin{bmatrix} \cos\theta &amp; -\sin\theta \\ \sin\theta &amp; \cos\theta \end{bmatrix}\]</div>
+<blockquote>
+<p><strong>Think of it as...</strong> every point in the plane is swung around the origin by the angle <span class="arithmatex">\(\theta\)</span>. The matrix encodes where the two standard basis vectors land after the rotation.</p>
+</blockquote>
+<h3 id="102-properties-of-rotation-matrices">10.2 Properties of Rotation Matrices<a class="headerlink" href="#102-properties-of-rotation-matrices" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Orthogonal</td>
+<td><span class="arithmatex">\(R(\theta)^T R(\theta) = I\)</span></td>
+</tr>
+<tr>
+<td>Determinant</td>
+<td><span class="arithmatex">\(\det(R(\theta)) = 1\)</span> (no reflection)</td>
+</tr>
+<tr>
+<td>Inverse is reverse rotation</td>
+<td><span class="arithmatex">\(R(\theta)^{-1} = R(-\theta) = R(\theta)^T\)</span></td>
+</tr>
+<tr>
+<td>Composition</td>
+<td><span class="arithmatex">\(R(\alpha) R(\beta) = R(\alpha + \beta)\)</span></td>
+</tr>
+<tr>
+<td>Preserves lengths</td>
+<td><span class="arithmatex">\(\|R(\theta)\mathbf{x}\| = \|\mathbf{x}\|\)</span></td>
+</tr>
+<tr>
+<td>Preserves angles</td>
+<td>Angles between vectors are unchanged</td>
+</tr>
+</tbody>
+</table>
+<h3 id="103-worked-example">10.3 Worked Example<a class="headerlink" href="#103-worked-example" title="Permanent link">&para;</a></h3>
+<p>Rotate <span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}\)</span> by <span class="arithmatex">\(\theta = 90^\circ\)</span>.</p>
+<div class="arithmatex">\[R(90^\circ) = \begin{bmatrix} \cos 90^\circ &amp; -\sin 90^\circ \\ \sin 90^\circ &amp; \cos 90^\circ \end{bmatrix} = \begin{bmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{bmatrix}\]</div>
+<div class="arithmatex">\[R(90^\circ)\mathbf{x} = \begin{bmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \end{bmatrix}\]</div>
+<p>This is exactly the unit vector pointing straight up — a <span class="arithmatex">\(90^\circ\)</span> counter-clockwise rotation of the unit vector pointing right. ✓</p>
+<h3 id="104-rotations-in-3d-preview">10.4 Rotations in 3D (Preview)<a class="headerlink" href="#104-rotations-in-3d-preview" title="Permanent link">&para;</a></h3>
+<p>In <span class="arithmatex">\(\mathbb{R}^3\)</span>, a rotation about the <span class="arithmatex">\(z\)</span>-axis by angle <span class="arithmatex">\(\theta\)</span> is:</p>
+<div class="arithmatex">\[R_z(\theta) = \begin{bmatrix} \cos\theta &amp; -\sin\theta &amp; 0 \\ \sin\theta &amp; \cos\theta &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\]</div>
+<p>General 3D rotations can be composed from rotations about the three coordinate axes.</p>
+<hr />
+<h2 id="summary-key-takeaways">Summary: Key Takeaways<a class="headerlink" href="#summary-key-takeaways" title="Permanent link">&para;</a></h2>
+<h3 id="norms-and-inner-products">Norms and Inner Products<a class="headerlink" href="#norms-and-inner-products" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The <span class="arithmatex">\(\ell_1\)</span>, <span class="arithmatex">\(\ell_2\)</span>, and <span class="arithmatex">\(\ell_\infty\)</span> norms each measure vector size differently</li>
+<li>An inner product <span class="arithmatex">\(\langle \cdot, \cdot \rangle\)</span> must satisfy symmetry, linearity, and positive definiteness</li>
+<li>Every inner product induces a norm: <span class="arithmatex">\(\|\mathbf{x}\| = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle}\)</span></li>
+</ul>
+<h3 id="geometry-from-inner-products">Geometry from Inner Products<a class="headerlink" href="#geometry-from-inner-products" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Angles: <span class="arithmatex">\(\cos\theta = \frac{\langle \mathbf{x}, \mathbf{y} \rangle}{\|\mathbf{x}\|\|\mathbf{y}\|}\)</span></li>
+<li>Orthogonality: <span class="arithmatex">\(\langle \mathbf{x}, \mathbf{y} \rangle = 0\)</span></li>
+<li>Cauchy-Schwarz: <span class="arithmatex">\(|\langle \mathbf{x}, \mathbf{y} \rangle| \leq \|\mathbf{x}\|\|\mathbf{y}\|\)</span></li>
+</ul>
+<h3 id="orthogonal-structures">Orthogonal Structures<a class="headerlink" href="#orthogonal-structures" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Orthogonal matrices satisfy <span class="arithmatex">\(A^{-1} = A^T\)</span> and preserve geometry</li>
+<li>Orthogonal complements: <span class="arithmatex">\(\ker(A) = \text{row}(A)^\perp\)</span></li>
+<li>Gram-Schmidt converts any basis to an orthonormal basis</li>
+</ul>
+<h3 id="projections-and-rotations">Projections and Rotations<a class="headerlink" href="#projections-and-rotations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Projection onto a line: <span class="arithmatex">\(P_\pi = \frac{\mathbf{b}\mathbf{b}^T}{\mathbf{b}^T\mathbf{b}}\)</span></li>
+<li>Projection onto a subspace: <span class="arithmatex">\(P = B(B^TB)^{-1}B^T\)</span></li>
+<li>2D rotation: <span class="arithmatex">\(R(\theta) = \begin{bmatrix} \cos\theta &amp; -\sin\theta \\ \sin\theta &amp; \cos\theta \end{bmatrix}\)</span></li>
+</ul>
+<hr />
+<h2 id="practice-problems">Practice Problems<a class="headerlink" href="#practice-problems" title="Permanent link">&para;</a></h2>
+<h3 id="problem-1">Problem 1<a class="headerlink" href="#problem-1" title="Permanent link">&para;</a></h3>
+<p>Compute the <span class="arithmatex">\(\ell_1\)</span>, <span class="arithmatex">\(\ell_2\)</span>, and <span class="arithmatex">\(\ell_\infty\)</span> norms of:
+$<span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} -2 \\ 6 \\ -3 \end{bmatrix}\)</span>$</p>
+<h3 id="problem-2">Problem 2<a class="headerlink" href="#problem-2" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(\mathbf{a} = \begin{bmatrix} 2 \\ 1 \\ -1 \end{bmatrix}\)</span> and <span class="arithmatex">\(\mathbf{b} = \begin{bmatrix} 1 \\ -2 \\ 3 \end{bmatrix}\)</span>. Compute the angle <span class="arithmatex">\(\theta\)</span> between them.</p>
+<h3 id="problem-3">Problem 3<a class="headerlink" href="#problem-3" title="Permanent link">&para;</a></h3>
+<p>Verify that <span class="arithmatex">\(A = \begin{bmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{bmatrix}\)</span> is an orthogonal matrix and determine whether it represents a rotation or a reflection.</p>
+<h3 id="problem-4">Problem 4<a class="headerlink" href="#problem-4" title="Permanent link">&para;</a></h3>
+<p>Project <span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} 4 \\ 3 \end{bmatrix}\)</span> onto the line spanned by <span class="arithmatex">\(\mathbf{b} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span>.</p>
+<h3 id="problem-5">Problem 5<a class="headerlink" href="#problem-5" title="Permanent link">&para;</a></h3>
+<p>Apply the Gram-Schmidt process to the vectors <span class="arithmatex">\(\mathbf{b}_1 = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}\)</span> and <span class="arithmatex">\(\mathbf{b}_2 = \begin{bmatrix} 0 \\ 1 \\ 2 \end{bmatrix}\)</span> to produce an orthonormal basis.</p>
+<h3 id="problem-6">Problem 6<a class="headerlink" href="#problem-6" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}\)</span>. Find <span class="arithmatex">\(R(\theta)\mathbf{x}\)</span> for <span class="arithmatex">\(\theta = 60^\circ\)</span> and verify that the result has the same norm as <span class="arithmatex">\(\mathbf{x}\)</span>.</p>
+<hr />
+<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
+<p><strong>Solution 1:</strong></p>
+<div class="arithmatex">\[\|\mathbf{x}\|_1 = |-2| + |6| + |-3| = 2 + 6 + 3 = 11\]</div>
+<div class="arithmatex">\[\|\mathbf{x}\|_2 = \sqrt{(-2)^2 + 6^2 + (-3)^2} = \sqrt{4 + 36 + 9} = \sqrt{49} = 7\]</div>
+<div class="arithmatex">\[\|\mathbf{x}\|_\infty = \max\{|-2|, |6|, |-3|\} = 6\]</div>
+<hr />
+<p><strong>Solution 2:</strong></p>
+<p>First compute the dot product:
+$<span class="arithmatex">\(\langle \mathbf{a}, \mathbf{b} \rangle = 2(1) + 1(-2) + (-1)(3) = 2 - 2 - 3 = -3\)</span>$</p>
+<p>Then compute the norms:
+$<span class="arithmatex">\(\|\mathbf{a}\| = \sqrt{4 + 1 + 1} = \sqrt{6}, \quad \|\mathbf{b}\| = \sqrt{1 + 4 + 9} = \sqrt{14}\)</span>$</p>
+<p>Therefore:
+$<span class="arithmatex">\(\cos\theta = \frac{-3}{\sqrt{6}\sqrt{14}} = \frac{-3}{\sqrt{84}} = \frac{-3}{2\sqrt{21}}\)</span>$</p>
+<div class="arithmatex">\[\theta = \arccos\!\left(\frac{-3}{2\sqrt{21}}\right) \approx \arccos(-0.327) \approx 109.1^\circ\]</div>
+<hr />
+<p><strong>Solution 3:</strong></p>
+<p><strong>Check <span class="arithmatex">\(A^T A = I\)</span>:</strong>
+$<span class="arithmatex">\(A^T A = \begin{bmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{bmatrix}\begin{bmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{bmatrix} = \begin{bmatrix} 0(0)+(-1)(-1) &amp; 0(1)+(-1)(0) \\ 1(0)+0(-1) &amp; 1(1)+0(0) \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} = I \quad \checkmark\)</span>$</p>
+<p>So <span class="arithmatex">\(A\)</span> is orthogonal.</p>
+<p><strong>Determine rotation vs. reflection:</strong>
+$<span class="arithmatex">\(\det(A) = 0(0) - (1)(-1) = 1\)</span>$</p>
+<p>Since <span class="arithmatex">\(\det(A) = +1\)</span>, this is a <strong>rotation</strong> (not a reflection). Specifically, this is a rotation by <span class="arithmatex">\(-90^\circ\)</span> (or equivalently <span class="arithmatex">\(270^\circ\)</span> counter-clockwise).</p>
+<hr />
+<p><strong>Solution 4:</strong></p>
+<div class="arithmatex">\[\pi_{\mathbf{b}}(\mathbf{x}) = \frac{\mathbf{x}^T\mathbf{b}}{\mathbf{b}^T\mathbf{b}} \mathbf{b} = \frac{4(1) + 3(1)}{1^2 + 1^2}\begin{bmatrix} 1 \\ 1 \end{bmatrix} = \frac{7}{2}\begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 7/2 \\ 7/2 \end{bmatrix}\]</div>
+<p><strong>Verify:</strong> The residual <span class="arithmatex">\(\mathbf{x} - \pi_{\mathbf{b}}(\mathbf{x}) = \begin{bmatrix} 4 - 7/2 \\ 3 - 7/2 \end{bmatrix} = \begin{bmatrix} 1/2 \\ -1/2 \end{bmatrix}\)</span> should be orthogonal to <span class="arithmatex">\(\mathbf{b}\)</span>:</p>
+<div class="arithmatex">\[\left\langle \begin{bmatrix} 1/2 \\ -1/2 \end{bmatrix}, \begin{bmatrix} 1 \\ 1 \end{bmatrix} \right\rangle = \frac{1}{2} - \frac{1}{2} = 0 \quad \checkmark\]</div>
+<hr />
+<p><strong>Solution 5:</strong></p>
+<p><strong>Step 1:</strong> Set <span class="arithmatex">\(\mathbf{u}_1 = \mathbf{b}_1 = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}\)</span>.</p>
+<p><strong>Step 2:</strong> Compute the projection coefficient:
+$<span class="arithmatex">\(\frac{\langle \mathbf{b}_2, \mathbf{u}_1 \rangle}{\langle \mathbf{u}_1, \mathbf{u}_1 \rangle} = \frac{0(1) + 1(1) + 2(1)}{1+1+1} = \frac{3}{3} = 1\)</span>$</p>
+<p><strong>Step 3:</strong> Subtract the projection:
+$<span class="arithmatex">\(\mathbf{u}_2 = \mathbf{b}_2 - 1 \cdot \mathbf{u}_1 = \begin{bmatrix} 0 \\ 1 \\ 2 \end{bmatrix} - \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} = \begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}\)</span>$</p>
+<p><strong>Check orthogonality:</strong> <span class="arithmatex">\(\langle \mathbf{u}_1, \mathbf{u}_2 \rangle = -1 + 0 + 1 = 0\)</span> ✓</p>
+<p><strong>Step 4:</strong> Normalize:
+$<span class="arithmatex">\(\mathbf{e}_1 = \frac{\mathbf{u}_1}{\|\mathbf{u}_1\|} = \frac{1}{\sqrt{3}}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}\)</span>$</p>
+<div class="arithmatex">\[\mathbf{e}_2 = \frac{\mathbf{u}_2}{\|\mathbf{u}_2\|} = \frac{1}{\sqrt{2}}\begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}\]</div>
+<p><strong>Orthonormal basis:</strong> <span class="arithmatex">\(\left\{\frac{1}{\sqrt{3}}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix},\ \frac{1}{\sqrt{2}}\begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}\right\}\)</span></p>
+<hr />
+<p><strong>Solution 6:</strong></p>
+<div class="arithmatex">\[R(60^\circ) = \begin{bmatrix} \cos 60^\circ &amp; -\sin 60^\circ \\ \sin 60^\circ &amp; \cos 60^\circ \end{bmatrix} = \begin{bmatrix} 1/2 &amp; -\sqrt{3}/2 \\ \sqrt{3}/2 &amp; 1/2 \end{bmatrix}\]</div>
+<div class="arithmatex">\[R(60^\circ)\mathbf{x} = \begin{bmatrix} 1/2 &amp; -\sqrt{3}/2 \\ \sqrt{3}/2 &amp; 1/2 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1/2 \\ \sqrt{3}/2 \end{bmatrix}\]</div>
+<p><strong>Verify the norm is preserved:</strong></p>
+<div class="arithmatex">\[\|\mathbf{x}\| = \sqrt{1^2 + 0^2} = 1\]</div>
+<div class="arithmatex">\[\|R(60^\circ)\mathbf{x}\| = \sqrt{\left(\frac{1}{2}\right)^2 + \left(\frac{\sqrt{3}}{2}\right)^2} = \sqrt{\frac{1}{4} + \frac{3}{4}} = \sqrt{1} = 1 \quad \checkmark\]</div>
+<p>The norm is preserved, confirming that <span class="arithmatex">\(R(60^\circ)\)</span> is an orthogonal (length-preserving) transformation.</p>
+<hr />
+<p><strong>Course:</strong> Mathematics for Machine Learning
+<strong>Instructor:</strong> Mohammed Alnemari</p>
+<p><strong>Next:</strong> Tutorial 3 - Matrix Decompositions</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/alnemari-m/mathai-website" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mohammed Alnemari" /><link rel="canonical" href="https://alnemari-m.github.io/mathai-website/tutorials/Tutorial_06_Probability_Distributions/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Tutorial 5: Probability and Distributions - Mathematics of AI</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../stylesheets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Tutorial 5: Probability and Distributions";
+        var mkdocs_page_input_path = "tutorials/Tutorial_06_Probability_Distributions.md";
+        var mkdocs_page_url = "/mathai-website/tutorials/Tutorial_06_Probability_Distributions/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Mathematics of AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../lectures/">Lectures</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">Math Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../notebooks/">Notebooks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../papers/">Papers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../animations/">🔒 Animations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Mathematics of AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Tutorial 5: Probability and Distributions</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/alnemari-m/mathai-website/edit/master/docs/tutorials/Tutorial_06_Probability_Distributions.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tutorial-5-probability-and-distributions">Tutorial 5: Probability and Distributions<a class="headerlink" href="#tutorial-5-probability-and-distributions" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> Mathematics for Machine Learning
+<strong>Instructor:</strong> Mohammed Alnemari</p>
+<hr />
+<h2 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>By the end of this tutorial, you will understand:</p>
+<ol>
+<li>Probability spaces, sample spaces, events, and the Kolmogorov axioms</li>
+<li>Conditional probability and independence</li>
+<li>Bayes' theorem and how to apply it</li>
+<li>Discrete random variables and their distributions (Bernoulli, Binomial, Geometric)</li>
+<li>Continuous random variables and their distributions (Uniform, Exponential, Gaussian)</li>
+<li>Expected value and variance, including computation rules</li>
+<li>The Gaussian (Normal) distribution and its properties</li>
+<li>Joint and marginal distributions</li>
+<li>Covariance and correlation</li>
+<li>The sum rule and product rule of probability</li>
+</ol>
+<hr />
+<h2 id="part-1-probability-space">Part 1: Probability Space<a class="headerlink" href="#part-1-probability-space" title="Permanent link">&para;</a></h2>
+<h3 id="11-core-definitions">1.1 Core Definitions<a class="headerlink" href="#11-core-definitions" title="Permanent link">&para;</a></h3>
+<p>A <strong>probability space</strong> is a triple <span class="arithmatex">\((\Omega, \mathcal{F}, P)\)</span> consisting of three components:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\Omega\)</span></td>
+<td>Sample space</td>
+<td>The set of all possible outcomes of an experiment</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathcal{F}\)</span></td>
+<td>Event space</td>
+<td>A collection of subsets of <span class="arithmatex">\(\Omega\)</span> (the events we can assign probabilities to)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P\)</span></td>
+<td>Probability function</td>
+<td>A function <span class="arithmatex">\(P: \mathcal{F} \to [0, 1]\)</span> that assigns probabilities to events</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example (Coin Flip):</strong>
+- Sample space: <span class="arithmatex">\(\Omega = \{H, T\}\)</span>
+- Event space: <span class="arithmatex">\(\mathcal{F} = \{\emptyset, \{H\}, \{T\}, \{H, T\}\}\)</span>
+- Probability: <span class="arithmatex">\(P(\{H\}) = 0.5\)</span>, <span class="arithmatex">\(P(\{T\}) = 0.5\)</span></p>
+<p><strong>Example (Rolling a Die):</strong>
+- Sample space: <span class="arithmatex">\(\Omega = \{1, 2, 3, 4, 5, 6\}\)</span>
+- Event "rolling an even number": <span class="arithmatex">\(A = \{2, 4, 6\}\)</span>
+- <span class="arithmatex">\(P(A) = \frac{3}{6} = \frac{1}{2}\)</span></p>
+<h3 id="12-kolmogorov-axioms-of-probability">1.2 Kolmogorov Axioms of Probability<a class="headerlink" href="#12-kolmogorov-axioms-of-probability" title="Permanent link">&para;</a></h3>
+<p>All of probability theory rests on three axioms, formalized by Andrey Kolmogorov:</p>
+<table>
+<thead>
+<tr>
+<th>Axiom</th>
+<th>Statement</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Axiom 1</strong> (Non-negativity)</td>
+<td><span class="arithmatex">\(P(A) \geq 0\)</span> for every event <span class="arithmatex">\(A\)</span></td>
+<td>Probabilities are never negative</td>
+</tr>
+<tr>
+<td><strong>Axiom 2</strong> (Normalization)</td>
+<td><span class="arithmatex">\(P(\Omega) = 1\)</span></td>
+<td>Something must happen</td>
+</tr>
+<tr>
+<td><strong>Axiom 3</strong> (Additivity)</td>
+<td>If <span class="arithmatex">\(A \cap B = \emptyset\)</span>, then <span class="arithmatex">\(P(A \cup B) = P(A) + P(B)\)</span></td>
+<td>For mutually exclusive events, probabilities add</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key consequences of the axioms:</strong></p>
+<ul>
+<li><span class="arithmatex">\(P(\emptyset) = 0\)</span> (the impossible event has probability zero)</li>
+<li><span class="arithmatex">\(P(A^c) = 1 - P(A)\)</span> (complement rule)</li>
+<li><span class="arithmatex">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span> (inclusion-exclusion)</li>
+<li>If <span class="arithmatex">\(A \subseteq B\)</span>, then <span class="arithmatex">\(P(A) \leq P(B)\)</span> (monotonicity)</li>
+</ul>
+<p><strong>Worked Example:</strong>
+Suppose <span class="arithmatex">\(P(A) = 0.6\)</span> and <span class="arithmatex">\(P(B) = 0.4\)</span> with <span class="arithmatex">\(P(A \cap B) = 0.2\)</span>. Find <span class="arithmatex">\(P(A \cup B)\)</span>.</p>
+<div class="arithmatex">\[P(A \cup B) = P(A) + P(B) - P(A \cap B) = 0.6 + 0.4 - 0.2 = 0.8\]</div>
+<hr />
+<h2 id="part-2-conditional-probability-and-independence">Part 2: Conditional Probability and Independence<a class="headerlink" href="#part-2-conditional-probability-and-independence" title="Permanent link">&para;</a></h2>
+<h3 id="21-conditional-probability">2.1 Conditional Probability<a class="headerlink" href="#21-conditional-probability" title="Permanent link">&para;</a></h3>
+<p>The <strong>conditional probability</strong> of event <span class="arithmatex">\(A\)</span> given that event <span class="arithmatex">\(B\)</span> has occurred is:</p>
+<div class="arithmatex">\[P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \quad \text{provided } P(B) &gt; 0\]</div>
+<p>This reads: "the probability of <span class="arithmatex">\(A\)</span> given <span class="arithmatex">\(B\)</span>."</p>
+<p><strong>Intuition:</strong> Once we know <span class="arithmatex">\(B\)</span> happened, the sample space effectively shrinks to <span class="arithmatex">\(B\)</span>, and we ask how much of <span class="arithmatex">\(B\)</span> is also in <span class="arithmatex">\(A\)</span>.</p>
+<p><strong>Worked Example:</strong>
+A standard deck of 52 cards. What is the probability a card is a King given it is a face card?</p>
+<ul>
+<li><span class="arithmatex">\(B\)</span> = face card: there are 12 face cards (J, Q, K of each suit), so <span class="arithmatex">\(P(B) = \frac{12}{52}\)</span></li>
+<li><span class="arithmatex">\(A \cap B\)</span> = King and face card = King: there are 4 Kings, so <span class="arithmatex">\(P(A \cap B) = \frac{4}{52}\)</span></li>
+</ul>
+<div class="arithmatex">\[P(\text{King} \mid \text{Face card}) = \frac{P(A \cap B)}{P(B)} = \frac{4/52}{12/52} = \frac{4}{12} = \frac{1}{3}\]</div>
+<h3 id="22-independence">2.2 Independence<a class="headerlink" href="#22-independence" title="Permanent link">&para;</a></h3>
+<p>Two events <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are <strong>independent</strong> if knowing one gives no information about the other. Formally:</p>
+<div class="arithmatex">\[P(A \cap B) = P(A) \cdot P(B)\]</div>
+<p>Equivalently, if <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are independent:</p>
+<div class="arithmatex">\[P(A \mid B) = P(A) \quad \text{and} \quad P(B \mid A) = P(B)\]</div>
+<p><strong>Example:</strong>
+Rolling two fair dice. Let <span class="arithmatex">\(A\)</span> = "first die shows 3" and <span class="arithmatex">\(B\)</span> = "second die shows 5."</p>
+<div class="arithmatex">\[P(A) = \frac{1}{6}, \quad P(B) = \frac{1}{6}, \quad P(A \cap B) = \frac{1}{36} = \frac{1}{6} \cdot \frac{1}{6}\]</div>
+<p>Since <span class="arithmatex">\(P(A \cap B) = P(A)P(B)\)</span>, the events are independent.</p>
+<p><strong>Warning:</strong> Independence is not the same as mutual exclusivity. If <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are mutually exclusive and both have positive probability, they are <strong>not</strong> independent (knowing one happened tells you the other did not).</p>
+<hr />
+<h2 id="part-3-bayes-theorem">Part 3: Bayes' Theorem<a class="headerlink" href="#part-3-bayes-theorem" title="Permanent link">&para;</a></h2>
+<h3 id="31-the-formula">3.1 The Formula<a class="headerlink" href="#31-the-formula" title="Permanent link">&para;</a></h3>
+<p><strong>Bayes' theorem</strong> lets us "reverse" conditional probabilities:</p>
+<div class="arithmatex">\[\boxed{P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}}\]</div>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Name</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(P(A \mid B)\)</span></td>
+<td><strong>Posterior</strong></td>
+<td>Updated belief about <span class="arithmatex">\(A\)</span> after observing <span class="arithmatex">\(B\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P(A)\)</span></td>
+<td><strong>Prior</strong></td>
+<td>Initial belief about <span class="arithmatex">\(A\)</span> before seeing evidence</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P(B \mid A)\)</span></td>
+<td><strong>Likelihood</strong></td>
+<td>How probable the evidence <span class="arithmatex">\(B\)</span> is if <span class="arithmatex">\(A\)</span> is true</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P(B)\)</span></td>
+<td><strong>Evidence</strong> (marginal likelihood)</td>
+<td>Total probability of observing <span class="arithmatex">\(B\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-the-law-of-total-probability">3.2 The Law of Total Probability<a class="headerlink" href="#32-the-law-of-total-probability" title="Permanent link">&para;</a></h3>
+<p>The denominator <span class="arithmatex">\(P(B)\)</span> is often computed using the <strong>law of total probability</strong>. If <span class="arithmatex">\(A_1, A_2, \ldots, A_n\)</span> partition <span class="arithmatex">\(\Omega\)</span>:</p>
+<div class="arithmatex">\[P(B) = \sum_{i=1}^{n} P(B \mid A_i) \, P(A_i)\]</div>
+<p>For two complementary events <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(A^c\)</span>:</p>
+<div class="arithmatex">\[P(B) = P(B \mid A) \, P(A) + P(B \mid A^c) \, P(A^c)\]</div>
+<h3 id="33-worked-example-medical-testing">3.3 Worked Example: Medical Testing<a class="headerlink" href="#33-worked-example-medical-testing" title="Permanent link">&para;</a></h3>
+<p>A disease affects 1% of the population. A test has:
+- <strong>Sensitivity</strong> (true positive rate): <span class="arithmatex">\(P(\text{Positive} \mid \text{Disease}) = 0.95\)</span>
+- <strong>Specificity</strong> (true negative rate): <span class="arithmatex">\(P(\text{Negative} \mid \text{No Disease}) = 0.90\)</span></p>
+<p>If a person tests positive, what is <span class="arithmatex">\(P(\text{Disease} \mid \text{Positive})\)</span>?</p>
+<p><strong>Step 1:</strong> Define events and assign values.
+- <span class="arithmatex">\(P(D) = 0.01\)</span>, <span class="arithmatex">\(P(D^c) = 0.99\)</span>
+- <span class="arithmatex">\(P(+ \mid D) = 0.95\)</span>, <span class="arithmatex">\(P(+ \mid D^c) = 1 - 0.90 = 0.10\)</span></p>
+<p><strong>Step 2:</strong> Compute <span class="arithmatex">\(P(+)\)</span> using the law of total probability.</p>
+<div class="arithmatex">\[P(+) = P(+ \mid D) \, P(D) + P(+ \mid D^c) \, P(D^c)$$
+$$P(+) = (0.95)(0.01) + (0.10)(0.99) = 0.0095 + 0.099 = 0.1085\]</div>
+<p><strong>Step 3:</strong> Apply Bayes' theorem.</p>
+<div class="arithmatex">\[P(D \mid +) = \frac{P(+ \mid D) \, P(D)}{P(+)} = \frac{(0.95)(0.01)}{0.1085} = \frac{0.0095}{0.1085} \approx 0.0876\]</div>
+<p><strong>Interpretation:</strong> Even with a positive test, there is only about an 8.8% chance the person actually has the disease. This counterintuitive result arises because the disease is rare (low prior), so false positives outnumber true positives.</p>
+<hr />
+<h2 id="part-4-discrete-random-variables">Part 4: Discrete Random Variables<a class="headerlink" href="#part-4-discrete-random-variables" title="Permanent link">&para;</a></h2>
+<h3 id="41-definitions">4.1 Definitions<a class="headerlink" href="#41-definitions" title="Permanent link">&para;</a></h3>
+<p>A <strong>random variable</strong> <span class="arithmatex">\(X\)</span> is a function that maps outcomes in the sample space to real numbers:</p>
+<div class="arithmatex">\[X: \Omega \to \mathbb{R}\]</div>
+<p>A random variable is <strong>discrete</strong> if it takes values from a countable set (e.g., <span class="arithmatex">\(\{0, 1, 2, \ldots\}\)</span>).</p>
+<p>The <strong>probability mass function (PMF)</strong> of a discrete random variable <span class="arithmatex">\(X\)</span> is:</p>
+<div class="arithmatex">\[p(x) = P(X = x)\]</div>
+<p><strong>Properties of a valid PMF:</strong></p>
+<ol>
+<li><span class="arithmatex">\(p(x) \geq 0\)</span> for all <span class="arithmatex">\(x\)</span></li>
+<li><span class="arithmatex">\(\displaystyle\sum_{\text{all } x} p(x) = 1\)</span></li>
+</ol>
+<h3 id="42-bernoulli-distribution">4.2 Bernoulli Distribution<a class="headerlink" href="#42-bernoulli-distribution" title="Permanent link">&para;</a></h3>
+<p>A single trial with two outcomes: success (<span class="arithmatex">\(X = 1\)</span>) with probability <span class="arithmatex">\(p\)</span>, or failure (<span class="arithmatex">\(X = 0\)</span>) with probability <span class="arithmatex">\(1 - p\)</span>.</p>
+<div class="arithmatex">\[X \sim \text{Bernoulli}(p)\]</div>
+<div class="arithmatex">\[P(X = x) = p^x (1-p)^{1-x}, \quad x \in \{0, 1\}\]</div>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mean</td>
+<td><span class="arithmatex">\(E[X] = p\)</span></td>
+</tr>
+<tr>
+<td>Variance</td>
+<td><span class="arithmatex">\(\text{Var}(X) = p(1-p)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong> A coin flip with <span class="arithmatex">\(P(\text{Heads}) = 0.6\)</span>. Then <span class="arithmatex">\(X \sim \text{Bernoulli}(0.6)\)</span>.</p>
+<h3 id="43-binomial-distribution">4.3 Binomial Distribution<a class="headerlink" href="#43-binomial-distribution" title="Permanent link">&para;</a></h3>
+<p>The number of successes in <span class="arithmatex">\(n\)</span> independent Bernoulli trials, each with success probability <span class="arithmatex">\(p\)</span>.</p>
+<div class="arithmatex">\[X \sim \text{Binomial}(n, p)\]</div>
+<div class="arithmatex">\[P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0, 1, 2, \ldots, n\]</div>
+<p>where <span class="arithmatex">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span> is the binomial coefficient.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mean</td>
+<td><span class="arithmatex">\(E[X] = np\)</span></td>
+</tr>
+<tr>
+<td>Variance</td>
+<td><span class="arithmatex">\(\text{Var}(X) = np(1-p)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Worked Example:</strong>
+A fair coin is flipped 10 times. What is the probability of getting exactly 4 heads?</p>
+<div class="arithmatex">\[P(X = 4) = \binom{10}{4} (0.5)^4 (0.5)^{6} = \binom{10}{4} (0.5)^{10}$$
+$$= \frac{10!}{4! \cdot 6!} \cdot \frac{1}{1024} = \frac{210}{1024} \approx 0.2051\]</div>
+<h3 id="44-geometric-distribution">4.4 Geometric Distribution<a class="headerlink" href="#44-geometric-distribution" title="Permanent link">&para;</a></h3>
+<p>The number of trials until the first success in a sequence of independent Bernoulli trials.</p>
+<div class="arithmatex">\[X \sim \text{Geometric}(p)\]</div>
+<div class="arithmatex">\[P(X = k) = (1-p)^{k-1} p, \quad k = 1, 2, 3, \ldots\]</div>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mean</td>
+<td><span class="arithmatex">\(E[X] = \frac{1}{p}\)</span></td>
+</tr>
+<tr>
+<td>Variance</td>
+<td><span class="arithmatex">\(\text{Var}(X) = \frac{1-p}{p^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Worked Example:</strong>
+You roll a fair die until you get a 6. What is the probability it takes exactly 3 rolls?</p>
+<div class="arithmatex">\[P(X = 3) = \left(\frac{5}{6}\right)^{2} \cdot \frac{1}{6} = \frac{25}{36} \cdot \frac{1}{6} = \frac{25}{216} \approx 0.1157\]</div>
+<p>The expected number of rolls: <span class="arithmatex">\(E[X] = \frac{1}{1/6} = 6\)</span>.</p>
+<hr />
+<h2 id="part-5-continuous-random-variables">Part 5: Continuous Random Variables<a class="headerlink" href="#part-5-continuous-random-variables" title="Permanent link">&para;</a></h2>
+<h3 id="51-definitions">5.1 Definitions<a class="headerlink" href="#51-definitions" title="Permanent link">&para;</a></h3>
+<p>A random variable is <strong>continuous</strong> if it can take any value in an interval (or union of intervals).</p>
+<p>The <strong>probability density function (PDF)</strong> <span class="arithmatex">\(f(x)\)</span> satisfies:</p>
+<ol>
+<li><span class="arithmatex">\(f(x) \geq 0\)</span> for all <span class="arithmatex">\(x\)</span></li>
+<li><span class="arithmatex">\(\displaystyle\int_{-\infty}^{\infty} f(x) \, dx = 1\)</span></li>
+<li><span class="arithmatex">\(\displaystyle P(a \leq X \leq b) = \int_{a}^{b} f(x) \, dx\)</span></li>
+</ol>
+<p><strong>Important:</strong> For a continuous random variable, <span class="arithmatex">\(P(X = x) = 0\)</span> for any specific value <span class="arithmatex">\(x\)</span>. Only intervals have nonzero probability.</p>
+<p>The <strong>cumulative distribution function (CDF)</strong> is:</p>
+<div class="arithmatex">\[F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t) \, dt\]</div>
+<p><strong>Properties of the CDF:</strong>
+- <span class="arithmatex">\(F(-\infty) = 0\)</span> and <span class="arithmatex">\(F(\infty) = 1\)</span>
+- <span class="arithmatex">\(F\)</span> is non-decreasing
+- <span class="arithmatex">\(f(x) = \frac{d}{dx} F(x)\)</span> (the PDF is the derivative of the CDF)</p>
+<h3 id="52-uniform-distribution">5.2 Uniform Distribution<a class="headerlink" href="#52-uniform-distribution" title="Permanent link">&para;</a></h3>
+<p>A random variable is equally likely to take any value in the interval <span class="arithmatex">\([a, b]\)</span>.</p>
+<div class="arithmatex">\[X \sim \text{Uniform}(a, b)\]</div>
+<div class="arithmatex">\[f(x) = \begin{cases} \frac{1}{b - a} &amp; \text{if } a \leq x \leq b \\ 0 &amp; \text{otherwise} \end{cases}\]</div>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mean</td>
+<td><span class="arithmatex">\(E[X] = \frac{a + b}{2}\)</span></td>
+</tr>
+<tr>
+<td>Variance</td>
+<td><span class="arithmatex">\(\text{Var}(X) = \frac{(b - a)^2}{12}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong> If <span class="arithmatex">\(X \sim \text{Uniform}(0, 10)\)</span>, then <span class="arithmatex">\(E[X] = 5\)</span> and <span class="arithmatex">\(P(2 \leq X \leq 5) = \frac{5-2}{10-0} = 0.3\)</span>.</p>
+<h3 id="53-exponential-distribution">5.3 Exponential Distribution<a class="headerlink" href="#53-exponential-distribution" title="Permanent link">&para;</a></h3>
+<p>Models the time between events in a Poisson process. The parameter <span class="arithmatex">\(\lambda &gt; 0\)</span> is the rate.</p>
+<div class="arithmatex">\[X \sim \text{Exponential}(\lambda)\]</div>
+<div class="arithmatex">\[f(x) = \begin{cases} \lambda e^{-\lambda x} &amp; \text{if } x \geq 0 \\ 0 &amp; \text{if } x &lt; 0 \end{cases}\]</div>
+<div class="arithmatex">\[F(x) = 1 - e^{-\lambda x}, \quad x \geq 0\]</div>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mean</td>
+<td><span class="arithmatex">\(E[X] = \frac{1}{\lambda}\)</span></td>
+</tr>
+<tr>
+<td>Variance</td>
+<td><span class="arithmatex">\(\text{Var}(X) = \frac{1}{\lambda^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key property (Memoryless):</strong></p>
+<div class="arithmatex">\[P(X &gt; s + t \mid X &gt; s) = P(X &gt; t)\]</div>
+<p><strong>Worked Example:</strong>
+Light bulbs fail at a rate of <span class="arithmatex">\(\lambda = 0.01\)</span> per hour. What is the probability a bulb lasts more than 200 hours?</p>
+<div class="arithmatex">\[P(X &gt; 200) = 1 - F(200) = e^{-0.01 \cdot 200} = e^{-2} \approx 0.1353\]</div>
+<h3 id="54-gaussian-normal-distribution">5.4 Gaussian (Normal) Distribution<a class="headerlink" href="#54-gaussian-normal-distribution" title="Permanent link">&para;</a></h3>
+<p>The most important distribution in statistics and machine learning.</p>
+<div class="arithmatex">\[X \sim \mathcal{N}(\mu, \sigma^2)\]</div>
+<div class="arithmatex">\[f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)\]</div>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mean</td>
+<td><span class="arithmatex">\(E[X] = \mu\)</span></td>
+</tr>
+<tr>
+<td>Variance</td>
+<td><span class="arithmatex">\(\text{Var}(X) = \sigma^2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Full details on the Gaussian are in Part 7 below.</p>
+<hr />
+<h2 id="part-6-expected-value-and-variance">Part 6: Expected Value and Variance<a class="headerlink" href="#part-6-expected-value-and-variance" title="Permanent link">&para;</a></h2>
+<h3 id="61-expected-value-mean">6.1 Expected Value (Mean)<a class="headerlink" href="#61-expected-value-mean" title="Permanent link">&para;</a></h3>
+<p>The <strong>expected value</strong> is the long-run average of a random variable.</p>
+<p><strong>Discrete case:</strong></p>
+<div class="arithmatex">\[E[X] = \sum_{x} x \, p(x)\]</div>
+<p><strong>Continuous case:</strong></p>
+<div class="arithmatex">\[E[X] = \int_{-\infty}^{\infty} x \, f(x) \, dx\]</div>
+<p><strong>Expected value of a function <span class="arithmatex">\(g(X)\)</span>:</strong></p>
+<div class="arithmatex">\[E[g(X)] = \sum_{x} g(x) \, p(x) \quad \text{(discrete)}\]</div>
+<div class="arithmatex">\[E[g(X)] = \int_{-\infty}^{\infty} g(x) \, f(x) \, dx \quad \text{(continuous)}\]</div>
+<h3 id="62-properties-of-expected-value">6.2 Properties of Expected Value<a class="headerlink" href="#62-properties-of-expected-value" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linearity</td>
+<td><span class="arithmatex">\(E[aX + b] = aE[X] + b\)</span></td>
+</tr>
+<tr>
+<td>Sum</td>
+<td><span class="arithmatex">\(E[X + Y] = E[X] + E[Y]\)</span> (always, even if dependent)</td>
+</tr>
+<tr>
+<td>Product (independent)</td>
+<td><span class="arithmatex">\(E[XY] = E[X] \cdot E[Y]\)</span> (only if <span class="arithmatex">\(X, Y\)</span> are independent)</td>
+</tr>
+<tr>
+<td>Constant</td>
+<td><span class="arithmatex">\(E[c] = c\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Worked Example:</strong>
+Let <span class="arithmatex">\(X\)</span> be a die roll. Compute <span class="arithmatex">\(E[X]\)</span>.</p>
+<div class="arithmatex">\[E[X] = \sum_{x=1}^{6} x \cdot \frac{1}{6} = \frac{1}{6}(1 + 2 + 3 + 4 + 5 + 6) = \frac{21}{6} = 3.5\]</div>
+<h3 id="63-variance">6.3 Variance<a class="headerlink" href="#63-variance" title="Permanent link">&para;</a></h3>
+<p><strong>Variance</strong> measures how spread out a distribution is around its mean.</p>
+<div class="arithmatex">\[\text{Var}(X) = E\left[(X - E[X])^2\right]\]</div>
+<p><strong>Shortcut formula (very useful for computation):</strong></p>
+<div class="arithmatex">\[\boxed{\text{Var}(X) = E[X^2] - (E[X])^2}\]</div>
+<p>The <strong>standard deviation</strong> is <span class="arithmatex">\(\sigma = \sqrt{\text{Var}(X)}\)</span>.</p>
+<h3 id="64-properties-of-variance">6.4 Properties of Variance<a class="headerlink" href="#64-properties-of-variance" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scaling</td>
+<td><span class="arithmatex">\(\text{Var}(aX) = a^2 \text{Var}(X)\)</span></td>
+</tr>
+<tr>
+<td>Shift</td>
+<td><span class="arithmatex">\(\text{Var}(X + b) = \text{Var}(X)\)</span></td>
+</tr>
+<tr>
+<td>Affine</td>
+<td><span class="arithmatex">\(\text{Var}(aX + b) = a^2 \text{Var}(X)\)</span></td>
+</tr>
+<tr>
+<td>Sum (independent)</td>
+<td><span class="arithmatex">\(\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)\)</span> (only if independent)</td>
+</tr>
+<tr>
+<td>Constant</td>
+<td><span class="arithmatex">\(\text{Var}(c) = 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Worked Example:</strong>
+Let <span class="arithmatex">\(X\)</span> be a die roll. Compute <span class="arithmatex">\(\text{Var}(X)\)</span>.</p>
+<p>First, compute <span class="arithmatex">\(E[X^2]\)</span>:</p>
+<div class="arithmatex">\[E[X^2] = \frac{1}{6}(1^2 + 2^2 + 3^2 + 4^2 + 5^2 + 6^2) = \frac{1}{6}(1 + 4 + 9 + 16 + 25 + 36) = \frac{91}{6} \approx 15.167\]</div>
+<p>We already know <span class="arithmatex">\(E[X] = 3.5\)</span>, so <span class="arithmatex">\((E[X])^2 = 12.25\)</span>.</p>
+<div class="arithmatex">\[\text{Var}(X) = E[X^2] - (E[X])^2 = \frac{91}{6} - \frac{49}{4} = \frac{182}{12} - \frac{147}{12} = \frac{35}{12} \approx 2.917\]</div>
+<hr />
+<h2 id="part-7-gaussian-normal-distribution-in-depth">Part 7: Gaussian (Normal) Distribution in Depth<a class="headerlink" href="#part-7-gaussian-normal-distribution-in-depth" title="Permanent link">&para;</a></h2>
+<h3 id="71-definition">7.1 Definition<a class="headerlink" href="#71-definition" title="Permanent link">&para;</a></h3>
+<p>The Gaussian distribution with mean <span class="arithmatex">\(\mu\)</span> and variance <span class="arithmatex">\(\sigma^2\)</span> has PDF:</p>
+<div class="arithmatex">\[f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right), \quad x \in \mathbb{R}\]</div>
+<p>We write <span class="arithmatex">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>.</p>
+<h3 id="72-the-standard-normal-distribution">7.2 The Standard Normal Distribution<a class="headerlink" href="#72-the-standard-normal-distribution" title="Permanent link">&para;</a></h3>
+<p>When <span class="arithmatex">\(\mu = 0\)</span> and <span class="arithmatex">\(\sigma^2 = 1\)</span>, we get the <strong>standard normal</strong> <span class="arithmatex">\(Z \sim \mathcal{N}(0, 1)\)</span>:</p>
+<div class="arithmatex">\[\phi(z) = \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{z^2}{2}\right)\]</div>
+<p><strong>Standardization:</strong> Any normal random variable can be converted to a standard normal:</p>
+<div class="arithmatex">\[Z = \frac{X - \mu}{\sigma}\]</div>
+<h3 id="73-key-properties">7.3 Key Properties<a class="headerlink" href="#73-key-properties" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Symmetry</td>
+<td>The PDF is symmetric about <span class="arithmatex">\(\mu\)</span></td>
+</tr>
+<tr>
+<td>68-95-99.7 Rule</td>
+<td>~68% of values fall within <span class="arithmatex">\(\mu \pm \sigma\)</span>, ~95% within <span class="arithmatex">\(\mu \pm 2\sigma\)</span>, ~99.7% within <span class="arithmatex">\(\mu \pm 3\sigma\)</span></td>
+</tr>
+<tr>
+<td>Linear closure</td>
+<td>If <span class="arithmatex">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span>, then <span class="arithmatex">\(aX + b \sim \mathcal{N}(a\mu + b, \, a^2\sigma^2)\)</span></td>
+</tr>
+<tr>
+<td>Sum of normals</td>
+<td>If <span class="arithmatex">\(X \sim \mathcal{N}(\mu_1, \sigma_1^2)\)</span> and <span class="arithmatex">\(Y \sim \mathcal{N}(\mu_2, \sigma_2^2)\)</span> are independent, then <span class="arithmatex">\(X + Y \sim \mathcal{N}(\mu_1 + \mu_2, \, \sigma_1^2 + \sigma_2^2)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Worked Example:</strong>
+Exam scores are distributed as <span class="arithmatex">\(X \sim \mathcal{N}(75, 100)\)</span> (mean 75, standard deviation 10). What fraction of students score above 90?</p>
+<p>Standardize:</p>
+<div class="arithmatex">\[Z = \frac{90 - 75}{10} = 1.5\]</div>
+<div class="arithmatex">\[P(X &gt; 90) = P(Z &gt; 1.5) = 1 - \Phi(1.5) \approx 1 - 0.9332 = 0.0668\]</div>
+<p>About 6.7% of students score above 90.</p>
+<h3 id="74-why-the-gaussian-matters-in-machine-learning">7.4 Why the Gaussian Matters in Machine Learning<a class="headerlink" href="#74-why-the-gaussian-matters-in-machine-learning" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The <strong>Central Limit Theorem</strong> states that the sum of many independent random variables tends toward a Gaussian, regardless of their individual distributions.</li>
+<li>Many ML algorithms assume Gaussian noise (linear regression, Gaussian processes).</li>
+<li>The multivariate Gaussian is fundamental to dimensionality reduction (PCA) and generative models.</li>
+</ul>
+<hr />
+<h2 id="part-8-joint-and-marginal-distributions">Part 8: Joint and Marginal Distributions<a class="headerlink" href="#part-8-joint-and-marginal-distributions" title="Permanent link">&para;</a></h2>
+<h3 id="81-joint-distribution">8.1 Joint Distribution<a class="headerlink" href="#81-joint-distribution" title="Permanent link">&para;</a></h3>
+<p>The <strong>joint distribution</strong> describes the probability behavior of two (or more) random variables simultaneously.</p>
+<p><strong>Discrete (Joint PMF):</strong></p>
+<div class="arithmatex">\[p(x, y) = P(X = x, Y = y)\]</div>
+<p>Properties:
+- <span class="arithmatex">\(p(x, y) \geq 0\)</span> for all <span class="arithmatex">\(x, y\)</span>
+- <span class="arithmatex">\(\displaystyle\sum_{x}\sum_{y} p(x, y) = 1\)</span></p>
+<p><strong>Continuous (Joint PDF):</strong></p>
+<div class="arithmatex">\[f(x, y) \geq 0 \quad \text{and} \quad \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x, y) \, dx \, dy = 1\]</div>
+<h3 id="82-marginal-distribution">8.2 Marginal Distribution<a class="headerlink" href="#82-marginal-distribution" title="Permanent link">&para;</a></h3>
+<p>The <strong>marginal distribution</strong> of one variable is obtained by summing (or integrating) over the other variable.</p>
+<p><strong>Discrete:</strong></p>
+<div class="arithmatex">\[p_X(x) = \sum_{y} p(x, y) \qquad \text{and} \qquad p_Y(y) = \sum_{x} p(x, y)\]</div>
+<p><strong>Continuous:</strong></p>
+<div class="arithmatex">\[f_X(x) = \int_{-\infty}^{\infty} f(x, y) \, dy \qquad \text{and} \qquad f_Y(y) = \int_{-\infty}^{\infty} f(x, y) \, dx\]</div>
+<p><strong>Worked Example (Discrete):</strong>
+Consider two discrete random variables <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> with the following joint PMF table:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><span class="arithmatex">\(Y = 0\)</span></th>
+<th><span class="arithmatex">\(Y = 1\)</span></th>
+<th><span class="arithmatex">\(p_X(x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(X = 0\)</span></td>
+<td>0.1</td>
+<td>0.2</td>
+<td><strong>0.3</strong></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(X = 1\)</span></td>
+<td>0.3</td>
+<td>0.4</td>
+<td><strong>0.7</strong></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(p_Y(y)\)</span></td>
+<td><strong>0.4</strong></td>
+<td><strong>0.6</strong></td>
+<td><strong>1.0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Marginals are computed by summing each row or column:
+- <span class="arithmatex">\(p_X(0) = 0.1 + 0.2 = 0.3\)</span>
+- <span class="arithmatex">\(p_X(1) = 0.3 + 0.4 = 0.7\)</span>
+- <span class="arithmatex">\(p_Y(0) = 0.1 + 0.3 = 0.4\)</span>
+- <span class="arithmatex">\(p_Y(1) = 0.2 + 0.4 = 0.6\)</span></p>
+<h3 id="83-independence-of-random-variables">8.3 Independence of Random Variables<a class="headerlink" href="#83-independence-of-random-variables" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are <strong>independent</strong> if and only if:</p>
+<div class="arithmatex">\[p(x, y) = p_X(x) \cdot p_Y(y) \quad \text{for all } x, y\]</div>
+<p>Check the example above: <span class="arithmatex">\(p(0, 0) = 0.1\)</span> but <span class="arithmatex">\(p_X(0) \cdot p_Y(0) = 0.3 \times 0.4 = 0.12 \neq 0.1\)</span>. So <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are <strong>not</strong> independent.</p>
+<hr />
+<h2 id="part-9-covariance-and-correlation">Part 9: Covariance and Correlation<a class="headerlink" href="#part-9-covariance-and-correlation" title="Permanent link">&para;</a></h2>
+<h3 id="91-covariance">9.1 Covariance<a class="headerlink" href="#91-covariance" title="Permanent link">&para;</a></h3>
+<p><strong>Covariance</strong> measures how two random variables vary together:</p>
+<div class="arithmatex">\[\text{Cov}(X, Y) = E\left[(X - E[X])(Y - E[Y])\right]\]</div>
+<p><strong>Shortcut formula:</strong></p>
+<div class="arithmatex">\[\boxed{\text{Cov}(X, Y) = E[XY] - E[X] \cdot E[Y]}\]</div>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\text{Cov}(X,Y) &gt; 0\)</span></td>
+<td><span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> tend to increase together</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\text{Cov}(X,Y) &lt; 0\)</span></td>
+<td>When <span class="arithmatex">\(X\)</span> increases, <span class="arithmatex">\(Y\)</span> tends to decrease</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\text{Cov}(X,Y) = 0\)</span></td>
+<td>No linear relationship (uncorrelated)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Properties of Covariance:</strong></p>
+<ul>
+<li><span class="arithmatex">\(\text{Cov}(X, X) = \text{Var}(X)\)</span></li>
+<li><span class="arithmatex">\(\text{Cov}(X, Y) = \text{Cov}(Y, X)\)</span> (symmetric)</li>
+<li><span class="arithmatex">\(\text{Cov}(aX + b, \, cY + d) = ac \, \text{Cov}(X, Y)\)</span></li>
+<li>If <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent, then <span class="arithmatex">\(\text{Cov}(X, Y) = 0\)</span> (the converse is not always true)</li>
+</ul>
+<h3 id="92-correlation-coefficient">9.2 Correlation Coefficient<a class="headerlink" href="#92-correlation-coefficient" title="Permanent link">&para;</a></h3>
+<p>The <strong>Pearson correlation coefficient</strong> normalizes covariance to the range <span class="arithmatex">\([-1, 1]\)</span>:</p>
+<div class="arithmatex">\[\boxed{\rho_{XY} = \frac{\text{Cov}(X, Y)}{\sqrt{\text{Var}(X)} \cdot \sqrt{\text{Var}(Y)}} = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}}\]</div>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\rho = 1\)</span></td>
+<td>Perfect positive linear relationship</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\rho = -1\)</span></td>
+<td>Perfect negative linear relationship</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\rho = 0\)</span></td>
+<td>No linear relationship (uncorrelated)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(0 &lt; \rho &lt; 1\)</span></td>
+<td>Positive linear tendency</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(-1 &lt; \rho &lt; 0\)</span></td>
+<td>Negative linear tendency</td>
+</tr>
+</tbody>
+</table>
+<h3 id="93-variance-of-a-sum-general-case">9.3 Variance of a Sum (General Case)<a class="headerlink" href="#93-variance-of-a-sum-general-case" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) + 2\,\text{Cov}(X, Y)\]</div>
+<p>If <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent (so <span class="arithmatex">\(\text{Cov}(X,Y) = 0\)</span>):</p>
+<div class="arithmatex">\[\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)\]</div>
+<p><strong>Worked Example:</strong>
+Using the joint PMF from Part 8, compute <span class="arithmatex">\(\text{Cov}(X, Y)\)</span>.</p>
+<p>From the table: <span class="arithmatex">\(E[X] = 0(0.3) + 1(0.7) = 0.7\)</span> and <span class="arithmatex">\(E[Y] = 0(0.4) + 1(0.6) = 0.6\)</span>.</p>
+<div class="arithmatex">\[E[XY] = \sum_x \sum_y xy \, p(x,y) = (0)(0)(0.1) + (0)(1)(0.2) + (1)(0)(0.3) + (1)(1)(0.4) = 0.4\]</div>
+<div class="arithmatex">\[\text{Cov}(X,Y) = E[XY] - E[X]E[Y] = 0.4 - (0.7)(0.6) = 0.4 - 0.42 = -0.02\]</div>
+<p>The small negative covariance indicates a very slight negative association.</p>
+<hr />
+<h2 id="part-10-sum-rule-and-product-rule">Part 10: Sum Rule and Product Rule<a class="headerlink" href="#part-10-sum-rule-and-product-rule" title="Permanent link">&para;</a></h2>
+<h3 id="101-the-two-fundamental-rules">10.1 The Two Fundamental Rules<a class="headerlink" href="#101-the-two-fundamental-rules" title="Permanent link">&para;</a></h3>
+<p>These two rules form the foundation of all probabilistic reasoning.</p>
+<p><strong>Product Rule (Chain Rule):</strong></p>
+<div class="arithmatex">\[P(A, B) = P(A \mid B) \, P(B) = P(B \mid A) \, P(A)\]</div>
+<p>This generalizes to multiple variables:</p>
+<div class="arithmatex">\[P(A, B, C) = P(A \mid B, C) \, P(B \mid C) \, P(C)\]</div>
+<p><strong>Sum Rule (Marginalization):</strong></p>
+<div class="arithmatex">\[P(A) = \sum_{B} P(A, B) = \sum_{B} P(A \mid B) \, P(B)\]</div>
+<h3 id="102-discrete-case">10.2 Discrete Case<a class="headerlink" href="#102-discrete-case" title="Permanent link">&para;</a></h3>
+<p>For discrete random variables <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span>:</p>
+<p><strong>Product rule:</strong></p>
+<div class="arithmatex">\[p(x, y) = p(x \mid y) \, p(y) = p(y \mid x) \, p(x)\]</div>
+<p><strong>Sum rule (marginalization):</strong></p>
+<div class="arithmatex">\[p(x) = \sum_{y} p(x, y) = \sum_{y} p(x \mid y) \, p(y)\]</div>
+<h3 id="103-continuous-case">10.3 Continuous Case<a class="headerlink" href="#103-continuous-case" title="Permanent link">&para;</a></h3>
+<p>For continuous random variables <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span>:</p>
+<p><strong>Product rule:</strong></p>
+<div class="arithmatex">\[f(x, y) = f(x \mid y) \, f(y) = f(y \mid x) \, f(x)\]</div>
+<p><strong>Sum rule (marginalization):</strong></p>
+<div class="arithmatex">\[f(x) = \int_{-\infty}^{\infty} f(x, y) \, dy = \int_{-\infty}^{\infty} f(x \mid y) \, f(y) \, dy\]</div>
+<h3 id="104-connection-to-bayes-theorem">10.4 Connection to Bayes' Theorem<a class="headerlink" href="#104-connection-to-bayes-theorem" title="Permanent link">&para;</a></h3>
+<p>Bayes' theorem is a direct consequence of applying the product rule in both directions and then dividing:</p>
+<div class="arithmatex">\[f(y \mid x) = \frac{f(x \mid y) \, f(y)}{f(x)} = \frac{f(x \mid y) \, f(y)}{\int f(x \mid y') \, f(y') \, dy'}\]</div>
+<p>The denominator uses the sum rule to compute the marginal <span class="arithmatex">\(f(x)\)</span>.</p>
+<p><strong>Worked Example:</strong>
+Suppose <span class="arithmatex">\(Y \in \{0, 1\}\)</span> with <span class="arithmatex">\(P(Y=1) = 0.3\)</span> and <span class="arithmatex">\(P(Y=0) = 0.7\)</span>. Also:
+- <span class="arithmatex">\(P(X = 1 \mid Y = 1) = 0.9\)</span>
+- <span class="arithmatex">\(P(X = 1 \mid Y = 0) = 0.2\)</span></p>
+<p>Find <span class="arithmatex">\(P(Y = 1 \mid X = 1)\)</span> using the sum and product rules.</p>
+<p><strong>Step 1 (Sum rule):</strong> Compute <span class="arithmatex">\(P(X = 1)\)</span>.</p>
+<div class="arithmatex">\[P(X=1) = P(X=1 \mid Y=1)P(Y=1) + P(X=1 \mid Y=0)P(Y=0)$$
+$$= (0.9)(0.3) + (0.2)(0.7) = 0.27 + 0.14 = 0.41\]</div>
+<p><strong>Step 2 (Bayes via product rule):</strong></p>
+<div class="arithmatex">\[P(Y=1 \mid X=1) = \frac{P(X=1 \mid Y=1) P(Y=1)}{P(X=1)} = \frac{(0.9)(0.3)}{0.41} = \frac{0.27}{0.41} \approx 0.6585\]</div>
+<hr />
+<h2 id="reference-table-of-common-distributions">Reference: Table of Common Distributions<a class="headerlink" href="#reference-table-of-common-distributions" title="Permanent link">&para;</a></h2>
+<h3 id="discrete-distributions">Discrete Distributions<a class="headerlink" href="#discrete-distributions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Distribution</th>
+<th>PMF <span class="arithmatex">\(P(X = k)\)</span></th>
+<th>Mean <span class="arithmatex">\(E[X]\)</span></th>
+<th>Variance <span class="arithmatex">\(\text{Var}(X)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\text{Bernoulli}(p)\)</span></td>
+<td><span class="arithmatex">\(p^k(1-p)^{1-k}\)</span>, <span class="arithmatex">\(k \in \{0,1\}\)</span></td>
+<td><span class="arithmatex">\(p\)</span></td>
+<td><span class="arithmatex">\(p(1-p)\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\text{Binomial}(n, p)\)</span></td>
+<td><span class="arithmatex">\(\binom{n}{k}p^k(1-p)^{n-k}\)</span>, <span class="arithmatex">\(k = 0,\ldots,n\)</span></td>
+<td><span class="arithmatex">\(np\)</span></td>
+<td><span class="arithmatex">\(np(1-p)\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\text{Geometric}(p)\)</span></td>
+<td><span class="arithmatex">\((1-p)^{k-1}p\)</span>, <span class="arithmatex">\(k = 1, 2, \ldots\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{p}\)</span></td>
+<td><span class="arithmatex">\(\frac{1-p}{p^2}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\text{Poisson}(\lambda)\)</span></td>
+<td><span class="arithmatex">\(\frac{\lambda^k e^{-\lambda}}{k!}\)</span>, <span class="arithmatex">\(k = 0, 1, 2, \ldots\)</span></td>
+<td><span class="arithmatex">\(\lambda\)</span></td>
+<td><span class="arithmatex">\(\lambda\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="continuous-distributions">Continuous Distributions<a class="headerlink" href="#continuous-distributions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Distribution</th>
+<th>PDF <span class="arithmatex">\(f(x)\)</span></th>
+<th>Mean <span class="arithmatex">\(E[X]\)</span></th>
+<th>Variance <span class="arithmatex">\(\text{Var}(X)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\text{Uniform}(a,b)\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{b-a}\)</span> for <span class="arithmatex">\(x \in [a,b]\)</span></td>
+<td><span class="arithmatex">\(\frac{a+b}{2}\)</span></td>
+<td><span class="arithmatex">\(\frac{(b-a)^2}{12}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\text{Exponential}(\lambda)\)</span></td>
+<td><span class="arithmatex">\(\lambda e^{-\lambda x}\)</span> for <span class="arithmatex">\(x \geq 0\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{\lambda}\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{\lambda^2}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathcal{N}(\mu, \sigma^2)\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{\sigma\sqrt{2\pi}} e^{-(x-\mu)^2/(2\sigma^2)}\)</span></td>
+<td><span class="arithmatex">\(\mu\)</span></td>
+<td><span class="arithmatex">\(\sigma^2\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\text{Beta}(\alpha, \beta)\)</span></td>
+<td><span class="arithmatex">\(\frac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha,\beta)}\)</span> for <span class="arithmatex">\(x \in [0,1]\)</span></td>
+<td><span class="arithmatex">\(\frac{\alpha}{\alpha+\beta}\)</span></td>
+<td><span class="arithmatex">\(\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="summary-key-takeaways">Summary: Key Takeaways<a class="headerlink" href="#summary-key-takeaways" title="Permanent link">&para;</a></h2>
+<h3 id="probability-foundations">Probability Foundations<a class="headerlink" href="#probability-foundations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A probability space is <span class="arithmatex">\((\Omega, \mathcal{F}, P)\)</span> satisfying the Kolmogorov axioms</li>
+<li>Conditional probability: <span class="arithmatex">\(P(A \mid B) = P(A \cap B) / P(B)\)</span></li>
+<li>Bayes' theorem: <span class="arithmatex">\(P(A \mid B) = P(B \mid A) P(A) / P(B)\)</span></li>
+</ul>
+<h3 id="random-variables">Random Variables<a class="headerlink" href="#random-variables" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Discrete: described by PMFs; Continuous: described by PDFs</li>
+<li>CDF: <span class="arithmatex">\(F(x) = P(X \leq x)\)</span> works for both types</li>
+</ul>
+<h3 id="key-formulas">Key Formulas<a class="headerlink" href="#key-formulas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Expected value: <span class="arithmatex">\(E[X] = \sum x \, p(x)\)</span> or <span class="arithmatex">\(\int x \, f(x) \, dx\)</span></li>
+<li>Variance shortcut: <span class="arithmatex">\(\text{Var}(X) = E[X^2] - (E[X])^2\)</span></li>
+<li>Covariance: <span class="arithmatex">\(\text{Cov}(X,Y) = E[XY] - E[X]E[Y]\)</span></li>
+<li>Correlation: <span class="arithmatex">\(\rho_{XY} = \text{Cov}(X,Y) / (\sigma_X \sigma_Y)\)</span></li>
+</ul>
+<h3 id="fundamental-rules">Fundamental Rules<a class="headerlink" href="#fundamental-rules" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Product rule: <span class="arithmatex">\(P(A, B) = P(A \mid B) P(B)\)</span></li>
+<li>Sum rule: <span class="arithmatex">\(P(A) = \sum_B P(A, B)\)</span></li>
+</ul>
+<hr />
+<h2 id="practice-problems">Practice Problems<a class="headerlink" href="#practice-problems" title="Permanent link">&para;</a></h2>
+<h3 id="problem-1">Problem 1<a class="headerlink" href="#problem-1" title="Permanent link">&para;</a></h3>
+<p>A bag contains 5 red balls and 3 blue balls. Two balls are drawn without replacement. What is the probability that both are red?</p>
+<h3 id="problem-2">Problem 2<a class="headerlink" href="#problem-2" title="Permanent link">&para;</a></h3>
+<p>A factory has two machines. Machine A produces 60% of items and Machine B produces 40%. The defect rate is 3% for Machine A and 5% for Machine B. If an item is found to be defective, what is the probability it came from Machine A?</p>
+<h3 id="problem-3">Problem 3<a class="headerlink" href="#problem-3" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(X \sim \text{Binomial}(8, 0.3)\)</span>. Compute <span class="arithmatex">\(P(X = 2)\)</span>, <span class="arithmatex">\(E[X]\)</span>, and <span class="arithmatex">\(\text{Var}(X)\)</span>.</p>
+<h3 id="problem-4">Problem 4<a class="headerlink" href="#problem-4" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(X \sim \mathcal{N}(50, 25)\)</span> (mean 50, variance 25, so <span class="arithmatex">\(\sigma = 5\)</span>). Find:
+- (a) <span class="arithmatex">\(P(X &gt; 60)\)</span>
+- (b) <span class="arithmatex">\(P(40 &lt; X &lt; 55)\)</span></p>
+<h3 id="problem-5">Problem 5<a class="headerlink" href="#problem-5" title="Permanent link">&para;</a></h3>
+<p>Random variables <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> have <span class="arithmatex">\(E[X] = 3\)</span>, <span class="arithmatex">\(E[Y] = 5\)</span>, <span class="arithmatex">\(E[X^2] = 13\)</span>, <span class="arithmatex">\(E[Y^2] = 30\)</span>, and <span class="arithmatex">\(E[XY] = 16\)</span>. Compute <span class="arithmatex">\(\text{Cov}(X,Y)\)</span>, <span class="arithmatex">\(\text{Var}(X)\)</span>, <span class="arithmatex">\(\text{Var}(Y)\)</span>, and the correlation <span class="arithmatex">\(\rho_{XY}\)</span>.</p>
+<h3 id="problem-6">Problem 6<a class="headerlink" href="#problem-6" title="Permanent link">&para;</a></h3>
+<p>Consider the continuous random variable <span class="arithmatex">\(X\)</span> with PDF:</p>
+<div class="arithmatex">\[f(x) = \begin{cases} cx^2 &amp; \text{if } 0 \leq x \leq 2 \\ 0 &amp; \text{otherwise} \end{cases}\]</div>
+<ul>
+<li>(a) Find the constant <span class="arithmatex">\(c\)</span> so that <span class="arithmatex">\(f\)</span> is a valid PDF.</li>
+<li>(b) Compute <span class="arithmatex">\(E[X]\)</span>.</li>
+<li>(c) Compute <span class="arithmatex">\(\text{Var}(X)\)</span>.</li>
+</ul>
+<hr />
+<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
+<p><strong>Solution 1:</strong></p>
+<p>Use the product rule (chain rule) for drawing without replacement.</p>
+<div class="arithmatex">\[P(\text{both red}) = P(R_1) \cdot P(R_2 \mid R_1) = \frac{5}{8} \cdot \frac{4}{7} = \frac{20}{56} = \frac{5}{14} \approx 0.3571\]</div>
+<hr />
+<p><strong>Solution 2:</strong></p>
+<p>Apply Bayes' theorem. Let <span class="arithmatex">\(A\)</span> = "from Machine A," <span class="arithmatex">\(B\)</span> = "from Machine B," and <span class="arithmatex">\(D\)</span> = "defective."</p>
+<ul>
+<li><span class="arithmatex">\(P(A) = 0.6\)</span>, <span class="arithmatex">\(P(B) = 0.4\)</span></li>
+<li><span class="arithmatex">\(P(D \mid A) = 0.03\)</span>, <span class="arithmatex">\(P(D \mid B) = 0.05\)</span></li>
+</ul>
+<p>First, compute <span class="arithmatex">\(P(D)\)</span> using the law of total probability:</p>
+<div class="arithmatex">\[P(D) = P(D \mid A)P(A) + P(D \mid B)P(B) = (0.03)(0.6) + (0.05)(0.4) = 0.018 + 0.02 = 0.038\]</div>
+<p>Then:</p>
+<div class="arithmatex">\[P(A \mid D) = \frac{P(D \mid A) P(A)}{P(D)} = \frac{(0.03)(0.6)}{0.038} = \frac{0.018}{0.038} \approx 0.4737\]</div>
+<p>There is about a 47.4% chance the defective item came from Machine A.</p>
+<hr />
+<p><strong>Solution 3:</strong></p>
+<p><span class="arithmatex">\(X \sim \text{Binomial}(8, 0.3)\)</span>.</p>
+<div class="arithmatex">\[P(X = 2) = \binom{8}{2}(0.3)^2(0.7)^6 = 28 \cdot 0.09 \cdot 0.117649 = 28 \cdot 0.01058841 \approx 0.2965\]</div>
+<div class="arithmatex">\[E[X] = np = 8 \times 0.3 = 2.4\]</div>
+<div class="arithmatex">\[\text{Var}(X) = np(1-p) = 8 \times 0.3 \times 0.7 = 1.68\]</div>
+<hr />
+<p><strong>Solution 4:</strong></p>
+<p><span class="arithmatex">\(X \sim \mathcal{N}(50, 25)\)</span>, so <span class="arithmatex">\(\mu = 50\)</span> and <span class="arithmatex">\(\sigma = 5\)</span>.</p>
+<p><strong>(a)</strong> Standardize:</p>
+<div class="arithmatex">\[Z = \frac{60 - 50}{5} = 2.0\]</div>
+<div class="arithmatex">\[P(X &gt; 60) = P(Z &gt; 2.0) = 1 - \Phi(2.0) \approx 1 - 0.9772 = 0.0228\]</div>
+<p>About 2.3% of the distribution lies above 60.</p>
+<p><strong>(b)</strong> Standardize both bounds:</p>
+<div class="arithmatex">\[Z_1 = \frac{40 - 50}{5} = -2.0, \quad Z_2 = \frac{55 - 50}{5} = 1.0\]</div>
+<div class="arithmatex">\[P(40 &lt; X &lt; 55) = \Phi(1.0) - \Phi(-2.0) \approx 0.8413 - 0.0228 = 0.8185\]</div>
+<p>About 81.9% of the distribution falls between 40 and 55.</p>
+<hr />
+<p><strong>Solution 5:</strong></p>
+<p><strong>Covariance:</strong></p>
+<div class="arithmatex">\[\text{Cov}(X,Y) = E[XY] - E[X]E[Y] = 16 - (3)(5) = 16 - 15 = 1\]</div>
+<p><strong>Variance of <span class="arithmatex">\(X\)</span>:</strong></p>
+<div class="arithmatex">\[\text{Var}(X) = E[X^2] - (E[X])^2 = 13 - 9 = 4 \quad \Rightarrow \quad \sigma_X = 2\]</div>
+<p><strong>Variance of <span class="arithmatex">\(Y\)</span>:</strong></p>
+<div class="arithmatex">\[\text{Var}(Y) = E[Y^2] - (E[Y])^2 = 30 - 25 = 5 \quad \Rightarrow \quad \sigma_Y = \sqrt{5}\]</div>
+<p><strong>Correlation:</strong></p>
+<div class="arithmatex">\[\rho_{XY} = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y} = \frac{1}{2\sqrt{5}} = \frac{1}{2\sqrt{5}} \cdot \frac{\sqrt{5}}{\sqrt{5}} = \frac{\sqrt{5}}{10} \approx 0.2236\]</div>
+<p>A moderate positive linear association.</p>
+<hr />
+<p><strong>Solution 6:</strong></p>
+<p><strong>(a)</strong> For <span class="arithmatex">\(f\)</span> to be a valid PDF, the total area must equal 1:</p>
+<div class="arithmatex">\[\int_0^2 cx^2 \, dx = c \left[\frac{x^3}{3}\right]_0^2 = c \cdot \frac{8}{3} = 1\]</div>
+<div class="arithmatex">\[c = \frac{3}{8}\]</div>
+<p><strong>(b)</strong> Expected value:</p>
+<div class="arithmatex">\[E[X] = \int_0^2 x \cdot \frac{3}{8}x^2 \, dx = \frac{3}{8}\int_0^2 x^3 \, dx = \frac{3}{8}\left[\frac{x^4}{4}\right]_0^2 = \frac{3}{8} \cdot \frac{16}{4} = \frac{3}{8} \cdot 4 = \frac{3}{2} = 1.5\]</div>
+<p><strong>(c)</strong> First compute <span class="arithmatex">\(E[X^2]\)</span>:</p>
+<div class="arithmatex">\[E[X^2] = \int_0^2 x^2 \cdot \frac{3}{8}x^2 \, dx = \frac{3}{8}\int_0^2 x^4 \, dx = \frac{3}{8}\left[\frac{x^5}{5}\right]_0^2 = \frac{3}{8} \cdot \frac{32}{5} = \frac{96}{40} = \frac{12}{5} = 2.4\]</div>
+<p>Then apply the variance shortcut:</p>
+<div class="arithmatex">\[\text{Var}(X) = E[X^2] - (E[X])^2 = 2.4 - (1.5)^2 = 2.4 - 2.25 = 0.15\]</div>
+<p>Equivalently, <span class="arithmatex">\(\text{Var}(X) = \frac{3}{20}\)</span>.</p>
+<hr />
+<p><strong>Course:</strong> Mathematics for Machine Learning
+<strong>Instructor:</strong> Mohammed Alnemari</p>
+<p><strong>Previous:</strong> Tutorial 4 - Matrix Decompositions
+<strong>Next:</strong> Tutorial 6 - Optimization and Gradient Descent</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/alnemari-m/mathai-website" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mohammed Alnemari" /><link rel="canonical" href="https://alnemari-m.github.io/mathai-website/tutorials/Tutorial_02_Linear_Algebra/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Tutorial 2: Linear Algebra - Mathematics of AI</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../stylesheets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Tutorial 2: Linear Algebra";
+        var mkdocs_page_input_path = "tutorials/Tutorial_02_Linear_Algebra.md";
+        var mkdocs_page_url = "/mathai-website/tutorials/Tutorial_02_Linear_Algebra/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Mathematics of AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../lectures/">Lectures</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">Math Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../notebooks/">Notebooks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../papers/">Papers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../animations/">🔒 Animations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Mathematics of AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Tutorial 2: Linear Algebra</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/alnemari-m/mathai-website/edit/master/docs/tutorials/Tutorial_02_Linear_Algebra.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tutorial-2-linear-algebra">Tutorial 2: Linear Algebra<a class="headerlink" href="#tutorial-2-linear-algebra" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> Mathematics for Machine Learning
+<strong>Instructor:</strong> Mohammed Alnemari</p>
+<hr />
+<h2 id="learning-objectives">📚 Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>By the end of this tutorial, you will understand:</p>
+<ol>
+<li>Systems of linear equations and the three types of solutions</li>
+<li>Matrices, their types, and core operations</li>
+<li>Matrix inverses and how to compute them</li>
+<li>Gaussian elimination and row echelon form</li>
+<li>Vector spaces, subspaces, and the subspace test</li>
+<li>Linear independence and how to check it</li>
+<li>Span, generating sets, basis, and dimension</li>
+<li>Rank of a matrix and its role in solvability</li>
+<li>Linear mappings, kernel, and image</li>
+<li>The Rank-Nullity Theorem</li>
+<li>Change of basis</li>
+<li>Affine spaces and their connection to solution sets</li>
+</ol>
+<hr />
+<h2 id="part-1-systems-of-linear-equations">Part 1: Systems of Linear Equations<a class="headerlink" href="#part-1-systems-of-linear-equations" title="Permanent link">&para;</a></h2>
+<h3 id="11-what-is-a-system-of-linear-equations">1.1 What is a System of Linear Equations?<a class="headerlink" href="#11-what-is-a-system-of-linear-equations" title="Permanent link">&para;</a></h3>
+<p>A <strong>system of linear equations</strong> is a collection of equations where each equation is linear (no powers, no products of variables). We want to find the values of the unknowns that satisfy <em>all</em> the equations at the same time.</p>
+<p><strong>General form</strong> (two equations, two unknowns):</p>
+<div class="arithmatex">\[a_{11}x_1 + a_{12}x_2 = b_1\]</div>
+<div class="arithmatex">\[a_{21}x_1 + a_{22}x_2 = b_2\]</div>
+<p>In plain English: we have some unknowns (<span class="arithmatex">\(x_1, x_2\)</span>), each multiplied by known constants (<span class="arithmatex">\(a_{ij}\)</span>), and we want the results to equal known values (<span class="arithmatex">\(b_1, b_2\)</span>).</p>
+<blockquote>
+<p><strong>Think of it as...</strong> each equation describes a line (in 2D) or a plane (in 3D). Solving the system means finding where all the lines or planes intersect.</p>
+</blockquote>
+<h3 id="12-the-three-types-of-solutions">1.2 The Three Types of Solutions<a class="headerlink" href="#12-the-three-types-of-solutions" title="Permanent link">&para;</a></h3>
+<p>Every system of linear equations has exactly one of three outcomes:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Geometric Picture (2D)</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unique solution</strong></td>
+<td>Exactly one solution</td>
+<td>Two lines cross at a single point</td>
+<td><span class="arithmatex">\(x + y = 3\)</span>, <span class="arithmatex">\(x - y = 1\)</span> gives <span class="arithmatex">\(x=2, y=1\)</span></td>
+</tr>
+<tr>
+<td><strong>Infinitely many solutions</strong></td>
+<td>A family of solutions</td>
+<td>Two lines lie on top of each other</td>
+<td><span class="arithmatex">\(x + y = 2\)</span>, <span class="arithmatex">\(2x + 2y = 4\)</span> (same line)</td>
+</tr>
+<tr>
+<td><strong>No solution</strong></td>
+<td>The system is inconsistent</td>
+<td>Two lines are parallel and never meet</td>
+<td><span class="arithmatex">\(x + y = 1\)</span>, <span class="arithmatex">\(x + y = 3\)</span> (parallel lines)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Worked Example:</strong> Determine the type of solution.</p>
+<p>System 1: <span class="arithmatex">\(x + y = 5\)</span> and <span class="arithmatex">\(x - y = 1\)</span></p>
+<p>Add the equations: <span class="arithmatex">\(2x = 6\)</span>, so <span class="arithmatex">\(x = 3\)</span>, <span class="arithmatex">\(y = 2\)</span>. <strong>Unique solution.</strong></p>
+<p>System 2: <span class="arithmatex">\(x + y = 2\)</span> and <span class="arithmatex">\(2x + 2y = 4\)</span></p>
+<p>The second equation is just <span class="arithmatex">\(2 \times\)</span> the first. Every point on the line <span class="arithmatex">\(x + y = 2\)</span> is a solution. <strong>Infinitely many solutions.</strong></p>
+<p>System 3: <span class="arithmatex">\(x + y = 1\)</span> and <span class="arithmatex">\(x + y = 3\)</span></p>
+<p>These say the same expression <span class="arithmatex">\(x+y\)</span> equals two different things. Impossible. <strong>No solution.</strong></p>
+<h3 id="13-matrix-notation-amathbfx-mathbfb">1.3 Matrix Notation: <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span><a class="headerlink" href="#13-matrix-notation-amathbfx-mathbfb" title="Permanent link">&para;</a></h3>
+<p>We can write any system of linear equations compactly using matrices:</p>
+<div class="arithmatex">\[\underbrace{\begin{bmatrix} a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\ a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn} \end{bmatrix}}_{A} \underbrace{\begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix}}_{\mathbf{x}} = \underbrace{\begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{bmatrix}}_{\mathbf{b}}\]</div>
+<ul>
+<li><span class="arithmatex">\(A\)</span> is the <strong>coefficient matrix</strong> (<span class="arithmatex">\(m \times n\)</span>)</li>
+<li><span class="arithmatex">\(\mathbf{x}\)</span> is the <strong>unknown vector</strong> (<span class="arithmatex">\(n \times 1\)</span>)</li>
+<li><span class="arithmatex">\(\mathbf{b}\)</span> is the <strong>right-hand side vector</strong> (<span class="arithmatex">\(m \times 1\)</span>)</li>
+</ul>
+<h3 id="14-the-augmented-matrix">1.4 The Augmented Matrix<a class="headerlink" href="#14-the-augmented-matrix" title="Permanent link">&para;</a></h3>
+<p>The <strong>augmented matrix</strong> <span class="arithmatex">\([A \mid \mathbf{b}]\)</span> combines the coefficient matrix and the right-hand side into one object, which is convenient for Gaussian elimination:</p>
+<div class="arithmatex">\[[A \mid \mathbf{b}] = \left[\begin{array}{ccc|c} a_{11} &amp; a_{12} &amp; \cdots &amp; b_1 \\ a_{21} &amp; a_{22} &amp; \cdots &amp; b_2 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{m1} &amp; a_{m2} &amp; \cdots &amp; b_m \end{array}\right]\]</div>
+<p><strong>Example:</strong> The system <span class="arithmatex">\(2x + 3y = 7\)</span> and <span class="arithmatex">\(x - y = 1\)</span> becomes:</p>
+<div class="arithmatex">\[\left[\begin{array}{cc|c} 2 &amp; 3 &amp; 7 \\ 1 &amp; -1 &amp; 1 \end{array}\right]\]</div>
+<blockquote>
+<p><strong>Think of it as...</strong> packing all the important numbers from your system into one neat table, with a vertical line separating the left side from the right side of the equals sign.</p>
+</blockquote>
+<hr />
+<h2 id="part-2-matrices">Part 2: Matrices<a class="headerlink" href="#part-2-matrices" title="Permanent link">&para;</a></h2>
+<h3 id="21-definition">2.1 Definition<a class="headerlink" href="#21-definition" title="Permanent link">&para;</a></h3>
+<p>A <strong>matrix</strong> is a rectangular array of numbers with <span class="arithmatex">\(m\)</span> rows and <span class="arithmatex">\(n\)</span> columns. We say it has dimensions <span class="arithmatex">\(m \times n\)</span> (read "m by n").</p>
+<div class="arithmatex">\[A \in \mathbb{R}^{m \times n} \quad \text{means } A \text{ has } m \text{ rows and } n \text{ columns of real numbers.}\]</div>
+<p>The entry in row <span class="arithmatex">\(i\)</span> and column <span class="arithmatex">\(j\)</span> is written <span class="arithmatex">\(a_{ij}\)</span>.</p>
+<h3 id="22-special-matrices">2.2 Special Matrices<a class="headerlink" href="#22-special-matrices" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Matrix</th>
+<th>Definition</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Identity</strong> <span class="arithmatex">\(I_n\)</span></td>
+<td>Square matrix with 1s on the diagonal, 0s everywhere else</td>
+<td><span class="arithmatex">\(I_3 = \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\)</span></td>
+</tr>
+<tr>
+<td><strong>Zero</strong> <span class="arithmatex">\(\mathbf{0}\)</span></td>
+<td>All entries are zero</td>
+<td><span class="arithmatex">\(\begin{bmatrix} 0 &amp; 0 \\ 0 &amp; 0 \end{bmatrix}\)</span></td>
+</tr>
+<tr>
+<td><strong>Diagonal</strong></td>
+<td>Only the diagonal entries can be nonzero</td>
+<td><span class="arithmatex">\(\begin{bmatrix} 3 &amp; 0 \\ 0 &amp; 7 \end{bmatrix}\)</span></td>
+</tr>
+<tr>
+<td><strong>Symmetric</strong></td>
+<td><span class="arithmatex">\(A = A^T\)</span> (equal to its own transpose)</td>
+<td><span class="arithmatex">\(\begin{bmatrix} 1 &amp; 4 \\ 4 &amp; 5 \end{bmatrix}\)</span></td>
+</tr>
+<tr>
+<td><strong>Square</strong></td>
+<td>Number of rows equals number of columns (<span class="arithmatex">\(m = n\)</span>)</td>
+<td>Any <span class="arithmatex">\(n \times n\)</span> matrix</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key property of the identity matrix:</strong> For any matrix <span class="arithmatex">\(A\)</span> of compatible size:</p>
+<div class="arithmatex">\[AI = IA = A\]</div>
+<blockquote>
+<p><strong>Think of it as...</strong> the identity matrix is like multiplying by 1. It does nothing to whatever it touches.</p>
+</blockquote>
+<h3 id="23-matrix-operations">2.3 Matrix Operations<a class="headerlink" href="#23-matrix-operations" title="Permanent link">&para;</a></h3>
+<h4 id="matrix-addition">Matrix Addition<a class="headerlink" href="#matrix-addition" title="Permanent link">&para;</a></h4>
+<p>Add corresponding entries. Both matrices must have the same dimensions.</p>
+<div class="arithmatex">\[\begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix} + \begin{bmatrix} 5 &amp; 6 \\ 7 &amp; 8 \end{bmatrix} = \begin{bmatrix} 6 &amp; 8 \\ 10 &amp; 12 \end{bmatrix}\]</div>
+<h4 id="scalar-multiplication">Scalar Multiplication<a class="headerlink" href="#scalar-multiplication" title="Permanent link">&para;</a></h4>
+<p>Multiply every entry by a number.</p>
+<div class="arithmatex">\[3 \begin{bmatrix} 1 &amp; 2 \\ 4 &amp; 5 \end{bmatrix} = \begin{bmatrix} 3 &amp; 6 \\ 12 &amp; 15 \end{bmatrix}\]</div>
+<h4 id="matrix-multiplication">Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Permanent link">&para;</a></h4>
+<p>To compute <span class="arithmatex">\(C = AB\)</span> where <span class="arithmatex">\(A\)</span> is <span class="arithmatex">\(m \times n\)</span> and <span class="arithmatex">\(B\)</span> is <span class="arithmatex">\(n \times p\)</span>, each entry of <span class="arithmatex">\(C\)</span> is:</p>
+<div class="arithmatex">\[c_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj} = (\text{row } i \text{ of } A) \cdot (\text{column } j \text{ of } B)\]</div>
+<p>The result <span class="arithmatex">\(C\)</span> has dimensions <span class="arithmatex">\(m \times p\)</span>.</p>
+<p><strong>Requirement:</strong> The number of columns of <span class="arithmatex">\(A\)</span> must equal the number of rows of <span class="arithmatex">\(B\)</span>.</p>
+<p><strong>Worked Example:</strong></p>
+<div class="arithmatex">\[\begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix} \begin{bmatrix} 5 &amp; 6 \\ 7 &amp; 8 \end{bmatrix} = \begin{bmatrix} 1(5)+2(7) &amp; 1(6)+2(8) \\ 3(5)+4(7) &amp; 3(6)+4(8) \end{bmatrix} = \begin{bmatrix} 19 &amp; 22 \\ 43 &amp; 50 \end{bmatrix}\]</div>
+<p><strong>Critical fact:</strong> Matrix multiplication is <strong>NOT commutative</strong> in general:</p>
+<div class="arithmatex">\[AB \neq BA\]</div>
+<blockquote>
+<p><strong>Think of it as...</strong> putting on socks then shoes is not the same as putting on shoes then socks. The order matters.</p>
+</blockquote>
+<h3 id="24-transpose">2.4 Transpose<a class="headerlink" href="#24-transpose" title="Permanent link">&para;</a></h3>
+<p>The <strong>transpose</strong> <span class="arithmatex">\(A^T\)</span> flips a matrix over its diagonal: rows become columns and columns become rows.</p>
+<p>If <span class="arithmatex">\(A\)</span> is <span class="arithmatex">\(m \times n\)</span>, then <span class="arithmatex">\(A^T\)</span> is <span class="arithmatex">\(n \times m\)</span>, and <span class="arithmatex">\((A^T)_{ij} = A_{ji}\)</span>.</p>
+<p><strong>Example:</strong></p>
+<div class="arithmatex">\[A = \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \end{bmatrix}, \quad A^T = \begin{bmatrix} 1 &amp; 4 \\ 2 &amp; 5 \\ 3 &amp; 6 \end{bmatrix}\]</div>
+<p><strong>Transpose properties:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Double transpose</td>
+<td><span class="arithmatex">\((A^T)^T = A\)</span></td>
+</tr>
+<tr>
+<td>Sum</td>
+<td><span class="arithmatex">\((A + B)^T = A^T + B^T\)</span></td>
+</tr>
+<tr>
+<td>Scalar</td>
+<td><span class="arithmatex">\((cA)^T = cA^T\)</span></td>
+</tr>
+<tr>
+<td>Product</td>
+<td><span class="arithmatex">\((AB)^T = B^T A^T\)</span> (note the reversed order!)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="part-3-matrix-inverse">Part 3: Matrix Inverse<a class="headerlink" href="#part-3-matrix-inverse" title="Permanent link">&para;</a></h2>
+<h3 id="31-definition">3.1 Definition<a class="headerlink" href="#31-definition" title="Permanent link">&para;</a></h3>
+<p>The <strong>inverse</strong> of a square matrix <span class="arithmatex">\(A\)</span> is a matrix <span class="arithmatex">\(A^{-1}\)</span> such that:</p>
+<div class="arithmatex">\[AA^{-1} = A^{-1}A = I\]</div>
+<p>In plain English: <span class="arithmatex">\(A^{-1}\)</span> "undoes" whatever <span class="arithmatex">\(A\)</span> does. If <span class="arithmatex">\(A\)</span> transforms a vector, <span class="arithmatex">\(A^{-1}\)</span> transforms it back.</p>
+<p>A matrix that has an inverse is called <strong>invertible</strong> (or <strong>non-singular</strong> or <strong>regular</strong>). A matrix that does not have an inverse is called <strong>singular</strong>.</p>
+<blockquote>
+<p><strong>Think of it as...</strong> the inverse is like an "undo button." If <span class="arithmatex">\(A\)</span> scrambles your data, <span class="arithmatex">\(A^{-1}\)</span> unscrambles it perfectly.</p>
+</blockquote>
+<h3 id="32-when-does-the-inverse-exist">3.2 When Does the Inverse Exist?<a class="headerlink" href="#32-when-does-the-inverse-exist" title="Permanent link">&para;</a></h3>
+<p>A square matrix <span class="arithmatex">\(A\)</span> is invertible if and only if:</p>
+<ul>
+<li><span class="arithmatex">\(\det(A) \neq 0\)</span></li>
+<li>The columns of <span class="arithmatex">\(A\)</span> are linearly independent</li>
+<li>The only solution to <span class="arithmatex">\(A\mathbf{x} = \mathbf{0}\)</span> is <span class="arithmatex">\(\mathbf{x} = \mathbf{0}\)</span></li>
+<li><span class="arithmatex">\(\text{rank}(A) = n\)</span> (full rank)</li>
+</ul>
+<p>These are all equivalent conditions -- if one is true, they are all true.</p>
+<h3 id="33-computing-the-inverse-of-a-2x2-matrix">3.3 Computing the Inverse of a 2x2 Matrix<a class="headerlink" href="#33-computing-the-inverse-of-a-2x2-matrix" title="Permanent link">&para;</a></h3>
+<p>For <span class="arithmatex">\(A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\)</span>, the inverse is:</p>
+<div class="arithmatex">\[A^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d &amp; -b \\ -c &amp; a \end{bmatrix}\]</div>
+<p>The number <span class="arithmatex">\(ad - bc\)</span> is the <strong>determinant</strong> <span class="arithmatex">\(\det(A)\)</span>. If <span class="arithmatex">\(\det(A) = 0\)</span>, the inverse does not exist.</p>
+<p><strong>Worked Example:</strong></p>
+<div class="arithmatex">\[A = \begin{bmatrix} 4 &amp; 7 \\ 2 &amp; 6 \end{bmatrix}\]</div>
+<div class="arithmatex">\[\det(A) = 4(6) - 7(2) = 24 - 14 = 10\]</div>
+<div class="arithmatex">\[A^{-1} = \frac{1}{10}\begin{bmatrix} 6 &amp; -7 \\ -2 &amp; 4 \end{bmatrix} = \begin{bmatrix} 0.6 &amp; -0.7 \\ -0.2 &amp; 0.4 \end{bmatrix}\]</div>
+<p><strong>Verify:</strong> <span class="arithmatex">\(AA^{-1} = \begin{bmatrix} 4 &amp; 7 \\ 2 &amp; 6 \end{bmatrix}\begin{bmatrix} 0.6 &amp; -0.7 \\ -0.2 &amp; 0.4 \end{bmatrix} = \begin{bmatrix} 2.4-1.4 &amp; -2.8+2.8 \\ 1.2-1.2 &amp; -1.4+2.4 \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} = I \quad \checkmark\)</span></p>
+<h3 id="34-properties-of-the-inverse">3.4 Properties of the Inverse<a class="headerlink" href="#34-properties-of-the-inverse" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inverse of inverse</td>
+<td><span class="arithmatex">\((A^{-1})^{-1} = A\)</span></td>
+</tr>
+<tr>
+<td>Inverse of product</td>
+<td><span class="arithmatex">\((AB)^{-1} = B^{-1}A^{-1}\)</span> (note the reversed order!)</td>
+</tr>
+<tr>
+<td>Inverse of transpose</td>
+<td><span class="arithmatex">\((A^T)^{-1} = (A^{-1})^T\)</span></td>
+</tr>
+<tr>
+<td>Inverse of scalar multiple</td>
+<td><span class="arithmatex">\((cA)^{-1} = \frac{1}{c}A^{-1}\)</span> for <span class="arithmatex">\(c \neq 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The property <span class="arithmatex">\((AB)^{-1} = B^{-1}A^{-1}\)</span> is very important. Notice the order reverses -- just like with the transpose of a product.</p>
+<blockquote>
+<p><strong>Think of it as...</strong> if you put on socks then shoes, to undo it you take off shoes first, then socks. The same "reverse order" logic applies to matrix inverses.</p>
+</blockquote>
+<hr />
+<h2 id="part-4-solving-systems-gaussian-elimination">Part 4: Solving Systems -- Gaussian Elimination<a class="headerlink" href="#part-4-solving-systems-gaussian-elimination" title="Permanent link">&para;</a></h2>
+<h3 id="41-the-idea">4.1 The Idea<a class="headerlink" href="#41-the-idea" title="Permanent link">&para;</a></h3>
+<p><strong>Gaussian elimination</strong> is a systematic method for solving <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span>. The idea is simple: use allowed row operations to transform the augmented matrix <span class="arithmatex">\([A \mid \mathbf{b}]\)</span> into a simpler form from which the solution is easy to read off.</p>
+<h3 id="42-elementary-row-operations">4.2 Elementary Row Operations<a class="headerlink" href="#42-elementary-row-operations" title="Permanent link">&para;</a></h3>
+<p>There are three operations you are allowed to perform on rows. None of them change the solution set of the system.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Swap</strong></td>
+<td>Exchange two rows: <span class="arithmatex">\(R_i \leftrightarrow R_j\)</span></td>
+<td>Swap row 1 and row 2</td>
+</tr>
+<tr>
+<td><strong>Scale</strong></td>
+<td>Multiply a row by a nonzero constant: <span class="arithmatex">\(R_i \to cR_i\)</span></td>
+<td>Multiply row 2 by <span class="arithmatex">\(\frac{1}{3}\)</span></td>
+</tr>
+<tr>
+<td><strong>Add</strong></td>
+<td>Add a multiple of one row to another: <span class="arithmatex">\(R_i \to R_i + cR_j\)</span></td>
+<td>Add <span class="arithmatex">\((-2) \times\)</span> row 1 to row 2</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Think of it as...</strong> you are doing the same algebra you would do by hand (adding equations, multiplying both sides by a constant), but in a more organized table format.</p>
+</blockquote>
+<h3 id="43-row-echelon-form-ref">4.3 Row Echelon Form (REF)<a class="headerlink" href="#43-row-echelon-form-ref" title="Permanent link">&para;</a></h3>
+<p>A matrix is in <strong>row echelon form</strong> if:</p>
+<ol>
+<li>All rows that are entirely zero are at the bottom</li>
+<li>The first nonzero entry in each row (called the <strong>pivot</strong>) is to the right of the pivot in the row above</li>
+<li>All entries below each pivot are zero</li>
+</ol>
+<p><strong>Example of REF:</strong></p>
+<div class="arithmatex">\[\begin{bmatrix} 2 &amp; 1 &amp; -1 \\ 0 &amp; 3 &amp; 5 \\ 0 &amp; 0 &amp; 4 \end{bmatrix}\]</div>
+<p>The pivots are 2, 3, and 4. Each is to the right and below the previous one, forming a "staircase" pattern.</p>
+<h3 id="44-reduced-row-echelon-form-rref">4.4 Reduced Row Echelon Form (RREF)<a class="headerlink" href="#44-reduced-row-echelon-form-rref" title="Permanent link">&para;</a></h3>
+<p>A matrix is in <strong>reduced row echelon form</strong> if it is in REF and additionally:</p>
+<ol>
+<li>Every pivot is 1</li>
+<li>Every pivot is the only nonzero entry in its column</li>
+</ol>
+<p><strong>Example of RREF:</strong></p>
+<div class="arithmatex">\[\begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\]</div>
+<p>When the augmented matrix <span class="arithmatex">\([A \mid \mathbf{b}]\)</span> is in RREF, you can read the solution directly.</p>
+<h3 id="45-full-worked-example-solving-a-system-via-gaussian-elimination">4.5 Full Worked Example: Solving a System via Gaussian Elimination<a class="headerlink" href="#45-full-worked-example-solving-a-system-via-gaussian-elimination" title="Permanent link">&para;</a></h3>
+<p>Solve the system:</p>
+<div class="arithmatex">\[x_1 + 2x_2 - x_3 = 3\]</div>
+<div class="arithmatex">\[2x_1 + 5x_2 - 2x_3 = 7\]</div>
+<div class="arithmatex">\[-x_1 - x_2 + 3x_3 = 2\]</div>
+<p><strong>Step 1:</strong> Write the augmented matrix.</p>
+<div class="arithmatex">\[\left[\begin{array}{ccc|c} 1 &amp; 2 &amp; -1 &amp; 3 \\ 2 &amp; 5 &amp; -2 &amp; 7 \\ -1 &amp; -1 &amp; 3 &amp; 2 \end{array}\right]\]</div>
+<p><strong>Step 2:</strong> Eliminate below the first pivot (the 1 in position <span class="arithmatex">\((1,1)\)</span>).</p>
+<p><span class="arithmatex">\(R_2 \to R_2 - 2R_1\)</span>: Replace row 2 with (row 2 minus 2 times row 1).</p>
+<p><span class="arithmatex">\(R_3 \to R_3 + R_1\)</span>: Replace row 3 with (row 3 plus row 1).</p>
+<div class="arithmatex">\[\left[\begin{array}{ccc|c} 1 &amp; 2 &amp; -1 &amp; 3 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 2 &amp; 5 \end{array}\right]\]</div>
+<p><strong>Step 3:</strong> Eliminate below the second pivot (the 1 in position <span class="arithmatex">\((2,2)\)</span>).</p>
+<p><span class="arithmatex">\(R_3 \to R_3 - R_2\)</span>:</p>
+<div class="arithmatex">\[\left[\begin{array}{ccc|c} 1 &amp; 2 &amp; -1 &amp; 3 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 2 &amp; 4 \end{array}\right]\]</div>
+<p>This is now in <strong>row echelon form</strong>. We have three pivots for three unknowns, so there is a unique solution.</p>
+<p><strong>Step 4:</strong> Scale row 3 to make the pivot equal to 1.</p>
+<p><span class="arithmatex">\(R_3 \to \frac{1}{2}R_3\)</span>:</p>
+<div class="arithmatex">\[\left[\begin{array}{ccc|c} 1 &amp; 2 &amp; -1 &amp; 3 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 2 \end{array}\right]\]</div>
+<p><strong>Step 5:</strong> Back substitution (or continue to RREF). Let us continue to RREF.</p>
+<p><span class="arithmatex">\(R_1 \to R_1 + R_3\)</span> (eliminate the <span class="arithmatex">\(-1\)</span> in position <span class="arithmatex">\((1,3)\)</span>):</p>
+<div class="arithmatex">\[\left[\begin{array}{ccc|c} 1 &amp; 2 &amp; 0 &amp; 5 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 2 \end{array}\right]\]</div>
+<p><span class="arithmatex">\(R_1 \to R_1 - 2R_2\)</span> (eliminate the <span class="arithmatex">\(2\)</span> in position <span class="arithmatex">\((1,2)\)</span>):</p>
+<div class="arithmatex">\[\left[\begin{array}{ccc|c} 1 &amp; 0 &amp; 0 &amp; 3 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 2 \end{array}\right]\]</div>
+<p><strong>Step 6:</strong> Read the solution from RREF.</p>
+<div class="arithmatex">\[x_1 = 3, \quad x_2 = 1, \quad x_3 = 2\]</div>
+<p><strong>Verify:</strong> Plug back into the original equations:</p>
+<ul>
+<li><span class="arithmatex">\(1(3) + 2(1) - 1(2) = 3 + 2 - 2 = 3\)</span> <span class="arithmatex">\(\checkmark\)</span></li>
+<li><span class="arithmatex">\(2(3) + 5(1) - 2(2) = 6 + 5 - 4 = 7\)</span> <span class="arithmatex">\(\checkmark\)</span></li>
+<li><span class="arithmatex">\(-1(3) - 1(1) + 3(2) = -3 - 1 + 6 = 2\)</span> <span class="arithmatex">\(\checkmark\)</span></li>
+</ul>
+<hr />
+<h2 id="part-5-vector-spaces">Part 5: Vector Spaces<a class="headerlink" href="#part-5-vector-spaces" title="Permanent link">&para;</a></h2>
+<h3 id="51-what-is-a-vector-space">5.1 What is a Vector Space?<a class="headerlink" href="#51-what-is-a-vector-space" title="Permanent link">&para;</a></h3>
+<p>A <strong>vector space</strong> is a set <span class="arithmatex">\(V\)</span> of objects (called "vectors") together with two operations -- vector addition and scalar multiplication -- that satisfy certain rules (axioms).</p>
+<p>In plain English: a vector space is a collection of things that you can add together and scale, and the result always stays inside the same collection.</p>
+<blockquote>
+<p><strong>Think of it as...</strong> a playground with fences. You can run around (add vectors, scale them) however you like, but you can never leave the playground. Everything you create stays inside.</p>
+</blockquote>
+<h3 id="52-the-vector-space-axioms">5.2 The Vector Space Axioms<a class="headerlink" href="#52-the-vector-space-axioms" title="Permanent link">&para;</a></h3>
+<p>For all <span class="arithmatex">\(\mathbf{u}, \mathbf{v}, \mathbf{w} \in V\)</span> and all scalars <span class="arithmatex">\(\alpha, \beta \in \mathbb{R}\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th>Axiom</th>
+<th>Statement</th>
+<th>In Plain English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Closure under addition</td>
+<td><span class="arithmatex">\(\mathbf{u} + \mathbf{v} \in V\)</span></td>
+<td>Adding two vectors keeps you in <span class="arithmatex">\(V\)</span></td>
+</tr>
+<tr>
+<td>Closure under scalar multiplication</td>
+<td><span class="arithmatex">\(\alpha \mathbf{u} \in V\)</span></td>
+<td>Scaling a vector keeps you in <span class="arithmatex">\(V\)</span></td>
+</tr>
+<tr>
+<td>Associativity of addition</td>
+<td><span class="arithmatex">\((\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})\)</span></td>
+<td>Grouping does not matter for addition</td>
+</tr>
+<tr>
+<td>Commutativity of addition</td>
+<td><span class="arithmatex">\(\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}\)</span></td>
+<td>Order does not matter for addition</td>
+</tr>
+<tr>
+<td>Zero vector exists</td>
+<td><span class="arithmatex">\(\exists \mathbf{0} \in V : \mathbf{u} + \mathbf{0} = \mathbf{u}\)</span></td>
+<td>There is a "do-nothing" element</td>
+</tr>
+<tr>
+<td>Additive inverse</td>
+<td><span class="arithmatex">\(\forall \mathbf{u} \in V, \exists (-\mathbf{u}) : \mathbf{u} + (-\mathbf{u}) = \mathbf{0}\)</span></td>
+<td>Every vector has a "negative"</td>
+</tr>
+<tr>
+<td>Distributivity (vector)</td>
+<td><span class="arithmatex">\(\alpha(\mathbf{u} + \mathbf{v}) = \alpha\mathbf{u} + \alpha\mathbf{v}\)</span></td>
+<td>Scaling distributes over vector addition</td>
+</tr>
+<tr>
+<td>Distributivity (scalar)</td>
+<td><span class="arithmatex">\((\alpha + \beta)\mathbf{u} = \alpha\mathbf{u} + \beta\mathbf{u}\)</span></td>
+<td>Scaling distributes over scalar addition</td>
+</tr>
+<tr>
+<td>Associativity of scaling</td>
+<td><span class="arithmatex">\(\alpha(\beta \mathbf{u}) = (\alpha\beta)\mathbf{u}\)</span></td>
+<td>Order of scaling does not matter</td>
+</tr>
+<tr>
+<td>Identity of scaling</td>
+<td><span class="arithmatex">\(1 \cdot \mathbf{u} = \mathbf{u}\)</span></td>
+<td>Scaling by 1 does nothing</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-common-examples-of-vector-spaces">5.3 Common Examples of Vector Spaces<a class="headerlink" href="#53-common-examples-of-vector-spaces" title="Permanent link">&para;</a></h3>
+<ul>
+<li><span class="arithmatex">\(\mathbb{R}^n\)</span>: the set of all <span class="arithmatex">\(n\)</span>-tuples of real numbers (the most common example)</li>
+<li><span class="arithmatex">\(\mathbb{R}^{m \times n}\)</span>: the set of all <span class="arithmatex">\(m \times n\)</span> real matrices</li>
+<li>The set of all polynomials of degree at most <span class="arithmatex">\(n\)</span></li>
+<li>The set of all continuous functions <span class="arithmatex">\(f: \mathbb{R} \to \mathbb{R}\)</span></li>
+</ul>
+<h3 id="54-subspaces">5.4 Subspaces<a class="headerlink" href="#54-subspaces" title="Permanent link">&para;</a></h3>
+<p>A <strong>subspace</strong> <span class="arithmatex">\(U\)</span> of a vector space <span class="arithmatex">\(V\)</span> is a subset <span class="arithmatex">\(U \subseteq V\)</span> that is itself a vector space under the same operations.</p>
+<h4 id="the-3-step-subspace-test">The 3-Step Subspace Test<a class="headerlink" href="#the-3-step-subspace-test" title="Permanent link">&para;</a></h4>
+<p>To check whether a subset <span class="arithmatex">\(U \subseteq V\)</span> is a subspace, verify three things:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Check</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="arithmatex">\(\mathbf{0} \in U\)</span> (the zero vector is in <span class="arithmatex">\(U\)</span>)</td>
+<td>Every vector space must contain the zero vector</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="arithmatex">\(\mathbf{u} + \mathbf{v} \in U\)</span> for all <span class="arithmatex">\(\mathbf{u}, \mathbf{v} \in U\)</span> (closed under addition)</td>
+<td>Adding members should not kick you out</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="arithmatex">\(\alpha \mathbf{u} \in U\)</span> for all <span class="arithmatex">\(\alpha \in \mathbb{R}\)</span>, <span class="arithmatex">\(\mathbf{u} \in U\)</span> (closed under scalar multiplication)</td>
+<td>Scaling should not kick you out</td>
+</tr>
+</tbody>
+</table>
+<p>If all three pass, <span class="arithmatex">\(U\)</span> is a subspace. If any one fails, it is not.</p>
+<blockquote>
+<p><strong>Think of it as...</strong> a "mini playground" inside the bigger playground. As long as the mini playground contains the origin and any combination of its members stays inside, it qualifies as a subspace.</p>
+</blockquote>
+<p><strong>Example (is a subspace):</strong> Let <span class="arithmatex">\(U = \left\{\begin{bmatrix} x \\ 0 \end{bmatrix} : x \in \mathbb{R}\right\} \subseteq \mathbb{R}^2\)</span> (the <span class="arithmatex">\(x\)</span>-axis).</p>
+<ul>
+<li>Zero vector: <span class="arithmatex">\(\begin{bmatrix} 0 \\ 0 \end{bmatrix} \in U\)</span> <span class="arithmatex">\(\checkmark\)</span></li>
+<li>Closed under addition: <span class="arithmatex">\(\begin{bmatrix} a \\ 0 \end{bmatrix} + \begin{bmatrix} b \\ 0 \end{bmatrix} = \begin{bmatrix} a+b \\ 0 \end{bmatrix} \in U\)</span> <span class="arithmatex">\(\checkmark\)</span></li>
+<li>Closed under scalar multiplication: <span class="arithmatex">\(c\begin{bmatrix} a \\ 0 \end{bmatrix} = \begin{bmatrix} ca \\ 0 \end{bmatrix} \in U\)</span> <span class="arithmatex">\(\checkmark\)</span></li>
+</ul>
+<p><strong>Example (not a subspace):</strong> Let <span class="arithmatex">\(W = \left\{\begin{bmatrix} x \\ 1 \end{bmatrix} : x \in \mathbb{R}\right\} \subseteq \mathbb{R}^2\)</span> (a horizontal line at height 1).</p>
+<ul>
+<li>Zero vector: <span class="arithmatex">\(\begin{bmatrix} 0 \\ 0 \end{bmatrix} \notin W\)</span> because the second component is always 1, not 0. <span class="arithmatex">\(\times\)</span></li>
+</ul>
+<p><span class="arithmatex">\(W\)</span> fails the very first check, so it is not a subspace.</p>
+<hr />
+<h2 id="part-6-linear-independence">Part 6: Linear Independence<a class="headerlink" href="#part-6-linear-independence" title="Permanent link">&para;</a></h2>
+<h3 id="61-definition">6.1 Definition<a class="headerlink" href="#61-definition" title="Permanent link">&para;</a></h3>
+<p>A set of vectors <span class="arithmatex">\(\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\}\)</span> is <strong>linearly independent</strong> if the only way to combine them to get the zero vector is with all coefficients equal to zero:</p>
+<div class="arithmatex">\[c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \cdots + c_k\mathbf{v}_k = \mathbf{0} \implies c_1 = c_2 = \cdots = c_k = 0\]</div>
+<p>If there is a nontrivial combination (some <span class="arithmatex">\(c_i \neq 0\)</span>) that gives <span class="arithmatex">\(\mathbf{0}\)</span>, the vectors are <strong>linearly dependent</strong>.</p>
+<p>In plain English: vectors are independent when none of them is "redundant" -- you cannot build any one of them from the others.</p>
+<blockquote>
+<p><strong>Think of it as...</strong> independent vectors each bring something genuinely new to the table. Dependent vectors are freeloaders -- at least one of them could be replaced by a combination of the rest.</p>
+</blockquote>
+<h3 id="62-how-to-check-linear-independence">6.2 How to Check Linear Independence<a class="headerlink" href="#62-how-to-check-linear-independence" title="Permanent link">&para;</a></h3>
+<p><strong>Method:</strong> Form a matrix with the vectors as columns and row-reduce to REF. Count the pivots.</p>
+<ul>
+<li>If every column has a pivot, the vectors are <strong>linearly independent</strong>.</li>
+<li>If any column lacks a pivot, the vectors are <strong>linearly dependent</strong>.</li>
+</ul>
+<p><strong>Worked Example:</strong> Are the following vectors linearly independent?</p>
+<div class="arithmatex">\[\mathbf{v}_1 = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}, \quad \mathbf{v}_2 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}, \quad \mathbf{v}_3 = \begin{bmatrix} 1 \\ 3 \\ 4 \end{bmatrix}\]</div>
+<p>Form the matrix <span class="arithmatex">\([\mathbf{v}_1 \mid \mathbf{v}_2 \mid \mathbf{v}_3]\)</span> and row reduce:</p>
+<div class="arithmatex">\[\begin{bmatrix} 1 &amp; 0 &amp; 1 \\ 2 &amp; 1 &amp; 3 \\ 3 &amp; 1 &amp; 4 \end{bmatrix} \xrightarrow{R_2 - 2R_1} \begin{bmatrix} 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 1 \\ 3 &amp; 1 &amp; 4 \end{bmatrix} \xrightarrow{R_3 - 3R_1} \begin{bmatrix} 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 1 \end{bmatrix} \xrightarrow{R_3 - R_2} \begin{bmatrix} 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 0 \end{bmatrix}\]</div>
+<p>Only 2 pivots for 3 vectors. Column 3 has no pivot, so <span class="arithmatex">\(\mathbf{v}_3\)</span> is a linear combination of the others. The vectors are <strong>linearly dependent</strong>.</p>
+<p>Indeed, <span class="arithmatex">\(\mathbf{v}_3 = \mathbf{v}_1 + \mathbf{v}_2 = \begin{bmatrix} 1+0 \\ 2+1 \\ 3+1 \end{bmatrix} = \begin{bmatrix} 1 \\ 3 \\ 4 \end{bmatrix}\)</span>.</p>
+<h3 id="63-geometric-meaning">6.3 Geometric Meaning<a class="headerlink" href="#63-geometric-meaning" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Number of vectors</th>
+<th>Independent means...</th>
+<th>Dependent means...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2 vectors in <span class="arithmatex">\(\mathbb{R}^2\)</span></td>
+<td>They point in different directions</td>
+<td>They lie on the same line</td>
+</tr>
+<tr>
+<td>3 vectors in <span class="arithmatex">\(\mathbb{R}^3\)</span></td>
+<td>They span all of 3D space</td>
+<td>They all lie in the same plane (or line)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(k\)</span> vectors in <span class="arithmatex">\(\mathbb{R}^n\)</span></td>
+<td>They span a <span class="arithmatex">\(k\)</span>-dimensional subspace</td>
+<td>They span something less than <span class="arithmatex">\(k\)</span>-dimensional</td>
+</tr>
+</tbody>
+</table>
+<h3 id="64-maximum-number-of-independent-vectors">6.4 Maximum Number of Independent Vectors<a class="headerlink" href="#64-maximum-number-of-independent-vectors" title="Permanent link">&para;</a></h3>
+<p>In <span class="arithmatex">\(\mathbb{R}^n\)</span>, you can have <strong>at most <span class="arithmatex">\(n\)</span></strong> linearly independent vectors. If you have more than <span class="arithmatex">\(n\)</span> vectors in <span class="arithmatex">\(\mathbb{R}^n\)</span>, they are guaranteed to be linearly dependent.</p>
+<hr />
+<h2 id="part-7-generating-sets-span-and-basis">Part 7: Generating Sets, Span, and Basis<a class="headerlink" href="#part-7-generating-sets-span-and-basis" title="Permanent link">&para;</a></h2>
+<h3 id="71-span">7.1 Span<a class="headerlink" href="#71-span" title="Permanent link">&para;</a></h3>
+<p>The <strong>span</strong> of a set of vectors is the set of all possible linear combinations of those vectors:</p>
+<div class="arithmatex">\[\text{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\} = \left\{c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \cdots + c_k\mathbf{v}_k : c_1, \ldots, c_k \in \mathbb{R}\right\}\]</div>
+<p>In plain English: the span is everything you can "reach" by adding and scaling the given vectors.</p>
+<h3 id="72-generating-set">7.2 Generating Set<a class="headerlink" href="#72-generating-set" title="Permanent link">&para;</a></h3>
+<p>A set of vectors <span class="arithmatex">\(\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}\)</span> is a <strong>generating set</strong> (or spanning set) for a vector space <span class="arithmatex">\(V\)</span> if:</p>
+<div class="arithmatex">\[V = \text{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}\]</div>
+<p>This means every vector in <span class="arithmatex">\(V\)</span> can be written as a linear combination of <span class="arithmatex">\(\mathbf{v}_1, \ldots, \mathbf{v}_k\)</span>.</p>
+<h3 id="73-basis">7.3 Basis<a class="headerlink" href="#73-basis" title="Permanent link">&para;</a></h3>
+<p>A <strong>basis</strong> for a vector space <span class="arithmatex">\(V\)</span> is a set of vectors that is:</p>
+<ol>
+<li><strong>Linearly independent</strong> (no redundancy)</li>
+<li><strong>Spanning</strong> (reaches everything in <span class="arithmatex">\(V\)</span>)</li>
+</ol>
+<p>A basis is the most "efficient" generating set -- it spans the whole space with no wasted vectors.</p>
+<p><strong>Standard basis for <span class="arithmatex">\(\mathbb{R}^3\)</span>:</strong></p>
+<div class="arithmatex">\[\mathbf{e}_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \quad \mathbf{e}_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \quad \mathbf{e}_3 = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}\]</div>
+<p>These three vectors are linearly independent and every vector in <span class="arithmatex">\(\mathbb{R}^3\)</span> can be written as <span class="arithmatex">\(\mathbf{v} = v_1\mathbf{e}_1 + v_2\mathbf{e}_2 + v_3\mathbf{e}_3\)</span>.</p>
+<blockquote>
+<p><strong>Think of it as...</strong> a basis is like a set of building blocks. You need enough blocks to build anything in the space, but you do not want any block that is just a copy of others glued together. The standard basis in <span class="arithmatex">\(\mathbb{R}^3\)</span> uses the three coordinate axes as blocks.</p>
+</blockquote>
+<h3 id="74-dimension">7.4 Dimension<a class="headerlink" href="#74-dimension" title="Permanent link">&para;</a></h3>
+<p>The <strong>dimension</strong> of a vector space <span class="arithmatex">\(V\)</span> is the number of vectors in any basis of <span class="arithmatex">\(V\)</span>. This number is always the same no matter which basis you choose.</p>
+<div class="arithmatex">\[\dim(\mathbb{R}^n) = n\]</div>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>A line through the origin in <span class="arithmatex">\(\mathbb{R}^3\)</span> has dimension 1</li>
+<li>A plane through the origin in <span class="arithmatex">\(\mathbb{R}^3\)</span> has dimension 2</li>
+<li><span class="arithmatex">\(\mathbb{R}^3\)</span> itself has dimension 3</li>
+</ul>
+<h3 id="75-finding-a-basis-for-a-set-of-vectors">7.5 Finding a Basis for a Set of Vectors<a class="headerlink" href="#75-finding-a-basis-for-a-set-of-vectors" title="Permanent link">&para;</a></h3>
+<p>Given vectors <span class="arithmatex">\(\mathbf{v}_1, \ldots, \mathbf{v}_k\)</span>, to find a basis for <span class="arithmatex">\(\text{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}\)</span>:</p>
+<ol>
+<li>Form the matrix <span class="arithmatex">\(A = [\mathbf{v}_1 \mid \cdots \mid \mathbf{v}_k]\)</span></li>
+<li>Row reduce to REF</li>
+<li>The original vectors corresponding to pivot columns form a basis</li>
+</ol>
+<hr />
+<h2 id="part-8-rank">Part 8: Rank<a class="headerlink" href="#part-8-rank" title="Permanent link">&para;</a></h2>
+<h3 id="81-definition">8.1 Definition<a class="headerlink" href="#81-definition" title="Permanent link">&para;</a></h3>
+<p>The <strong>rank</strong> of a matrix <span class="arithmatex">\(A\)</span> is the number of linearly independent columns (equivalently, the number of linearly independent rows).</p>
+<p>A fundamental fact: <strong>column rank = row rank</strong>. This means you get the same number whether you count independent columns or independent rows.</p>
+<h3 id="82-computing-rank-via-rref">8.2 Computing Rank via RREF<a class="headerlink" href="#82-computing-rank-via-rref" title="Permanent link">&para;</a></h3>
+<p>To find the rank of <span class="arithmatex">\(A\)</span>:</p>
+<ol>
+<li>Row reduce <span class="arithmatex">\(A\)</span> to REF or RREF</li>
+<li>Count the number of pivots (the nonzero leading entries)</li>
+</ol>
+<div class="arithmatex">\[\text{rank}(A) = \text{number of pivots}\]</div>
+<p><strong>Worked Example:</strong></p>
+<div class="arithmatex">\[A = \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 2 &amp; 4 &amp; 6 \\ 0 &amp; 1 &amp; 1 \end{bmatrix}\]</div>
+<p>Row reduce:</p>
+<div class="arithmatex">\[\xrightarrow{R_2 - 2R_1} \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 1 \end{bmatrix} \xrightarrow{R_2 \leftrightarrow R_3} \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 0 \end{bmatrix}\]</div>
+<p>There are <strong>2 pivots</strong> (in columns 1 and 2), so <span class="arithmatex">\(\text{rank}(A) = 2\)</span>.</p>
+<h3 id="83-rank-and-solvability-of-amathbfx-mathbfb">8.3 Rank and Solvability of <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span><a class="headerlink" href="#83-rank-and-solvability-of-amathbfx-mathbfb" title="Permanent link">&para;</a></h3>
+<p>The rank tells you about the solvability of <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\text{rank}(A) = \text{rank}([A \mid \mathbf{b}])\)</span></td>
+<td>The system <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span> has at least one solution</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\text{rank}(A) &lt; \text{rank}([A \mid \mathbf{b}])\)</span></td>
+<td>The system <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span> has no solution</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\text{rank}(A) = n\)</span> (number of unknowns)</td>
+<td>If a solution exists, it is unique</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\text{rank}(A) &lt; n\)</span></td>
+<td>If a solution exists, there are infinitely many</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Think of it as...</strong> rank tells you "how many genuinely useful equations" you have. If the rank equals the number of unknowns, you have enough information to pin down a unique answer. If the rank is less, you have leftover freedom, meaning infinitely many solutions.</p>
+</blockquote>
+<hr />
+<h2 id="part-9-linear-mappings">Part 9: Linear Mappings<a class="headerlink" href="#part-9-linear-mappings" title="Permanent link">&para;</a></h2>
+<h3 id="91-definition">9.1 Definition<a class="headerlink" href="#91-definition" title="Permanent link">&para;</a></h3>
+<p>A function <span class="arithmatex">\(\Phi: V \to W\)</span> between vector spaces is a <strong>linear mapping</strong> (or linear transformation) if it preserves both addition and scalar multiplication:</p>
+<ol>
+<li><span class="arithmatex">\(\Phi(\mathbf{u} + \mathbf{v}) = \Phi(\mathbf{u}) + \Phi(\mathbf{v})\)</span> for all <span class="arithmatex">\(\mathbf{u}, \mathbf{v} \in V\)</span> (preserves addition)</li>
+<li><span class="arithmatex">\(\Phi(\alpha \mathbf{u}) = \alpha \Phi(\mathbf{u})\)</span> for all <span class="arithmatex">\(\alpha \in \mathbb{R}\)</span>, <span class="arithmatex">\(\mathbf{u} \in V\)</span> (preserves scalar multiplication)</li>
+</ol>
+<p>Equivalently, in one combined condition:</p>
+<div class="arithmatex">\[\Phi(\alpha \mathbf{u} + \beta \mathbf{v}) = \alpha \Phi(\mathbf{u}) + \beta \Phi(\mathbf{v})\]</div>
+<p>In plain English: a linear mapping respects the structure of the vector space. It does not "break" addition or scaling.</p>
+<blockquote>
+<p><strong>Think of it as...</strong> a linear mapping is a "well-behaved" transformation. It keeps straight lines straight, keeps the origin fixed, and does not do anything "nonlinear" like bending or shifting.</p>
+</blockquote>
+<h3 id="92-transformation-matrix">9.2 Transformation Matrix<a class="headerlink" href="#92-transformation-matrix" title="Permanent link">&para;</a></h3>
+<p>Every linear mapping <span class="arithmatex">\(\Phi: \mathbb{R}^n \to \mathbb{R}^m\)</span> can be represented by a matrix <span class="arithmatex">\(A \in \mathbb{R}^{m \times n}\)</span> such that:</p>
+<div class="arithmatex">\[\Phi(\mathbf{x}) = A\mathbf{x}\]</div>
+<p>To find <span class="arithmatex">\(A\)</span>, compute what <span class="arithmatex">\(\Phi\)</span> does to each standard basis vector <span class="arithmatex">\(\mathbf{e}_j\)</span> and place the result as the <span class="arithmatex">\(j\)</span>-th column of <span class="arithmatex">\(A\)</span>:</p>
+<div class="arithmatex">\[A = [\Phi(\mathbf{e}_1) \mid \Phi(\mathbf{e}_2) \mid \cdots \mid \Phi(\mathbf{e}_n)]\]</div>
+<h3 id="93-kernel-null-space">9.3 Kernel (Null Space)<a class="headerlink" href="#93-kernel-null-space" title="Permanent link">&para;</a></h3>
+<p>The <strong>kernel</strong> (or null space) of a linear mapping <span class="arithmatex">\(\Phi: V \to W\)</span> (or equivalently of its matrix <span class="arithmatex">\(A\)</span>) is the set of all vectors that map to the zero vector:</p>
+<div class="arithmatex">\[\ker(\Phi) = \{\mathbf{x} \in V : \Phi(\mathbf{x}) = \mathbf{0}\} = \{\mathbf{x} \in \mathbb{R}^n : A\mathbf{x} = \mathbf{0}\}\]</div>
+<p>In plain English: the kernel is everything that <span class="arithmatex">\(\Phi\)</span> "kills" (sends to zero).</p>
+<p><strong>How to compute:</strong> Solve the homogeneous system <span class="arithmatex">\(A\mathbf{x} = \mathbf{0}\)</span> by row reducing <span class="arithmatex">\(A\)</span> and expressing the free variables.</p>
+<p>The kernel is always a <strong>subspace</strong> of <span class="arithmatex">\(V\)</span>.</p>
+<h3 id="94-image-column-space">9.4 Image (Column Space)<a class="headerlink" href="#94-image-column-space" title="Permanent link">&para;</a></h3>
+<p>The <strong>image</strong> (or range, or column space) of a linear mapping <span class="arithmatex">\(\Phi\)</span> is the set of all possible outputs:</p>
+<div class="arithmatex">\[\text{Im}(\Phi) = \{\Phi(\mathbf{x}) : \mathbf{x} \in V\} = \{A\mathbf{x} : \mathbf{x} \in \mathbb{R}^n\}\]</div>
+<p>This is the same as the <strong>column space</strong> of <span class="arithmatex">\(A\)</span> -- the span of the columns of <span class="arithmatex">\(A\)</span>:</p>
+<div class="arithmatex">\[\text{Im}(A) = \text{span}\{\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n\}\]</div>
+<p>where <span class="arithmatex">\(\mathbf{a}_j\)</span> are the columns of <span class="arithmatex">\(A\)</span>.</p>
+<p>The image is always a <strong>subspace</strong> of <span class="arithmatex">\(W\)</span>.</p>
+<h3 id="95-injective-surjective-bijective">9.5 Injective, Surjective, Bijective<a class="headerlink" href="#95-injective-surjective-bijective" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Meaning</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Injective</strong> (one-to-one)</td>
+<td>Different inputs give different outputs</td>
+<td><span class="arithmatex">\(\ker(\Phi) = \{\mathbf{0}\}\)</span></td>
+</tr>
+<tr>
+<td><strong>Surjective</strong> (onto)</td>
+<td>Every element of <span class="arithmatex">\(W\)</span> is an output</td>
+<td><span class="arithmatex">\(\text{Im}(\Phi) = W\)</span></td>
+</tr>
+<tr>
+<td><strong>Bijective</strong></td>
+<td>Both injective and surjective</td>
+<td>The mapping has an inverse</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Think of it as...</strong> Injective means no two inputs "collide" at the same output. Surjective means every target is "hit" by some input. Bijective means there is a perfect one-to-one pairing between inputs and outputs.</p>
+</blockquote>
+<h3 id="96-worked-example-finding-the-kernel-and-image">9.6 Worked Example: Finding the Kernel and Image<a class="headerlink" href="#96-worked-example-finding-the-kernel-and-image" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(A = \begin{bmatrix} 1 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\)</span>.</p>
+<p><strong>Kernel:</strong> Solve <span class="arithmatex">\(A\mathbf{x} = \mathbf{0}\)</span>:</p>
+<div class="arithmatex">\[\begin{bmatrix} 1 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}\]</div>
+<p>From the matrix (already in RREF): <span class="arithmatex">\(x_1 + 2x_2 = 0\)</span> and <span class="arithmatex">\(x_3 = 0\)</span>. Variable <span class="arithmatex">\(x_2\)</span> is free. Set <span class="arithmatex">\(x_2 = t\)</span>:</p>
+<div class="arithmatex">\[\mathbf{x} = \begin{bmatrix} -2t \\ t \\ 0 \end{bmatrix} = t\begin{bmatrix} -2 \\ 1 \\ 0 \end{bmatrix}\]</div>
+<div class="arithmatex">\[\ker(A) = \text{span}\left\{\begin{bmatrix} -2 \\ 1 \\ 0 \end{bmatrix}\right\}\]</div>
+<p>Dimension of kernel: <span class="arithmatex">\(\dim(\ker(A)) = 1\)</span>.</p>
+<p><strong>Image:</strong> The image is the column space of <span class="arithmatex">\(A\)</span>. Since <span class="arithmatex">\(A\)</span> has 2 pivots (in columns 1 and 3), the pivot columns form a basis for the image:</p>
+<div class="arithmatex">\[\text{Im}(A) = \text{span}\left\{\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \end{bmatrix}\right\} = \mathbb{R}^2\]</div>
+<p>Dimension of image: <span class="arithmatex">\(\dim(\text{Im}(A)) = 2\)</span>.</p>
+<hr />
+<h2 id="part-10-the-rank-nullity-theorem">Part 10: The Rank-Nullity Theorem<a class="headerlink" href="#part-10-the-rank-nullity-theorem" title="Permanent link">&para;</a></h2>
+<h3 id="101-statement">10.1 Statement<a class="headerlink" href="#101-statement" title="Permanent link">&para;</a></h3>
+<p>For a linear mapping <span class="arithmatex">\(\Phi: V \to W\)</span> with transformation matrix <span class="arithmatex">\(A \in \mathbb{R}^{m \times n}\)</span>:</p>
+<div class="arithmatex">\[\dim(\ker(\Phi)) + \dim(\text{Im}(\Phi)) = \dim(V)\]</div>
+<p>Or equivalently, using the matrix <span class="arithmatex">\(A\)</span>:</p>
+<div class="arithmatex">\[\text{nullity}(A) + \text{rank}(A) = n\]</div>
+<p>where <span class="arithmatex">\(n\)</span> is the number of columns of <span class="arithmatex">\(A\)</span> (the dimension of the domain).</p>
+<p>In plain English: the number of dimensions that get "killed" (mapped to zero) plus the number of dimensions that "survive" (form the output) always add up to the total number of input dimensions.</p>
+<blockquote>
+<p><strong>Think of it as...</strong> you start with <span class="arithmatex">\(n\)</span> dimensions of freedom. Some get collapsed to zero (the nullity), and the rest get mapped to actual outputs (the rank). Nothing is lost or created -- everything is accounted for.</p>
+</blockquote>
+<h3 id="102-example">10.2 Example<a class="headerlink" href="#102-example" title="Permanent link">&para;</a></h3>
+<p>From the worked example in Part 9:</p>
+<ul>
+<li><span class="arithmatex">\(A \in \mathbb{R}^{2 \times 3}\)</span>, so <span class="arithmatex">\(n = 3\)</span></li>
+<li><span class="arithmatex">\(\dim(\ker(A)) = 1\)</span> (the nullity)</li>
+<li><span class="arithmatex">\(\dim(\text{Im}(A)) = 2\)</span> (the rank)</li>
+</ul>
+<p>Check: <span class="arithmatex">\(1 + 2 = 3 = n\)</span> <span class="arithmatex">\(\checkmark\)</span></p>
+<h3 id="103-using-the-theorem">10.3 Using the Theorem<a class="headerlink" href="#103-using-the-theorem" title="Permanent link">&para;</a></h3>
+<p>The Rank-Nullity Theorem is useful for:</p>
+<table>
+<thead>
+<tr>
+<th>If you know...</th>
+<th>You can deduce...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rank and <span class="arithmatex">\(n\)</span></td>
+<td>Nullity = <span class="arithmatex">\(n - \text{rank}\)</span></td>
+</tr>
+<tr>
+<td>Nullity and <span class="arithmatex">\(n\)</span></td>
+<td>Rank = <span class="arithmatex">\(n - \text{nullity}\)</span></td>
+</tr>
+<tr>
+<td>Rank <span class="arithmatex">\(= n\)</span></td>
+<td>Nullity = 0, so the mapping is injective</td>
+</tr>
+<tr>
+<td>Rank <span class="arithmatex">\(= m\)</span> (rows)</td>
+<td>The mapping is surjective</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="part-11-change-of-basis">Part 11: Change of Basis<a class="headerlink" href="#part-11-change-of-basis" title="Permanent link">&para;</a></h2>
+<h3 id="111-coordinate-vectors">11.1 Coordinate Vectors<a class="headerlink" href="#111-coordinate-vectors" title="Permanent link">&para;</a></h3>
+<p>Every vector <span class="arithmatex">\(\mathbf{x}\)</span> in a vector space <span class="arithmatex">\(V\)</span> can be represented as a linear combination of basis vectors. The <strong>coordinate vector</strong> of <span class="arithmatex">\(\mathbf{x}\)</span> with respect to a basis <span class="arithmatex">\(B = \{\mathbf{b}_1, \ldots, \mathbf{b}_n\}\)</span> is the vector of coefficients:</p>
+<p>If <span class="arithmatex">\(\mathbf{x} = \alpha_1 \mathbf{b}_1 + \alpha_2 \mathbf{b}_2 + \cdots + \alpha_n \mathbf{b}_n\)</span>, then the coordinate vector is:</p>
+<div class="arithmatex">\[[\mathbf{x}]_B = \begin{bmatrix} \alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n \end{bmatrix}\]</div>
+<p>In plain English: the same vector can look different depending on which coordinate system (basis) you use.</p>
+<blockquote>
+<p><strong>Think of it as...</strong> describing a location. You can say "3 blocks east and 2 blocks north" or "3.6 blocks northeast." Same point, different descriptions depending on your coordinate system.</p>
+</blockquote>
+<h3 id="112-the-change-of-basis-matrix">11.2 The Change of Basis Matrix<a class="headerlink" href="#112-the-change-of-basis-matrix" title="Permanent link">&para;</a></h3>
+<p>Suppose you have two bases <span class="arithmatex">\(B = \{\mathbf{b}_1, \ldots, \mathbf{b}_n\}\)</span> and <span class="arithmatex">\(\tilde{B} = \{\tilde{\mathbf{b}}_1, \ldots, \tilde{\mathbf{b}}_n\}\)</span> for the same vector space. The <strong>change of basis matrix</strong> <span class="arithmatex">\(S\)</span> from <span class="arithmatex">\(\tilde{B}\)</span> to <span class="arithmatex">\(B\)</span> satisfies:</p>
+<div class="arithmatex">\[[\mathbf{x}]_B = S \, [\mathbf{x}]_{\tilde{B}}\]</div>
+<p>To construct <span class="arithmatex">\(S\)</span>: write each new basis vector <span class="arithmatex">\(\tilde{\mathbf{b}}_j\)</span> in terms of the old basis <span class="arithmatex">\(B\)</span>. The coefficients form the <span class="arithmatex">\(j\)</span>-th column of <span class="arithmatex">\(S\)</span>.</p>
+<h3 id="113-transformation-under-a-change-of-basis">11.3 Transformation Under a Change of Basis<a class="headerlink" href="#113-transformation-under-a-change-of-basis" title="Permanent link">&para;</a></h3>
+<p>If a linear mapping <span class="arithmatex">\(\Phi\)</span> has transformation matrix <span class="arithmatex">\(A\)</span> with respect to basis <span class="arithmatex">\(B\)</span>, then with respect to basis <span class="arithmatex">\(\tilde{B}\)</span>, it has transformation matrix:</p>
+<div class="arithmatex">\[\tilde{A} = S^{-1} A S\]</div>
+<p>where <span class="arithmatex">\(S\)</span> is the change of basis matrix from <span class="arithmatex">\(\tilde{B}\)</span> to <span class="arithmatex">\(B\)</span>.</p>
+<p><strong>Worked Example:</strong></p>
+<p>Let <span class="arithmatex">\(B = \left\{\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \end{bmatrix}\right\}\)</span> (the standard basis) and <span class="arithmatex">\(\tilde{B} = \left\{\begin{bmatrix} 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ -1 \end{bmatrix}\right\}\)</span>.</p>
+<p>The change of basis matrix <span class="arithmatex">\(S\)</span> from <span class="arithmatex">\(\tilde{B}\)</span> to <span class="arithmatex">\(B\)</span> is formed by writing the new basis vectors in terms of the standard basis (which is trivial since <span class="arithmatex">\(B\)</span> is the standard basis):</p>
+<div class="arithmatex">\[S = \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}\]</div>
+<p>Now if <span class="arithmatex">\(\mathbf{x}\)</span> has coordinates <span class="arithmatex">\([\mathbf{x}]_{\tilde{B}} = \begin{bmatrix} 3 \\ 2 \end{bmatrix}\)</span> in the new basis, the standard coordinates are:</p>
+<div class="arithmatex">\[[\mathbf{x}]_B = S \begin{bmatrix} 3 \\ 2 \end{bmatrix} = \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}\begin{bmatrix} 3 \\ 2 \end{bmatrix} = \begin{bmatrix} 5 \\ 1 \end{bmatrix}\]</div>
+<p>This means <span class="arithmatex">\(\mathbf{x} = 3\begin{bmatrix} 1 \\ 1 \end{bmatrix} + 2\begin{bmatrix} 1 \\ -1 \end{bmatrix} = \begin{bmatrix} 5 \\ 1 \end{bmatrix}\)</span>.</p>
+<hr />
+<h2 id="part-12-affine-spaces">Part 12: Affine Spaces<a class="headerlink" href="#part-12-affine-spaces" title="Permanent link">&para;</a></h2>
+<h3 id="121-affine-subspaces-vs-vector-subspaces">12.1 Affine Subspaces vs. Vector Subspaces<a class="headerlink" href="#121-affine-subspaces-vs-vector-subspaces" title="Permanent link">&para;</a></h3>
+<p>A <strong>vector subspace</strong> must pass through the origin. An <strong>affine subspace</strong> is a "shifted" version of a vector subspace -- it may or may not pass through the origin.</p>
+<p><strong>Formal definition:</strong> An affine subspace <span class="arithmatex">\(L\)</span> of a vector space <span class="arithmatex">\(V\)</span> is a set of the form:</p>
+<div class="arithmatex">\[L = \mathbf{x}_0 + U = \{\mathbf{x}_0 + \mathbf{u} : \mathbf{u} \in U\}\]</div>
+<p>where <span class="arithmatex">\(\mathbf{x}_0 \in V\)</span> is a fixed point and <span class="arithmatex">\(U \subseteq V\)</span> is a vector subspace.</p>
+<p>In plain English: take a subspace <span class="arithmatex">\(U\)</span> (which passes through the origin) and slide it so it passes through the point <span class="arithmatex">\(\mathbf{x}_0\)</span> instead. The result is an affine subspace.</p>
+<blockquote>
+<p><strong>Think of it as...</strong> a vector subspace is a flat surface passing through the origin (a line through zero, a plane through zero, etc.). An affine subspace is that same flat surface slid to a different location. A line that does not pass through the origin is affine but not a vector subspace.</p>
+</blockquote>
+<h3 id="122-examples">12.2 Examples<a class="headerlink" href="#122-examples" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Geometric object</th>
+<th>Vector subspace?</th>
+<th>Affine subspace?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A line through the origin</td>
+<td>Yes</td>
+<td>Yes (with <span class="arithmatex">\(\mathbf{x}_0 = \mathbf{0}\)</span>)</td>
+</tr>
+<tr>
+<td>A line NOT through the origin</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>A plane through the origin</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>A plane NOT through the origin</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>A single point</td>
+<td>No (unless it is the origin)</td>
+<td>Yes (a 0-dimensional affine subspace)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="123-connection-to-solutions-of-amathbfx-mathbfb">12.3 Connection to Solutions of <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span><a class="headerlink" href="#123-connection-to-solutions-of-amathbfx-mathbfb" title="Permanent link">&para;</a></h3>
+<p>This is the key insight: <strong>the solution set of <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span> (when <span class="arithmatex">\(\mathbf{b} \neq \mathbf{0}\)</span>) is an affine subspace, not a vector subspace.</strong></p>
+<p>Here is why. Suppose <span class="arithmatex">\(\mathbf{x}_p\)</span> is one particular solution to <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span>. Then every solution can be written as:</p>
+<div class="arithmatex">\[\mathbf{x} = \mathbf{x}_p + \mathbf{v}, \quad \text{where } \mathbf{v} \in \ker(A)\]</div>
+<p>In other words, the full solution set is:</p>
+<div class="arithmatex">\[\{\mathbf{x}_p + \mathbf{v} : \mathbf{v} \in \ker(A)\} = \mathbf{x}_p + \ker(A)\]</div>
+<p>This is exactly an affine subspace: a particular solution <span class="arithmatex">\(\mathbf{x}_p\)</span> plus the kernel (null space) of <span class="arithmatex">\(A\)</span>.</p>
+<p><strong>Why this works:</strong></p>
+<ul>
+<li>If <span class="arithmatex">\(A\mathbf{x}_p = \mathbf{b}\)</span> and <span class="arithmatex">\(A\mathbf{v} = \mathbf{0}\)</span>, then <span class="arithmatex">\(A(\mathbf{x}_p + \mathbf{v}) = A\mathbf{x}_p + A\mathbf{v} = \mathbf{b} + \mathbf{0} = \mathbf{b}\)</span> <span class="arithmatex">\(\checkmark\)</span></li>
+</ul>
+<p><strong>Worked Example:</strong></p>
+<p>Solve <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span> where <span class="arithmatex">\(A = \begin{bmatrix} 1 &amp; 2 \\ 2 &amp; 4 \end{bmatrix}\)</span> and <span class="arithmatex">\(\mathbf{b} = \begin{bmatrix} 3 \\ 6 \end{bmatrix}\)</span>.</p>
+<p><strong>Step 1:</strong> Find a particular solution <span class="arithmatex">\(\mathbf{x}_p\)</span>.</p>
+<p>The augmented matrix is <span class="arithmatex">\(\left[\begin{array}{cc|c} 1 &amp; 2 &amp; 3 \\ 2 &amp; 4 &amp; 6 \end{array}\right]\)</span>.</p>
+<p><span class="arithmatex">\(R_2 \to R_2 - 2R_1\)</span>: <span class="arithmatex">\(\left[\begin{array}{cc|c} 1 &amp; 2 &amp; 3 \\ 0 &amp; 0 &amp; 0 \end{array}\right]\)</span></p>
+<p>So <span class="arithmatex">\(x_1 + 2x_2 = 3\)</span>. Setting <span class="arithmatex">\(x_2 = 0\)</span> gives <span class="arithmatex">\(x_1 = 3\)</span>. A particular solution is <span class="arithmatex">\(\mathbf{x}_p = \begin{bmatrix} 3 \\ 0 \end{bmatrix}\)</span>.</p>
+<p><strong>Step 2:</strong> Find the kernel <span class="arithmatex">\(\ker(A)\)</span>.</p>
+<p>Solve <span class="arithmatex">\(A\mathbf{x} = \mathbf{0}\)</span>: <span class="arithmatex">\(x_1 + 2x_2 = 0\)</span>, so <span class="arithmatex">\(x_1 = -2x_2\)</span>. Setting <span class="arithmatex">\(x_2 = t\)</span>:</p>
+<div class="arithmatex">\[\ker(A) = \text{span}\left\{\begin{bmatrix} -2 \\ 1 \end{bmatrix}\right\}\]</div>
+<p><strong>Step 3:</strong> Write the full solution as an affine subspace.</p>
+<div class="arithmatex">\[\mathbf{x} = \begin{bmatrix} 3 \\ 0 \end{bmatrix} + t\begin{bmatrix} -2 \\ 1 \end{bmatrix}, \quad t \in \mathbb{R}\]</div>
+<p>This is a line in <span class="arithmatex">\(\mathbb{R}^2\)</span> that passes through <span class="arithmatex">\(\begin{bmatrix} 3 \\ 0 \end{bmatrix}\)</span> with direction <span class="arithmatex">\(\begin{bmatrix} -2 \\ 1 \end{bmatrix}\)</span>. It does not pass through the origin, so it is affine but not a vector subspace.</p>
+<hr />
+<h2 id="summary-key-takeaways">Summary: Key Takeaways<a class="headerlink" href="#summary-key-takeaways" title="Permanent link">&para;</a></h2>
+<h3 id="systems-and-matrices">Systems and Matrices<a class="headerlink" href="#systems-and-matrices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A system <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span> has 0, 1, or infinitely many solutions</li>
+<li>The augmented matrix <span class="arithmatex">\([A \mid \mathbf{b}]\)</span> is the starting point for Gaussian elimination</li>
+<li>The inverse <span class="arithmatex">\(A^{-1}\)</span> exists when <span class="arithmatex">\(\det(A) \neq 0\)</span>; for <span class="arithmatex">\(2 \times 2\)</span>: <span class="arithmatex">\(A^{-1} = \frac{1}{ad-bc}\begin{bmatrix} d &amp; -b \\ -c &amp; a \end{bmatrix}\)</span></li>
+</ul>
+<h3 id="vector-spaces-and-subspaces">Vector Spaces and Subspaces<a class="headerlink" href="#vector-spaces-and-subspaces" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A vector space satisfies closure under addition and scalar multiplication</li>
+<li>Subspace test: contains <span class="arithmatex">\(\mathbf{0}\)</span>, closed under <span class="arithmatex">\(+\)</span>, closed under scalar multiplication</li>
+<li>Basis = linearly independent + spanning; dimension = number of basis vectors</li>
+</ul>
+<h3 id="rank-kernel-and-image">Rank, Kernel, and Image<a class="headerlink" href="#rank-kernel-and-image" title="Permanent link">&para;</a></h3>
+<ul>
+<li><span class="arithmatex">\(\text{rank}(A) =\)</span> number of pivots in REF</li>
+<li><span class="arithmatex">\(\ker(A) = \{\mathbf{x} : A\mathbf{x} = \mathbf{0}\}\)</span>; $\text{Im}(A) = $ column space of <span class="arithmatex">\(A\)</span></li>
+<li>Rank-Nullity Theorem: <span class="arithmatex">\(\text{nullity}(A) + \text{rank}(A) = n\)</span></li>
+</ul>
+<h3 id="linear-mappings-and-affine-spaces">Linear Mappings and Affine Spaces<a class="headerlink" href="#linear-mappings-and-affine-spaces" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Linear mappings preserve addition and scalar multiplication</li>
+<li>Change of basis: <span class="arithmatex">\(\tilde{A} = S^{-1}AS\)</span></li>
+<li>Solution set of <span class="arithmatex">\(A\mathbf{x} = \mathbf{b}\)</span> is an affine subspace: <span class="arithmatex">\(\mathbf{x}_p + \ker(A)\)</span></li>
+</ul>
+<hr />
+<h2 id="practice-problems">Practice Problems<a class="headerlink" href="#practice-problems" title="Permanent link">&para;</a></h2>
+<h3 id="problem-1-solving-a-system-via-gaussian-elimination">Problem 1: Solving a System via Gaussian Elimination<a class="headerlink" href="#problem-1-solving-a-system-via-gaussian-elimination" title="Permanent link">&para;</a></h3>
+<p>Solve the following system using Gaussian elimination:</p>
+<div class="arithmatex">\[x_1 + x_2 + 2x_3 = 9\]</div>
+<div class="arithmatex">\[2x_1 + 4x_2 - 3x_3 = 1\]</div>
+<div class="arithmatex">\[3x_1 + 6x_2 - 5x_3 = 0\]</div>
+<h3 id="problem-2-finding-the-inverse-of-a-matrix">Problem 2: Finding the Inverse of a Matrix<a class="headerlink" href="#problem-2-finding-the-inverse-of-a-matrix" title="Permanent link">&para;</a></h3>
+<p>Find the inverse of:</p>
+<div class="arithmatex">\[A = \begin{bmatrix} 3 &amp; 5 \\ 1 &amp; 2 \end{bmatrix}\]</div>
+<p>Verify your answer by checking that <span class="arithmatex">\(AA^{-1} = I\)</span>.</p>
+<h3 id="problem-3-checking-if-a-set-is-a-subspace">Problem 3: Checking if a Set is a Subspace<a class="headerlink" href="#problem-3-checking-if-a-set-is-a-subspace" title="Permanent link">&para;</a></h3>
+<p>Determine whether the following subset of <span class="arithmatex">\(\mathbb{R}^3\)</span> is a subspace:</p>
+<div class="arithmatex">\[U = \left\{\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} \in \mathbb{R}^3 : x_1 + 2x_2 - x_3 = 0\right\}\]</div>
+<h3 id="problem-4-testing-for-linear-independence">Problem 4: Testing for Linear Independence<a class="headerlink" href="#problem-4-testing-for-linear-independence" title="Permanent link">&para;</a></h3>
+<p>Determine whether the following vectors are linearly independent:</p>
+<div class="arithmatex">\[\mathbf{v}_1 = \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix}, \quad \mathbf{v}_2 = \begin{bmatrix} 0 \\ 1 \\ -1 \end{bmatrix}, \quad \mathbf{v}_3 = \begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}\]</div>
+<h3 id="problem-5-finding-a-basis-and-dimension">Problem 5: Finding a Basis and Dimension<a class="headerlink" href="#problem-5-finding-a-basis-and-dimension" title="Permanent link">&para;</a></h3>
+<p>Find a basis for the column space of the following matrix and state its dimension:</p>
+<div class="arithmatex">\[A = \begin{bmatrix} 1 &amp; 3 &amp; 5 \\ 2 &amp; 6 &amp; 10 \\ 1 &amp; 1 &amp; 3 \end{bmatrix}\]</div>
+<h3 id="problem-6-computing-the-rank">Problem 6: Computing the Rank<a class="headerlink" href="#problem-6-computing-the-rank" title="Permanent link">&para;</a></h3>
+<p>Compute the rank of:</p>
+<div class="arithmatex">\[M = \begin{bmatrix} 1 &amp; 2 &amp; 1 &amp; 0 \\ 2 &amp; 4 &amp; 3 &amp; 1 \\ 3 &amp; 6 &amp; 4 &amp; 1 \end{bmatrix}\]</div>
+<h3 id="problem-7-kernel-and-image">Problem 7: Kernel and Image<a class="headerlink" href="#problem-7-kernel-and-image" title="Permanent link">&para;</a></h3>
+<p>For the matrix <span class="arithmatex">\(A = \begin{bmatrix} 1 &amp; 0 &amp; -1 \\ 2 &amp; 1 &amp; 0 \\ -1 &amp; 1 &amp; 2 \end{bmatrix}\)</span>:</p>
+<p>(a) Find the kernel of <span class="arithmatex">\(A\)</span>.</p>
+<p>(b) Find a basis for the image of <span class="arithmatex">\(A\)</span>.</p>
+<p>(c) Verify the Rank-Nullity Theorem.</p>
+<h3 id="problem-8-affine-space-parametric-form-of-solution-set">Problem 8: Affine Space -- Parametric Form of Solution Set<a class="headerlink" href="#problem-8-affine-space-parametric-form-of-solution-set" title="Permanent link">&para;</a></h3>
+<p>Find the general solution (in affine/parametric form) of:</p>
+<div class="arithmatex">\[\begin{bmatrix} 1 &amp; 1 &amp; 2 \\ 2 &amp; 2 &amp; 4 \end{bmatrix}\mathbf{x} = \begin{bmatrix} 4 \\ 8 \end{bmatrix}\]</div>
+<p>Identify the particular solution, the kernel, and explain why the solution set is an affine subspace.</p>
+<hr />
+<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
+<p><strong>Solution 1:</strong></p>
+<p>Write the augmented matrix:</p>
+<div class="arithmatex">\[\left[\begin{array}{ccc|c} 1 &amp; 1 &amp; 2 &amp; 9 \\ 2 &amp; 4 &amp; -3 &amp; 1 \\ 3 &amp; 6 &amp; -5 &amp; 0 \end{array}\right]\]</div>
+<p><span class="arithmatex">\(R_2 \to R_2 - 2R_1\)</span>:</p>
+<div class="arithmatex">\[\left[\begin{array}{ccc|c} 1 &amp; 1 &amp; 2 &amp; 9 \\ 0 &amp; 2 &amp; -7 &amp; -17 \\ 3 &amp; 6 &amp; -5 &amp; 0 \end{array}\right]\]</div>
+<p><span class="arithmatex">\(R_3 \to R_3 - 3R_1\)</span>:</p>
+<div class="arithmatex">\[\left[\begin{array}{ccc|c} 1 &amp; 1 &amp; 2 &amp; 9 \\ 0 &amp; 2 &amp; -7 &amp; -17 \\ 0 &amp; 3 &amp; -11 &amp; -27 \end{array}\right]\]</div>
+<p><span class="arithmatex">\(R_3 \to R_3 - \frac{3}{2}R_2\)</span>:</p>
+<div class="arithmatex">\[\left[\begin{array}{ccc|c} 1 &amp; 1 &amp; 2 &amp; 9 \\ 0 &amp; 2 &amp; -7 &amp; -17 \\ 0 &amp; 0 &amp; -\frac{1}{2} &amp; -\frac{3}{2} \end{array}\right]\]</div>
+<p><span class="arithmatex">\(R_3 \to -2R_3\)</span>:</p>
+<div class="arithmatex">\[\left[\begin{array}{ccc|c} 1 &amp; 1 &amp; 2 &amp; 9 \\ 0 &amp; 2 &amp; -7 &amp; -17 \\ 0 &amp; 0 &amp; 1 &amp; 3 \end{array}\right]\]</div>
+<p>Back substitution: From row 3: <span class="arithmatex">\(x_3 = 3\)</span>.</p>
+<p>From row 2: <span class="arithmatex">\(2x_2 - 7(3) = -17 \implies 2x_2 = 4 \implies x_2 = 2\)</span>.</p>
+<p>From row 1: <span class="arithmatex">\(x_1 + 2 + 2(3) = 9 \implies x_1 = 9 - 2 - 6 = 1\)</span>.</p>
+<div class="arithmatex">\[x_1 = 1, \quad x_2 = 2, \quad x_3 = 3\]</div>
+<p><strong>Verify:</strong> <span class="arithmatex">\(1+2+6=9\)</span> <span class="arithmatex">\(\checkmark\)</span>, <span class="arithmatex">\(2+8-9=1\)</span> <span class="arithmatex">\(\checkmark\)</span>, <span class="arithmatex">\(3+12-15=0\)</span> <span class="arithmatex">\(\checkmark\)</span>.</p>
+<hr />
+<p><strong>Solution 2:</strong></p>
+<div class="arithmatex">\[\det(A) = 3(2) - 5(1) = 6 - 5 = 1\]</div>
+<div class="arithmatex">\[A^{-1} = \frac{1}{1}\begin{bmatrix} 2 &amp; -5 \\ -1 &amp; 3 \end{bmatrix} = \begin{bmatrix} 2 &amp; -5 \\ -1 &amp; 3 \end{bmatrix}\]</div>
+<p><strong>Verify:</strong></p>
+<div class="arithmatex">\[AA^{-1} = \begin{bmatrix} 3 &amp; 5 \\ 1 &amp; 2 \end{bmatrix}\begin{bmatrix} 2 &amp; -5 \\ -1 &amp; 3 \end{bmatrix} = \begin{bmatrix} 3(2)+5(-1) &amp; 3(-5)+5(3) \\ 1(2)+2(-1) &amp; 1(-5)+2(3) \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} = I \quad \checkmark\]</div>
+<hr />
+<p><strong>Solution 3:</strong></p>
+<p>We apply the 3-step subspace test.</p>
+<p><strong>Step 1 (Zero vector):</strong> Let <span class="arithmatex">\(x_1 = x_2 = x_3 = 0\)</span>. Then <span class="arithmatex">\(0 + 2(0) - 0 = 0\)</span>. So <span class="arithmatex">\(\mathbf{0} \in U\)</span>. <span class="arithmatex">\(\checkmark\)</span></p>
+<p><strong>Step 2 (Closed under addition):</strong> Let <span class="arithmatex">\(\mathbf{u} = \begin{bmatrix} u_1 \\ u_2 \\ u_3 \end{bmatrix}\)</span> and <span class="arithmatex">\(\mathbf{v} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix}\)</span> both be in <span class="arithmatex">\(U\)</span>, so <span class="arithmatex">\(u_1 + 2u_2 - u_3 = 0\)</span> and <span class="arithmatex">\(v_1 + 2v_2 - v_3 = 0\)</span>.</p>
+<p>Then <span class="arithmatex">\(\mathbf{u} + \mathbf{v} = \begin{bmatrix} u_1+v_1 \\ u_2+v_2 \\ u_3+v_3 \end{bmatrix}\)</span> and:</p>
+<div class="arithmatex">\[(u_1+v_1) + 2(u_2+v_2) - (u_3+v_3) = (u_1+2u_2-u_3) + (v_1+2v_2-v_3) = 0 + 0 = 0\]</div>
+<p>So <span class="arithmatex">\(\mathbf{u} + \mathbf{v} \in U\)</span>. <span class="arithmatex">\(\checkmark\)</span></p>
+<p><strong>Step 3 (Closed under scalar multiplication):</strong> Let <span class="arithmatex">\(\alpha \in \mathbb{R}\)</span> and <span class="arithmatex">\(\mathbf{u} \in U\)</span>.</p>
+<div class="arithmatex">\[\alpha u_1 + 2(\alpha u_2) - \alpha u_3 = \alpha(u_1 + 2u_2 - u_3) = \alpha \cdot 0 = 0\]</div>
+<p>So <span class="arithmatex">\(\alpha \mathbf{u} \in U\)</span>. <span class="arithmatex">\(\checkmark\)</span></p>
+<p><strong>Conclusion:</strong> <span class="arithmatex">\(U\)</span> is a subspace of <span class="arithmatex">\(\mathbb{R}^3\)</span>. (Geometrically, it is a plane through the origin.)</p>
+<hr />
+<p><strong>Solution 4:</strong></p>
+<p>Form the matrix and row reduce:</p>
+<div class="arithmatex">\[\begin{bmatrix} 1 &amp; 0 &amp; 2 \\ 0 &amp; 1 &amp; 1 \\ 2 &amp; -1 &amp; 3 \end{bmatrix} \xrightarrow{R_3 - 2R_1} \begin{bmatrix} 1 &amp; 0 &amp; 2 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; -1 &amp; -1 \end{bmatrix} \xrightarrow{R_3 + R_2} \begin{bmatrix} 1 &amp; 0 &amp; 2 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 0 \end{bmatrix}\]</div>
+<p>There are 2 pivots for 3 vectors. Column 3 has no pivot, meaning <span class="arithmatex">\(\mathbf{v}_3\)</span> depends on the others.</p>
+<p>The vectors are <strong>linearly dependent</strong>.</p>
+<p>From the RREF: <span class="arithmatex">\(\mathbf{v}_3 = 2\mathbf{v}_1 + 1\mathbf{v}_2 = \begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}\)</span>. <span class="arithmatex">\(\checkmark\)</span></p>
+<hr />
+<p><strong>Solution 5:</strong></p>
+<p>Row reduce <span class="arithmatex">\(A\)</span>:</p>
+<div class="arithmatex">\[\begin{bmatrix} 1 &amp; 3 &amp; 5 \\ 2 &amp; 6 &amp; 10 \\ 1 &amp; 1 &amp; 3 \end{bmatrix} \xrightarrow{R_2 - 2R_1} \begin{bmatrix} 1 &amp; 3 &amp; 5 \\ 0 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 3 \end{bmatrix} \xrightarrow{R_3 - R_1} \begin{bmatrix} 1 &amp; 3 &amp; 5 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; -2 &amp; -2 \end{bmatrix} \xrightarrow{R_2 \leftrightarrow R_3} \begin{bmatrix} 1 &amp; 3 &amp; 5 \\ 0 &amp; -2 &amp; -2 \\ 0 &amp; 0 &amp; 0 \end{bmatrix}\]</div>
+<p>Pivots are in columns 1 and 2. A basis for the column space consists of the corresponding original columns of <span class="arithmatex">\(A\)</span>:</p>
+<div class="arithmatex">\[\text{Basis} = \left\{\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}, \begin{bmatrix} 3 \\ 6 \\ 1 \end{bmatrix}\right\}\]</div>
+<p><strong>Dimension:</strong> <span class="arithmatex">\(\dim(\text{Col}(A)) = \text{rank}(A) = 2\)</span>.</p>
+<hr />
+<p><strong>Solution 6:</strong></p>
+<p>Row reduce <span class="arithmatex">\(M\)</span>:</p>
+<div class="arithmatex">\[\begin{bmatrix} 1 &amp; 2 &amp; 1 &amp; 0 \\ 2 &amp; 4 &amp; 3 &amp; 1 \\ 3 &amp; 6 &amp; 4 &amp; 1 \end{bmatrix} \xrightarrow{R_2 - 2R_1} \begin{bmatrix} 1 &amp; 2 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 1 \\ 3 &amp; 6 &amp; 4 &amp; 1 \end{bmatrix} \xrightarrow{R_3 - 3R_1} \begin{bmatrix} 1 &amp; 2 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 1 \end{bmatrix} \xrightarrow{R_3 - R_2} \begin{bmatrix} 1 &amp; 2 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}\]</div>
+<p>There are <strong>2 pivots</strong> (in columns 1 and 3).</p>
+<div class="arithmatex">\[\text{rank}(M) = 2\]</div>
+<hr />
+<p><strong>Solution 7:</strong></p>
+<p><strong>(a) Kernel:</strong> Solve <span class="arithmatex">\(A\mathbf{x} = \mathbf{0}\)</span>.</p>
+<div class="arithmatex">\[\begin{bmatrix} 1 &amp; 0 &amp; -1 \\ 2 &amp; 1 &amp; 0 \\ -1 &amp; 1 &amp; 2 \end{bmatrix} \xrightarrow{R_2 - 2R_1} \begin{bmatrix} 1 &amp; 0 &amp; -1 \\ 0 &amp; 1 &amp; 2 \\ -1 &amp; 1 &amp; 2 \end{bmatrix} \xrightarrow{R_3 + R_1} \begin{bmatrix} 1 &amp; 0 &amp; -1 \\ 0 &amp; 1 &amp; 2 \\ 0 &amp; 1 &amp; 1 \end{bmatrix} \xrightarrow{R_3 - R_2} \begin{bmatrix} 1 &amp; 0 &amp; -1 \\ 0 &amp; 1 &amp; 2 \\ 0 &amp; 0 &amp; -1 \end{bmatrix}\]</div>
+<p>Three pivots for three unknowns, so the only solution to <span class="arithmatex">\(A\mathbf{x} = \mathbf{0}\)</span> is <span class="arithmatex">\(\mathbf{x} = \mathbf{0}\)</span>.</p>
+<div class="arithmatex">\[\ker(A) = \{\mathbf{0}\}\]</div>
+<p><strong>(b) Image:</strong> Since <span class="arithmatex">\(\text{rank}(A) = 3\)</span> and <span class="arithmatex">\(A \in \mathbb{R}^{3 \times 3}\)</span>, all three columns are linearly independent. A basis for the image is:</p>
+<div class="arithmatex">\[\text{Basis for Im}(A) = \left\{\begin{bmatrix} 1 \\ 2 \\ -1 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}, \begin{bmatrix} -1 \\ 0 \\ 2 \end{bmatrix}\right\}\]</div>
+<p>So <span class="arithmatex">\(\text{Im}(A) = \mathbb{R}^3\)</span> (the mapping is surjective).</p>
+<p><strong>(c) Verify Rank-Nullity:</strong></p>
+<div class="arithmatex">\[\dim(\ker(A)) + \dim(\text{Im}(A)) = 0 + 3 = 3 = n \quad \checkmark\]</div>
+<p>Since <span class="arithmatex">\(\ker(A) = \{\mathbf{0}\}\)</span> (injective) and <span class="arithmatex">\(\text{Im}(A) = \mathbb{R}^3\)</span> (surjective), the mapping is <strong>bijective</strong> and <span class="arithmatex">\(A\)</span> is invertible.</p>
+<hr />
+<p><strong>Solution 8:</strong></p>
+<p>Write the augmented matrix and row reduce:</p>
+<div class="arithmatex">\[\left[\begin{array}{ccc|c} 1 &amp; 1 &amp; 2 &amp; 4 \\ 2 &amp; 2 &amp; 4 &amp; 8 \end{array}\right] \xrightarrow{R_2 - 2R_1} \left[\begin{array}{ccc|c} 1 &amp; 1 &amp; 2 &amp; 4 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{array}\right]\]</div>
+<p>There is 1 pivot (in column 1) and 2 free variables (<span class="arithmatex">\(x_2\)</span> and <span class="arithmatex">\(x_3\)</span>).</p>
+<p>From the first row: <span class="arithmatex">\(x_1 + x_2 + 2x_3 = 4\)</span>, so <span class="arithmatex">\(x_1 = 4 - x_2 - 2x_3\)</span>.</p>
+<p><strong>Particular solution:</strong> Set the free variables to zero (<span class="arithmatex">\(x_2 = 0, x_3 = 0\)</span>):</p>
+<div class="arithmatex">\[\mathbf{x}_p = \begin{bmatrix} 4 \\ 0 \\ 0 \end{bmatrix}\]</div>
+<p><strong>Kernel:</strong> Solve <span class="arithmatex">\(A\mathbf{x} = \mathbf{0}\)</span>: <span class="arithmatex">\(x_1 = -x_2 - 2x_3\)</span>, with <span class="arithmatex">\(x_2 = s, x_3 = t\)</span> free:</p>
+<div class="arithmatex">\[\ker(A) = \text{span}\left\{\begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} -2 \\ 0 \\ 1 \end{bmatrix}\right\}\]</div>
+<p><strong>General solution (affine/parametric form):</strong></p>
+<div class="arithmatex">\[\mathbf{x} = \underbrace{\begin{bmatrix} 4 \\ 0 \\ 0 \end{bmatrix}}_{\mathbf{x}_p} + s\underbrace{\begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix}}_{\text{kernel direction 1}} + t\underbrace{\begin{bmatrix} -2 \\ 0 \\ 1 \end{bmatrix}}_{\text{kernel direction 2}}, \quad s, t \in \mathbb{R}\]</div>
+<p><strong>Why is this an affine subspace?</strong> The solution set does not pass through the origin (when <span class="arithmatex">\(s = t = 0\)</span>, the solution is <span class="arithmatex">\(\begin{bmatrix} 4 \\ 0 \\ 0 \end{bmatrix} \neq \mathbf{0}\)</span>). It is formed by taking one particular solution <span class="arithmatex">\(\mathbf{x}_p\)</span> and adding all elements of the kernel, which is a 2-dimensional vector subspace. The result is a 2-dimensional plane in <span class="arithmatex">\(\mathbb{R}^3\)</span>, shifted away from the origin -- a classic affine subspace.</p>
+<hr />
+<p><strong>Course:</strong> Mathematics for Machine Learning
+<strong>Instructor:</strong> Mohammed Alnemari</p>
+<p><strong>Next:</strong> Tutorial - Analytic Geometry</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/alnemari-m/mathai-website" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

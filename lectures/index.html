@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mohammed Alnemari" /><link rel="canonical" href="https://alnemari-m.github.io/mathai-website/lectures/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Lectures - Mathematics of AI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lectures";
+        var mkdocs_page_input_path = "lectures.md";
+        var mkdocs_page_url = "/mathai-website/lectures/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Mathematics of AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Lectures</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#course-administration">Course Administration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#assessment-breakdown">Assessment Breakdown</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#course-level-prerequisites">Course Level &amp; Prerequisites</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lecture-structure">Lecture Structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-i-mathematical-foundations">Part I: Mathematical Foundations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#lecture-0-introduction-course-overview">Lecture 0: Introduction &amp; Course Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lecture-2-linear-algebra">Lecture 2: Linear Algebra</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lecture-3-analytic-geometry">Lecture 3: Analytic Geometry</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lecture-4-matrix-decomposition">Lecture 4: Matrix Decomposition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lecture-5-vector-calculus">Lecture 5: Vector Calculus</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lecture-6-probability-distributions">Lecture 6: Probability &amp; Distributions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-ii-machine-learning-applications">Part II: Machine Learning Applications</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#application-1-when-models-meet-data">Application 1: When Models Meet Data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#application-2-dimensionality-reduction-pca">Application 2: Dimensionality Reduction (PCA)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#application-3-density-estimation-gmm">Application 3: Density Estimation (GMM)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#application-4-classification-svm">Application 4: Classification (SVM)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-reference-all-lecture-downloads">Quick Reference: All Lecture Downloads</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#primary-textbooks">Primary Textbooks</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mathematics-for-machine-learning">Mathematics for Machine Learning</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#convex-optimization">Convex Optimization</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#introduction-to-probability">Introduction to Probability</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#learning-tips">Learning Tips</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tutorials/">Math Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../notebooks/">Notebooks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../papers/">Papers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../animations/">🔒 Animations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Mathematics of AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Lectures</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/alnemari-m/mathai-website/edit/master/docs/lectures.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="lectures">Lectures<a class="headerlink" href="#lectures" title="Permanent link">&para;</a></h1>
+<p>Complete lecture materials with slides, review questions, theory connections, and PhD-level insights — all in PDF format.</p>
+<hr />
+<h2 id="course-administration">Course Administration<a class="headerlink" href="#course-administration" title="Permanent link">&para;</a></h2>
+<h3 id="assessment-breakdown">Assessment Breakdown<a class="headerlink" href="#assessment-breakdown" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Weight</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quizzes</strong></td>
+<td><strong>40%</strong></td>
+<td>4-5 quizzes throughout the course</td>
+</tr>
+<tr>
+<td><strong>Midterm Examination</strong></td>
+<td><strong>20%</strong></td>
+<td>Covers Part I: Mathematical Foundations</td>
+</tr>
+<tr>
+<td><strong>Final Examination</strong></td>
+<td><strong>30%</strong></td>
+<td>Comprehensive exam covering all topics</td>
+</tr>
+<tr>
+<td><strong>Reading &amp; Review Papers</strong></td>
+<td><strong>10%</strong></td>
+<td>4-5 research papers to review</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>100%</strong></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="course-level-prerequisites">Course Level &amp; Prerequisites<a class="headerlink" href="#course-level-prerequisites" title="Permanent link">&para;</a></h3>
+<p><strong>Target Audience:</strong> Undergraduate/Graduate Level</p>
+<p><strong>Flexible Prerequisites:</strong></p>
+<ul>
+<li>Basic linear algebra and vector calculus recommended</li>
+<li>Course structure allows for adjustment based on student background</li>
+<li>Mathematical concepts presented with varying levels of rigor</li>
+</ul>
+<hr />
+<h2 id="lecture-structure">Lecture Structure<a class="headerlink" href="#lecture-structure" title="Permanent link">&para;</a></h2>
+<p>Every lecture follows a <strong>consistent four-part approach</strong> designed to build deep understanding:</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Concepts &amp; Explanation</strong></td>
+<td>Key definitions, intuitive explanations, "Think of it as..." plain-English descriptions</td>
+</tr>
+<tr>
+<td><strong>Mathematical Examples &amp; Tutorials</strong></td>
+<td>Step-by-step worked examples with detailed solutions</td>
+</tr>
+<tr>
+<td><strong>Review &amp; Practice</strong></td>
+<td>10 structured review questions with hints, common mistakes, and concepts-at-a-glance tables</td>
+</tr>
+<tr>
+<td><strong>Advanced Perspectives</strong></td>
+<td>5 Theory Connection slides (AI/ML applications) + 5 PhD View slides (research-level topics)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="part-i-mathematical-foundations">Part I: Mathematical Foundations<a class="headerlink" href="#part-i-mathematical-foundations" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="lecture-0-introduction-course-overview">Lecture 0: Introduction &amp; Course Overview<a class="headerlink" href="#lecture-0-introduction-course-overview" title="Permanent link">&para;</a></h3>
+<p>Course organization, assessment structure, textbooks, teaching philosophy, notation conventions, and what to expect.</p>
+<ul>
+<li><a href="../pdfs/Mathematics_for_Machine_Learning.pdf">Download Lecture 0 (PDF)</a></li>
+</ul>
+<hr />
+<h3 id="lecture-2-linear-algebra">Lecture 2: Linear Algebra<a class="headerlink" href="#lecture-2-linear-algebra" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Foundation of Everything in AI</p>
+<p>Linear algebra is the computational engine behind all of machine learning. Every dataset is a matrix, every data point is a vector, and every neural network layer computes a linear transformation.</p>
+</div>
+<p><strong>Topics covered (8 sections):</strong></p>
+<ol>
+<li>Systems of Linear Equations</li>
+<li>Matrices</li>
+<li>Solving Systems of Linear Equations</li>
+<li>Vector Spaces</li>
+<li>Linear Independence</li>
+<li>Basis and Rank</li>
+<li>Linear Mappings</li>
+<li>Affine Spaces</li>
+</ol>
+<p><strong>What's inside the slides:</strong></p>
+<ul>
+<li>Definitions with plain-English "Think of it as..." intuitions</li>
+<li>Full Math Tutorial section with 15 worked examples</li>
+<li>10 Review Questions with hints (systems, matrices, inverse/transpose, Gaussian elimination, vector spaces, linear independence, basis/dimension, rank, linear mappings, affine spaces)</li>
+<li>Common Mistakes to Avoid (5 key pitfalls)</li>
+<li>Concepts at a Glance comparison table</li>
+<li>Key Takeaways summary</li>
+<li>5 Theory Connection slides (ML, Computer Vision, Deep Learning, Optimization, Data Science)</li>
+<li>5 PhD View slides (Functional Analysis, Matrix Decompositions, Tensor Algebra, Numerical LA, Spectral Theory)</li>
+</ul>
+<p><strong>Materials:</strong></p>
+<ul>
+<li><a href="../pdfs/Lecture_2_Linear_Algebra.pdf">Download Lecture 2: Linear Algebra (PDF)</a></li>
+<li><a href="../tutorials/Tutorial_02_Linear_Algebra/">Tutorial: Linear Algebra</a></li>
+<li><a href="../notebooks/01_Python_Libraries_Basics.ipynb">Notebook: NumPy Basics</a></li>
+</ul>
+<hr />
+<h3 id="lecture-3-analytic-geometry">Lecture 3: Analytic Geometry<a class="headerlink" href="#lecture-3-analytic-geometry" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">The Geometry Behind Machine Learning</p>
+<p>Analytic geometry gives us the tools to measure similarity, distance, and angles in high-dimensional spaces — the foundation of recommendation systems, NLP embeddings, and PCA.</p>
+</div>
+<p><strong>Topics covered (9 sections):</strong></p>
+<ol>
+<li>Norms</li>
+<li>Inner Products</li>
+<li>Lengths and Distances</li>
+<li>Angles and Orthogonality</li>
+<li>Orthonormal Basis</li>
+<li>Orthogonal Complement</li>
+<li>Inner Product of Functions</li>
+<li>Orthogonal Projections</li>
+<li>Rotations</li>
+</ol>
+<p><strong>What's inside the slides:</strong></p>
+<ul>
+<li>Complete concept chain: Inner Product → Norm → Distance → Angle → Orthogonality → Projection</li>
+<li>Projection formulas for 1D lines and general subspaces</li>
+<li>Gram-Schmidt orthogonalization with worked examples</li>
+<li>10 Review Questions with hints (norms, inner products, Cauchy-Schwarz, angles, orthogonal matrices, Gram-Schmidt, orthogonal complement, projections onto lines, general projections, rotations)</li>
+<li>Common Mistakes to Avoid (5 key pitfalls)</li>
+<li>Concepts at a Glance comparison table</li>
+<li>5 Theory Connection slides (ML, NLP, Deep Learning, Computer Vision, Data Science)</li>
+<li>5 PhD View slides (Hilbert Spaces, RKHS, Compressed Sensing, Riemannian Geometry, Random Projections)</li>
+</ul>
+<p><strong>Materials:</strong></p>
+<ul>
+<li><a href="../pdfs/Lecture_3_Analytic_Geometry.pdf">Download Lecture 3: Analytic Geometry (PDF)</a></li>
+<li><a href="../tutorials/Tutorial_03_Analytic_Geometry/">Tutorial: Analytic Geometry</a></li>
+<li><a href="../notebooks/02_Analytic_Geometry.ipynb">Notebook: Analytic Geometry in Python</a></li>
+</ul>
+<hr />
+<h3 id="lecture-4-matrix-decomposition">Lecture 4: Matrix Decomposition<a class="headerlink" href="#lecture-4-matrix-decomposition" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Revealing Hidden Structure in Data</p>
+<p>Matrix decompositions like eigendecomposition and SVD are the workhorses of data science — they power PCA, recommender systems, image compression, and Google's PageRank.</p>
+</div>
+<p><strong>Topics covered (6 sections):</strong></p>
+<ol>
+<li>Determinants and Trace</li>
+<li>Eigenvalues and Eigenvectors</li>
+<li>Cholesky Decomposition</li>
+<li>Eigendecomposition and Diagonalization</li>
+<li>Singular Value Decomposition (SVD)</li>
+<li>Matrix Approximation</li>
+</ol>
+<p><strong>What's inside the slides:</strong></p>
+<ul>
+<li>Eigenvalue computation with characteristic polynomials</li>
+<li>SVD: geometric interpretation and step-by-step examples</li>
+<li>Matrix approximation via truncated SVD</li>
+<li>10 Review Questions with hints</li>
+<li>Common Mistakes to Avoid</li>
+<li>5 Theory Connection slides (ML applications of decompositions)</li>
+<li>5 PhD View slides (advanced decomposition theory)</li>
+</ul>
+<p><strong>Materials:</strong></p>
+<ul>
+<li><a href="../pdfs/Lecture_4_Matrix_Decomposition.pdf">Download Lecture 4: Matrix Decomposition (PDF)</a></li>
+<li><a href="../tutorials/Tutorial_04_Matrix_Decomposition/">Tutorial: Matrix Decomposition</a></li>
+<li><a href="../notebooks/03_Matrix_Decomposition.ipynb">Notebook: Matrix Decomposition in Python</a></li>
+</ul>
+<hr />
+<h3 id="lecture-5-vector-calculus">Lecture 5: Vector Calculus<a class="headerlink" href="#lecture-5-vector-calculus" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">The Mathematics of Learning</p>
+<p>Vector calculus provides the gradient and chain rule — without these, there is no backpropagation, no gradient descent, and no training of neural networks.</p>
+</div>
+<p><strong>Topics covered (6 sections):</strong></p>
+<ol>
+<li>Differentiation of Univariate Functions</li>
+<li>Partial Differentiation and Gradients</li>
+<li>Gradients of Vector-Valued Functions</li>
+<li>Gradients of Matrices</li>
+<li>Useful Identities for Computing Gradients</li>
+<li>Backpropagation and Automatic Differentiation</li>
+</ol>
+<p><strong>What's inside the slides:</strong></p>
+<ul>
+<li>From single-variable derivatives to Jacobians and gradients</li>
+<li>Chain rule for vector and matrix functions</li>
+<li>Backpropagation derivation with computation graphs</li>
+<li>10 Review Questions with hints</li>
+<li>Common Mistakes to Avoid</li>
+<li>5 Theory Connection slides (optimization, neural networks, physics)</li>
+<li>5 PhD View slides (differential geometry, automatic differentiation theory)</li>
+</ul>
+<p><strong>Materials:</strong></p>
+<ul>
+<li><a href="../pdfs/Lecture_5_Vector_Calculus.pdf">Download Lecture 5: Vector Calculus (PDF)</a></li>
+<li><a href="../tutorials/Tutorial_05_Vector_Calculus/">Tutorial: Vector Calculus</a></li>
+<li><a href="../notebooks/04_Vector_Calculus.ipynb">Notebook: Vector Calculus in Python</a></li>
+</ul>
+<hr />
+<h3 id="lecture-6-probability-distributions">Lecture 6: Probability &amp; Distributions<a class="headerlink" href="#lecture-6-probability-distributions" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Reasoning Under Uncertainty</p>
+<p>Probability theory is the language of uncertainty — it underpins Bayesian inference, generative models, statistical testing, and every probabilistic ML algorithm.</p>
+</div>
+<p><strong>Topics covered (8 sections):</strong></p>
+<ol>
+<li>Construction of a Probability Space</li>
+<li>Discrete and Continuous Probabilities</li>
+<li>Sum Rule, Product Rule, and Bayes' Theorem</li>
+<li>Summary Statistics and Independence</li>
+<li>Gaussian Distribution</li>
+<li>Conjugacy and Exponential Family</li>
+<li>Change of Variables / Inverse Transform</li>
+<li>Probability in Machine Learning</li>
+</ol>
+<p><strong>What's inside the slides:</strong></p>
+<ul>
+<li>From sample spaces to random variables to distributions</li>
+<li>Discrete (Bernoulli, Binomial, Geometric) and Continuous (Uniform, Exponential, Gaussian) distributions</li>
+<li>Bayes' Theorem with real-world examples</li>
+<li>Marginal and conditional distributions</li>
+<li>Covariance, correlation, and independence</li>
+<li>10 Review Questions with hints</li>
+<li>Common Mistakes to Avoid</li>
+<li>5 Theory Connection slides (Bayesian ML, generative models, information theory)</li>
+<li>5 PhD View slides (measure theory, stochastic processes, information geometry)</li>
+</ul>
+<p><strong>Materials:</strong></p>
+<ul>
+<li><a href="../pdfs/Lecture_6_Probability_Distributions.pdf">Download Lecture 6: Probability &amp; Distributions (PDF)</a></li>
+<li><a href="../tutorials/Tutorial_06_Probability_Distributions/">Tutorial: Probability and Distributions</a></li>
+<li><a href="../notebooks/05_Probability_Distributions.ipynb">Notebook: Probability and Distributions in Python</a></li>
+</ul>
+<hr />
+<h2 id="part-ii-machine-learning-applications">Part II: Machine Learning Applications<a class="headerlink" href="#part-ii-machine-learning-applications" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="application-1-when-models-meet-data">Application 1: When Models Meet Data<a class="headerlink" href="#application-1-when-models-meet-data" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Introduction to the practical aspects of applying mathematical models to real-world datasets and the challenges that arise.</p>
+<p><strong>What you'll learn:</strong></p>
+<ul>
+<li>Data preprocessing and feature engineering</li>
+<li>Model selection and evaluation</li>
+<li>Overfitting and regularization</li>
+<li>Bias-variance tradeoff</li>
+</ul>
+<p><strong>Materials:</strong></p>
+<ul>
+<li><a href="../pdfs/Mathematics_for_Machine_Learning.pdf">Lecture Slides (Complete PDF)</a></li>
+</ul>
+<hr />
+<h3 id="application-2-dimensionality-reduction-pca">Application 2: Dimensionality Reduction (PCA)<a class="headerlink" href="#application-2-dimensionality-reduction-pca" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Using Principal Component Analysis to reduce data complexity while preserving essential information for efficient learning.</p>
+<p><strong>What you'll learn:</strong></p>
+<ul>
+<li>PCA theory: eigenvalues meet data variance</li>
+<li>Step-by-step PCA computation</li>
+<li>Variance explained and choosing dimensions</li>
+<li>Eigenfaces and image compression</li>
+</ul>
+<p><strong>Materials:</strong></p>
+<ul>
+<li><a href="../pdfs/Mathematics_for_Machine_Learning.pdf">Lecture Slides (Complete PDF)</a></li>
+</ul>
+<hr />
+<h3 id="application-3-density-estimation-gmm">Application 3: Density Estimation (GMM)<a class="headerlink" href="#application-3-density-estimation-gmm" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Probabilistic approaches to understanding data distributions and clustering using Gaussian Mixture Models.</p>
+<p><strong>What you'll learn:</strong></p>
+<ul>
+<li>Probability density estimation</li>
+<li>Gaussian Mixture Models</li>
+<li>Expectation-Maximization (EM) algorithm</li>
+<li>Clustering applications</li>
+</ul>
+<p><strong>Materials:</strong></p>
+<ul>
+<li><a href="../pdfs/Mathematics_for_Machine_Learning.pdf">Lecture Slides (Complete PDF)</a></li>
+</ul>
+<hr />
+<h3 id="application-4-classification-svm">Application 4: Classification (SVM)<a class="headerlink" href="#application-4-classification-svm" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Geometric and optimization-based methods for supervised learning and decision boundary determination using Support Vector Machines.</p>
+<p><strong>What you'll learn:</strong></p>
+<ul>
+<li>Support Vector Machines (SVM)</li>
+<li>Kernel methods and the kernel trick</li>
+<li>Margin maximization</li>
+<li>Multi-class classification</li>
+</ul>
+<p><strong>Materials:</strong></p>
+<ul>
+<li><a href="../pdfs/Mathematics_for_Machine_Learning.pdf">Lecture Slides (Complete PDF)</a></li>
+</ul>
+<hr />
+<h2 id="quick-reference-all-lecture-downloads">Quick Reference: All Lecture Downloads<a class="headerlink" href="#quick-reference-all-lecture-downloads" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Lecture</th>
+<th>Topic</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lecture 0</td>
+<td>Introduction &amp; Course Overview</td>
+<td><a href="../pdfs/Mathematics_for_Machine_Learning.pdf">PDF</a></td>
+</tr>
+<tr>
+<td>Lecture 2</td>
+<td>Linear Algebra</td>
+<td><a href="../pdfs/Lecture_2_Linear_Algebra.pdf">PDF</a></td>
+</tr>
+<tr>
+<td>Lecture 3</td>
+<td>Analytic Geometry</td>
+<td><a href="../pdfs/Lecture_3_Analytic_Geometry.pdf">PDF</a></td>
+</tr>
+<tr>
+<td>Lecture 4</td>
+<td>Matrix Decomposition</td>
+<td><a href="../pdfs/Lecture_4_Matrix_Decomposition.pdf">PDF</a></td>
+</tr>
+<tr>
+<td>Lecture 5</td>
+<td>Vector Calculus</td>
+<td><a href="../pdfs/Lecture_5_Vector_Calculus.pdf">PDF</a></td>
+</tr>
+<tr>
+<td>Lecture 6</td>
+<td>Probability &amp; Distributions</td>
+<td><a href="../pdfs/Lecture_6_Probability_Distributions.pdf">PDF</a></td>
+</tr>
+<tr>
+<td>Applications</td>
+<td>ML Applications (all 4)</td>
+<td><a href="../pdfs/Mathematics_for_Machine_Learning.pdf">PDF</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="primary-textbooks">Primary Textbooks<a class="headerlink" href="#primary-textbooks" title="Permanent link">&para;</a></h2>
+<h3 id="mathematics-for-machine-learning">Mathematics for Machine Learning<a class="headerlink" href="#mathematics-for-machine-learning" title="Permanent link">&para;</a></h3>
+<p><strong>Authors:</strong> Deisenroth, Faisal, and Ong
+<strong>Publisher:</strong> Cambridge University Press
+<strong>Website:</strong> <a href="https://mml-book.github.io/">mml-book.github.io</a></p>
+<h3 id="convex-optimization">Convex Optimization<a class="headerlink" href="#convex-optimization" title="Permanent link">&para;</a></h3>
+<p><strong>Authors:</strong> Boyd and Vandenberghe
+<strong>Publisher:</strong> Cambridge University Press
+<strong>Website:</strong> <a href="https://web.stanford.edu/~boyd/cvxbook/">stanford.edu/~boyd/cvxbook</a></p>
+<h3 id="introduction-to-probability">Introduction to Probability<a class="headerlink" href="#introduction-to-probability" title="Permanent link">&para;</a></h3>
+<p><strong>Authors:</strong> Bertsekas and Tsitsiklis
+<strong>Publisher:</strong> Athena Scientific (2nd Ed.)</p>
+<hr />
+<h2 id="learning-tips">Learning Tips<a class="headerlink" href="#learning-tips" title="Permanent link">&para;</a></h2>
+<p><strong>Before Each Lecture:</strong></p>
+<ul>
+<li>Download and review the lecture slides</li>
+<li>Complete prerequisite readings</li>
+<li>Review previous lecture concepts</li>
+</ul>
+<p><strong>During Lectures:</strong></p>
+<ul>
+<li>Follow the four-part structure</li>
+<li>Take notes during explanations</li>
+<li>Work through examples actively</li>
+<li>Try coding exercises immediately</li>
+</ul>
+<p><strong>After Lectures:</strong></p>
+<ul>
+<li>Work through the 10 Review Questions (use hints if stuck)</li>
+<li>Study the Common Mistakes to Avoid</li>
+<li>Explore Theory Connection slides for AI/ML context</li>
+<li>Review PhD View slides for deeper understanding</li>
+<li>Complete Python notebooks</li>
+</ul>
+<hr />
+<div class="signature">
+<p><em>Lectures prepared by Mohammed Alnemari</em>
+<em>Mathematics of AI &bull; Spring 2026</em></p>
+</div>
+<hr />
+<div class="last-updated">
+<p><strong>Last Updated:</strong> February 8, 2026</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../tutorials/" class="btn btn-neutral float-right" title="Math Tutorials">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/alnemari-m/mathai-website" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../tutorials/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

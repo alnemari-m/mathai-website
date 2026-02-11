@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mohammed Alnemari" /><link rel="canonical" href="https://alnemari-m.github.io/mathai-website/tutorials/Tutorial_04_Matrix_Decomposition/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Tutorial 3: Matrix Decomposition - Mathematics of AI</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../stylesheets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Tutorial 3: Matrix Decomposition";
+        var mkdocs_page_input_path = "tutorials/Tutorial_04_Matrix_Decomposition.md";
+        var mkdocs_page_url = "/mathai-website/tutorials/Tutorial_04_Matrix_Decomposition/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Mathematics of AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../lectures/">Lectures</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">Math Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../notebooks/">Notebooks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../papers/">Papers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../animations/">🔒 Animations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Mathematics of AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Tutorial 3: Matrix Decomposition</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/alnemari-m/mathai-website/edit/master/docs/tutorials/Tutorial_04_Matrix_Decomposition.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tutorial-3-matrix-decomposition">Tutorial 3: Matrix Decomposition<a class="headerlink" href="#tutorial-3-matrix-decomposition" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> Mathematics for Machine Learning
+<strong>Instructor:</strong> Mohammed Alnemari</p>
+<hr />
+<h2 id="learning-objectives">📚 Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>By the end of this tutorial, you will understand:</p>
+<ol>
+<li>How to compute determinants for 2x2 and 3x3 matrices</li>
+<li>The trace of a matrix and its properties</li>
+<li>Eigenvalues and eigenvectors and how to compute them</li>
+<li>Cholesky decomposition for symmetric positive definite matrices</li>
+<li>Eigendecomposition and diagonalization</li>
+<li>Singular Value Decomposition (SVD) and its geometric meaning</li>
+<li>Matrix approximation using truncated SVD</li>
+</ol>
+<hr />
+<h2 id="part-1-determinants">Part 1: Determinants<a class="headerlink" href="#part-1-determinants" title="Permanent link">&para;</a></h2>
+<h3 id="11-what-is-a-determinant">1.1 What is a Determinant?<a class="headerlink" href="#11-what-is-a-determinant" title="Permanent link">&para;</a></h3>
+<p>The <strong>determinant</strong> is a scalar value computed from a square matrix that captures important information about the matrix. Think of it as a single number that tells you:</p>
+<ul>
+<li>Whether the matrix is invertible (determinant is nonzero)</li>
+<li>How the matrix scales areas or volumes when used as a linear transformation</li>
+<li>The "signed volume" of the parallelepiped formed by the column vectors</li>
+</ul>
+<p><strong>Notation:</strong> For a matrix <span class="arithmatex">\(A\)</span>, the determinant is written as <span class="arithmatex">\(\det(A)\)</span> or <span class="arithmatex">\(|A|\)</span>.</p>
+<h3 id="12-determinant-of-a-2x2-matrix">1.2 Determinant of a 2x2 Matrix<a class="headerlink" href="#12-determinant-of-a-2x2-matrix" title="Permanent link">&para;</a></h3>
+<p>For a <span class="arithmatex">\(2 \times 2\)</span> matrix:</p>
+<div class="arithmatex">\[A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\]</div>
+<p>The determinant is:</p>
+<div class="arithmatex">\[\det(A) = ad - bc\]</div>
+<p>In plain English: multiply the diagonals and subtract. The main diagonal product minus the off-diagonal product.</p>
+<p><strong>Worked Example:</strong></p>
+<div class="arithmatex">\[A = \begin{bmatrix} 3 &amp; 7 \\ 1 &amp; 5 \end{bmatrix}\]</div>
+<div class="arithmatex">\[\det(A) = 3(5) - 7(1) = 15 - 7 = 8\]</div>
+<p>Since <span class="arithmatex">\(\det(A) = 8 \neq 0\)</span>, the matrix <span class="arithmatex">\(A\)</span> is invertible.</p>
+<h3 id="13-determinant-of-a-3x3-matrix">1.3 Determinant of a 3x3 Matrix<a class="headerlink" href="#13-determinant-of-a-3x3-matrix" title="Permanent link">&para;</a></h3>
+<p>For a <span class="arithmatex">\(3 \times 3\)</span> matrix:</p>
+<div class="arithmatex">\[A = \begin{bmatrix} a_{11} &amp; a_{12} &amp; a_{13} \\ a_{21} &amp; a_{22} &amp; a_{23} \\ a_{31} &amp; a_{32} &amp; a_{33} \end{bmatrix}\]</div>
+<h4 id="method-1-sarrus-rule">Method 1: Sarrus' Rule<a class="headerlink" href="#method-1-sarrus-rule" title="Permanent link">&para;</a></h4>
+<p>Write the matrix and repeat the first two columns to the right:</p>
+<div class="arithmatex">\[\begin{bmatrix} a_{11} &amp; a_{12} &amp; a_{13} \\ a_{21} &amp; a_{22} &amp; a_{23} \\ a_{31} &amp; a_{32} &amp; a_{33} \end{bmatrix} \begin{matrix} a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22} \\ a_{31} &amp; a_{32} \end{matrix}\]</div>
+<p>Then sum the products along the three downward diagonals and subtract the products along the three upward diagonals:</p>
+<div class="arithmatex">\[\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{12}a_{21}a_{33} - a_{11}a_{23}a_{32}\]</div>
+<h4 id="method-2-cofactor-expansion-along-the-first-row">Method 2: Cofactor Expansion (along the first row)<a class="headerlink" href="#method-2-cofactor-expansion-along-the-first-row" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[\det(A) = a_{11} \begin{vmatrix} a_{22} &amp; a_{23} \\ a_{32} &amp; a_{33} \end{vmatrix} - a_{12} \begin{vmatrix} a_{21} &amp; a_{23} \\ a_{31} &amp; a_{33} \end{vmatrix} + a_{13} \begin{vmatrix} a_{21} &amp; a_{22} \\ a_{31} &amp; a_{32} \end{vmatrix}\]</div>
+<p>Each smaller determinant is called a <strong>minor</strong>, and the signed minor is a <strong>cofactor</strong>.</p>
+<p><strong>Worked Example:</strong></p>
+<div class="arithmatex">\[B = \begin{bmatrix} 2 &amp; 1 &amp; 3 \\ 0 &amp; 4 &amp; 5 \\ 1 &amp; 0 &amp; 2 \end{bmatrix}\]</div>
+<p>Using cofactor expansion along the first row:</p>
+<div class="arithmatex">\[\det(B) = 2 \begin{vmatrix} 4 &amp; 5 \\ 0 &amp; 2 \end{vmatrix} - 1 \begin{vmatrix} 0 &amp; 5 \\ 1 &amp; 2 \end{vmatrix} + 3 \begin{vmatrix} 0 &amp; 4 \\ 1 &amp; 0 \end{vmatrix}\]</div>
+<div class="arithmatex">\[= 2(4 \cdot 2 - 5 \cdot 0) - 1(0 \cdot 2 - 5 \cdot 1) + 3(0 \cdot 0 - 4 \cdot 1)\]</div>
+<div class="arithmatex">\[= 2(8) - 1(-5) + 3(-4)\]</div>
+<div class="arithmatex">\[= 16 + 5 - 12 = 9\]</div>
+<h3 id="14-properties-of-determinants">1.4 Properties of Determinants<a class="headerlink" href="#14-properties-of-determinants" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+<th>Example / Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity</td>
+<td><span class="arithmatex">\(\det(I) = 1\)</span></td>
+<td>The identity matrix always has determinant 1</td>
+</tr>
+<tr>
+<td>Transpose</td>
+<td><span class="arithmatex">\(\det(A^T) = \det(A)\)</span></td>
+<td>Transposing does not change the determinant</td>
+</tr>
+<tr>
+<td>Product</td>
+<td><span class="arithmatex">\(\det(AB) = \det(A) \cdot \det(B)\)</span></td>
+<td>Determinant of a product is the product of determinants</td>
+</tr>
+<tr>
+<td>Inverse</td>
+<td><span class="arithmatex">\(\det(A^{-1}) = \frac{1}{\det(A)}\)</span></td>
+<td>Only defined when <span class="arithmatex">\(\det(A) \neq 0\)</span></td>
+</tr>
+<tr>
+<td>Scalar multiple</td>
+<td><span class="arithmatex">\(\det(cA) = c^n \det(A)\)</span></td>
+<td>For an <span class="arithmatex">\(n \times n\)</span> matrix</td>
+</tr>
+<tr>
+<td>Singular matrix</td>
+<td><span class="arithmatex">\(\det(A) = 0\)</span></td>
+<td>Matrix is not invertible</td>
+</tr>
+<tr>
+<td>Row swap</td>
+<td>Swapping two rows flips the sign</td>
+<td><span class="arithmatex">\(\det(\text{swapped}) = -\det(A)\)</span></td>
+</tr>
+<tr>
+<td>Triangular</td>
+<td><span class="arithmatex">\(\det(A) = \prod_{i=1}^{n} a_{ii}\)</span></td>
+<td>Product of diagonal entries for triangular matrices</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="part-2-trace">Part 2: Trace<a class="headerlink" href="#part-2-trace" title="Permanent link">&para;</a></h2>
+<h3 id="21-definition">2.1 Definition<a class="headerlink" href="#21-definition" title="Permanent link">&para;</a></h3>
+<p>The <strong>trace</strong> of a square matrix <span class="arithmatex">\(A\)</span> is the sum of its diagonal entries:</p>
+<div class="arithmatex">\[\text{tr}(A) = \sum_{i=1}^{n} a_{ii} = a_{11} + a_{22} + \cdots + a_{nn}\]</div>
+<p>In plain English: just add up all the numbers on the main diagonal.</p>
+<p><strong>Example:</strong></p>
+<div class="arithmatex">\[A = \begin{bmatrix} 5 &amp; 2 &amp; 1 \\ 0 &amp; 3 &amp; 4 \\ 7 &amp; 6 &amp; 8 \end{bmatrix}\]</div>
+<div class="arithmatex">\[\text{tr}(A) = 5 + 3 + 8 = 16\]</div>
+<h3 id="22-properties-of-the-trace">2.2 Properties of the Trace<a class="headerlink" href="#22-properties-of-the-trace" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linearity</td>
+<td><span class="arithmatex">\(\text{tr}(A + B) = \text{tr}(A) + \text{tr}(B)\)</span></td>
+</tr>
+<tr>
+<td>Scalar multiplication</td>
+<td><span class="arithmatex">\(\text{tr}(cA) = c \cdot \text{tr}(A)\)</span></td>
+</tr>
+<tr>
+<td>Transpose</td>
+<td><span class="arithmatex">\(\text{tr}(A^T) = \text{tr}(A)\)</span></td>
+</tr>
+<tr>
+<td>Cyclic property</td>
+<td><span class="arithmatex">\(\text{tr}(AB) = \text{tr}(BA)\)</span></td>
+</tr>
+<tr>
+<td>Cyclic property (3 matrices)</td>
+<td><span class="arithmatex">\(\text{tr}(ABC) = \text{tr}(BCA) = \text{tr}(CAB)\)</span></td>
+</tr>
+<tr>
+<td>Sum of eigenvalues</td>
+<td><span class="arithmatex">\(\text{tr}(A) = \sum_{i=1}^{n} \lambda_i\)</span></td>
+</tr>
+<tr>
+<td>Frobenius norm</td>
+<td><span class="arithmatex">\(\text{tr}(A^T A) = \sum_{i,j} a_{ij}^2 = \|A\|_F^2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>cyclic property</strong> <span class="arithmatex">\(\text{tr}(AB) = \text{tr}(BA)\)</span> is especially important in machine learning. It lets you rearrange matrix products inside a trace, which simplifies many derivations in optimization and statistics.</p>
+<p><strong>Worked Example:</strong> Verify <span class="arithmatex">\(\text{tr}(AB) = \text{tr}(BA)\)</span>.</p>
+<div class="arithmatex">\[A = \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix}, \quad B = \begin{bmatrix} 5 &amp; 6 \\ 7 &amp; 8 \end{bmatrix}\]</div>
+<div class="arithmatex">\[AB = \begin{bmatrix} 1(5)+2(7) &amp; 1(6)+2(8) \\ 3(5)+4(7) &amp; 3(6)+4(8) \end{bmatrix} = \begin{bmatrix} 19 &amp; 22 \\ 43 &amp; 50 \end{bmatrix}\]</div>
+<div class="arithmatex">\[\text{tr}(AB) = 19 + 50 = 69\]</div>
+<div class="arithmatex">\[BA = \begin{bmatrix} 5(1)+6(3) &amp; 5(2)+6(4) \\ 7(1)+8(3) &amp; 7(2)+8(4) \end{bmatrix} = \begin{bmatrix} 23 &amp; 34 \\ 31 &amp; 46 \end{bmatrix}\]</div>
+<div class="arithmatex">\[\text{tr}(BA) = 23 + 46 = 69\]</div>
+<p>Both sides give 69, confirming the property.</p>
+<hr />
+<h2 id="part-3-eigenvalues-and-eigenvectors">Part 3: Eigenvalues and Eigenvectors<a class="headerlink" href="#part-3-eigenvalues-and-eigenvectors" title="Permanent link">&para;</a></h2>
+<h3 id="31-definition">3.1 Definition<a class="headerlink" href="#31-definition" title="Permanent link">&para;</a></h3>
+<p>Given a square matrix <span class="arithmatex">\(A\)</span>, a nonzero vector <span class="arithmatex">\(\mathbf{v}\)</span> is an <strong>eigenvector</strong> of <span class="arithmatex">\(A\)</span> if multiplying <span class="arithmatex">\(A\)</span> by <span class="arithmatex">\(\mathbf{v}\)</span> simply scales <span class="arithmatex">\(\mathbf{v}\)</span> by some scalar <span class="arithmatex">\(\lambda\)</span>:</p>
+<div class="arithmatex">\[A\mathbf{v} = \lambda \mathbf{v}\]</div>
+<ul>
+<li><span class="arithmatex">\(\lambda\)</span> is called the <strong>eigenvalue</strong> corresponding to <span class="arithmatex">\(\mathbf{v}\)</span></li>
+<li><span class="arithmatex">\(\mathbf{v}\)</span> is the <strong>eigenvector</strong> corresponding to <span class="arithmatex">\(\lambda\)</span></li>
+</ul>
+<p>In plain English: an eigenvector is a special direction that the matrix only stretches (or flips), but does not rotate. The eigenvalue tells you by how much it stretches.</p>
+<h3 id="32-the-characteristic-polynomial">3.2 The Characteristic Polynomial<a class="headerlink" href="#32-the-characteristic-polynomial" title="Permanent link">&para;</a></h3>
+<p>To find eigenvalues, we rearrange <span class="arithmatex">\(A\mathbf{v} = \lambda \mathbf{v}\)</span>:</p>
+<div class="arithmatex">\[A\mathbf{v} - \lambda \mathbf{v} = \mathbf{0}\]</div>
+<div class="arithmatex">\[(A - \lambda I)\mathbf{v} = \mathbf{0}\]</div>
+<p>For a nonzero solution <span class="arithmatex">\(\mathbf{v}\)</span> to exist, the matrix <span class="arithmatex">\((A - \lambda I)\)</span> must be singular, meaning:</p>
+<div class="arithmatex">\[\det(A - \lambda I) = 0\]</div>
+<p>This equation is called the <strong>characteristic equation</strong>, and the polynomial on the left side is the <strong>characteristic polynomial</strong>. Solving it gives us the eigenvalues.</p>
+<h3 id="33-worked-example-finding-eigenvalues-and-eigenvectors">3.3 Worked Example: Finding Eigenvalues and Eigenvectors<a class="headerlink" href="#33-worked-example-finding-eigenvalues-and-eigenvectors" title="Permanent link">&para;</a></h3>
+<p><strong>Find the eigenvalues and eigenvectors of:</strong></p>
+<div class="arithmatex">\[A = \begin{bmatrix} 4 &amp; 1 \\ 2 &amp; 3 \end{bmatrix}\]</div>
+<p><strong>Step 1: Characteristic polynomial.</strong></p>
+<div class="arithmatex">\[A - \lambda I = \begin{bmatrix} 4 - \lambda &amp; 1 \\ 2 &amp; 3 - \lambda \end{bmatrix}\]</div>
+<div class="arithmatex">\[\det(A - \lambda I) = (4 - \lambda)(3 - \lambda) - (1)(2)\]</div>
+<div class="arithmatex">\[= 12 - 4\lambda - 3\lambda + \lambda^2 - 2\]</div>
+<div class="arithmatex">\[= \lambda^2 - 7\lambda + 10\]</div>
+<p><strong>Step 2: Solve the characteristic equation.</strong></p>
+<div class="arithmatex">\[\lambda^2 - 7\lambda + 10 = 0\]</div>
+<div class="arithmatex">\[(\lambda - 5)(\lambda - 2) = 0\]</div>
+<div class="arithmatex">\[\lambda_1 = 5, \quad \lambda_2 = 2\]</div>
+<p><strong>Step 3: Find eigenvectors for each eigenvalue.</strong></p>
+<p><strong>For <span class="arithmatex">\(\lambda_1 = 5\)</span>:</strong></p>
+<div class="arithmatex">\[(A - 5I)\mathbf{v} = \mathbf{0}\]</div>
+<div class="arithmatex">\[\begin{bmatrix} -1 &amp; 1 \\ 2 &amp; -2 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}\]</div>
+<p>From the first row: <span class="arithmatex">\(-v_1 + v_2 = 0\)</span>, so <span class="arithmatex">\(v_2 = v_1\)</span>.</p>
+<p>Choosing <span class="arithmatex">\(v_1 = 1\)</span>:</p>
+<div class="arithmatex">\[\mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}\]</div>
+<p><strong>For <span class="arithmatex">\(\lambda_2 = 2\)</span>:</strong></p>
+<div class="arithmatex">\[(A - 2I)\mathbf{v} = \mathbf{0}\]</div>
+<div class="arithmatex">\[\begin{bmatrix} 2 &amp; 1 \\ 2 &amp; 1 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}\]</div>
+<p>From the first row: <span class="arithmatex">\(2v_1 + v_2 = 0\)</span>, so <span class="arithmatex">\(v_2 = -2v_1\)</span>.</p>
+<p>Choosing <span class="arithmatex">\(v_1 = 1\)</span>:</p>
+<div class="arithmatex">\[\mathbf{v}_2 = \begin{bmatrix} 1 \\ -2 \end{bmatrix}\]</div>
+<p><strong>Quick check:</strong> <span class="arithmatex">\(\text{tr}(A) = 4 + 3 = 7 = 5 + 2 = \lambda_1 + \lambda_2\)</span> and <span class="arithmatex">\(\det(A) = 4(3) - 1(2) = 10 = 5 \times 2 = \lambda_1 \cdot \lambda_2\)</span>. Both checks pass.</p>
+<h3 id="34-key-facts-about-eigenvalues">3.4 Key Facts About Eigenvalues<a class="headerlink" href="#34-key-facts-about-eigenvalues" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Fact</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sum of eigenvalues</td>
+<td><span class="arithmatex">\(\sum \lambda_i = \text{tr}(A)\)</span></td>
+</tr>
+<tr>
+<td>Product of eigenvalues</td>
+<td><span class="arithmatex">\(\prod \lambda_i = \det(A)\)</span></td>
+</tr>
+<tr>
+<td>Symmetric matrices</td>
+<td>All eigenvalues are real; eigenvectors are orthogonal</td>
+</tr>
+<tr>
+<td>Positive definite</td>
+<td>All eigenvalues are strictly positive</td>
+</tr>
+<tr>
+<td>Singular matrix</td>
+<td>At least one eigenvalue is zero</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="part-4-cholesky-decomposition">Part 4: Cholesky Decomposition<a class="headerlink" href="#part-4-cholesky-decomposition" title="Permanent link">&para;</a></h2>
+<h3 id="41-what-is-cholesky-decomposition">4.1 What is Cholesky Decomposition?<a class="headerlink" href="#41-what-is-cholesky-decomposition" title="Permanent link">&para;</a></h3>
+<p>For a <strong>symmetric positive definite (SPD)</strong> matrix <span class="arithmatex">\(A\)</span>, the Cholesky decomposition factors <span class="arithmatex">\(A\)</span> into:</p>
+<div class="arithmatex">\[A = LL^T\]</div>
+<p>where <span class="arithmatex">\(L\)</span> is a <strong>lower triangular</strong> matrix with positive diagonal entries.</p>
+<p>Think of it as the "square root" of a matrix. Just as every positive number has a square root, every SPD matrix has a Cholesky factor.</p>
+<h3 id="42-what-does-symmetric-positive-definite-mean">4.2 What Does "Symmetric Positive Definite" Mean?<a class="headerlink" href="#42-what-does-symmetric-positive-definite-mean" title="Permanent link">&para;</a></h3>
+<p>A matrix <span class="arithmatex">\(A\)</span> is <strong>symmetric positive definite</strong> if:</p>
+<ol>
+<li><strong>Symmetric:</strong> <span class="arithmatex">\(A = A^T\)</span> (the matrix equals its transpose)</li>
+<li><strong>Positive definite:</strong> <span class="arithmatex">\(\mathbf{x}^T A \mathbf{x} &gt; 0\)</span> for all nonzero vectors <span class="arithmatex">\(\mathbf{x}\)</span></li>
+</ol>
+<p>Equivalently, <span class="arithmatex">\(A\)</span> is SPD if it is symmetric and all its eigenvalues are strictly positive.</p>
+<h3 id="43-the-cholesky-algorithm-for-2x2">4.3 The Cholesky Algorithm (for 2x2)<a class="headerlink" href="#43-the-cholesky-algorithm-for-2x2" title="Permanent link">&para;</a></h3>
+<p>Given:</p>
+<div class="arithmatex">\[A = \begin{bmatrix} a_{11} &amp; a_{12} \\ a_{12} &amp; a_{22} \end{bmatrix} = \begin{bmatrix} l_{11} &amp; 0 \\ l_{21} &amp; l_{22} \end{bmatrix} \begin{bmatrix} l_{11} &amp; l_{21} \\ 0 &amp; l_{22} \end{bmatrix}\]</div>
+<p>Expanding the right side and matching entries:</p>
+<div class="arithmatex">\[l_{11} = \sqrt{a_{11}}\]</div>
+<div class="arithmatex">\[l_{21} = \frac{a_{12}}{l_{11}}\]</div>
+<div class="arithmatex">\[l_{22} = \sqrt{a_{22} - l_{21}^2}\]</div>
+<h3 id="44-the-cholesky-algorithm-general">4.4 The Cholesky Algorithm (general)<a class="headerlink" href="#44-the-cholesky-algorithm-general" title="Permanent link">&para;</a></h3>
+<p>For an <span class="arithmatex">\(n \times n\)</span> SPD matrix, the entries of <span class="arithmatex">\(L\)</span> are computed as:</p>
+<div class="arithmatex">\[l_{jj} = \sqrt{a_{jj} - \sum_{k=1}^{j-1} l_{jk}^2}\]</div>
+<div class="arithmatex">\[l_{ij} = \frac{1}{l_{jj}} \left( a_{ij} - \sum_{k=1}^{j-1} l_{ik} l_{jk} \right), \quad \text{for } i &gt; j\]</div>
+<h3 id="45-worked-example">4.5 Worked Example<a class="headerlink" href="#45-worked-example" title="Permanent link">&para;</a></h3>
+<p><strong>Find the Cholesky decomposition of:</strong></p>
+<div class="arithmatex">\[A = \begin{bmatrix} 4 &amp; 2 \\ 2 &amp; 5 \end{bmatrix}\]</div>
+<p><strong>Step 1:</strong> Check that <span class="arithmatex">\(A\)</span> is SPD. It is symmetric (<span class="arithmatex">\(A = A^T\)</span>). Its eigenvalues are <span class="arithmatex">\(\lambda = \frac{9 \pm \sqrt{1}}{2}\)</span>, giving <span class="arithmatex">\(\lambda_1 \approx 5.56\)</span> and <span class="arithmatex">\(\lambda_2 \approx 3.44\)</span>, both positive. (Alternatively, <span class="arithmatex">\(\det(A) = 16 &gt; 0\)</span> and <span class="arithmatex">\(a_{11} = 4 &gt; 0\)</span>.)</p>
+<p><strong>Step 2:</strong> Compute <span class="arithmatex">\(L\)</span>.</p>
+<div class="arithmatex">\[l_{11} = \sqrt{4} = 2\]</div>
+<div class="arithmatex">\[l_{21} = \frac{2}{2} = 1\]</div>
+<div class="arithmatex">\[l_{22} = \sqrt{5 - 1^2} = \sqrt{4} = 2\]</div>
+<p><strong>Result:</strong></p>
+<div class="arithmatex">\[L = \begin{bmatrix} 2 &amp; 0 \\ 1 &amp; 2 \end{bmatrix}\]</div>
+<p><strong>Verification:</strong></p>
+<div class="arithmatex">\[LL^T = \begin{bmatrix} 2 &amp; 0 \\ 1 &amp; 2 \end{bmatrix} \begin{bmatrix} 2 &amp; 1 \\ 0 &amp; 2 \end{bmatrix} = \begin{bmatrix} 4 &amp; 2 \\ 2 &amp; 5 \end{bmatrix} = A \quad \checkmark\]</div>
+<h3 id="46-why-cholesky-decomposition-matters">4.6 Why Cholesky Decomposition Matters<a class="headerlink" href="#46-why-cholesky-decomposition-matters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Application</th>
+<th>How It Helps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Solving linear systems</td>
+<td><span class="arithmatex">\(Ax = b\)</span> becomes two easy triangular solves: <span class="arithmatex">\(Ly = b\)</span>, then <span class="arithmatex">\(L^Tx = y\)</span></td>
+</tr>
+<tr>
+<td>Sampling from multivariate Gaussians</td>
+<td>If <span class="arithmatex">\(\Sigma = LL^T\)</span>, generate <span class="arithmatex">\(\mathbf{x} = L\mathbf{z} + \boldsymbol{\mu}\)</span> where <span class="arithmatex">\(\mathbf{z} \sim \mathcal{N}(0, I)\)</span></td>
+</tr>
+<tr>
+<td>Numerical stability</td>
+<td>More stable and about twice as fast as general LU decomposition for SPD matrices</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="part-5-eigendecomposition">Part 5: Eigendecomposition<a class="headerlink" href="#part-5-eigendecomposition" title="Permanent link">&para;</a></h2>
+<h3 id="51-definition">5.1 Definition<a class="headerlink" href="#51-definition" title="Permanent link">&para;</a></h3>
+<p>If a square matrix <span class="arithmatex">\(A\)</span> has <span class="arithmatex">\(n\)</span> linearly independent eigenvectors, then <span class="arithmatex">\(A\)</span> can be factored as:</p>
+<div class="arithmatex">\[A = PDP^{-1}\]</div>
+<p>where:
+- <span class="arithmatex">\(P\)</span> is the matrix whose columns are the eigenvectors of <span class="arithmatex">\(A\)</span>: <span class="arithmatex">\(P = [\mathbf{v}_1 \mid \mathbf{v}_2 \mid \cdots \mid \mathbf{v}_n]\)</span>
+- <span class="arithmatex">\(D\)</span> is a diagonal matrix with the corresponding eigenvalues on the diagonal:</p>
+<div class="arithmatex">\[D = \begin{bmatrix} \lambda_1 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; \lambda_2 &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; \lambda_n \end{bmatrix}\]</div>
+<p>This factorization is called the <strong>eigendecomposition</strong> or <strong>spectral decomposition</strong> (for symmetric matrices).</p>
+<h3 id="52-when-does-eigendecomposition-exist">5.2 When Does Eigendecomposition Exist?<a class="headerlink" href="#52-when-does-eigendecomposition-exist" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Eigendecomposition Exists?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(A\)</span> has <span class="arithmatex">\(n\)</span> distinct eigenvalues</td>
+<td>Always yes</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(A\)</span> is symmetric (<span class="arithmatex">\(A = A^T\)</span>)</td>
+<td>Always yes, and <span class="arithmatex">\(P\)</span> is orthogonal (<span class="arithmatex">\(P^{-1} = P^T\)</span>)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(A\)</span> has repeated eigenvalues</td>
+<td>Sometimes (depends on geometric multiplicity)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(A\)</span> is defective (not enough independent eigenvectors)</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>For <strong>symmetric matrices</strong>, the decomposition simplifies to:</p>
+<div class="arithmatex">\[A = PDP^T\]</div>
+<p>because the eigenvectors are orthogonal.</p>
+<h3 id="53-worked-example">5.3 Worked Example<a class="headerlink" href="#53-worked-example" title="Permanent link">&para;</a></h3>
+<p><strong>Diagonalize the matrix from Part 3:</strong></p>
+<div class="arithmatex">\[A = \begin{bmatrix} 4 &amp; 1 \\ 2 &amp; 3 \end{bmatrix}\]</div>
+<p>We already found <span class="arithmatex">\(\lambda_1 = 5\)</span>, <span class="arithmatex">\(\mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span> and <span class="arithmatex">\(\lambda_2 = 2\)</span>, <span class="arithmatex">\(\mathbf{v}_2 = \begin{bmatrix} 1 \\ -2 \end{bmatrix}\)</span>.</p>
+<div class="arithmatex">\[P = \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -2 \end{bmatrix}, \quad D = \begin{bmatrix} 5 &amp; 0 \\ 0 &amp; 2 \end{bmatrix}\]</div>
+<p>Compute <span class="arithmatex">\(P^{-1}\)</span>. For a <span class="arithmatex">\(2 \times 2\)</span> matrix <span class="arithmatex">\(\begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\)</span>, the inverse is <span class="arithmatex">\(\frac{1}{ad - bc}\begin{bmatrix} d &amp; -b \\ -c &amp; a \end{bmatrix}\)</span>:</p>
+<div class="arithmatex">\[P^{-1} = \frac{1}{(1)(-2) - (1)(1)} \begin{bmatrix} -2 &amp; -1 \\ -1 &amp; 1 \end{bmatrix} = \frac{1}{-3} \begin{bmatrix} -2 &amp; -1 \\ -1 &amp; 1 \end{bmatrix} = \begin{bmatrix} \frac{2}{3} &amp; \frac{1}{3} \\ \frac{1}{3} &amp; -\frac{1}{3} \end{bmatrix}\]</div>
+<p><strong>Verification:</strong></p>
+<div class="arithmatex">\[PDP^{-1} = \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -2 \end{bmatrix} \begin{bmatrix} 5 &amp; 0 \\ 0 &amp; 2 \end{bmatrix} \begin{bmatrix} \frac{2}{3} &amp; \frac{1}{3} \\ \frac{1}{3} &amp; -\frac{1}{3} \end{bmatrix}\]</div>
+<div class="arithmatex">\[= \begin{bmatrix} 5 &amp; 2 \\ 5 &amp; -4 \end{bmatrix} \begin{bmatrix} \frac{2}{3} &amp; \frac{1}{3} \\ \frac{1}{3} &amp; -\frac{1}{3} \end{bmatrix} = \begin{bmatrix} \frac{10}{3} + \frac{2}{3} &amp; \frac{5}{3} - \frac{2}{3} \\ \frac{10}{3} - \frac{4}{3} &amp; \frac{5}{3} + \frac{4}{3} \end{bmatrix} = \begin{bmatrix} 4 &amp; 1 \\ 2 &amp; 3 \end{bmatrix} = A \quad \checkmark\]</div>
+<h3 id="54-why-eigendecomposition-is-useful">5.4 Why Eigendecomposition is Useful<a class="headerlink" href="#54-why-eigendecomposition-is-useful" title="Permanent link">&para;</a></h3>
+<p><strong>Computing matrix powers:</strong> If <span class="arithmatex">\(A = PDP^{-1}\)</span>, then:</p>
+<div class="arithmatex">\[A^k = PD^kP^{-1}\]</div>
+<p>Since <span class="arithmatex">\(D\)</span> is diagonal, <span class="arithmatex">\(D^k\)</span> is just each diagonal entry raised to the <span class="arithmatex">\(k\)</span>-th power:</p>
+<div class="arithmatex">\[D^k = \begin{bmatrix} \lambda_1^k &amp; 0 \\ 0 &amp; \lambda_2^k \end{bmatrix}\]</div>
+<p>This makes computing <span class="arithmatex">\(A^{100}\)</span> just as easy as computing <span class="arithmatex">\(A^2\)</span>.</p>
+<hr />
+<h2 id="part-6-singular-value-decomposition-svd">Part 6: Singular Value Decomposition (SVD)<a class="headerlink" href="#part-6-singular-value-decomposition-svd" title="Permanent link">&para;</a></h2>
+<h3 id="61-definition">6.1 Definition<a class="headerlink" href="#61-definition" title="Permanent link">&para;</a></h3>
+<p><strong>Every</strong> matrix <span class="arithmatex">\(A\)</span> (of any shape) can be decomposed as:</p>
+<div class="arithmatex">\[A = U \Sigma V^T\]</div>
+<p>where:
+- <span class="arithmatex">\(A\)</span> is <span class="arithmatex">\(m \times n\)</span>
+- <span class="arithmatex">\(U\)</span> is <span class="arithmatex">\(m \times m\)</span> orthogonal matrix (columns are <strong>left singular vectors</strong>)
+- <span class="arithmatex">\(\Sigma\)</span> is <span class="arithmatex">\(m \times n\)</span> diagonal matrix (diagonal entries are <strong>singular values</strong> <span class="arithmatex">\(\sigma_1 \geq \sigma_2 \geq \cdots \geq 0\)</span>)
+- <span class="arithmatex">\(V\)</span> is <span class="arithmatex">\(n \times n\)</span> orthogonal matrix (columns are <strong>right singular vectors</strong>)</p>
+<p>This is the <strong>most important matrix decomposition</strong> in applied mathematics and machine learning.</p>
+<h3 id="62-geometric-interpretation">6.2 Geometric Interpretation<a class="headerlink" href="#62-geometric-interpretation" title="Permanent link">&para;</a></h3>
+<p>Any linear transformation <span class="arithmatex">\(A\)</span> can be broken down into three simple steps:</p>
+<ol>
+<li><strong><span class="arithmatex">\(V^T\)</span>: Rotate</strong> (in the input space)</li>
+<li><strong><span class="arithmatex">\(\Sigma\)</span>: Scale</strong> along each axis (possibly changing dimensions)</li>
+<li><strong><span class="arithmatex">\(U\)</span>: Rotate</strong> (in the output space)</li>
+</ol>
+<p>In plain English: every matrix transformation is just a rotation, followed by a stretch, followed by another rotation.</p>
+<h3 id="63-relationship-to-eigendecomposition">6.3 Relationship to Eigendecomposition<a class="headerlink" href="#63-relationship-to-eigendecomposition" title="Permanent link">&para;</a></h3>
+<p>The singular values and vectors are connected to eigenvalues:</p>
+<table>
+<thead>
+<tr>
+<th>SVD Component</th>
+<th>Obtained From</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(V\)</span> (right singular vectors)</td>
+<td>Eigenvectors of <span class="arithmatex">\(A^T A\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(U\)</span> (left singular vectors)</td>
+<td>Eigenvectors of <span class="arithmatex">\(A A^T\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\sigma_i\)</span> (singular values)</td>
+<td><span class="arithmatex">\(\sigma_i = \sqrt{\lambda_i}\)</span> where <span class="arithmatex">\(\lambda_i\)</span> are eigenvalues of <span class="arithmatex">\(A^T A\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="64-worked-example-computing-the-svd">6.4 Worked Example: Computing the SVD<a class="headerlink" href="#64-worked-example-computing-the-svd" title="Permanent link">&para;</a></h3>
+<p><strong>Find the SVD of:</strong></p>
+<div class="arithmatex">\[A = \begin{bmatrix} 3 &amp; 0 \\ 0 &amp; 2 \end{bmatrix}\]</div>
+<p>This is already a diagonal matrix, so the SVD is straightforward.</p>
+<p><strong>Step 1: Compute <span class="arithmatex">\(A^T A\)</span>.</strong></p>
+<div class="arithmatex">\[A^T A = \begin{bmatrix} 3 &amp; 0 \\ 0 &amp; 2 \end{bmatrix} \begin{bmatrix} 3 &amp; 0 \\ 0 &amp; 2 \end{bmatrix} = \begin{bmatrix} 9 &amp; 0 \\ 0 &amp; 4 \end{bmatrix}\]</div>
+<p><strong>Step 2: Find eigenvalues of <span class="arithmatex">\(A^T A\)</span>.</strong></p>
+<p>Eigenvalues: <span class="arithmatex">\(\lambda_1 = 9\)</span>, <span class="arithmatex">\(\lambda_2 = 4\)</span>.</p>
+<p>Singular values: <span class="arithmatex">\(\sigma_1 = \sqrt{9} = 3\)</span>, <span class="arithmatex">\(\sigma_2 = \sqrt{4} = 2\)</span>.</p>
+<p><strong>Step 3: Find <span class="arithmatex">\(V\)</span> (eigenvectors of <span class="arithmatex">\(A^T A\)</span>).</strong></p>
+<div class="arithmatex">\[V = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} = I\]</div>
+<p><strong>Step 4: Find <span class="arithmatex">\(U\)</span> (eigenvectors of <span class="arithmatex">\(A A^T\)</span>).</strong></p>
+<div class="arithmatex">\[A A^T = \begin{bmatrix} 9 &amp; 0 \\ 0 &amp; 4 \end{bmatrix}\]</div>
+<div class="arithmatex">\[U = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} = I\]</div>
+<p><strong>Result:</strong></p>
+<div class="arithmatex">\[A = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \begin{bmatrix} 3 &amp; 0 \\ 0 &amp; 2 \end{bmatrix} \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} = I \Sigma I = \Sigma\]</div>
+<h3 id="65-worked-example-non-diagonal-matrix">6.5 Worked Example: Non-Diagonal Matrix<a class="headerlink" href="#65-worked-example-non-diagonal-matrix" title="Permanent link">&para;</a></h3>
+<p><strong>Find the SVD of:</strong></p>
+<div class="arithmatex">\[A = \begin{bmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{bmatrix}\]</div>
+<p><strong>Step 1: Compute <span class="arithmatex">\(A^T A\)</span>.</strong></p>
+<div class="arithmatex">\[A^T A = \begin{bmatrix} 1 &amp; 0 \\ 1 &amp; 1 \end{bmatrix} \begin{bmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{bmatrix} = \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; 2 \end{bmatrix}\]</div>
+<p><strong>Step 2: Find eigenvalues of <span class="arithmatex">\(A^T A\)</span>.</strong></p>
+<div class="arithmatex">\[\det(A^T A - \lambda I) = (1 - \lambda)(2 - \lambda) - 1 = \lambda^2 - 3\lambda + 1 = 0\]</div>
+<div class="arithmatex">\[\lambda = \frac{3 \pm \sqrt{5}}{2}\]</div>
+<div class="arithmatex">\[\lambda_1 = \frac{3 + \sqrt{5}}{2} \approx 2.618, \quad \lambda_2 = \frac{3 - \sqrt{5}}{2} \approx 0.382\]</div>
+<p>Singular values:</p>
+<div class="arithmatex">\[\sigma_1 = \sqrt{\frac{3 + \sqrt{5}}{2}} \approx 1.618, \quad \sigma_2 = \sqrt{\frac{3 - \sqrt{5}}{2}} \approx 0.618\]</div>
+<p>(Notice: <span class="arithmatex">\(\sigma_1 \approx \phi\)</span>, the golden ratio, and <span class="arithmatex">\(\sigma_2 \approx 1/\phi\)</span>.)</p>
+<p><strong>Step 3: Find <span class="arithmatex">\(V\)</span>.</strong></p>
+<p>For <span class="arithmatex">\(\lambda_1 = \frac{3+\sqrt{5}}{2}\)</span>, solve <span class="arithmatex">\((A^TA - \lambda_1 I)\mathbf{v} = 0\)</span>:</p>
+<div class="arithmatex">\[\begin{bmatrix} 1 - \lambda_1 &amp; 1 \\ 1 &amp; 2 - \lambda_1 \end{bmatrix}\mathbf{v} = 0\]</div>
+<p>This gives <span class="arithmatex">\(v_2 = (\lambda_1 - 1) v_1\)</span>. Normalizing:</p>
+<div class="arithmatex">\[\mathbf{v}_1 = \frac{1}{\sqrt{1 + (\lambda_1 - 1)^2}}\begin{bmatrix} 1 \\ \lambda_1 - 1 \end{bmatrix}\]</div>
+<p>Similarly for <span class="arithmatex">\(\lambda_2\)</span>. Then <span class="arithmatex">\(V = [\mathbf{v}_1 \mid \mathbf{v}_2]\)</span>.</p>
+<p><strong>Step 4: Find <span class="arithmatex">\(U\)</span>.</strong></p>
+<p>Compute <span class="arithmatex">\(\mathbf{u}_i = \frac{1}{\sigma_i} A \mathbf{v}_i\)</span> for each singular vector.</p>
+<p>The full numerical result gives <span class="arithmatex">\(A = U\Sigma V^T\)</span> as desired.</p>
+<h3 id="66-key-properties-of-svd">6.6 Key Properties of SVD<a class="headerlink" href="#66-key-properties-of-svd" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Existence</td>
+<td>Every matrix has an SVD (unlike eigendecomposition)</td>
+</tr>
+<tr>
+<td>Rank</td>
+<td><span class="arithmatex">\(\text{rank}(A) =\)</span> number of nonzero singular values</td>
+</tr>
+<tr>
+<td>Norm</td>
+<td><span class="arithmatex">\(\|A\|_2 = \sigma_1\)</span> (largest singular value)</td>
+</tr>
+<tr>
+<td>Frobenius norm</td>
+<td><span class="arithmatex">\(\|A\|_F = \sqrt{\sigma_1^2 + \sigma_2^2 + \cdots + \sigma_r^2}\)</span></td>
+</tr>
+<tr>
+<td>Condition number</td>
+<td><span class="arithmatex">\(\kappa(A) = \sigma_1 / \sigma_n\)</span> (ratio of largest to smallest)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="part-7-matrix-approximation">Part 7: Matrix Approximation<a class="headerlink" href="#part-7-matrix-approximation" title="Permanent link">&para;</a></h2>
+<h3 id="71-truncated-svd">7.1 Truncated SVD<a class="headerlink" href="#71-truncated-svd" title="Permanent link">&para;</a></h3>
+<p>Given the full SVD <span class="arithmatex">\(A = U\Sigma V^T\)</span> with <span class="arithmatex">\(r\)</span> nonzero singular values, we can approximate <span class="arithmatex">\(A\)</span> by keeping only the <span class="arithmatex">\(k\)</span> largest singular values (where <span class="arithmatex">\(k &lt; r\)</span>):</p>
+<div class="arithmatex">\[A_k = U_k \Sigma_k V_k^T = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T\]</div>
+<p>where:
+- <span class="arithmatex">\(U_k\)</span> is the first <span class="arithmatex">\(k\)</span> columns of <span class="arithmatex">\(U\)</span>
+- <span class="arithmatex">\(\Sigma_k\)</span> is the top-left <span class="arithmatex">\(k \times k\)</span> block of <span class="arithmatex">\(\Sigma\)</span>
+- <span class="arithmatex">\(V_k\)</span> is the first <span class="arithmatex">\(k\)</span> columns of <span class="arithmatex">\(V\)</span></p>
+<p>In plain English: keep the <span class="arithmatex">\(k\)</span> most important "layers" of the matrix and throw away the rest. Each layer is a rank-1 matrix <span class="arithmatex">\(\sigma_i \mathbf{u}_i \mathbf{v}_i^T\)</span> weighted by its singular value.</p>
+<h3 id="72-the-eckart-young-theorem">7.2 The Eckart-Young Theorem<a class="headerlink" href="#72-the-eckart-young-theorem" title="Permanent link">&para;</a></h3>
+<p>The truncated SVD gives the <strong>best</strong> rank-<span class="arithmatex">\(k\)</span> approximation to <span class="arithmatex">\(A\)</span>:</p>
+<div class="arithmatex">\[A_k = \arg\min_{\text{rank}(B) \leq k} \|A - B\|_F\]</div>
+<p>In other words, among all matrices with rank at most <span class="arithmatex">\(k\)</span>, <span class="arithmatex">\(A_k\)</span> is the closest to <span class="arithmatex">\(A\)</span> in the Frobenius norm. The approximation error is:</p>
+<div class="arithmatex">\[\|A - A_k\|_F = \sqrt{\sigma_{k+1}^2 + \sigma_{k+2}^2 + \cdots + \sigma_r^2}\]</div>
+<p>This is a remarkable result: the best low-rank approximation is obtained simply by discarding the smallest singular values.</p>
+<h3 id="73-worked-example-rank-1-approximation">7.3 Worked Example: Rank-1 Approximation<a class="headerlink" href="#73-worked-example-rank-1-approximation" title="Permanent link">&para;</a></h3>
+<p><strong>Find the best rank-1 approximation to:</strong></p>
+<div class="arithmatex">\[A = \begin{bmatrix} 3 &amp; 1 \\ 1 &amp; 3 \end{bmatrix}\]</div>
+<p><strong>Step 1: Compute the SVD.</strong></p>
+<div class="arithmatex">\[A^T A = \begin{bmatrix} 10 &amp; 6 \\ 6 &amp; 10 \end{bmatrix}\]</div>
+<p>Eigenvalues of <span class="arithmatex">\(A^T A\)</span>: <span class="arithmatex">\(\lambda_1 = 16\)</span>, <span class="arithmatex">\(\lambda_2 = 4\)</span>.</p>
+<p>Singular values: <span class="arithmatex">\(\sigma_1 = 4\)</span>, <span class="arithmatex">\(\sigma_2 = 2\)</span>.</p>
+<p>Eigenvectors of <span class="arithmatex">\(A^T A\)</span>:</p>
+<p>For <span class="arithmatex">\(\lambda_1 = 16\)</span>: <span class="arithmatex">\(\mathbf{v}_1 = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span></p>
+<p>For <span class="arithmatex">\(\lambda_2 = 4\)</span>: <span class="arithmatex">\(\mathbf{v}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ -1 \end{bmatrix}\)</span></p>
+<p>Left singular vectors: <span class="arithmatex">\(\mathbf{u}_i = \frac{1}{\sigma_i}A\mathbf{v}_i\)</span></p>
+<div class="arithmatex">\[\mathbf{u}_1 = \frac{1}{4} \begin{bmatrix} 3 &amp; 1 \\ 1 &amp; 3 \end{bmatrix} \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \end{bmatrix} = \frac{1}{4\sqrt{2}} \begin{bmatrix} 4 \\ 4 \end{bmatrix} = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ 1 \end{bmatrix}\]</div>
+<div class="arithmatex">\[\mathbf{u}_2 = \frac{1}{2} \begin{bmatrix} 3 &amp; 1 \\ 1 &amp; 3 \end{bmatrix} \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ -1 \end{bmatrix} = \frac{1}{2\sqrt{2}} \begin{bmatrix} 2 \\ -2 \end{bmatrix} = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ -1 \end{bmatrix}\]</div>
+<p><strong>Step 2: Compute the rank-1 approximation.</strong></p>
+<div class="arithmatex">\[A_1 = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T = 4 \cdot \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \end{bmatrix} \cdot \frac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \end{bmatrix} = 4 \cdot \frac{1}{2}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{bmatrix} = \begin{bmatrix} 2 &amp; 2 \\ 2 &amp; 2 \end{bmatrix}\]</div>
+<p><strong>Step 3: Check the error.</strong></p>
+<div class="arithmatex">\[\|A - A_1\|_F = \sigma_2 = 2\]</div>
+<div class="arithmatex">\[A - A_1 = \begin{bmatrix} 3 &amp; 1 \\ 1 &amp; 3 \end{bmatrix} - \begin{bmatrix} 2 &amp; 2 \\ 2 &amp; 2 \end{bmatrix} = \begin{bmatrix} 1 &amp; -1 \\ -1 &amp; 1 \end{bmatrix}\]</div>
+<div class="arithmatex">\[\|A - A_1\|_F = \sqrt{1 + 1 + 1 + 1} = \sqrt{4} = 2 \quad \checkmark\]</div>
+<h3 id="74-applications-of-low-rank-approximation">7.4 Applications of Low-Rank Approximation<a class="headerlink" href="#74-applications-of-low-rank-approximation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Application</th>
+<th>How Truncated SVD Helps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Image compression</strong></td>
+<td>An <span class="arithmatex">\(m \times n\)</span> image stored as a matrix can be approximated with rank <span class="arithmatex">\(k\)</span>, requiring only <span class="arithmatex">\(k(m + n + 1)\)</span> numbers instead of <span class="arithmatex">\(mn\)</span></td>
+</tr>
+<tr>
+<td><strong>Dimensionality reduction (PCA)</strong></td>
+<td>Principal Component Analysis keeps the top <span class="arithmatex">\(k\)</span> singular vectors to reduce feature dimensions</td>
+</tr>
+<tr>
+<td><strong>Recommender systems</strong></td>
+<td>User-item rating matrices are approximated at low rank to predict missing ratings</td>
+</tr>
+<tr>
+<td><strong>Noise reduction</strong></td>
+<td>Small singular values often correspond to noise; discarding them denoises the data</td>
+</tr>
+<tr>
+<td><strong>Latent semantic analysis</strong></td>
+<td>In NLP, document-term matrices are approximated to find semantic structure</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Image compression example:</strong> Suppose you have a <span class="arithmatex">\(1000 \times 1000\)</span> grayscale image (1,000,000 pixel values). A rank-50 SVD approximation stores only <span class="arithmatex">\(50 \times (1000 + 1000 + 1) = 100{,}050\)</span> numbers, which is about 10% of the original, yet often captures the essential visual content.</p>
+<hr />
+<h2 id="summary-key-takeaways">Summary: Key Takeaways<a class="headerlink" href="#summary-key-takeaways" title="Permanent link">&para;</a></h2>
+<h3 id="matrix-scalars">Matrix Scalars<a class="headerlink" href="#matrix-scalars" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Determinant</strong> <span class="arithmatex">\(\det(A)\)</span>: tells you invertibility and volume scaling</li>
+<li><strong>Trace</strong> <span class="arithmatex">\(\text{tr}(A)\)</span>: sum of diagonal entries = sum of eigenvalues</li>
+</ul>
+<h3 id="eigenvalues-and-eigenvectors">Eigenvalues and Eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><span class="arithmatex">\(A\mathbf{v} = \lambda \mathbf{v}\)</span>: eigenvectors are special directions, eigenvalues are scale factors</li>
+<li>Found by solving <span class="arithmatex">\(\det(A - \lambda I) = 0\)</span></li>
+</ul>
+<h3 id="matrix-decompositions">Matrix Decompositions<a class="headerlink" href="#matrix-decompositions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Cholesky:</strong> <span class="arithmatex">\(A = LL^T\)</span> for symmetric positive definite matrices</li>
+<li><strong>Eigendecomposition:</strong> <span class="arithmatex">\(A = PDP^{-1}\)</span> for diagonalizable square matrices</li>
+<li><strong>SVD:</strong> <span class="arithmatex">\(A = U\Sigma V^T\)</span> for any matrix (the universal decomposition)</li>
+</ul>
+<h3 id="matrix-approximation">Matrix Approximation<a class="headerlink" href="#matrix-approximation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Truncated SVD gives the best rank-<span class="arithmatex">\(k\)</span> approximation (Eckart-Young theorem)</li>
+<li>Central to PCA, image compression, recommender systems, and denoising</li>
+</ul>
+<hr />
+<h2 id="practice-problems">Practice Problems<a class="headerlink" href="#practice-problems" title="Permanent link">&para;</a></h2>
+<h3 id="problem-1">Problem 1<a class="headerlink" href="#problem-1" title="Permanent link">&para;</a></h3>
+<p>Compute the determinant:</p>
+<div class="arithmatex">\[A = \begin{bmatrix} 1 &amp; 3 &amp; 2 \\ 4 &amp; 1 &amp; 3 \\ 2 &amp; 5 &amp; 2 \end{bmatrix}\]</div>
+<h3 id="problem-2">Problem 2<a class="headerlink" href="#problem-2" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(A = \begin{bmatrix} 2 &amp; 1 \\ 1 &amp; 3 \end{bmatrix}\)</span> and <span class="arithmatex">\(B = \begin{bmatrix} 0 &amp; 4 \\ 1 &amp; 2 \end{bmatrix}\)</span>.</p>
+<p>Verify that <span class="arithmatex">\(\text{tr}(AB) = \text{tr}(BA)\)</span>.</p>
+<h3 id="problem-3">Problem 3<a class="headerlink" href="#problem-3" title="Permanent link">&para;</a></h3>
+<p>Find the eigenvalues and eigenvectors of:</p>
+<div class="arithmatex">\[C = \begin{bmatrix} 5 &amp; 4 \\ 2 &amp; 3 \end{bmatrix}\]</div>
+<h3 id="problem-4">Problem 4<a class="headerlink" href="#problem-4" title="Permanent link">&para;</a></h3>
+<p>Find the Cholesky decomposition of:</p>
+<div class="arithmatex">\[A = \begin{bmatrix} 9 &amp; 6 \\ 6 &amp; 8 \end{bmatrix}\]</div>
+<h3 id="problem-5">Problem 5<a class="headerlink" href="#problem-5" title="Permanent link">&para;</a></h3>
+<p>Diagonalize the matrix from Problem 3. That is, find <span class="arithmatex">\(P\)</span> and <span class="arithmatex">\(D\)</span> such that <span class="arithmatex">\(C = PDP^{-1}\)</span>.</p>
+<h3 id="problem-6">Problem 6<a class="headerlink" href="#problem-6" title="Permanent link">&para;</a></h3>
+<p>The singular values of a <span class="arithmatex">\(3 \times 3\)</span> matrix <span class="arithmatex">\(M\)</span> are <span class="arithmatex">\(\sigma_1 = 10\)</span>, <span class="arithmatex">\(\sigma_2 = 5\)</span>, <span class="arithmatex">\(\sigma_3 = 1\)</span>.</p>
+<p>(a) What is <span class="arithmatex">\(\|M\|_F\)</span>?</p>
+<p>(b) What is the Frobenius-norm error of the best rank-2 approximation <span class="arithmatex">\(M_2\)</span>?</p>
+<p>(c) What percentage of <span class="arithmatex">\(\|M\|_F^2\)</span> is captured by <span class="arithmatex">\(M_2\)</span>?</p>
+<hr />
+<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
+<p><strong>Solution 1:</strong></p>
+<p>Using cofactor expansion along the first row:</p>
+<div class="arithmatex">\[\det(A) = 1 \begin{vmatrix} 1 &amp; 3 \\ 5 &amp; 2 \end{vmatrix} - 3 \begin{vmatrix} 4 &amp; 3 \\ 2 &amp; 2 \end{vmatrix} + 2 \begin{vmatrix} 4 &amp; 1 \\ 2 &amp; 5 \end{vmatrix}\]</div>
+<div class="arithmatex">\[= 1(1 \cdot 2 - 3 \cdot 5) - 3(4 \cdot 2 - 3 \cdot 2) + 2(4 \cdot 5 - 1 \cdot 2)\]</div>
+<div class="arithmatex">\[= 1(2 - 15) - 3(8 - 6) + 2(20 - 2)\]</div>
+<div class="arithmatex">\[= 1(-13) - 3(2) + 2(18)\]</div>
+<div class="arithmatex">\[= -13 - 6 + 36 = 17\]</div>
+<hr />
+<p><strong>Solution 2:</strong></p>
+<div class="arithmatex">\[AB = \begin{bmatrix} 2 &amp; 1 \\ 1 &amp; 3 \end{bmatrix}\begin{bmatrix} 0 &amp; 4 \\ 1 &amp; 2 \end{bmatrix} = \begin{bmatrix} 2(0)+1(1) &amp; 2(4)+1(2) \\ 1(0)+3(1) &amp; 1(4)+3(2) \end{bmatrix} = \begin{bmatrix} 1 &amp; 10 \\ 3 &amp; 10 \end{bmatrix}\]</div>
+<div class="arithmatex">\[\text{tr}(AB) = 1 + 10 = 11\]</div>
+<div class="arithmatex">\[BA = \begin{bmatrix} 0 &amp; 4 \\ 1 &amp; 2 \end{bmatrix}\begin{bmatrix} 2 &amp; 1 \\ 1 &amp; 3 \end{bmatrix} = \begin{bmatrix} 0(2)+4(1) &amp; 0(1)+4(3) \\ 1(2)+2(1) &amp; 1(1)+2(3) \end{bmatrix} = \begin{bmatrix} 4 &amp; 12 \\ 4 &amp; 7 \end{bmatrix}\]</div>
+<div class="arithmatex">\[\text{tr}(BA) = 4 + 7 = 11\]</div>
+<p>Both traces equal 11, confirming <span class="arithmatex">\(\text{tr}(AB) = \text{tr}(BA)\)</span>.</p>
+<hr />
+<p><strong>Solution 3:</strong></p>
+<p>Characteristic polynomial:</p>
+<div class="arithmatex">\[\det(C - \lambda I) = (5 - \lambda)(3 - \lambda) - (4)(2) = \lambda^2 - 8\lambda + 15 - 8 = \lambda^2 - 8\lambda + 7\]</div>
+<div class="arithmatex">\[(\lambda - 7)(\lambda - 1) = 0\]</div>
+<div class="arithmatex">\[\lambda_1 = 7, \quad \lambda_2 = 1\]</div>
+<p><strong>Eigenvector for <span class="arithmatex">\(\lambda_1 = 7\)</span>:</strong></p>
+<div class="arithmatex">\[(C - 7I)\mathbf{v} = \begin{bmatrix} -2 &amp; 4 \\ 2 &amp; -4 \end{bmatrix}\mathbf{v} = \mathbf{0}\]</div>
+<p>From the first row: <span class="arithmatex">\(-2v_1 + 4v_2 = 0\)</span>, so <span class="arithmatex">\(v_1 = 2v_2\)</span>. Choosing <span class="arithmatex">\(v_2 = 1\)</span>:</p>
+<div class="arithmatex">\[\mathbf{v}_1 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}\]</div>
+<p><strong>Eigenvector for <span class="arithmatex">\(\lambda_2 = 1\)</span>:</strong></p>
+<div class="arithmatex">\[(C - I)\mathbf{v} = \begin{bmatrix} 4 &amp; 4 \\ 2 &amp; 2 \end{bmatrix}\mathbf{v} = \mathbf{0}\]</div>
+<p>From the first row: <span class="arithmatex">\(4v_1 + 4v_2 = 0\)</span>, so <span class="arithmatex">\(v_1 = -v_2\)</span>. Choosing <span class="arithmatex">\(v_2 = 1\)</span>:</p>
+<div class="arithmatex">\[\mathbf{v}_2 = \begin{bmatrix} -1 \\ 1 \end{bmatrix}\]</div>
+<p><strong>Check:</strong> <span class="arithmatex">\(\text{tr}(C) = 5 + 3 = 8 = 7 + 1\)</span> and <span class="arithmatex">\(\det(C) = 15 - 8 = 7 = 7 \times 1\)</span>. Both pass.</p>
+<hr />
+<p><strong>Solution 4:</strong></p>
+<div class="arithmatex">\[l_{11} = \sqrt{9} = 3\]</div>
+<div class="arithmatex">\[l_{21} = \frac{6}{3} = 2\]</div>
+<div class="arithmatex">\[l_{22} = \sqrt{8 - 2^2} = \sqrt{4} = 2\]</div>
+<div class="arithmatex">\[L = \begin{bmatrix} 3 &amp; 0 \\ 2 &amp; 2 \end{bmatrix}\]</div>
+<p><strong>Verification:</strong></p>
+<div class="arithmatex">\[LL^T = \begin{bmatrix} 3 &amp; 0 \\ 2 &amp; 2 \end{bmatrix}\begin{bmatrix} 3 &amp; 2 \\ 0 &amp; 2 \end{bmatrix} = \begin{bmatrix} 9 &amp; 6 \\ 6 &amp; 8 \end{bmatrix} = A \quad \checkmark\]</div>
+<hr />
+<p><strong>Solution 5:</strong></p>
+<p>From Solution 3: <span class="arithmatex">\(\lambda_1 = 7\)</span>, <span class="arithmatex">\(\mathbf{v}_1 = \begin{bmatrix} 2 \\ 1 \end{bmatrix}\)</span>, <span class="arithmatex">\(\lambda_2 = 1\)</span>, <span class="arithmatex">\(\mathbf{v}_2 = \begin{bmatrix} -1 \\ 1 \end{bmatrix}\)</span>.</p>
+<div class="arithmatex">\[P = \begin{bmatrix} 2 &amp; -1 \\ 1 &amp; 1 \end{bmatrix}, \quad D = \begin{bmatrix} 7 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\]</div>
+<div class="arithmatex">\[P^{-1} = \frac{1}{2(1) - (-1)(1)} \begin{bmatrix} 1 &amp; 1 \\ -1 &amp; 2 \end{bmatrix} = \frac{1}{3}\begin{bmatrix} 1 &amp; 1 \\ -1 &amp; 2 \end{bmatrix}\]</div>
+<p><strong>Verification:</strong></p>
+<div class="arithmatex">\[PDP^{-1} = \begin{bmatrix} 2 &amp; -1 \\ 1 &amp; 1 \end{bmatrix}\begin{bmatrix} 7 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \cdot \frac{1}{3}\begin{bmatrix} 1 &amp; 1 \\ -1 &amp; 2 \end{bmatrix}\]</div>
+<div class="arithmatex">\[= \begin{bmatrix} 14 &amp; -1 \\ 7 &amp; 1 \end{bmatrix} \cdot \frac{1}{3}\begin{bmatrix} 1 &amp; 1 \\ -1 &amp; 2 \end{bmatrix}\]</div>
+<div class="arithmatex">\[= \frac{1}{3}\begin{bmatrix} 14(1)+(-1)(-1) &amp; 14(1)+(-1)(2) \\ 7(1)+1(-1) &amp; 7(1)+1(2) \end{bmatrix} = \frac{1}{3}\begin{bmatrix} 15 &amp; 12 \\ 6 &amp; 9 \end{bmatrix} = \begin{bmatrix} 5 &amp; 4 \\ 2 &amp; 3 \end{bmatrix} = C \quad \checkmark\]</div>
+<hr />
+<p><strong>Solution 6:</strong></p>
+<p><strong>(a)</strong> The Frobenius norm is:</p>
+<div class="arithmatex">\[\|M\|_F = \sqrt{\sigma_1^2 + \sigma_2^2 + \sigma_3^2} = \sqrt{100 + 25 + 1} = \sqrt{126} = 3\sqrt{14} \approx 11.22\]</div>
+<p><strong>(b)</strong> The best rank-2 approximation discards <span class="arithmatex">\(\sigma_3 = 1\)</span>. The error is:</p>
+<div class="arithmatex">\[\|M - M_2\|_F = \sqrt{\sigma_3^2} = \sigma_3 = 1\]</div>
+<p><strong>(c)</strong> The squared Frobenius norm captured by <span class="arithmatex">\(M_2\)</span> is:</p>
+<div class="arithmatex">\[\frac{\sigma_1^2 + \sigma_2^2}{\sigma_1^2 + \sigma_2^2 + \sigma_3^2} = \frac{100 + 25}{100 + 25 + 1} = \frac{125}{126} \approx 99.2\%\]</div>
+<p>So the rank-2 approximation captures about 99.2% of the total "energy" of <span class="arithmatex">\(M\)</span>.</p>
+<hr />
+<p><strong>Course:</strong> Mathematics for Machine Learning
+<strong>Instructor:</strong> Mohammed Alnemari</p>
+<p><strong>Next:</strong> Tutorial 4 - Matrix Calculus and Optimization</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/alnemari-m/mathai-website" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

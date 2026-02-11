@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="Mathematical Foundations of AI & Machine Learning" /><meta name="author" content="Mohammed Alnemari" /><link rel="canonical" href="https://alnemari-m.github.io/mathai-website/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Mathematics of AI</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="stylesheets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/mathai-website/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> Mathematics of AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#announcements">📢 ANNOUNCEMENTS</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#important-updates">Important Updates</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#textbook-and-references">TEXTBOOK AND REFERENCES</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#primary">PRIMARY</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#course-materials">COURSE MATERIALS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instructor-course-information">INSTRUCTOR &amp; COURSE INFORMATION</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#course-structure-assessment">COURSE STRUCTURE &amp; ASSESSMENT</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#6-core-chapters-focus">6 Core Chapters (Focus)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#assessment-breakdown">Assessment Breakdown</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exam-question-philosophy-examples">EXAM QUESTION PHILOSOPHY &amp; EXAMPLES</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#deep-understanding-through-challenging-problems">Deep Understanding Through Challenging Problems</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sample-exam-question">Sample Exam Question</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#linear-independence-basis-and-rank">Linear Independence, Basis, and Rank</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lecture-structure-three-part-approach">LECTURE STRUCTURE: THREE-PART APPROACH</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#part-1-concepts-explanation">PART 1: Concepts &amp; Explanation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#part-2-mathematical-examples-tutorials">PART 2: Mathematical Examples &amp; Tutorials</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#part-3-python-implementation">PART 3: Python Implementation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#notation-conventions">NOTATION CONVENTIONS</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="lectures/">Lectures</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="tutorials/">Math Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="notebooks/">Notebooks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="papers/">Papers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="animations/">🔒 Animations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">Mathematics of AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/alnemari-m/mathai-website/edit/master/docs/index.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div class="hero-section">
+<h1 id="mathematics-for-machine-learning">MATHEMATICS FOR MACHINE LEARNING<a class="headerlink" href="#mathematics-for-machine-learning" title="Permanent link">&para;</a></h1>
+<p><strong>Graduate Course • Spring 2026</strong></p>
+<p>Mathematical foundations of artificial intelligence and machine learning - from theory to implementation.</p>
+<p><strong>Prepared by: Mohammed Alnemari</strong></p>
+</div>
+<hr />
+<h2 id="announcements">📢 ANNOUNCEMENTS<a class="headerlink" href="#announcements" title="Permanent link">&para;</a></h2>
+<div class="announcement-box">
+<h3 id="important-updates"><strong>Important Updates</strong><a class="headerlink" href="#important-updates" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Week 1:</strong> Course begins <strong>January 20, 2026</strong> - Welcome!</li>
+<li><strong>Office Hours:</strong> Remember to schedule appointments via email</li>
+<li><strong>First Quiz:</strong> Scheduled for <strong>Week 3</strong> - Linear Algebra fundamentals</li>
+<li><strong>Notebooks:</strong> All Python implementations available in the Notebooks section</li>
+</ul>
+</div>
+<hr />
+<h2 id="textbook-and-references">TEXTBOOK AND REFERENCES<a class="headerlink" href="#textbook-and-references" title="Permanent link">&para;</a></h2>
+<div class="info-card">
+<h3 id="primary">PRIMARY<a class="headerlink" href="#primary" title="Permanent link">&para;</a></h3>
+<p><strong>Mathematics for Machine Learning</strong>
+Deisenroth, Faisal, and Ong
+Cambridge University Press
+<a href="https://mml-book.github.io/">mml-book.github.io</a></p>
+<p><strong>Convex Optimization</strong>
+Boyd and Vandenberghe
+Cambridge University Press
+<a href="https://web.stanford.edu/~boyd/cvxbook/">stanford.edu/~boyd/cvxbook</a></p>
+<p><strong>Introduction to Probability</strong>
+Bertsekas and Tsitsiklis
+Athena Scientific (2nd Ed.)</p>
+</div>
+<hr />
+<h2 id="course-materials">COURSE MATERIALS<a class="headerlink" href="#course-materials" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><a href="lectures/">📄 LECTURES</a></strong> - Lecture slides and notes in PDF format</li>
+<li><strong><a href="tutorials/">📐 MATH TUTORIALS</a></strong> - Detailed mathematical derivations and notes</li>
+<li><strong><a href="notebooks/">💻 NOTEBOOKS</a></strong> - Python/Jupyter implementations and exercises</li>
+</ul>
+<hr />
+<div class="instructor-info">
+<h2 id="instructor-course-information">INSTRUCTOR &amp; COURSE INFORMATION<a class="headerlink" href="#instructor-course-information" title="Permanent link">&para;</a></h2>
+<p><strong>INSTRUCTOR</strong>
+Mohammed Alnemari</p>
+<p><strong>TEACHING APPROACH</strong>
+- Part 1: Concepts &amp; Explanation
+- Part 2: Mathematical Examples &amp; Tutorials
+- Part 3: Python Implementation</p>
+<p><strong>PHILOSOPHY</strong>
+Building strong mathematical foundations combined with practical coding skills to prepare students for real-world machine learning applications.</p>
+<p><strong>OFFICE HOURS</strong>
+Monday &amp; Wednesday
+11:00 AM – 1:00 PM</p>
+<p><strong>BY APPOINTMENT</strong>
+To schedule a meeting outside regular office hours, please contact via email.</p>
+<div class="contact-box">
+<p><strong>EMAIL:</strong> mnemari@gmail.com
+<strong>COURSE WEBSITE:</strong> ut.edu.sa/mathml</p>
+</div>
+</div>
+<hr />
+<h2 id="course-structure-assessment">COURSE STRUCTURE &amp; ASSESSMENT<a class="headerlink" href="#course-structure-assessment" title="Permanent link">&para;</a></h2>
+<h3 id="6-core-chapters-focus">6 Core Chapters (Focus)<a class="headerlink" href="#6-core-chapters-focus" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Topic</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td><strong>Linear Algebra</strong></td>
+<td>Vectors, matrices, and operations</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td><strong>Analytic Geometry</strong></td>
+<td>Geometric interpretations</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td><strong>Matrix Decomposition</strong></td>
+<td>Eigendecomposition &amp; SVD</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td><strong>Vector Calculus</strong></td>
+<td>Gradients &amp; optimization</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td><strong>Probability &amp; Distributions</strong></td>
+<td>Statistical foundations</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td><strong>Optimization</strong></td>
+<td>Model training &amp; parameter estimation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="assessment-breakdown">Assessment Breakdown<a class="headerlink" href="#assessment-breakdown" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Weight</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quizzes</strong></td>
+<td><strong>40%</strong></td>
+<td>4-5 quizzes throughout course</td>
+</tr>
+<tr>
+<td><strong>Midterm Examination</strong></td>
+<td><strong>20%</strong></td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Final Examination</strong></td>
+<td><strong>30%</strong></td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Reading &amp; Review Papers</strong></td>
+<td><strong>10%</strong></td>
+<td>4-5 papers</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>100%</strong></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="exam-question-philosophy-examples">EXAM QUESTION PHILOSOPHY &amp; EXAMPLES<a class="headerlink" href="#exam-question-philosophy-examples" title="Permanent link">&para;</a></h2>
+<div class="info-card">
+<h3 id="deep-understanding-through-challenging-problems"><strong>Deep Understanding Through Challenging Problems</strong><a class="headerlink" href="#deep-understanding-through-challenging-problems" title="Permanent link">&para;</a></h3>
+<p>Exam questions are designed to test <strong>deep conceptual understanding</strong> rather than memorization. Each question builds progressively, connecting theory, computation, and insight.</p>
+<p><strong>Question Structure:</strong>
+- Multi-part problems that build on each other
+- Require synthesis of multiple concepts
+- Mix analytical work with computational techniques
+- Based strictly on material covered in lectures</p>
+</div>
+<h3 id="sample-exam-question">Sample Exam Question<a class="headerlink" href="#sample-exam-question" title="Permanent link">&para;</a></h3>
+<p>This question exemplifies the depth and rigor expected in exams, requiring synthesis of multiple concepts and progressive problem-solving.</p>
+<hr />
+<h4 id="linear-independence-basis-and-rank"><strong>Linear Independence, Basis, and Rank</strong><a class="headerlink" href="#linear-independence-basis-and-rank" title="Permanent link">&para;</a></h4>
+<p>Consider the matrix <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{4 \times 4}\)</span> with column vectors:
+$<span class="arithmatex">\(\mathbf{A} = \begin{bmatrix} 1 &amp; 2 &amp; 3 &amp; 5 \\ 2 &amp; 1 &amp; 3 &amp; 4 \\ 1 &amp; 0 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 1 &amp; 2 \end{bmatrix}\)</span>$</p>
+<p><strong>(a)</strong> Use Gaussian elimination to determine <span class="arithmatex">\(\text{rank}(\mathbf{A})\)</span> by reducing to row echelon form. Identify which columns form a basis for the column space <span class="arithmatex">\(\mathcal{C}(\mathbf{A})\)</span> and express each remaining column as a linear combination of these basis columns.</p>
+<p><strong>(b)</strong> Find a basis for the null space <span class="arithmatex">\(\mathcal{N}(\mathbf{A}) = \{\mathbf{x} \in \mathbb{R}^4 : \mathbf{Ax} = \mathbf{0}\}\)</span> by solving the homogeneous system. Verify that <span class="arithmatex">\(\text{rank}(\mathbf{A}) + \dim(\mathcal{N}(\mathbf{A})) = 4\)</span>.</p>
+<p><strong>(c)</strong> Prove the following general statement: If <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> has rank <span class="arithmatex">\(r\)</span>, then any set of <span class="arithmatex">\(r+1\)</span> columns must be linearly dependent. Apply this to show that columns 1, 2, and 4 of your matrix cannot all be part of a linearly independent set if <span class="arithmatex">\(r &lt; 3\)</span>.</p>
+<p><strong>(d)</strong> Compute the row space <span class="arithmatex">\(\mathcal{R}(\mathbf{A})\)</span> by finding a basis for the row space from the row echelon form. Show that <span class="arithmatex">\(\dim(\mathcal{R}(\mathbf{A})) = \dim(\mathcal{C}(\mathbf{A}))\)</span>.</p>
+<p><strong>(e)</strong> Demonstrate that <span class="arithmatex">\(\mathcal{N}(\mathbf{A})\)</span> and <span class="arithmatex">\(\mathcal{R}(\mathbf{A})\)</span> are orthogonal subspaces by verifying that every vector in <span class="arithmatex">\(\mathcal{N}(\mathbf{A})\)</span> is orthogonal to every row of <span class="arithmatex">\(\mathbf{A}\)</span>. What does this tell you about the decomposition <span class="arithmatex">\(\mathbb{R}^4 = \mathcal{R}(\mathbf{A}^T) \oplus \mathcal{N}(\mathbf{A})\)</span>?</p>
+<p><strong>(f)</strong> Consider the augmented matrix <span class="arithmatex">\([\mathbf{A} | \mathbf{b}]\)</span> where <span class="arithmatex">\(\mathbf{b} = [1, 1, 0, 1]^T\)</span>. Without solving the system, use your knowledge of <span class="arithmatex">\(\mathcal{C}(\mathbf{A})\)</span> to determine whether <span class="arithmatex">\(\mathbf{b} \in \mathcal{C}(\mathbf{A})\)</span>. If <span class="arithmatex">\(\mathbf{b} \notin \mathcal{C}(\mathbf{A})\)</span>, decompose <span class="arithmatex">\(\mathbf{b}\)</span> as <span class="arithmatex">\(\mathbf{b} = \mathbf{b}_{\parallel} + \mathbf{b}_{\perp}\)</span> where <span class="arithmatex">\(\mathbf{b}_{\parallel} \in \mathcal{C}(\mathbf{A})\)</span> and <span class="arithmatex">\(\mathbf{b}_{\perp} \perp \mathcal{C}(\mathbf{A})\)</span>.</p>
+<hr />
+<h2 id="lecture-structure-three-part-approach">LECTURE STRUCTURE: THREE-PART APPROACH<a class="headerlink" href="#lecture-structure-three-part-approach" title="Permanent link">&para;</a></h2>
+<h3 id="part-1-concepts-explanation">PART 1: Concepts &amp; Explanation<a class="headerlink" href="#part-1-concepts-explanation" title="Permanent link">&para;</a></h3>
+<p>Theoretical foundations and intuitive understanding of the topic.
+- Key definitions
+- Conceptual framework
+- Intuitive explanations
+- Real-world context</p>
+<h3 id="part-2-mathematical-examples-tutorials">PART 2: Mathematical Examples &amp; Tutorials<a class="headerlink" href="#part-2-mathematical-examples-tutorials" title="Permanent link">&para;</a></h3>
+<p>Hands-on mathematical work with students through guided examples.
+- Worked examples
+- Step-by-step solutions
+- Interactive tutorials
+- Mathematical derivations</p>
+<h3 id="part-3-python-implementation">PART 3: Python Implementation<a class="headerlink" href="#part-3-python-implementation" title="Permanent link">&para;</a></h3>
+<p>Practical coding examples implementing concepts from the lecture.
+- Code examples
+- Implementation details
+- Practical applications
+- Coding exercises</p>
+<hr />
+<h2 id="notation-conventions">NOTATION CONVENTIONS<a class="headerlink" href="#notation-conventions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Notation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SCALARS</strong></td>
+<td><span class="arithmatex">\(a, b, c, \alpha, \beta, \gamma\)</span></td>
+</tr>
+<tr>
+<td><strong>VECTORS</strong></td>
+<td><span class="arithmatex">\(\mathbf{x}, \mathbf{y}, \mathbf{z}\)</span></td>
+</tr>
+<tr>
+<td><strong>MATRICES</strong></td>
+<td><span class="arithmatex">\(\mathbf{X}, \mathbf{Y}, \mathbf{Z}\)</span></td>
+</tr>
+<tr>
+<td><strong>SETS</strong></td>
+<td><span class="arithmatex">\(A, B, C\)</span></td>
+</tr>
+<tr>
+<td><strong>NUMBER SYSTEMS</strong></td>
+<td><span class="arithmatex">\(\mathbb{R}, \mathbb{C}, \mathbb{Z}, \mathbb{N}, \mathbb{R}^n\)</span></td>
+</tr>
+<tr>
+<td><strong>PROBABILITY</strong></td>
+<td><span class="arithmatex">\(p(\cdot), P[\cdot]\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="signature">
+<p><strong>MOHAMMED ALNEMARI</strong>
+<em>MATHEMATICS FOR MACHINE LEARNING • SPRING 2026</em></p>
+<p><strong>ENJOY YOUR LEARNING JOURNEY</strong></p>
+<p>Welcome to Mathematics for Machine Learning.
+Building the foundation for your future algorithms.</p>
+</div>
+<hr />
+<div class="last-updated">
+<p><strong>Last Updated:</strong> February 10, 2026</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="lectures/" class="btn btn-neutral float-right" title="Lectures">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/alnemari-m/mathai-website" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+      <span><a href="lectures/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2026-02-11 11:03:22.637700+00:00
+-->

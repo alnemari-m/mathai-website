@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mohammed Alnemari" /><link rel="canonical" href="https://alnemari-m.github.io/mathai-website/notebooks/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Notebooks - Mathematics of AI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Notebooks";
+        var mkdocs_page_input_path = "notebooks.md";
+        var mkdocs_page_url = "/mathai-website/notebooks/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Mathematics of AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lectures/">Lectures</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tutorials/">Math Tutorials</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Notebooks</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lecture-notebooks">Lecture Notebooks</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#notebook-2-analytic-geometry">Notebook 2: Analytic Geometry</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#notebook-3-matrix-decomposition">Notebook 3: Matrix Decomposition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#notebook-4-vector-calculus">Notebook 4: Vector Calculus</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#notebook-5-probability-and-distributions">Notebook 5: Probability and Distributions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-reference-all-notebooks">Quick Reference: All Notebooks</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setup-usage">Setup &amp; Usage</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#option-1-google-colab-recommended">Option 1: Google Colab (Recommended)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#option-2-local-jupyter">Option 2: Local Jupyter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#option-3-vs-code">Option 3: VS Code</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#notebook-structure">Notebook Structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../papers/">Papers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../animations/">🔒 Animations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Mathematics of AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Notebooks</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/alnemari-m/mathai-website/edit/master/docs/notebooks.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="python-notebooks">Python Notebooks<a class="headerlink" href="#python-notebooks" title="Permanent link">&para;</a></h1>
+<p>Jupyter notebooks for hands-on implementation and computational exercises.</p>
+<hr />
+<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<p><strong>Notebook 0: Python Libraries Basics</strong>
+Introduction to NumPy, SciPy, and Pandas — Essential libraries for this course.</p>
+<p><a href="01_Python_Libraries_Basics.ipynb">Open in GitHub</a> | <a href="https://colab.research.google.com/github/alnemari-m/mathai-website/blob/main/docs/notebooks/01_Python_Libraries_Basics.ipynb">Open in Google Colab</a> | <a href="01_Python_Libraries_Basics.ipynb">Download</a></p>
+<hr />
+<h2 id="lecture-notebooks">Lecture Notebooks<a class="headerlink" href="#lecture-notebooks" title="Permanent link">&para;</a></h2>
+<h3 id="notebook-2-analytic-geometry">Notebook 2: Analytic Geometry<a class="headerlink" href="#notebook-2-analytic-geometry" title="Permanent link">&para;</a></h3>
+<p>Norms, inner products, projections, Gram-Schmidt, and rotations — all implemented in Python with visualizations.</p>
+<p><a href="02_Analytic_Geometry.ipynb">Open in GitHub</a> | <a href="https://colab.research.google.com/github/alnemari-m/mathai-website/blob/main/docs/notebooks/02_Analytic_Geometry.ipynb">Open in Google Colab</a> | <a href="02_Analytic_Geometry.ipynb">Download</a></p>
+<p><strong>What's inside:</strong></p>
+<ul>
+<li>Compute and visualize <span class="arithmatex">\(\ell_1\)</span>, <span class="arithmatex">\(\ell_2\)</span>, <span class="arithmatex">\(\ell_\infty\)</span> norms and unit balls</li>
+<li>Inner products, cosine similarity, and angle computation</li>
+<li>Projection onto lines and general subspaces with 2D visualization</li>
+<li>Gram-Schmidt implementation from scratch (compare with <code>scipy.linalg.qr</code>)</li>
+<li>2D rotation matrices and vector transformations</li>
+</ul>
+<hr />
+<h3 id="notebook-3-matrix-decomposition">Notebook 3: Matrix Decomposition<a class="headerlink" href="#notebook-3-matrix-decomposition" title="Permanent link">&para;</a></h3>
+<p>Eigenvalues, SVD, and matrix approximation — the computational workhorses of data science.</p>
+<p><a href="03_Matrix_Decomposition.ipynb">Open in GitHub</a> | <a href="https://colab.research.google.com/github/alnemari-m/mathai-website/blob/main/docs/notebooks/03_Matrix_Decomposition.ipynb">Open in Google Colab</a> | <a href="03_Matrix_Decomposition.ipynb">Download</a></p>
+<p><strong>What's inside:</strong></p>
+<ul>
+<li>Determinants, trace, and property verification</li>
+<li>Eigenvalue computation and eigenvector visualization</li>
+<li>Cholesky decomposition for positive definite matrices</li>
+<li>Eigendecomposition: <span class="arithmatex">\(A = PDP^{-1}\)</span> reconstruction</li>
+<li>SVD: <span class="arithmatex">\(A = U\Sigma V^T\)</span> with image compression demo</li>
+<li>Matrix approximation: reconstruction error vs rank</li>
+</ul>
+<hr />
+<h3 id="notebook-4-vector-calculus">Notebook 4: Vector Calculus<a class="headerlink" href="#notebook-4-vector-calculus" title="Permanent link">&para;</a></h3>
+<p>Gradients, Jacobians, and backpropagation — the mathematics behind training neural networks.</p>
+<p><a href="04_Vector_Calculus.ipynb">Open in GitHub</a> | <a href="https://colab.research.google.com/github/alnemari-m/mathai-website/blob/main/docs/notebooks/04_Vector_Calculus.ipynb">Open in Google Colab</a> | <a href="04_Vector_Calculus.ipynb">Download</a></p>
+<p><strong>What's inside:</strong></p>
+<ul>
+<li>Numerical differentiation (forward and central differences)</li>
+<li>Gradient computation and gradient field visualization</li>
+<li>Gradient descent from scratch (simple and Rosenbrock functions)</li>
+<li>Descent path visualization on contour plots</li>
+<li>Chain rule and backpropagation for a 2-layer neural network</li>
+<li>Hessian computation and Newton's method comparison</li>
+</ul>
+<hr />
+<h3 id="notebook-5-probability-and-distributions">Notebook 5: Probability and Distributions<a class="headerlink" href="#notebook-5-probability-and-distributions" title="Permanent link">&para;</a></h3>
+<p>From coin flips to Gaussians — simulate, visualize, and understand probability distributions.</p>
+<p><a href="05_Probability_Distributions.ipynb">Open in GitHub</a> | <a href="https://colab.research.google.com/github/alnemari-m/mathai-website/blob/main/docs/notebooks/05_Probability_Distributions.ipynb">Open in Google Colab</a> | <a href="05_Probability_Distributions.ipynb">Download</a></p>
+<p><strong>What's inside:</strong></p>
+<ul>
+<li>Discrete distributions (Bernoulli, Binomial, Geometric) with PMF plots</li>
+<li>Continuous distributions (Uniform, Exponential, Gaussian) with PDF/CDF plots</li>
+<li>Bayes' Theorem: medical test example with prior vs posterior</li>
+<li>Joint distributions and marginalization with heatmaps</li>
+<li>Covariance and correlation with scatter plots</li>
+<li>Multivariate Gaussian: contour plots and sampling</li>
+<li>Central Limit Theorem demonstration</li>
+</ul>
+<hr />
+<h2 id="quick-reference-all-notebooks">Quick Reference: All Notebooks<a class="headerlink" href="#quick-reference-all-notebooks" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Topic</th>
+<th>Colab</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Python Libraries Basics</td>
+<td><a href="https://colab.research.google.com/github/alnemari-m/mathai-website/blob/main/docs/notebooks/01_Python_Libraries_Basics.ipynb">Open</a></td>
+<td><a href="01_Python_Libraries_Basics.ipynb">ipynb</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Analytic Geometry</td>
+<td><a href="https://colab.research.google.com/github/alnemari-m/mathai-website/blob/main/docs/notebooks/02_Analytic_Geometry.ipynb">Open</a></td>
+<td><a href="02_Analytic_Geometry.ipynb">ipynb</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Matrix Decomposition</td>
+<td><a href="https://colab.research.google.com/github/alnemari-m/mathai-website/blob/main/docs/notebooks/03_Matrix_Decomposition.ipynb">Open</a></td>
+<td><a href="03_Matrix_Decomposition.ipynb">ipynb</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Vector Calculus</td>
+<td><a href="https://colab.research.google.com/github/alnemari-m/mathai-website/blob/main/docs/notebooks/04_Vector_Calculus.ipynb">Open</a></td>
+<td><a href="04_Vector_Calculus.ipynb">ipynb</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Probability &amp; Distributions</td>
+<td><a href="https://colab.research.google.com/github/alnemari-m/mathai-website/blob/main/docs/notebooks/05_Probability_Distributions.ipynb">Open</a></td>
+<td><a href="05_Probability_Distributions.ipynb">ipynb</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="setup-usage">Setup &amp; Usage<a class="headerlink" href="#setup-usage" title="Permanent link">&para;</a></h2>
+<h3 id="option-1-google-colab-recommended">Option 1: Google Colab (Recommended)<a class="headerlink" href="#option-1-google-colab-recommended" title="Permanent link">&para;</a></h3>
+<p>Click any "Open in Google Colab" link above — no setup required!</p>
+<h3 id="option-2-local-jupyter">Option 2: Local Jupyter<a class="headerlink" href="#option-2-local-jupyter" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-bash"># Install dependencies
+pip install jupyter numpy scipy matplotlib pandas
+
+# Start Jupyter
+jupyter notebook
+</code></pre>
+
+<h3 id="option-3-vs-code">Option 3: VS Code<a class="headerlink" href="#option-3-vs-code" title="Permanent link">&para;</a></h3>
+<p>Install Python and Jupyter extensions, then open <code>.ipynb</code> files directly.</p>
+<hr />
+<h2 id="notebook-structure">Notebook Structure<a class="headerlink" href="#notebook-structure" title="Permanent link">&para;</a></h2>
+<p>Each notebook includes:</p>
+<ol>
+<li><strong>Learning Objectives</strong> - What you'll learn</li>
+<li><strong>Theory Review</strong> - Key concepts from lectures</li>
+<li><strong>Implementation</strong> - Step-by-step code with explanations</li>
+<li><strong>Visualizations</strong> - Plots and graphs for intuition</li>
+<li><strong>Practice Exercises</strong> - 4 exercises per notebook</li>
+</ol>
+<hr />
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<p><strong>Before Starting:</strong></p>
+<ul>
+<li>Review corresponding lecture slides</li>
+<li>Read the matching math tutorial</li>
+<li>Understand the theory before coding</li>
+</ul>
+<p><strong>While Working:</strong></p>
+<ul>
+<li>Run cells in order</li>
+<li>Experiment with parameters</li>
+<li>Add your own test cases</li>
+<li>Write notes in markdown cells</li>
+</ul>
+<p><strong>After Completing:</strong></p>
+<ul>
+<li>Compare your implementations with library functions (SciPy, scikit-learn)</li>
+<li>Test edge cases</li>
+<li>Try the practice exercises</li>
+</ul>
+<hr />
+<div class="signature">
+<p><em>Notebooks developed by Mohammed Alnemari</em>
+<em>Mathematics of AI &bull; Spring 2026</em></p>
+</div>
+<hr />
+<div class="last-updated">
+<p><strong>Last Updated:</strong> February 8, 2026</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../tutorials/" class="btn btn-neutral float-left" title="Math Tutorials"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../papers/" class="btn btn-neutral float-right" title="Papers">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/alnemari-m/mathai-website" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../tutorials/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../papers/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

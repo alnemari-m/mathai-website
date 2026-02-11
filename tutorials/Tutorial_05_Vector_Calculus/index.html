@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mohammed Alnemari" /><link rel="canonical" href="https://alnemari-m.github.io/mathai-website/tutorials/Tutorial_05_Vector_Calculus/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Tutorial 4: Vector Calculus - Mathematics of AI</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../stylesheets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Tutorial 4: Vector Calculus";
+        var mkdocs_page_input_path = "tutorials/Tutorial_05_Vector_Calculus.md";
+        var mkdocs_page_url = "/mathai-website/tutorials/Tutorial_05_Vector_Calculus/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Mathematics of AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../lectures/">Lectures</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">Math Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../notebooks/">Notebooks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../papers/">Papers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../animations/">🔒 Animations</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Mathematics of AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Tutorial 4: Vector Calculus</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/alnemari-m/mathai-website/edit/master/docs/tutorials/Tutorial_05_Vector_Calculus.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tutorial-4-vector-calculus">Tutorial 4: Vector Calculus<a class="headerlink" href="#tutorial-4-vector-calculus" title="Permanent link">&para;</a></h1>
+<p><strong>Course:</strong> Mathematics for Machine Learning
+<strong>Instructor:</strong> Mohammed Alnemari</p>
+<hr />
+<h2 id="learning-objectives">📚 Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>By the end of this tutorial, you will understand:</p>
+<ol>
+<li>Differentiation of univariate functions and basic derivative rules</li>
+<li>Taylor series and polynomial approximation</li>
+<li>Partial derivatives and gradients</li>
+<li>Jacobians for vector-valued functions</li>
+<li>Matrix calculus rules and gradient identities</li>
+<li>The chain rule in single-variable and multivariate settings</li>
+<li>Backpropagation and computation graphs</li>
+<li>Higher-order derivatives and the Hessian matrix</li>
+<li>Useful gradient identities for machine learning</li>
+</ol>
+<hr />
+<h2 id="part-1-differentiation-of-univariate-functions">Part 1: Differentiation of Univariate Functions<a class="headerlink" href="#part-1-differentiation-of-univariate-functions" title="Permanent link">&para;</a></h2>
+<h3 id="11-definition-of-the-derivative">1.1 Definition of the Derivative<a class="headerlink" href="#11-definition-of-the-derivative" title="Permanent link">&para;</a></h3>
+<p>The <strong>derivative</strong> of a function <span class="arithmatex">\(f(x)\)</span> measures the instantaneous rate of change of <span class="arithmatex">\(f\)</span> with respect to <span class="arithmatex">\(x\)</span>.</p>
+<div class="arithmatex">\[\frac{df}{dx} = f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}\]</div>
+<p><strong>Geometric interpretation:</strong> The derivative at a point gives the slope of the tangent line to the curve at that point.</p>
+<h3 id="12-basic-derivative-rules">1.2 Basic Derivative Rules<a class="headerlink" href="#12-basic-derivative-rules" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Function <span class="arithmatex">\(f(x)\)</span></th>
+<th>Derivative <span class="arithmatex">\(f'(x)\)</span></th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Constant</td>
+<td><span class="arithmatex">\(c\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(\frac{d}{dx}(5) = 0\)</span></td>
+</tr>
+<tr>
+<td>Power Rule</td>
+<td><span class="arithmatex">\(x^n\)</span></td>
+<td><span class="arithmatex">\(nx^{n-1}\)</span></td>
+<td><span class="arithmatex">\(\frac{d}{dx}(x^3) = 3x^2\)</span></td>
+</tr>
+<tr>
+<td>Exponential</td>
+<td><span class="arithmatex">\(e^x\)</span></td>
+<td><span class="arithmatex">\(e^x\)</span></td>
+<td><span class="arithmatex">\(\frac{d}{dx}(e^x) = e^x\)</span></td>
+</tr>
+<tr>
+<td>Logarithm</td>
+<td><span class="arithmatex">\(\ln(x)\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{x}\)</span></td>
+<td><span class="arithmatex">\(\frac{d}{dx}(\ln x) = \frac{1}{x}\)</span></td>
+</tr>
+<tr>
+<td>Sine</td>
+<td><span class="arithmatex">\(\sin(x)\)</span></td>
+<td><span class="arithmatex">\(\cos(x)\)</span></td>
+<td><span class="arithmatex">\(\frac{d}{dx}(\sin x) = \cos x\)</span></td>
+</tr>
+<tr>
+<td>Cosine</td>
+<td><span class="arithmatex">\(\cos(x)\)</span></td>
+<td><span class="arithmatex">\(-\sin(x)\)</span></td>
+<td><span class="arithmatex">\(\frac{d}{dx}(\cos x) = -\sin x\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-combination-rules">1.3 Combination Rules<a class="headerlink" href="#13-combination-rules" title="Permanent link">&para;</a></h3>
+<p><strong>Sum Rule:</strong>
+$<span class="arithmatex">\(\frac{d}{dx}\left[f(x) + g(x)\right] = f'(x) + g'(x)\)</span>$</p>
+<p><strong>Product Rule:</strong>
+$<span class="arithmatex">\(\frac{d}{dx}\left[f(x) \cdot g(x)\right] = f'(x) \cdot g(x) + f(x) \cdot g'(x)\)</span>$</p>
+<p><strong>Quotient Rule:</strong>
+$<span class="arithmatex">\(\frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{f'(x) \cdot g(x) - f(x) \cdot g'(x)}{\left[g(x)\right]^2}\)</span>$</p>
+<p><strong>Chain Rule (single variable):</strong>
+$<span class="arithmatex">\(\frac{d}{dx}\left[f(g(x))\right] = f'(g(x)) \cdot g'(x)\)</span>$</p>
+<h3 id="14-worked-examples">1.4 Worked Examples<a class="headerlink" href="#14-worked-examples" title="Permanent link">&para;</a></h3>
+<p><strong>Example 1 (Product Rule):</strong> Find <span class="arithmatex">\(\frac{d}{dx}\left[x^2 \cdot e^x\right]\)</span>.</p>
+<div class="arithmatex">\[\frac{d}{dx}\left[x^2 \cdot e^x\right] = 2x \cdot e^x + x^2 \cdot e^x = e^x(2x + x^2)\]</div>
+<p><strong>Example 2 (Chain Rule):</strong> Find <span class="arithmatex">\(\frac{d}{dx}\left[e^{-x^2}\right]\)</span>.</p>
+<p>Let <span class="arithmatex">\(u = -x^2\)</span>, so <span class="arithmatex">\(f(u) = e^u\)</span>.</p>
+<div class="arithmatex">\[\frac{d}{dx}\left[e^{-x^2}\right] = e^{-x^2} \cdot (-2x) = -2x \, e^{-x^2}\]</div>
+<p><strong>Example 3 (Quotient Rule):</strong> Find the derivative of the sigmoid function <span class="arithmatex">\(\sigma(x) = \frac{1}{1 + e^{-x}}\)</span>.</p>
+<div class="arithmatex">\[\sigma'(x) = \frac{0 \cdot (1 + e^{-x}) - 1 \cdot (-e^{-x})}{(1 + e^{-x})^2} = \frac{e^{-x}}{(1 + e^{-x})^2}\]</div>
+<p>This simplifies to the elegant identity:</p>
+<div class="arithmatex">\[\sigma'(x) = \sigma(x)\left(1 - \sigma(x)\right)\]</div>
+<hr />
+<h2 id="part-2-taylor-series">Part 2: Taylor Series<a class="headerlink" href="#part-2-taylor-series" title="Permanent link">&para;</a></h2>
+<h3 id="21-taylor-series-definition">2.1 Taylor Series Definition<a class="headerlink" href="#21-taylor-series-definition" title="Permanent link">&para;</a></h3>
+<p>A <strong>Taylor series</strong> expands a smooth function <span class="arithmatex">\(f(x)\)</span> around a point <span class="arithmatex">\(x_0\)</span> as an infinite polynomial:</p>
+<div class="arithmatex">\[f(x) = \sum_{k=0}^{\infty} \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k\]</div>
+<div class="arithmatex">\[= f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2!}(x - x_0)^2 + \frac{f'''(x_0)}{3!}(x - x_0)^3 + \cdots\]</div>
+<h3 id="22-taylor-polynomial-approximations">2.2 Taylor Polynomial Approximations<a class="headerlink" href="#22-taylor-polynomial-approximations" title="Permanent link">&para;</a></h3>
+<p>In machine learning, we often use truncated Taylor polynomials for local approximation.</p>
+<p><strong>First-order (linear) approximation:</strong>
+$<span class="arithmatex">\(f(x) \approx f(x_0) + f'(x_0)(x - x_0)\)</span>$</p>
+<p><strong>Second-order (quadratic) approximation:</strong>
+$<span class="arithmatex">\(f(x) \approx f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2}(x - x_0)^2\)</span>$</p>
+<h3 id="23-why-taylor-series-matter-in-ml">2.3 Why Taylor Series Matter in ML<a class="headerlink" href="#23-why-taylor-series-matter-in-ml" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Approximation Order</th>
+<th>Use in Machine Learning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First-order</td>
+<td>Gradient descent (linear approximation of loss function)</td>
+</tr>
+<tr>
+<td>Second-order</td>
+<td>Newton's method (quadratic approximation of loss function)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="24-worked-example">2.4 Worked Example<a class="headerlink" href="#24-worked-example" title="Permanent link">&para;</a></h3>
+<p><strong>Example:</strong> Approximate <span class="arithmatex">\(e^x\)</span> around <span class="arithmatex">\(x_0 = 0\)</span> to second order.</p>
+<p>We need <span class="arithmatex">\(f(0)\)</span>, <span class="arithmatex">\(f'(0)\)</span>, and <span class="arithmatex">\(f''(0)\)</span>. Since <span class="arithmatex">\(f(x) = e^x\)</span>, all derivatives are <span class="arithmatex">\(e^x\)</span>, so <span class="arithmatex">\(f(0) = f'(0) = f''(0) = 1\)</span>.</p>
+<div class="arithmatex">\[e^x \approx 1 + x + \frac{x^2}{2}\]</div>
+<p>Checking: at <span class="arithmatex">\(x = 0.1\)</span>, the true value is <span class="arithmatex">\(e^{0.1} = 1.10517...\)</span></p>
+<div class="arithmatex">\[1 + 0.1 + \frac{0.01}{2} = 1.105\]</div>
+<p>The approximation is excellent near <span class="arithmatex">\(x_0\)</span>!</p>
+<hr />
+<h2 id="part-3-partial-derivatives">Part 3: Partial Derivatives<a class="headerlink" href="#part-3-partial-derivatives" title="Permanent link">&para;</a></h2>
+<h3 id="31-definition">3.1 Definition<a class="headerlink" href="#31-definition" title="Permanent link">&para;</a></h3>
+<p>For a function of multiple variables <span class="arithmatex">\(f(x_1, x_2, \ldots, x_n)\)</span>, the <strong>partial derivative</strong> with respect to <span class="arithmatex">\(x_i\)</span> measures how <span class="arithmatex">\(f\)</span> changes when only <span class="arithmatex">\(x_i\)</span> varies, with all other variables held constant.</p>
+<div class="arithmatex">\[\frac{\partial f}{\partial x_i} = \lim_{h \to 0} \frac{f(x_1, \ldots, x_i + h, \ldots, x_n) - f(x_1, \ldots, x_i, \ldots, x_n)}{h}\]</div>
+<h3 id="32-notation">3.2 Notation<a class="headerlink" href="#32-notation" title="Permanent link">&para;</a></h3>
+<p>Partial derivatives have several equivalent notations:</p>
+<table>
+<thead>
+<tr>
+<th>Notation</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\frac{\partial f}{\partial x}\)</span></td>
+<td>Partial derivative of <span class="arithmatex">\(f\)</span> with respect to <span class="arithmatex">\(x\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(f_x\)</span></td>
+<td>Shorthand for <span class="arithmatex">\(\frac{\partial f}{\partial x}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\partial_x f\)</span></td>
+<td>Another shorthand</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(D_x f\)</span></td>
+<td>Differential operator notation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-how-to-compute-partial-derivatives">3.3 How to Compute Partial Derivatives<a class="headerlink" href="#33-how-to-compute-partial-derivatives" title="Permanent link">&para;</a></h3>
+<p><strong>Rule:</strong> To find <span class="arithmatex">\(\frac{\partial f}{\partial x_i}\)</span>, treat every variable except <span class="arithmatex">\(x_i\)</span> as a constant, then differentiate with respect to <span class="arithmatex">\(x_i\)</span> using the standard rules.</p>
+<p><strong>Example 1:</strong> Let <span class="arithmatex">\(f(x, y) = x^2 y + 3xy^2 - 2y\)</span>.</p>
+<div class="arithmatex">\[\frac{\partial f}{\partial x} = 2xy + 3y^2\]</div>
+<div class="arithmatex">\[\frac{\partial f}{\partial y} = x^2 + 6xy - 2\]</div>
+<p><strong>Example 2:</strong> Let <span class="arithmatex">\(f(x, y) = e^{xy} + \sin(x)\)</span>.</p>
+<div class="arithmatex">\[\frac{\partial f}{\partial x} = y \, e^{xy} + \cos(x)\]</div>
+<div class="arithmatex">\[\frac{\partial f}{\partial y} = x \, e^{xy}\]</div>
+<hr />
+<h2 id="part-4-gradients">Part 4: Gradients<a class="headerlink" href="#part-4-gradients" title="Permanent link">&para;</a></h2>
+<h3 id="41-definition">4.1 Definition<a class="headerlink" href="#41-definition" title="Permanent link">&para;</a></h3>
+<p>The <strong>gradient</strong> of a scalar-valued function <span class="arithmatex">\(f: \mathbb{R}^n \to \mathbb{R}\)</span> is a vector of all its partial derivatives:</p>
+<div class="arithmatex">\[\nabla f(\mathbf{x}) = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix} \in \mathbb{R}^n\]</div>
+<p>The gradient "lives" in the same space as the input <span class="arithmatex">\(\mathbf{x}\)</span>.</p>
+<h3 id="42-gradient-as-direction-of-steepest-ascent">4.2 Gradient as Direction of Steepest Ascent<a class="headerlink" href="#42-gradient-as-direction-of-steepest-ascent" title="Permanent link">&para;</a></h3>
+<p>The gradient has a fundamental geometric meaning:</p>
+<ul>
+<li><span class="arithmatex">\(\nabla f(\mathbf{x})\)</span> <strong>points in the direction of steepest ascent</strong> of <span class="arithmatex">\(f\)</span> at <span class="arithmatex">\(\mathbf{x}\)</span></li>
+<li><span class="arithmatex">\(-\nabla f(\mathbf{x})\)</span> <strong>points in the direction of steepest descent</strong></li>
+<li><span class="arithmatex">\(\|\nabla f(\mathbf{x})\|\)</span> gives the <strong>rate of steepest ascent</strong></li>
+</ul>
+<p>This is why <strong>gradient descent</strong> updates parameters as:</p>
+<div class="arithmatex">\[\mathbf{x}_{t+1} = \mathbf{x}_t - \eta \, \nabla f(\mathbf{x}_t)\]</div>
+<p>where <span class="arithmatex">\(\eta &gt; 0\)</span> is the learning rate.</p>
+<h3 id="43-worked-example">4.3 Worked Example<a class="headerlink" href="#43-worked-example" title="Permanent link">&para;</a></h3>
+<p><strong>Example:</strong> Find the gradient of <span class="arithmatex">\(f(x_1, x_2, x_3) = x_1^2 + 2x_1 x_2 + x_3^3\)</span>.</p>
+<div class="arithmatex">\[\nabla f = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \frac{\partial f}{\partial x_3} \end{bmatrix} = \begin{bmatrix} 2x_1 + 2x_2 \\ 2x_1 \\ 3x_3^2 \end{bmatrix}\]</div>
+<p>At the point <span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} 1 \\ 2 \\ -1 \end{bmatrix}\)</span>:</p>
+<div class="arithmatex">\[\nabla f\big|_{\mathbf{x}} = \begin{bmatrix} 2(1) + 2(2) \\ 2(1) \\ 3(-1)^2 \end{bmatrix} = \begin{bmatrix} 6 \\ 2 \\ 3 \end{bmatrix}\]</div>
+<p>The direction of steepest descent at this point is <span class="arithmatex">\(-\nabla f = \begin{bmatrix} -6 \\ -2 \\ -3 \end{bmatrix}\)</span>.</p>
+<hr />
+<h2 id="part-5-jacobians">Part 5: Jacobians<a class="headerlink" href="#part-5-jacobians" title="Permanent link">&para;</a></h2>
+<h3 id="51-definition">5.1 Definition<a class="headerlink" href="#51-definition" title="Permanent link">&para;</a></h3>
+<p>For a <strong>vector-valued function</strong> <span class="arithmatex">\(\mathbf{f}: \mathbb{R}^n \to \mathbb{R}^m\)</span> with components <span class="arithmatex">\(f_1, f_2, \ldots, f_m\)</span>, the <strong>Jacobian</strong> is the <span class="arithmatex">\(m \times n\)</span> matrix of all first-order partial derivatives:</p>
+<div class="arithmatex">\[\mathbf{J} = \frac{\partial \mathbf{f}}{\partial \mathbf{x}} = \begin{bmatrix}
+\frac{\partial f_1}{\partial x_1} &amp; \frac{\partial f_1}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_1}{\partial x_n} \\
+\frac{\partial f_2}{\partial x_1} &amp; \frac{\partial f_2}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_2}{\partial x_n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial f_m}{\partial x_1} &amp; \frac{\partial f_m}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_m}{\partial x_n}
+\end{bmatrix} \in \mathbb{R}^{m \times n}\]</div>
+<p><strong>Key observation:</strong> Each row of the Jacobian is the gradient (transposed) of one output component <span class="arithmatex">\(f_i\)</span>.</p>
+<h3 id="52-relationship-to-gradients">5.2 Relationship to Gradients<a class="headerlink" href="#52-relationship-to-gradients" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Input</th>
+<th>Output</th>
+<th>Derivative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gradient <span class="arithmatex">\(\nabla f\)</span></td>
+<td><span class="arithmatex">\(\mathbb{R}^n\)</span></td>
+<td><span class="arithmatex">\(\mathbb{R}\)</span> (scalar)</td>
+<td>Vector in <span class="arithmatex">\(\mathbb{R}^n\)</span></td>
+</tr>
+<tr>
+<td>Jacobian <span class="arithmatex">\(\mathbf{J}\)</span></td>
+<td><span class="arithmatex">\(\mathbb{R}^n\)</span></td>
+<td><span class="arithmatex">\(\mathbb{R}^m\)</span> (vector)</td>
+<td>Matrix in <span class="arithmatex">\(\mathbb{R}^{m \times n}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-worked-example">5.3 Worked Example<a class="headerlink" href="#53-worked-example" title="Permanent link">&para;</a></h3>
+<p><strong>Example:</strong> Let <span class="arithmatex">\(\mathbf{f}: \mathbb{R}^2 \to \mathbb{R}^3\)</span> be defined by:</p>
+<div class="arithmatex">\[\mathbf{f}(x_1, x_2) = \begin{bmatrix} x_1^2 x_2 \\ 5x_1 + \sin(x_2) \\ x_2^2 \end{bmatrix}\]</div>
+<p>The Jacobian is:</p>
+<div class="arithmatex">\[\mathbf{J} = \begin{bmatrix}
+\frac{\partial f_1}{\partial x_1} &amp; \frac{\partial f_1}{\partial x_2} \\
+\frac{\partial f_2}{\partial x_1} &amp; \frac{\partial f_2}{\partial x_2} \\
+\frac{\partial f_3}{\partial x_1} &amp; \frac{\partial f_3}{\partial x_2}
+\end{bmatrix} = \begin{bmatrix}
+2x_1 x_2 &amp; x_1^2 \\
+5 &amp; \cos(x_2) \\
+0 &amp; 2x_2
+\end{bmatrix} \in \mathbb{R}^{3 \times 2}\]</div>
+<hr />
+<h2 id="part-6-gradients-of-matrices">Part 6: Gradients of Matrices<a class="headerlink" href="#part-6-gradients-of-matrices" title="Permanent link">&para;</a></h2>
+<h3 id="61-matrix-calculus-rules">6.1 Matrix Calculus Rules<a class="headerlink" href="#61-matrix-calculus-rules" title="Permanent link">&para;</a></h3>
+<p>When working with vectors and matrices, we need special differentiation rules.</p>
+<p><strong>Gradient of a linear function:</strong> For <span class="arithmatex">\(f(\mathbf{x}) = \mathbf{a}^T \mathbf{x}\)</span> where <span class="arithmatex">\(\mathbf{a}, \mathbf{x} \in \mathbb{R}^n\)</span>:</p>
+<div class="arithmatex">\[\nabla_{\mathbf{x}}(\mathbf{a}^T \mathbf{x}) = \mathbf{a}\]</div>
+<p><strong>Gradient of a quadratic form:</strong> For <span class="arithmatex">\(f(\mathbf{x}) = \mathbf{x}^T \mathbf{A} \mathbf{x}\)</span> where <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>:</p>
+<div class="arithmatex">\[\nabla_{\mathbf{x}}(\mathbf{x}^T \mathbf{A} \mathbf{x}) = (\mathbf{A} + \mathbf{A}^T)\mathbf{x}\]</div>
+<p>If <span class="arithmatex">\(\mathbf{A}\)</span> is symmetric (<span class="arithmatex">\(\mathbf{A} = \mathbf{A}^T\)</span>), this simplifies to:</p>
+<div class="arithmatex">\[\nabla_{\mathbf{x}}(\mathbf{x}^T \mathbf{A} \mathbf{x}) = 2\mathbf{A}\mathbf{x}\]</div>
+<h3 id="62-useful-matrix-calculus-identities">6.2 Useful Matrix Calculus Identities<a class="headerlink" href="#62-useful-matrix-calculus-identities" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Function <span class="arithmatex">\(f(\mathbf{x})\)</span></th>
+<th>Gradient <span class="arithmatex">\(\nabla_{\mathbf{x}} f\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbf{a}^T \mathbf{x}\)</span></td>
+<td><span class="arithmatex">\(\mathbf{a}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}^T \mathbf{a}\)</span></td>
+<td><span class="arithmatex">\(\mathbf{a}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}^T \mathbf{x}\)</span></td>
+<td><span class="arithmatex">\(2\mathbf{x}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{x}^T \mathbf{A} \mathbf{x}\)</span></td>
+<td><span class="arithmatex">\((\mathbf{A} + \mathbf{A}^T)\mathbf{x}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\|\mathbf{x} - \mathbf{b}\|^2\)</span></td>
+<td><span class="arithmatex">\(2(\mathbf{x} - \mathbf{b})\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{b}^T \mathbf{A} \mathbf{x}\)</span></td>
+<td><span class="arithmatex">\(\mathbf{A}^T \mathbf{b}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-worked-example">6.3 Worked Example<a class="headerlink" href="#63-worked-example" title="Permanent link">&para;</a></h3>
+<p><strong>Example:</strong> Find the gradient of the least-squares loss.</p>
+<p>The loss function is:</p>
+<div class="arithmatex">\[L(\mathbf{w}) = \|\mathbf{X}\mathbf{w} - \mathbf{y}\|^2 = (\mathbf{X}\mathbf{w} - \mathbf{y})^T(\mathbf{X}\mathbf{w} - \mathbf{y})\]</div>
+<p>Expanding:</p>
+<div class="arithmatex">\[L(\mathbf{w}) = \mathbf{w}^T \mathbf{X}^T \mathbf{X} \mathbf{w} - 2\mathbf{y}^T \mathbf{X} \mathbf{w} + \mathbf{y}^T \mathbf{y}\]</div>
+<p>Taking the gradient with respect to <span class="arithmatex">\(\mathbf{w}\)</span>:</p>
+<div class="arithmatex">\[\nabla_{\mathbf{w}} L = 2\mathbf{X}^T \mathbf{X} \mathbf{w} - 2\mathbf{X}^T \mathbf{y}\]</div>
+<p>Setting <span class="arithmatex">\(\nabla_{\mathbf{w}} L = \mathbf{0}\)</span> gives the <strong>normal equation</strong>:</p>
+<div class="arithmatex">\[\mathbf{X}^T \mathbf{X} \mathbf{w}^* = \mathbf{X}^T \mathbf{y} \quad \Longrightarrow \quad \mathbf{w}^* = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}\]</div>
+<hr />
+<h2 id="part-7-the-chain-rule">Part 7: The Chain Rule<a class="headerlink" href="#part-7-the-chain-rule" title="Permanent link">&para;</a></h2>
+<h3 id="71-single-variable-chain-rule">7.1 Single Variable Chain Rule<a class="headerlink" href="#71-single-variable-chain-rule" title="Permanent link">&para;</a></h3>
+<p>If <span class="arithmatex">\(y = f(g(x))\)</span>, then:</p>
+<div class="arithmatex">\[\frac{dy}{dx} = \frac{df}{dg} \cdot \frac{dg}{dx}\]</div>
+<p><strong>Example:</strong> <span class="arithmatex">\(y = (3x + 1)^4\)</span></p>
+<p>Let <span class="arithmatex">\(g = 3x + 1\)</span>, so <span class="arithmatex">\(y = g^4\)</span>.</p>
+<div class="arithmatex">\[\frac{dy}{dx} = 4g^3 \cdot 3 = 12(3x + 1)^3\]</div>
+<h3 id="72-multivariate-chain-rule">7.2 Multivariate Chain Rule<a class="headerlink" href="#72-multivariate-chain-rule" title="Permanent link">&para;</a></h3>
+<p>If <span class="arithmatex">\(f\)</span> depends on <span class="arithmatex">\(\mathbf{x}\)</span> through intermediate variables <span class="arithmatex">\(\mathbf{u}\)</span>:</p>
+<div class="arithmatex">\[\mathbf{x} \in \mathbb{R}^n \xrightarrow{\mathbf{g}} \mathbf{u} \in \mathbb{R}^m \xrightarrow{f} y \in \mathbb{R}\]</div>
+<p>Then:</p>
+<div class="arithmatex">\[\frac{\partial f}{\partial x_i} = \sum_{j=1}^{m} \frac{\partial f}{\partial u_j} \cdot \frac{\partial u_j}{\partial x_i}\]</div>
+<p>In matrix form (using Jacobians):</p>
+<div class="arithmatex">\[\frac{\partial f}{\partial \mathbf{x}} = \frac{\partial f}{\partial \mathbf{u}} \cdot \frac{\partial \mathbf{u}}{\partial \mathbf{x}}\]</div>
+<h3 id="73-chain-rule-for-neural-networks">7.3 Chain Rule for Neural Networks<a class="headerlink" href="#73-chain-rule-for-neural-networks" title="Permanent link">&para;</a></h3>
+<p>Consider a simple two-layer neural network:</p>
+<div class="arithmatex">\[\mathbf{x} \xrightarrow{\mathbf{W}_1} \mathbf{z}_1 \xrightarrow{\sigma} \mathbf{a}_1 \xrightarrow{\mathbf{W}_2} \mathbf{z}_2 \xrightarrow{\text{loss}} L\]</div>
+<p>To find <span class="arithmatex">\(\frac{\partial L}{\partial \mathbf{W}_1}\)</span>, we apply the chain rule through the entire computation:</p>
+<div class="arithmatex">\[\frac{\partial L}{\partial \mathbf{W}_1} = \frac{\partial L}{\partial \mathbf{z}_2} \cdot \frac{\partial \mathbf{z}_2}{\partial \mathbf{a}_1} \cdot \frac{\partial \mathbf{a}_1}{\partial \mathbf{z}_1} \cdot \frac{\partial \mathbf{z}_1}{\partial \mathbf{W}_1}\]</div>
+<p>Each term in this product corresponds to a specific operation in the network.</p>
+<hr />
+<h2 id="part-8-backpropagation">Part 8: Backpropagation<a class="headerlink" href="#part-8-backpropagation" title="Permanent link">&para;</a></h2>
+<h3 id="81-computation-graphs">8.1 Computation Graphs<a class="headerlink" href="#81-computation-graphs" title="Permanent link">&para;</a></h3>
+<p>A <strong>computation graph</strong> represents a function as a directed acyclic graph (DAG) where:
+- <strong>Nodes</strong> represent operations or variables
+- <strong>Edges</strong> represent data flow</p>
+<p><strong>Example:</strong> For <span class="arithmatex">\(f(x, y) = (x + y) \cdot (y + 1)\)</span>:</p>
+<pre class="codehilite"><code>x ---\
+      (+) = a ---\
+y ---/            (*) = f
+y ---\           /
+      (+) = b --/
+1 ---/
+</code></pre>
+
+<p>Here <span class="arithmatex">\(a = x + y\)</span>, <span class="arithmatex">\(b = y + 1\)</span>, and <span class="arithmatex">\(f = a \cdot b\)</span>.</p>
+<h3 id="82-forward-pass">8.2 Forward Pass<a class="headerlink" href="#82-forward-pass" title="Permanent link">&para;</a></h3>
+<p>In the <strong>forward pass</strong>, we compute the output by evaluating the graph from inputs to output.</p>
+<p><strong>Example:</strong> With <span class="arithmatex">\(x = 2\)</span>, <span class="arithmatex">\(y = 3\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Computation</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="arithmatex">\(a = x + y\)</span></td>
+<td><span class="arithmatex">\(a = 2 + 3 = 5\)</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="arithmatex">\(b = y + 1\)</span></td>
+<td><span class="arithmatex">\(b = 3 + 1 = 4\)</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="arithmatex">\(f = a \cdot b\)</span></td>
+<td><span class="arithmatex">\(f = 5 \cdot 4 = 20\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="83-backward-pass-backpropagation">8.3 Backward Pass (Backpropagation)<a class="headerlink" href="#83-backward-pass-backpropagation" title="Permanent link">&para;</a></h3>
+<p>In the <strong>backward pass</strong>, we compute gradients by traversing the graph from output to inputs, applying the chain rule at each node.</p>
+<p>Starting from <span class="arithmatex">\(\frac{\partial f}{\partial f} = 1\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Gradient</th>
+<th>Computation</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="arithmatex">\(\frac{\partial f}{\partial a}\)</span></td>
+<td><span class="arithmatex">\(b\)</span></td>
+<td><span class="arithmatex">\(4\)</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="arithmatex">\(\frac{\partial f}{\partial b}\)</span></td>
+<td><span class="arithmatex">\(a\)</span></td>
+<td><span class="arithmatex">\(5\)</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="arithmatex">\(\frac{\partial f}{\partial x}\)</span></td>
+<td><span class="arithmatex">\(\frac{\partial f}{\partial a} \cdot \frac{\partial a}{\partial x} = b \cdot 1\)</span></td>
+<td><span class="arithmatex">\(4\)</span></td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="arithmatex">\(\frac{\partial f}{\partial y}\)</span></td>
+<td><span class="arithmatex">\(\frac{\partial f}{\partial a} \cdot \frac{\partial a}{\partial y} + \frac{\partial f}{\partial b} \cdot \frac{\partial b}{\partial y} = b \cdot 1 + a \cdot 1\)</span></td>
+<td><span class="arithmatex">\(4 + 5 = 9\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> Since <span class="arithmatex">\(y\)</span> appears in two paths (<span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span>), we <strong>sum</strong> the contributions from both paths.</p>
+<h3 id="84-general-backpropagation-algorithm">8.4 General Backpropagation Algorithm<a class="headerlink" href="#84-general-backpropagation-algorithm" title="Permanent link">&para;</a></h3>
+<p>For a computation graph with output <span class="arithmatex">\(L\)</span>:</p>
+<ol>
+<li><strong>Forward pass:</strong> Compute all intermediate values from inputs to output</li>
+<li><strong>Initialize:</strong> Set <span class="arithmatex">\(\frac{\partial L}{\partial L} = 1\)</span></li>
+<li><strong>Backward pass:</strong> For each node <span class="arithmatex">\(v\)</span> in reverse topological order:</li>
+</ol>
+<div class="arithmatex">\[\frac{\partial L}{\partial v} = \sum_{u \in \text{children}(v)} \frac{\partial L}{\partial u} \cdot \frac{\partial u}{\partial v}\]</div>
+<p>This is the foundation of training neural networks.</p>
+<hr />
+<h2 id="part-9-higher-order-derivatives">Part 9: Higher-Order Derivatives<a class="headerlink" href="#part-9-higher-order-derivatives" title="Permanent link">&para;</a></h2>
+<h3 id="91-second-order-partial-derivatives">9.1 Second-Order Partial Derivatives<a class="headerlink" href="#91-second-order-partial-derivatives" title="Permanent link">&para;</a></h3>
+<p>For a function <span class="arithmatex">\(f(x_1, x_2, \ldots, x_n)\)</span>, we can differentiate partial derivatives again:</p>
+<div class="arithmatex">\[\frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial}{\partial x_i}\left(\frac{\partial f}{\partial x_j}\right)\]</div>
+<p><strong>Symmetry of mixed partials (Schwarz's theorem):</strong> If <span class="arithmatex">\(f\)</span> has continuous second partial derivatives:</p>
+<div class="arithmatex">\[\frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial^2 f}{\partial x_j \partial x_i}\]</div>
+<h3 id="92-the-hessian-matrix">9.2 The Hessian Matrix<a class="headerlink" href="#92-the-hessian-matrix" title="Permanent link">&para;</a></h3>
+<p>The <strong>Hessian</strong> collects all second-order partial derivatives into a matrix:</p>
+<div class="arithmatex">\[\mathbf{H} = \nabla^2 f = \begin{bmatrix}
+\frac{\partial^2 f}{\partial x_1^2} &amp; \frac{\partial^2 f}{\partial x_1 \partial x_2} &amp; \cdots &amp; \frac{\partial^2 f}{\partial x_1 \partial x_n} \\
+\frac{\partial^2 f}{\partial x_2 \partial x_1} &amp; \frac{\partial^2 f}{\partial x_2^2} &amp; \cdots &amp; \frac{\partial^2 f}{\partial x_2 \partial x_n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial^2 f}{\partial x_n \partial x_1} &amp; \frac{\partial^2 f}{\partial x_n \partial x_2} &amp; \cdots &amp; \frac{\partial^2 f}{\partial x_n^2}
+\end{bmatrix} \in \mathbb{R}^{n \times n}\]</div>
+<p><strong>Properties:</strong>
+- The Hessian is <strong>symmetric</strong> (by Schwarz's theorem): <span class="arithmatex">\(\mathbf{H} = \mathbf{H}^T\)</span>
+- If <span class="arithmatex">\(\mathbf{H}\)</span> is <strong>positive definite</strong> at a critical point, the point is a <strong>local minimum</strong>
+- If <span class="arithmatex">\(\mathbf{H}\)</span> is <strong>negative definite</strong>, the point is a <strong>local maximum</strong>
+- If <span class="arithmatex">\(\mathbf{H}\)</span> has both positive and negative eigenvalues, the point is a <strong>saddle point</strong></p>
+<h3 id="93-second-order-taylor-expansion-multivariate">9.3 Second-Order Taylor Expansion (Multivariate)<a class="headerlink" href="#93-second-order-taylor-expansion-multivariate" title="Permanent link">&para;</a></h3>
+<p>The multivariate second-order Taylor expansion around <span class="arithmatex">\(\mathbf{x}_0\)</span> is:</p>
+<div class="arithmatex">\[f(\mathbf{x}) \approx f(\mathbf{x}_0) + \nabla f(\mathbf{x}_0)^T (\mathbf{x} - \mathbf{x}_0) + \frac{1}{2}(\mathbf{x} - \mathbf{x}_0)^T \mathbf{H}(\mathbf{x}_0)(\mathbf{x} - \mathbf{x}_0)\]</div>
+<p>This is the basis for <strong>Newton's method</strong> in optimization.</p>
+<h3 id="94-worked-example">9.4 Worked Example<a class="headerlink" href="#94-worked-example" title="Permanent link">&para;</a></h3>
+<p><strong>Example:</strong> Find the Hessian of <span class="arithmatex">\(f(x_1, x_2) = x_1^3 + 2x_1 x_2^2 - x_2\)</span>.</p>
+<p>First, compute the gradient:</p>
+<div class="arithmatex">\[\nabla f = \begin{bmatrix} 3x_1^2 + 2x_2^2 \\ 4x_1 x_2 - 1 \end{bmatrix}\]</div>
+<p>Then, compute the Hessian:</p>
+<div class="arithmatex">\[\mathbf{H} = \begin{bmatrix}
+\frac{\partial^2 f}{\partial x_1^2} &amp; \frac{\partial^2 f}{\partial x_1 \partial x_2} \\
+\frac{\partial^2 f}{\partial x_2 \partial x_1} &amp; \frac{\partial^2 f}{\partial x_2^2}
+\end{bmatrix} = \begin{bmatrix}
+6x_1 &amp; 4x_2 \\
+4x_2 &amp; 4x_1
+\end{bmatrix}\]</div>
+<p>Notice that <span class="arithmatex">\(\mathbf{H} = \mathbf{H}^T\)</span>, confirming symmetry.</p>
+<hr />
+<h2 id="part-10-useful-gradient-identities">Part 10: Useful Gradient Identities<a class="headerlink" href="#part-10-useful-gradient-identities" title="Permanent link">&para;</a></h2>
+<h3 id="101-reference-table">10.1 Reference Table<a class="headerlink" href="#101-reference-table" title="Permanent link">&para;</a></h3>
+<p>These identities appear frequently in machine learning derivations. Here <span class="arithmatex">\(\mathbf{x}, \mathbf{a}, \mathbf{b} \in \mathbb{R}^n\)</span> and <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Function</th>
+<th>Gradient <span class="arithmatex">\(\nabla_{\mathbf{x}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="arithmatex">\(\mathbf{a}^T \mathbf{x}\)</span></td>
+<td><span class="arithmatex">\(\mathbf{a}\)</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="arithmatex">\(\mathbf{x}^T \mathbf{x}\)</span></td>
+<td><span class="arithmatex">\(2\mathbf{x}\)</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="arithmatex">\(\mathbf{x}^T \mathbf{A} \mathbf{x}\)</span></td>
+<td><span class="arithmatex">\((\mathbf{A} + \mathbf{A}^T)\mathbf{x}\)</span></td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="arithmatex">\((\mathbf{A}\mathbf{x} - \mathbf{b})^T(\mathbf{A}\mathbf{x} - \mathbf{b})\)</span></td>
+<td><span class="arithmatex">\(2\mathbf{A}^T(\mathbf{A}\mathbf{x} - \mathbf{b})\)</span></td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="arithmatex">\(\|\mathbf{x}\|^2 = \mathbf{x}^T\mathbf{x}\)</span></td>
+<td><span class="arithmatex">\(2\mathbf{x}\)</span></td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="arithmatex">\(\mathbf{b}^T \mathbf{A} \mathbf{x}\)</span></td>
+<td><span class="arithmatex">\(\mathbf{A}^T \mathbf{b}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="102-deriving-identity-3">10.2 Deriving Identity 3<a class="headerlink" href="#102-deriving-identity-3" title="Permanent link">&para;</a></h3>
+<p>Let us prove <span class="arithmatex">\(\nabla_{\mathbf{x}}(\mathbf{x}^T \mathbf{A} \mathbf{x}) = (\mathbf{A} + \mathbf{A}^T)\mathbf{x}\)</span>.</p>
+<p>Write <span class="arithmatex">\(f(\mathbf{x}) = \mathbf{x}^T \mathbf{A} \mathbf{x} = \sum_{i}\sum_{j} x_i \, A_{ij} \, x_j\)</span>.</p>
+<p>Taking the partial derivative with respect to <span class="arithmatex">\(x_k\)</span>:</p>
+<div class="arithmatex">\[\frac{\partial f}{\partial x_k} = \sum_{j} A_{kj} \, x_j + \sum_{i} x_i \, A_{ik}\]</div>
+<div class="arithmatex">\[= (\mathbf{A}\mathbf{x})_k + (\mathbf{A}^T\mathbf{x})_k\]</div>
+<p>Collecting into a vector:</p>
+<div class="arithmatex">\[\nabla_{\mathbf{x}} f = \mathbf{A}\mathbf{x} + \mathbf{A}^T\mathbf{x} = (\mathbf{A} + \mathbf{A}^T)\mathbf{x}\]</div>
+<h3 id="103-when-mathbfa-is-symmetric">10.3 When <span class="arithmatex">\(\mathbf{A}\)</span> is Symmetric<a class="headerlink" href="#103-when-mathbfa-is-symmetric" title="Permanent link">&para;</a></h3>
+<p>If <span class="arithmatex">\(\mathbf{A} = \mathbf{A}^T\)</span>, then <span class="arithmatex">\(\mathbf{A} + \mathbf{A}^T = 2\mathbf{A}\)</span>, so:</p>
+<div class="arithmatex">\[\nabla_{\mathbf{x}}(\mathbf{x}^T \mathbf{A} \mathbf{x}) = 2\mathbf{A}\mathbf{x}\]</div>
+<p>This is a very common case in machine learning, since covariance matrices and Hessians are symmetric.</p>
+<hr />
+<h2 id="summary-key-takeaways">Summary: Key Takeaways<a class="headerlink" href="#summary-key-takeaways" title="Permanent link">&para;</a></h2>
+<h3 id="differentiation-fundamentals">Differentiation Fundamentals<a class="headerlink" href="#differentiation-fundamentals" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Derivatives measure rates of change; partial derivatives fix all variables except one</li>
+<li>The gradient <span class="arithmatex">\(\nabla f\)</span> collects all partial derivatives into a vector</li>
+<li>The Jacobian generalizes the gradient for vector-valued functions</li>
+</ul>
+<h3 id="the-chain-rule-and-backpropagation">The Chain Rule and Backpropagation<a class="headerlink" href="#the-chain-rule-and-backpropagation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The multivariate chain rule composes Jacobians through multiplication</li>
+<li>Backpropagation applies the chain rule on a computation graph, working backward from the loss</li>
+<li>Gradients with respect to variables appearing in multiple paths are <strong>summed</strong></li>
+</ul>
+<h3 id="higher-order-information">Higher-Order Information<a class="headerlink" href="#higher-order-information" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The Hessian matrix <span class="arithmatex">\(\mathbf{H}\)</span> captures second-order (curvature) information</li>
+<li>Positive definite Hessian at a critical point indicates a local minimum</li>
+</ul>
+<h3 id="matrix-calculus">Matrix Calculus<a class="headerlink" href="#matrix-calculus" title="Permanent link">&para;</a></h3>
+<ul>
+<li><span class="arithmatex">\(\nabla_{\mathbf{x}}(\mathbf{a}^T \mathbf{x}) = \mathbf{a}\)</span></li>
+<li><span class="arithmatex">\(\nabla_{\mathbf{x}}(\mathbf{x}^T \mathbf{A} \mathbf{x}) = (\mathbf{A} + \mathbf{A}^T)\mathbf{x}\)</span></li>
+<li>The normal equation for least squares: <span class="arithmatex">\(\mathbf{w}^* = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\)</span></li>
+</ul>
+<hr />
+<h2 id="practice-problems">Practice Problems<a class="headerlink" href="#practice-problems" title="Permanent link">&para;</a></h2>
+<h3 id="problem-1">Problem 1<a class="headerlink" href="#problem-1" title="Permanent link">&para;</a></h3>
+<p>Find the derivative of <span class="arithmatex">\(f(x) = x^3 e^{2x}\)</span> using the product and chain rules.</p>
+<h3 id="problem-2">Problem 2<a class="headerlink" href="#problem-2" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(f(x, y) = x^2 y - 3xy^3 + 2x\)</span>. Find <span class="arithmatex">\(\frac{\partial f}{\partial x}\)</span> and <span class="arithmatex">\(\frac{\partial f}{\partial y}\)</span>, then compute the gradient at the point <span class="arithmatex">\((1, -1)\)</span>.</p>
+<h3 id="problem-3">Problem 3<a class="headerlink" href="#problem-3" title="Permanent link">&para;</a></h3>
+<p>Compute the Jacobian of the function <span class="arithmatex">\(\mathbf{f}: \mathbb{R}^2 \to \mathbb{R}^2\)</span> defined by:</p>
+<div class="arithmatex">\[\mathbf{f}(x, y) = \begin{bmatrix} x^2 + y \\ xy - y^2 \end{bmatrix}\]</div>
+<h3 id="problem-4">Problem 4<a class="headerlink" href="#problem-4" title="Permanent link">&para;</a></h3>
+<p>Find the Hessian of <span class="arithmatex">\(f(x_1, x_2) = x_1^2 + 4x_1 x_2 + x_2^2\)</span>. Is this Hessian positive definite?</p>
+<h3 id="problem-5">Problem 5<a class="headerlink" href="#problem-5" title="Permanent link">&para;</a></h3>
+<p>Consider the computation graph for <span class="arithmatex">\(f(x) = (x + 2)^2\)</span>. Perform the forward pass with <span class="arithmatex">\(x = 3\)</span>, then use backpropagation to compute <span class="arithmatex">\(\frac{df}{dx}\)</span>.</p>
+<h3 id="problem-6">Problem 6<a class="headerlink" href="#problem-6" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(\mathbf{A} = \begin{bmatrix} 2 &amp; 1 \\ 1 &amp; 3 \end{bmatrix}\)</span> and <span class="arithmatex">\(\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}\)</span>. Compute <span class="arithmatex">\(\nabla_{\mathbf{x}}(\mathbf{x}^T \mathbf{A} \mathbf{x})\)</span> using the identity from Part 10, and verify by expanding <span class="arithmatex">\(\mathbf{x}^T \mathbf{A} \mathbf{x}\)</span> and differentiating directly.</p>
+<hr />
+<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
+<p><strong>Solution 1:</strong></p>
+<p>Using the product rule with <span class="arithmatex">\(u = x^3\)</span> and <span class="arithmatex">\(v = e^{2x}\)</span>:</p>
+<div class="arithmatex">\[f'(x) = \frac{d}{dx}(x^3) \cdot e^{2x} + x^3 \cdot \frac{d}{dx}(e^{2x})\]</div>
+<div class="arithmatex">\[= 3x^2 \cdot e^{2x} + x^3 \cdot 2e^{2x}\]</div>
+<div class="arithmatex">\[= e^{2x}(3x^2 + 2x^3) = x^2 e^{2x}(3 + 2x)\]</div>
+<hr />
+<p><strong>Solution 2:</strong></p>
+<div class="arithmatex">\[\frac{\partial f}{\partial x} = 2xy - 3y^3 + 2\]</div>
+<div class="arithmatex">\[\frac{\partial f}{\partial y} = x^2 - 9xy^2\]</div>
+<p>At <span class="arithmatex">\((1, -1)\)</span>:</p>
+<div class="arithmatex">\[\frac{\partial f}{\partial x}\bigg|_{(1,-1)} = 2(1)(-1) - 3(-1)^3 + 2 = -2 + 3 + 2 = 3\]</div>
+<div class="arithmatex">\[\frac{\partial f}{\partial y}\bigg|_{(1,-1)} = (1)^2 - 9(1)(-1)^2 = 1 - 9 = -8\]</div>
+<div class="arithmatex">\[\nabla f\big|_{(1,-1)} = \begin{bmatrix} 3 \\ -8 \end{bmatrix}\]</div>
+<hr />
+<p><strong>Solution 3:</strong></p>
+<div class="arithmatex">\[\mathbf{J} = \begin{bmatrix}
+\frac{\partial f_1}{\partial x} &amp; \frac{\partial f_1}{\partial y} \\
+\frac{\partial f_2}{\partial x} &amp; \frac{\partial f_2}{\partial y}
+\end{bmatrix}\]</div>
+<p>For <span class="arithmatex">\(f_1 = x^2 + y\)</span>: <span class="arithmatex">\(\frac{\partial f_1}{\partial x} = 2x\)</span>, <span class="arithmatex">\(\frac{\partial f_1}{\partial y} = 1\)</span></p>
+<p>For <span class="arithmatex">\(f_2 = xy - y^2\)</span>: <span class="arithmatex">\(\frac{\partial f_2}{\partial x} = y\)</span>, <span class="arithmatex">\(\frac{\partial f_2}{\partial y} = x - 2y\)</span></p>
+<div class="arithmatex">\[\mathbf{J} = \begin{bmatrix} 2x &amp; 1 \\ y &amp; x - 2y \end{bmatrix}\]</div>
+<hr />
+<p><strong>Solution 4:</strong></p>
+<p>First, compute the gradient:</p>
+<div class="arithmatex">\[\nabla f = \begin{bmatrix} 2x_1 + 4x_2 \\ 4x_1 + 2x_2 \end{bmatrix}\]</div>
+<p>The Hessian (matrix of second derivatives):</p>
+<div class="arithmatex">\[\mathbf{H} = \begin{bmatrix}
+\frac{\partial^2 f}{\partial x_1^2} &amp; \frac{\partial^2 f}{\partial x_1 \partial x_2} \\
+\frac{\partial^2 f}{\partial x_2 \partial x_1} &amp; \frac{\partial^2 f}{\partial x_2^2}
+\end{bmatrix} = \begin{bmatrix} 2 &amp; 4 \\ 4 &amp; 2 \end{bmatrix}\]</div>
+<p>To check positive definiteness, compute the eigenvalues. For a <span class="arithmatex">\(2 \times 2\)</span> matrix:</p>
+<div class="arithmatex">\[\det(\mathbf{H} - \lambda \mathbf{I}) = (2 - \lambda)^2 - 16 = 0\]</div>
+<div class="arithmatex">\[\lambda^2 - 4\lambda + 4 - 16 = 0 \implies \lambda^2 - 4\lambda - 12 = 0\]</div>
+<div class="arithmatex">\[\lambda = \frac{4 \pm \sqrt{16 + 48}}{2} = \frac{4 \pm 8}{2}\]</div>
+<p>So <span class="arithmatex">\(\lambda_1 = 6\)</span> and <span class="arithmatex">\(\lambda_2 = -2\)</span>.</p>
+<p>Since one eigenvalue is negative, the Hessian is <strong>not positive definite</strong>. It is <strong>indefinite</strong>, meaning any critical point of <span class="arithmatex">\(f\)</span> would be a saddle point.</p>
+<hr />
+<p><strong>Solution 5:</strong></p>
+<p>Decompose <span class="arithmatex">\(f(x) = (x + 2)^2\)</span> into elementary steps:</p>
+<ul>
+<li><span class="arithmatex">\(a = x + 2\)</span></li>
+<li><span class="arithmatex">\(f = a^2\)</span></li>
+</ul>
+<p><strong>Forward pass</strong> with <span class="arithmatex">\(x = 3\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Computation</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="arithmatex">\(a = x + 2\)</span></td>
+<td><span class="arithmatex">\(a = 3 + 2 = 5\)</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="arithmatex">\(f = a^2\)</span></td>
+<td><span class="arithmatex">\(f = 5^2 = 25\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Backward pass:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Gradient</th>
+<th>Computation</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="arithmatex">\(\frac{\partial f}{\partial f}\)</span></td>
+<td>(seed)</td>
+<td><span class="arithmatex">\(1\)</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="arithmatex">\(\frac{\partial f}{\partial a}\)</span></td>
+<td><span class="arithmatex">\(2a\)</span></td>
+<td><span class="arithmatex">\(2(5) = 10\)</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="arithmatex">\(\frac{\partial f}{\partial x}\)</span></td>
+<td><span class="arithmatex">\(\frac{\partial f}{\partial a} \cdot \frac{\partial a}{\partial x} = 10 \cdot 1\)</span></td>
+<td><span class="arithmatex">\(10\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verification:</strong> <span class="arithmatex">\(f'(x) = 2(x + 2)\)</span>, so <span class="arithmatex">\(f'(3) = 2(5) = 10\)</span>. Correct!</p>
+<hr />
+<p><strong>Solution 6:</strong></p>
+<p><strong>Using the identity:</strong></p>
+<p>Since <span class="arithmatex">\(\mathbf{A} = \begin{bmatrix} 2 &amp; 1 \\ 1 &amp; 3 \end{bmatrix}\)</span> is symmetric (<span class="arithmatex">\(\mathbf{A} = \mathbf{A}^T\)</span>):</p>
+<div class="arithmatex">\[\nabla_{\mathbf{x}}(\mathbf{x}^T \mathbf{A} \mathbf{x}) = 2\mathbf{A}\mathbf{x} = 2\begin{bmatrix} 2 &amp; 1 \\ 1 &amp; 3 \end{bmatrix}\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} 4x_1 + 2x_2 \\ 2x_1 + 6x_2 \end{bmatrix}\]</div>
+<p><strong>Direct verification:</strong></p>
+<p>Expand <span class="arithmatex">\(\mathbf{x}^T \mathbf{A} \mathbf{x}\)</span>:</p>
+<div class="arithmatex">\[\mathbf{x}^T \mathbf{A} \mathbf{x} = \begin{bmatrix} x_1 &amp; x_2 \end{bmatrix}\begin{bmatrix} 2x_1 + x_2 \\ x_1 + 3x_2 \end{bmatrix} = 2x_1^2 + x_1 x_2 + x_1 x_2 + 3x_2^2 = 2x_1^2 + 2x_1 x_2 + 3x_2^2\]</div>
+<p>Taking partial derivatives:</p>
+<div class="arithmatex">\[\frac{\partial}{\partial x_1}(2x_1^2 + 2x_1 x_2 + 3x_2^2) = 4x_1 + 2x_2\]</div>
+<div class="arithmatex">\[\frac{\partial}{\partial x_2}(2x_1^2 + 2x_1 x_2 + 3x_2^2) = 2x_1 + 6x_2\]</div>
+<div class="arithmatex">\[\nabla_{\mathbf{x}}(\mathbf{x}^T \mathbf{A} \mathbf{x}) = \begin{bmatrix} 4x_1 + 2x_2 \\ 2x_1 + 6x_2 \end{bmatrix}\]</div>
+<p>Both methods agree, confirming the identity.</p>
+<hr />
+<p><strong>Course:</strong> Mathematics for Machine Learning
+<strong>Instructor:</strong> Mohammed Alnemari</p>
+<p><strong>Next:</strong> Tutorial 5 - Probability and Distributions</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/alnemari-m/mathai-website" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
