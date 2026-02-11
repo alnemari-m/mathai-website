@@ -1,0 +1,32 @@
+site_name: Mathematics of AI
+site_description: Mathematical Foundations of AI & Machine Learning
+site_author: Mohammed Alnemari
+site_url: https://alnemari-m.github.io/mathai-website/
+repo_url: https://github.com/alnemari-m/mathai-website
+
+theme:
+  name: readthedocs
+
+nav:
+  - Home: index.md
+  - Lectures: lectures.md
+  - Math Tutorials: tutorials.md
+  - Notebooks: notebooks.md
+  - Papers: papers.md
+  - "🔒 Animations": animations.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - codehilite
+  - pymdownx.arithmatex:
+      generic: true
+  - attr_list
+  - md_in_html
+
+extra_css:
+  - stylesheets/custom.css
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js
